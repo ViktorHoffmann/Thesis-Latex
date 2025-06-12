@@ -1,0 +1,106 @@
+% Art der Arbeit: Bachelorarbeit
+% Titel: "BLAST Avionics Thermal Management"
+% Autor: Viktor Hoffmann
+%-----------------------------------------------------------------------------------
+% verwendete Packages
+\documentclass{ITLR}
+% Use ITLR.cls for first style-definition. 
+% IMPORTANT: change in ITLR.cls colors in hyperref-package ONLY for printing; NOT for PDF submittance
+
+
+% ----------- Zusätzliche Usepackages ----------------------------------------------
+% Hier stehen weitere Usepackages ...
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usetikzlibrary{arrows.meta}
+\usepackage{acronym}
+
+% ----------- Graphics Paths -------------------------------------------------------
+\graphicspath{{Bilder/}}
+
+%###################################################################################
+% ----------- Dokumentanfang -------------------------------------------------------
+\begin{document}
+\setstretch{1.1667} 		% Zeilenabstand (Verhältnis, hier z.B. 14pt/12pt)
+\pagestyle{Abstract}		% oben definiert
+
+% ----------- Title & Preface  -----------------------------------------------------
+\pagenumbering{Alph}
+\include{Text/TitlePage}
+
+% erste Seite: Titelblatt (wird von ITLR erstellt)
+% zweite Seite: leeres Blatt
+% dritte Seite: Aufgabenstellung (wird von ITLR erstellt)
+% vierte Seite: Erklärung (wird von ITLR erstellt, muss aber noch unterschrieben werden)
+
+\pagenumbering{Roman}		% Am Anfang römische Seitenzahlen
+% ----------- Abstract -------------------------------------------------------------
+\newpage
+\phantomsection		% Korrigiert die Hyperref-Verlinkungen
+\addcontentsline{toc}{chapter}{Kurzzusammenfassung} %\addcontentsline
+\include{Text/Abstract}
+
+% ----------- Verzeichnisse --------------------------------------------------------
+% Inhaltsverzeichnis, Abbildungsverzeichnis, Tabellenverzeichnis, Nomenklatur 
+\newpage
+\tableofcontents	% Erstellt automatisch die Überschrift "Inhaltsverzeichnis" mit
+
+% Tabellenverzeichnis
+\newpage
+\phantomsection		% Korrigiert die Hyperref-Verlinkungen
+\pagestyle{VerzeichnisseNomenklatur}		% wie oben definiert
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis} 	% Eintrag ins InhaltsVZ
+\listoftables
+
+% Abbildungsverzeichnis
+\newpage
+\phantomsection		% Korrigiert die Hyperref-Verlinkungen
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures				
+
+% Symbolverzeichnis
+\newpage
+\phantomsection		% Korrigiert die Hyperref-Verlinkungen
+\addcontentsline{toc}{chapter}{Symbolverzeichnis}
+\include{Text/ListofSymbols}
+
+% ----------- Verzeichnisse Ende-----------------------------------------------------
+\newpage
+\pagestyle{main}			% ab hier: normale Kopf- und Fußnoten
+% ----------- Einleitung ------------------------------------------------------------
+\include{Text/1_Introduction}
+
+%----------- Literaturrecherche -----------------------------------------------------
+\newpage
+\include{Text/2_Fundamentals}
+
+% ----------- Methodik --------------------------------------------------------------
+\include{Text/3_Method}
+
+% ----------- Diskussion & Schlussfolgerungen----------------------------------------
+\newpage
+\include{Text/4_Results}
+
+% ----------- Diskussion & Schlussfolgerungen----------------------------------------
+\newpage
+\include{Text/5_Discussion}
+
+% ----------- Ausblick --------------------------------------------------------------
+\newpage
+\include{Text/6_Summary}
+
+% ----------- Literatur -------------------------------------------------------------
+\newpage
+\renewcommand{\bibname}{Literaturverzeichnis}
+
+\bibliography{Bibliography/quellen.bib}
+\bibliographystyle{plain}%{unsrt}{abbrv}{abbrvnat}{unsrt}
+
+\newpage
+
+%----------- Anhang -----------------------------------------------------------------
+\include{Text/Appendix}
+
+%------------------------------------------------------------------------------------
+\end{document}
