@@ -16,9 +16,9 @@
 \contentsline {section}{\numberline {3.1}PCM}{3}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Radiator}{5}{section.3.2}%
 \contentsline {section}{\numberline {3.3}PCM Radiator Hybrid}{6}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Ergebnisse}{10}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Ergebnisse}{9}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Discussion and conclusions}{11}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Discussion about including pictures}{11}{section.5.1}%
 \contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{12}{chapter.6}%
-\contentsline {chapter}{Appendix}{15}{chapter*.30}%
+\contentsline {chapter}{Appendix}{15}{chapter*.31}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
