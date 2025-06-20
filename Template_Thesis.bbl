@@ -54,6 +54,12 @@ STMicroelectronics.
 \newblock Guidelines for thermal management on stm32 applications.
 \newblock 2024.
 
+\bibitem{Xingcun-2011}
+{Xingcun, C.}
+\newblock {\em {Advanced Materials for Thermal Management of Electronic
+  Packaging}}.
+\newblock Springer, 2011.
+
 \bibitem{Xu-2022}
 Yu~Xu, W.~Jiale, and Li~Tong.
 \newblock Experimental study on the heat transfer performance of a phase change

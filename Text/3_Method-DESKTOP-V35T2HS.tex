@@ -120,11 +120,13 @@ $\dot{Q}_{\mathrm{Radiator}} = \dot{Q}_{\mathrm{Umwelt}} + \dot{Q}_{\mathrm{Avio
   \end{tikzpicture}
   \caption{PCM Wärmestrom bei aerodynamischer Aufheizung}\label{fig:pcm_waermestrom_aufheizung_diagramm}
 \end{figure}
-Hier reicht die Leistung des Radiators nicht mehr aus und das \ac{pcm} fängt an zu schmilzen. Zu beachten ist,
-dass die Leistung des Radiators durch die Temperaturerhöhung steigen würde, wegen des \ac{pcm} jedoch sehen wir das System als isotherm an.
+Hier reicht die Leistung des Radiators nicht mehr aus, resultierend steigt die Temperatur leicht an (Tut sie nicht, wir nehmen wegen dem PCM die Hauttemperatur als isotherm an,
+lediglich gibt es einen infinitesimalen Schritt über den Schmelzpunkt hinweg) und das PCM fängt an zu schmilzen. Zu beachten ist,
+dass die Leistung des Radiators durch die Temperaturerhöhung auch steigt.
 % Raketenkontour im Luftstrom für ebene Platte Annahme
 \begin{figure}[H]
   \centering
+  
   \begin{tikzpicture}
     \draw[thick] (0,0) arc [start angle=90, end angle=270, x radius=5cm, y radius= 1.5cm]; %nosecone
     \draw[thick] (0,0) -- (3,0); % hülle
@@ -185,4 +187,4 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
 \end{figure}
 \newpage
 \section{Thermales Interface}\label{thermalesInterface}
-Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird. Laut~\cite{Xingcun-2011} seite 35 geht die meiste Wärme in die PCB.
+Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird.
