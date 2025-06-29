@@ -5,7 +5,6 @@
 Hier Steht was zu \ac{pcm}
 \begin{figure}[H]
     \centering
-
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Code/pcm_mass.pdf}
@@ -63,7 +62,9 @@ Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verw
   \text{Pr} = \frac{c_p \eta}{\lambda}
 \end{equation}
 \end{minipage}
-Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung, welche auch vom Recovery-Faktor abhängt.
+
+Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung.
+In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 stattfinden.
 \begin{equation}
   \label{eq:dynamische_viskositaet}
   \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} \left( \frac{T_{\infty}}{T_0} \right)^{\frac{2}{3}}
@@ -72,10 +73,14 @@ Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamisch
   \label{eq:recovery_temperatur}
   T_r = T_{\infty} \left( 1 + r \frac{\kappa + 1}{2} \text{Ma}^2 \right)
 \end{equation}
-Für turbulente Grenzschichten lässt sich folgende Approximation des Recovery-Faktors anwenden.
+Der Recovery-Faktor kann mittels der folgenden Gleichung approximiert werden
 \begin{equation}
   \label{eq:recovery_faktor}
-  r = \frac{2}{\left(\kappa - 1\right) \text{Ma}_e^2} \left(\frac{T_{a_{w}}}{T_e} - 1\right) \approx \sqrt[3]{\text{Pr}}
+  r = \frac{2}{\left(\kappa - 1\right) \text{Ma}_e^2} \left(\frac{T_{a_{w}}}{T_e} - 1\right) \approx
+  \begin{cases}
+    \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
+    \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
+  \end{cases}
 \end{equation}
 \newpage
 % Hybrid PCM ohne aufheizung
@@ -162,27 +167,57 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
       ->,
       -{Stealth[length=0.25cm]},
       thick
+    },
+    arrow/.style = {
+      ->,
+      -{Stealth[length=0.25cm]},
+      thick
     }
   ]
-    % Top tree without PCM Höhe
-    \node (avionik) {Avionik Wärmestrom}
-      child { node (radiator) {Radiator Fläche}
-        child { node (breite) {PCM Breite} }
-        child { node (umwelt) {Umwelt Wärmestrom} 
-          child { node (kapazitaet) {PCM Kapazität} }
-        }
-      };
 
-    % Place PCM Höhe manually below and centered between Breite and Kapazität
-    \node (hoehe) [below=10em of $(radiator)$] {PCM Höhe}
-      child {node (gewicht) {PCM Gewicht}};
+    % Top nodes
+    \node (avionik) at (-2.1, 4) {Avionik Wärmestrom};
+    \node (sonne)   at ( 2.1, 4) {Sonne Wärmestrom};
 
-    % Draw straight arrows from both parents to PCM Höhe
-    \draw[->, thick, -{Stealth[length=0.25cm]}] (breite) -- (hoehe);
-    \draw[->, thick, -{Stealth[length=0.25cm]}] (kapazitaet) -- (hoehe);
+    % Radiator Fläche centered below
+    \node (radiator) at (0, 2) {Radiator Fläche};
+
+    % Children of Radiator
+    \node (breite) at (-2.1, 0) {PCM Breite};
+    \node (aerothermal) at (2.1, 0) {Aerothermal Wärmestrom};
+
+    % PCM Kapazität as a separate node (not a child directly)
+    \node (kapazitaet) at (2.1, -2) {PCM Kapazität};
+
+    % PCM Höhe node below the center of breite and kapazitaet
+    \node (hoehe) at (0, -4) {PCM Höhe};
+    \node (gewicht) at (0, -6) {PCM Gewicht};
+
+    % Arrows
+    \draw[arrow] (avionik) -- (radiator);
+    \draw[arrow] (sonne) -- (radiator);
+    \draw[arrow] (radiator) -- (breite);
+    \draw[arrow] (radiator) -- (aerothermal);
+    \draw[arrow] (aerothermal) -- (kapazitaet);
+    \draw[arrow] (breite) -- (hoehe);
+    \draw[arrow] (kapazitaet) -- (hoehe);
+    \draw[arrow] (hoehe) -- (gewicht);
+
   \end{tikzpicture}
   \caption{Dimensionierungs-Ablauf in der Vorauslegung}\label{fig:dimensionierung_ablauf}
 \end{figure}
 \newpage
 \section{Thermales Interface}\label{thermalesInterface}
 Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird. Laut~\cite{Xingcun-2011} seite 35 geht die meiste Wärme in die PCB.
+\newpage
+\section{CFD}\label{cfd}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{40WPCM_struktur.png}
+  \caption{\ac{pcm} Struktur}\label{pcmstruktur}
+\end{figure}
+\begin{figure}
+  \includegraphics[width=\textwidth]{40WPCM_mesh1.png}
+  \caption{\ac{pcm} Mesh}\label{pcmmesh}
+\end{figure}
+%recoverytemperatur wahrscheinlich richtig noch recherchieren
