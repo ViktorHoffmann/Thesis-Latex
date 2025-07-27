@@ -20,10 +20,18 @@ Als nächstes sieht man Graphen
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
 \end{figure}
 \section{\ac{cht}}
-als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte
-des Flugzustandes habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
-Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 0.5 Sekunden vorher und nachder
-im Flug die BC's auch verwendet und einen Vergleich gezogen.
-
-Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s
-Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa with the corresponding air density of \SI{0.4006}{kg/m^3}
+als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
+habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
+Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
+im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
+Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
+Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
+Flugzustand bei 27.691 s (maxQ-1): 9511.553 m, 716.349 m/s, -46.825°C, 284.754 hPa mit entsprechender Luft Dichte \SI{0.4384}{kg/m^3}\\
+Flugzustand bei 29.691 s (maxQ+1): 11011 m, 786.862 m/s, -56.5°C, 225.948 hPa mit entsprechender Luft Dichte \SI{0.3634}{kg/m^3}\\
+Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
+Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_specific_heatflux.pdf}
+  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{1}{s} davor und danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
+\end{figure}
