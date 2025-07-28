@@ -24,12 +24,22 @@ als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde 
 habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
 Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
 im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
+
 Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
 Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
+
 Flugzustand bei 27.691 s (maxQ-1): 9511.553 m, 716.349 m/s, -46.825°C, 284.754 hPa mit entsprechender Luft Dichte \SI{0.4384}{kg/m^3}\\
-Flugzustand bei 29.691 s (maxQ+1): 11011 m, 786.862 m/s, -56.5°C, 225.948 hPa mit entsprechender Luft Dichte \SI{0.3634}{kg/m^3}\\
+
+Flugzustand bei 29.691 s (maxQ+1): 11011 m, 786.862 m/s, -56.5°C, 225.948 hPa mit entsprechender Luft Dichte \SI{0.3633}{kg/m^3}\\
+
 Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
 Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
+
+maxQp1.5: 30.191 s, 11409.57 m, 805.711 m/s, -56.5°C, 212.299 hPa Dichte: \SI{0.3413839}{kg/m^3}\\
+maxQp1.2: 29.891 s, 11169.842 m, 794.334 m/s, -56.5°C, 220.527 hPa Dichte: \SI{0.3546148}{kg/m^3}\\
+Hiernach hab ich die Unterrelaxationsfaktoren weiter reduziert für genauigkeit bei kleineren Zeitschritten.\\
+maxQp1.05: 29.741 s, 11051.248 m, 788.722 m/s, -56.5°C, 224.597 hPa Dichte: \SI{0.3611595}{kg/m^3}\\
+maxQp0.95: 29.641 s, 10972.651 m, 785.008 m/s, -56.5°C, 227.362 hPa Dichte: \SI{0.3656057}{kg/m^3}\\
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/maxQ_compare_specific_heatflux.pdf}
