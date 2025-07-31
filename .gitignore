@@ -1,0 +1,33 @@
+# LaTeX intermediate and output files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.lof
+*.lot
+*.fls
+*.out
+*.toc
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.swp
+*.synctex(busy)
+
+# Output files
+*.pdf
+
+# Mac-specific
+.DS_Store
+
+# latexmk specific
+latex.out
+latex.log
