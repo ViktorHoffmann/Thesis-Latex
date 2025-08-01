@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.8)  28 JUL 2025 12:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.8)  30 JUL 2025 17:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1371,10 +1371,8 @@ Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 24.
  (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (Template_Thesis.aux (Text/TitlePage.aux)
-Package babel Info: 'ngerman' activates 'ngerman' shorthands.
-(babel)             Reported  on input line 13.
- (Text/Abstract.aux) (Text/ListofSymbols.aux) (Text/1_Introduction.aux) (Text/2_Fundamentals.aux) (Text/3_Method.aux) (Text/4_Results.aux) (Text/5_Discussion.aux) (Text/6_Summary.aux) (Text/Appendix.aux))
+)
+No file Template_Thesis.aux.
 \openout1 = `Template_Thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
@@ -1393,7 +1391,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 24.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 24.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd
+(C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
 LaTeX Font Info:    ... okay on input line 24.
@@ -1401,6 +1399,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
+Package babel Info: 'ngerman' activates 'ngerman' shorthands.
+(babel)             Reported  on input line 24.
  (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-german.trsl
 File: translations-basic-dictionary-german.trsl (german translation file `translations-basic-dictionary')
 )
@@ -1487,7 +1487,6 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (
 )
 Package backref Info: ** backref set up for natbib ** on input line 24.
 Package hyperref Info: Link coloring ON on input line 24.
- (Template_Thesis.out) (Template_Thesis.out)
 \@outlinefile=\write5
 \openout5 = `Template_Thesis.out'.
 
@@ -1582,44 +1581,8 @@ Package microtype Info: Character `029' is missing
 
 ]
 Package tocbasic Info: character protrusion at toc deactivated on input line 47.
- (Template_Thesis.toc
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 7.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 7.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 7.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 7.
- (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-Package acronym Info: Label `acro:cht' newly defined as it shall be overridden
-although it is yet undefined on input line 24.
-)
+
+No file Template_Thesis.toc.
 \tf@toc=\write6
 \openout6 = `Template_Thesis.toc'.
 
@@ -1632,7 +1595,8 @@ although it is yet undefined on input line 24.
 
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 54.
- (Template_Thesis.lot)
+
+No file Template_Thesis.lot.
 \tf@lot=\write7
 \openout7 = `Template_Thesis.lot'.
 
@@ -1643,10 +1607,8 @@ Package tocbasic Info: character protrusion at lot deactivated on input line 54.
 
 ]
 Package tocbasic Info: character protrusion at lof deactivated on input line 60.
- (Template_Thesis.lof
-Package acronym Info: Label `acro:pcm' newly defined as it shall be overridden
-although it is yet undefined on input line 12.
-)
+
+No file Template_Thesis.lof.
 \tf@lof=\write8
 \openout8 = `Template_Thesis.lof'.
 
@@ -1655,16 +1617,99 @@ although it is yet undefined on input line 12.
 [5
 
 
-{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+]
 \openout2 = `Text/ListofSymbols.aux'.
 
  (Text/ListofSymbols.tex
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 5.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
+ (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
 
 [6
 
 
 
-{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}])
+{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+
+LaTeX Warning: Hyper reference `acro:pcm' on page VII undefined on input line 35.
+
+
+LaTeX Warning: Hyper reference `acro:pcm' on page VII undefined on input line 35.
+
+
+LaTeX Warning: Hyper reference `acro:pcb' on page VII undefined on input line 36.
+
+
+LaTeX Warning: Hyper reference `acro:pcb' on page VII undefined on input line 36.
+
+
+LaTeX Warning: Hyper reference `acro:blast' on page VII undefined on input line 37.
+
+
+LaTeX Warning: Hyper reference `acro:blast' on page VII undefined on input line 37.
+
+
+LaTeX Warning: Hyper reference `acro:fcc' on page VII undefined on input line 38.
+
+
+LaTeX Warning: Hyper reference `acro:fcc' on page VII undefined on input line 38.
+
+
+LaTeX Warning: Hyper reference `acro:hyend' on page VII undefined on input line 39.
+
+
+LaTeX Warning: Hyper reference `acro:hyend' on page VII undefined on input line 39.
+
+
+LaTeX Warning: Hyper reference `acro:cfd' on page VII undefined on input line 40.
+
+
+LaTeX Warning: Hyper reference `acro:cfd' on page VII undefined on input line 40.
+
+
+LaTeX Warning: Hyper reference `acro:cht' on page VII undefined on input line 41.
+
+
+LaTeX Warning: Hyper reference `acro:cht' on page VII undefined on input line 41.
+
+
+LaTeX Warning: Hyper reference `acro:pgs' on page VII undefined on input line 42.
+
+
+LaTeX Warning: Hyper reference `acro:pgs' on page VII undefined on input line 42.
+
+)
 
 Package babel Info: 'ngerman' activates 'ngerman' shorthands.
 (babel)             Reported  on input line 66.
@@ -1675,10 +1720,70 @@ Package babel Info: 'ngerman' activates 'ngerman' shorthands.
 chapter 1.
 Package acronym Info: Label `acro:blast' newly defined as it shall be overridden
 although it is yet undefined on input line 7.
+
+Package acronym Warning: Acronym blast is not defined on input line 7.
+
+
+Package acronym Warning: Acronym blast is not defined on input line 7.
+
 Package acronym Info: Label `acro:hyend' newly defined as it shall be overridden
 although it is yet undefined on input line 7.
+
+Package acronym Warning: Acronym hyend is not defined on input line 7.
+
+
+Package acronym Warning: Acronym hyend is not defined on input line 7.
+
 Package acronym Info: Label `acro:fcc' newly defined as it shall be overridden
 although it is yet undefined on input line 12.
+
+Package acronym Warning: Acronym fcc is not defined on input line 12.
+
+
+Package acronym Warning: Acronym fcc is not defined on input line 12.
+
+
+Package acronym Warning: Acronym blast is not defined on input line 16.
+
+
+Package acronym Warning: Acronym hyend is not defined on input line 16.
+
+
+Package acronym Warning: Acronym fcc is not defined on input line 16.
+
+
+Package natbib Warning: Citation `Claudio-2018' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Ho-2021' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Isaacs-2017' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Abdel-2024' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Xu-2022' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Pavia-2015' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Yang-2015' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `ST-guide' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `NASA-2023' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Gilmore-2002' on page 1 undefined on input line 29.
+
+
+Package natbib Warning: Citation `Hume-2022' on page 1 undefined on input line 29.
+
 )
 Underfull \hbox (badness 10000) in paragraph at lines 27--72
 
@@ -1710,12 +1815,20 @@ chapter 2.
 
  (Text/3_Method.tex
 chapter 3.
-<Bilder/../../Code/pcm_mass.pdf, id=216, 513.90266pt x 383.97986pt>
+Package acronym Info: Label `acro:pcm' newly defined as it shall be overridden
+although it is yet undefined on input line 5.
+
+Package acronym Warning: Acronym pcm is not defined on input line 5.
+
+
+Package acronym Warning: Acronym pcm is not defined on input line 5.
+
+<Bilder/../../Code/pcm_mass.pdf, id=110, 513.90266pt x 383.97986pt>
 File: Bilder/../../Code/pcm_mass.pdf Graphic file (type pdf)
 <use Bilder/../../Code/pcm_mass.pdf>
 Package pdftex.def Info: Bilder/../../Code/pcm_mass.pdf  used on input line 10.
 (pdftex.def)             Requested size: 384.1096pt x 287.01158pt.
-<Bilder/../../Code/pcm_heat_capacity.pdf, id=217, 513.90266pt x 383.97986pt>
+<Bilder/../../Code/pcm_heat_capacity.pdf, id=111, 513.90266pt x 383.97986pt>
 File: Bilder/../../Code/pcm_heat_capacity.pdf Graphic file (type pdf)
 <use Bilder/../../Code/pcm_heat_capacity.pdf>
 Package pdftex.def Info: Bilder/../../Code/pcm_heat_capacity.pdf  used on input line 16.
@@ -1731,7 +1844,7 @@ Package pdftex.def Info: Bilder/../../Code/pcm_heat_capacity.pdf  used on input 
 ]
 
 [4 <./Bilder/../../Code/pcm_mass.pdf> <./Bilder/../../Code/pcm_heat_capacity.pdf>]
-<Bilder/../../Code/radiator_leistung.pdf, id=245, 510.84709pt x 383.97986pt>
+<Bilder/../../Code/radiator_leistung.pdf, id=143, 510.84709pt x 383.97986pt>
 File: Bilder/../../Code/radiator_leistung.pdf Graphic file (type pdf)
 <use Bilder/../../Code/radiator_leistung.pdf>
 Package pdftex.def Info: Bilder/../../Code/radiator_leistung.pdf  used on input line 26.
@@ -1743,18 +1856,70 @@ Package acronym Info: Label `acro:cfd' newly defined as it shall be overridden
 although it is yet undefined on input line 32.
 
 
+Package acronym Warning: Acronym cfd is not defined on input line 32.
+
+
+Package acronym Warning: Acronym cfd is not defined on input line 32.
+
+
+LaTeX Warning: Reference `fig:rakete_kontour_zeichnung' on page 6 undefined on input line 33.
+
+
+LaTeX Warning: Reference `eq:prandtl' on page 6 undefined on input line 34.
+
+
+LaTeX Warning: Reference `eq:reynolds' on page 6 undefined on input line 34.
+
+
+LaTeX Warning: Reference `eq:qdot' on page 6 undefined on input line 35.
+
+
+LaTeX Warning: Reference `eq:dynamische_viskositaet' on page 6 undefined on input line 66.
+
+
+
 [6{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+Package acronym Warning: Acronym pcm is not defined on input line 128.
+
+
+Package acronym Warning: Acronym pcm is not defined on input line 129.
+
+
+LaTeX Warning: Reference `fig:dimensionierung_ablauf' on page 7 undefined on input line 153.
+
+
 
 [7]
 
 [8]
 
+Package natbib Warning: Citation `Xingcun-2011' on page 9 undefined on input line 211.
+
+
+
 [9]
 Package acronym Info: Label `acro:pcb' newly defined as it shall be overridden
 although it is yet undefined on input line 214.
+
+
+Package acronym Warning: Acronym pcb is not defined on input line 214.
+
+
+Package acronym Warning: Acronym pcb is not defined on input line 214.
+
 Package acronym Info: Label `acro:pgs' newly defined as it shall be overridden
 although it is yet undefined on input line 216.
-<Bilder/thermal_straps_commercial.png, id=304, 1004.75375pt x 416.55624pt>
+
+Package acronym Warning: Acronym pgs is not defined on input line 216.
+
+
+Package acronym Warning: Acronym pgs is not defined on input line 216.
+
+
+Package acronym Warning: Acronym pgs is not defined on input line 217.
+
+<Bilder/thermal_straps_commercial.png, id=197, 1004.75375pt x 416.55624pt>
 File: Bilder/thermal_straps_commercial.png Graphic file (type png)
 <use Bilder/thermal_straps_commercial.png>
 Package pdftex.def Info: Bilder/thermal_straps_commercial.png  used on input line 221.
@@ -1762,16 +1927,29 @@ Package pdftex.def Info: Bilder/thermal_straps_commercial.png  used on input lin
 
 
 [10 <./Bilder/thermal_straps_commercial.png>]
-<Bilder/40WPCM_struktur.png, id=310, 581.92406pt x 631.60968pt>
+<Bilder/40WPCM_struktur.png, id=207, 581.92406pt x 631.60968pt>
 File: Bilder/40WPCM_struktur.png Graphic file (type png)
 <use Bilder/40WPCM_struktur.png>
 Package pdftex.def Info: Bilder/40WPCM_struktur.png  used on input line 228.
 (pdftex.def)             Requested size: 426.79135pt x 463.23969pt.
-<Bilder/40WPCM_mesh1.png, id=314, 589.4522pt x 633.86812pt>
+
+
+Package acronym Warning: Acronym pcm is not defined on input line 229.
+
+
+Package acronym Warning: Acronym pcm is not defined on input line 229.
+
+<Bilder/40WPCM_mesh1.png, id=209, 589.4522pt x 633.86812pt>
 File: Bilder/40WPCM_mesh1.png Graphic file (type png)
 <use Bilder/40WPCM_mesh1.png>
 Package pdftex.def Info: Bilder/40WPCM_mesh1.png  used on input line 232.
 (pdftex.def)             Requested size: 426.79135pt x 458.95746pt.
+
+Package acronym Warning: Acronym pcm is not defined on input line 233.
+
+
+Package acronym Warning: Acronym pcm is not defined on input line 233.
+
 )
 
 [11 <./Bilder/40WPCM_struktur.png>]
@@ -1781,12 +1959,12 @@ Package pdftex.def Info: Bilder/40WPCM_mesh1.png  used on input line 232.
 
  (Text/4_Results.tex
 chapter 4.
-<Bilder/../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf, id=328, 362.55402pt x 261.376pt>
+<Bilder/../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf, id=225, 362.55402pt x 261.376pt>
 File: Bilder/../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf Graphic file (type pdf)
 <use Bilder/../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf>
 Package pdftex.def Info: Bilder/../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf  used on input line 17.
 (pdftex.def)             Requested size: 426.79135pt x 307.70311pt.
-<Bilder/../../Code/re_pr_during_flight.pdf, id=329, 362.55402pt x 261.376pt>
+<Bilder/../../Code/re_pr_during_flight.pdf, id=226, 362.55402pt x 261.376pt>
 File: Bilder/../../Code/re_pr_during_flight.pdf Graphic file (type pdf)
 <use Bilder/../../Code/re_pr_during_flight.pdf>
 Package pdftex.def Info: Bilder/../../Code/re_pr_during_flight.pdf  used on input line 19.
@@ -1800,9 +1978,21 @@ Package pdftex.def Info: Bilder/../../Code/re_pr_during_flight.pdf  used on inpu
 
 
 ]
+Package acronym Info: Label `acro:cht' newly defined as it shall be overridden
+although it is yet undefined on input line 22.
+
+
+Package acronym Warning: Acronym cht is not defined on input line 22.
+
+
+Package acronym Warning: Acronym cht is not defined on input line 22.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ac' on input line 22.
+
+
+Package acronym Warning: Acronym cfd is not defined on input line 24.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--27
@@ -1831,15 +2021,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--34
  []
 
 
+LaTeX Warning: Reference `fig:spezifischer_waermestrom_maxQ_simulationen' on page 15 undefined on input line 35.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 35--37
 
  []
 
-<Bilder/../../Code/maxQ_compare_specific_heatflux.pdf, id=369, 362.55402pt x 261.376pt>
-File: Bilder/../../Code/maxQ_compare_specific_heatflux.pdf Graphic file (type pdf)
-<use Bilder/../../Code/maxQ_compare_specific_heatflux.pdf>
-Package pdftex.def Info: Bilder/../../Code/maxQ_compare_specific_heatflux.pdf  used on input line 45.
-(pdftex.def)             Requested size: 426.79135pt x 307.70311pt.
+
+LaTeX Warning: File `../../Code/maxQ_compare_specific_heatflux.pdf' not found on input line 45.
+
+
+Text/4_Results.tex:45: Package pdftex.def Error: File `../../Code/maxQ_compare_specific_heatflux.pdf' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.45 ..../Code/maxQ_compare_specific_heatflux.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 45.
+(C:\Users\Viktor\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 46.
 
@@ -1849,9 +2060,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--47
 
 )
 
+
+Package acronym Warning: Acronym cht is not defined on input line 83.
+
 [15{C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
 
-[16 <./Bilder/../../Code/maxQ_compare_specific_heatflux.pdf>]
+
+Package acronym Warning: Acronym cht is not defined on input line 83.
+
+[16]
 \openout2 = `Text/5_Discussion.aux'.
 
  (Text/5_Discussion.tex
@@ -1899,28 +2116,55 @@ chapter 6.
 
 
 
-] (Template_Thesis.aux (Text/TitlePage.aux) (Text/Abstract.aux) (Text/ListofSymbols.aux) (Text/1_Introduction.aux) (Text/2_Fundamentals.aux) (Text/3_Method.aux) (Text/4_Results.aux) (Text/5_Discussion.aux) (Text/6_Summary.aux) (Text/Appendix.aux))
+]
+
+Package natbib Warning: There were undefined citations.
+
+(Template_Thesis.aux (Text/TitlePage.aux) (Text/Abstract.aux) (Text/ListofSymbols.aux) (Text/1_Introduction.aux) (Text/2_Fundamentals.aux) (Text/3_Method.aux) (Text/4_Results.aux) (Text/5_Discussion.aux) (Text/6_Summary.aux)
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+(Text/Appendix.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
-Package rerunfilecheck Info: File `Template_Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package rerunfilecheck Info: File `Template_Thesis.brf' has not changed.
-(rerunfilecheck)             Checksum: 93548D8E86DC1814AF6D6D755EA9E939;226.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `Template_Thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Template_Thesis.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+
+Package rerunfilecheck Warning: File `Template_Thesis.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `Template_Thesis.brf':
+(rerunfilecheck)             Before: 93548D8E86DC1814AF6D6D755EA9E939;226
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 52240 strings out of 469922
- 1208428 string characters out of 5468666
- 1904544 words of memory out of 5000000
- 77882 multiletter control sequences out of 15000+600000
- 699733 words of font info for 153 fonts, out of 8000000 for 9000
+ 52263 strings out of 469922
+ 1208330 string characters out of 5468666
+ 1903544 words of memory out of 5000000
+ 77926 multiletter control sequences out of 15000+600000
+ 703348 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 122i,14n,121p,11027b,1326s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on Template_Thesis.pdf (29 pages, 1239937 bytes).
+ 122i,14n,121p,11027b,1304s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Viktor/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on Template_Thesis.pdf (29 pages, 1224273 bytes).
 PDF statistics:
- 634 PDF objects out of 1000 (max. 8388607)
+ 530 PDF objects out of 1000 (max. 8388607)
  125 named destinations out of 1000 (max. 500000)
- 43292 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 45847 words of extra memory for PDF output out of 51595 (max. 10000000)
 
