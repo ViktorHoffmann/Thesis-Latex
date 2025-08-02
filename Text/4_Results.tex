@@ -32,16 +32,13 @@ Flugzustand bei 18.691 s (maxQ-10): 4274.387 m, 461.355 m/s, -12.784, 594.935 hP
 
 Flugzustand bei 38.691 s (maxQ+10): 19758.652 m, 1189.968 m/s, -56.5°C, 56.93 hPa mit entsprechender Luft Dichte \SI{0.0915}{kg/m^3}\\
 
+Flugzustand bei 48.7 s (maxQ+20): 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
+
 Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
 Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
 
-maxQp1.5: 30.191 s, 11409.57 m, 805.711 m/s, -56.5°C, 212.299 hPa Dichte: \SI{0.3413839}{kg/m^3}\\
-maxQp1.2: 29.891 s, 11169.842 m, 794.334 m/s, -56.5°C, 220.527 hPa Dichte: \SI{0.3546148}{kg/m^3}\\
-Hiernach hab ich die Unterrelaxationsfaktoren weiter reduziert für genauigkeit bei kleineren Zeitschritten.\\
-maxQp1.05: 29.741 s, 11051.248 m, 788.722 m/s, -56.5°C, 224.597 hPa Dichte: \SI{0.3611595}{kg/m^3}\\
-maxQp0.95: 29.641 s, 10972.651 m, 785.008 m/s, -56.5°C, 227.362 hPa Dichte: \SI{0.3656057}{kg/m^3}\\
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_specific_heatflux.pdf}
+  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
   \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{1}{s} davor und danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
 \end{figure}
