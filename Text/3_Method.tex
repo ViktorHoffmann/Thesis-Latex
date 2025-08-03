@@ -3,7 +3,7 @@
 % Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
 \section{PCM}\label{sec:pcm}
 Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.\\
-\begin{table}[]
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|l|}
     \hline
@@ -19,21 +19,16 @@ Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{ta
     \hline
     $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter} \\
     \hline
-    $K_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin} \\
+    $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin} \\
     \hline
-    $K_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin} \\
+    $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin} \\
     \hline
-    TEC & \SI{0.0009}{\per\kelvin} \\
+    $\alpha$ & \SI{0.0009}{\per\kelvin} \\
+    \hline
+    $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram} \\
     \hline
   \end{tabular}
   \caption{Stoffdaten für Eicosane~\cite{NIST,Nazarychev-2022,Benbrika-2020,Stryker-1990}}\label{tab:eicosane_data}
-\end{table}
-\begin{table}[]
-  \begin{tabular}{|c|c|}
-    $\Delta \text{H} \SI{}{KJ/mol}$ & \cite{NIST} \\
-    \hline
-    69.000 & \\
-  \end{tabular}
 \end{table}
 \begin{figure}[H]
     \centering
