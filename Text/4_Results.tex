@@ -19,21 +19,16 @@ Als nächstes sieht man Graphen
   \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}\label{fig:re_pr_flugsimulation}
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
 \end{figure}
-\section{\ac{cht}}
+\section{\texorpdfstring{\ac{cht}}{CHT}}
 als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
 habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
 Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
 im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
-
 Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
 Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
-
 Flugzustand bei 18.691 s (maxQ-10): 4274.387 m, 461.355 m/s, -12.784, 594.935 hPa mit entsprechender Luft Dichte \SI{0.7960}{kg/m^3}\\
-
 Flugzustand bei 38.691 s (maxQ+10): 19758.652 m, 1189.968 m/s, -56.5°C, 56.93 hPa mit entsprechender Luft Dichte \SI{0.0915}{kg/m^3}\\
-
 Flugzustand bei 48.7 s (maxQ+20): 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
-
 Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
 Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
 

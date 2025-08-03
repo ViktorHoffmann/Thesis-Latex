@@ -7,6 +7,12 @@ M.E. Abdelrahman, A.M.A. Soliman, M.~Kassab, and A.A. Hawwash.
   avionics thermal management in a thermal vacuum chamber (tvc).
 \newblock {\em Journal of Energy Storage}, 75, 2024.
 
+\bibitem{Benbrika-2020}
+M.~Benbrika, M.~Teggar, M.~Benbelhout, and K.A.R. Ismai.
+\newblock Numerical study of n-eicosane melting inside a horizontal cylinder
+  for different loading rates.
+\newblock {\em International Journal of Heat and Technology}, 38, 2020.
+
 \bibitem{Claudio-2018}
 Z.~Claudio, R.~Giulia, M.~Simone, H.~Romain, S.~Claude, P.~Vincent, and
   Bertrand Truffart.
@@ -35,6 +41,16 @@ Peabody Hume.
 \newblock {\em {NASA Passive Thermal Control Engineering Guidebook}}.
 \newblock National Aeronautics and Space Administration, 2023.
 
+\bibitem{Nazarychev-2022}
+V.M. et~al. Nazarychev.
+\newblock Cooling-rate computer simulations for the description of
+  crystallization of organic phase-change materials.
+\newblock {\em International Journal of Molecular Sciences}, 23, 2022.
+
+\bibitem{NIST}
+U.S.~Secretary of~Commerce.
+\newblock Nist, 2025.
+
 \bibitem{Pavia-2015}
 K.V. Pavia, M.B.H. Mantellim, and L.K. Slongo.
 \newblock Experimental testing of mini heat pipes under microgravity conditions
@@ -53,6 +69,12 @@ I.~Steven, A.A. Diego, and S.~Greg.
 STMicroelectronics.
 \newblock Guidelines for thermal management on stm32 applications.
 \newblock 2024.
+
+\bibitem{Stryker-1990}
+P.C. Stryker and E.M. Sparrow.
+\newblock Application of a spherical thermal conductivity cell to solid
+  n-eicosane paraffin.
+\newblock {\em Int. J. Heat Mass Transfer}, 99, 1990.
 
 \bibitem{Xingcun-2011}
 {Xingcun, C.}
