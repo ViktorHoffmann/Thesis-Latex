@@ -14,12 +14,13 @@ infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wir
 Als nächstes sieht man Graphen
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_during_flight.pdf}\label{fig:pcm_waermestrom_flugsimulation}
+  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}\label{fig:pcm_waermestrom_vorauslegung}
   \caption{PCM Wärmestrom während Flug}
   \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}\label{fig:re_pr_flugsimulation}
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
 \end{figure}
-\section{\texorpdfstring{\ac{cht}}{CHT}}
+\section{Simulationsergebnisse}
+\subsection{\texorpdfstring{\ac{cht}}{CHT}}
 als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
 habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
 Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
@@ -32,8 +33,85 @@ Flugzustand bei 48.7 s (maxQ+20): 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 h
 Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
 Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
 
+\subsection{Aerothermal}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
-  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{1}{s} davor und danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
+  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_with_sim.pdf}
+  \caption{PCM Wärmestrom während Flug mit Simulationsergebnissen und Fit Kurve}\label{fig:pcm_waermestrom_sim}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQminus10-temperature-contour.png}
+        \caption{maxQ -\SI{10}{\second}}
+        \label{fig:maxQminus10_temp_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-temperature-contour.png}
+        \caption{maxQ}
+        \label{fig:maxQ_temp_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQplus10-temperature-contour.png}
+        \caption{maxQ +\SI{10}{\second}}
+        \label{fig:maxQplus10_temp_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQplus20-temperature-contour.png}
+        \caption{maxQ +\SI{20}{\second}}
+        \label{fig:maxQplus20_temp_contour}
+    \end{subfigure}
+
+    \caption{Statische Temperaturkontur der Luft}
+    \label{fig:airflow_temp_contour}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQminus10-mach-contour.png}
+        \caption{maxQ -\SI{10}{\second}}
+        \label{fig:maxQminus10_mach_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-mach-contour.png}
+        \caption{maxQ}
+        \label{fig:maxQ_mach_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQplus10-mach-contour.png}
+        \caption{maxQ +\SI{10}{\second}}
+        \label{fig:maxQplus10_mach_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQplus20-mach-contour.png}
+        \caption{maxQ +\SI{20}{\second}}
+        \label{fig:maxQplus20_mach_contour}
+    \end{subfigure}
+
+    \caption{Machzahlkontur der Luft}
+    \label{fig:airflow_mach_contour}
 \end{figure}
