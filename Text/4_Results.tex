@@ -15,44 +15,58 @@ Als nächstes sieht man die Flugdaten
 \begin{figure}[H]
     \centering
 
-    \begin{subfigure}{\textwidth}
+    % Column 1, Row 1
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[height=0.23\textheight]{../../Code/acceleration_over_time.pdf}
-        \caption{Beschleunigung während Flug ohne Erdbeschleunigung}\label{fig:acceleration_over_time}
+        \includegraphics[width=\linewidth]{../../Code/acceleration_over_time.pdf}
+        \caption{Beschleunigung während Flug}
+        \label{fig:acceleration_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 1
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/altitude_over_time.pdf}
+        \caption{Flughöhe}
+        \label{fig:altitude_over_time}
     \end{subfigure}
 
-    \begin{subfigure}{\textwidth}
+    \vspace{1em}
+
+    % Column 1, Row 2
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[height=0.23\textheight]{../../Code/altitude_over_time.pdf}
-        \caption{Flughöhe}\label{fig:altitude_over_time}
+        \includegraphics[width=\linewidth]{../../Code/pressure_over_time.pdf}
+        \caption{Statischer Luftdruck während Flug}
+        \label{fig:pressure_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 2
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/temperature_over_time.pdf}
+        \caption{Statische Lufttemperatur während Flug}
+        \label{fig:temperature_over_time}
     \end{subfigure}
 
-    \begin{subfigure}{\textwidth}
+    \vspace{1em}
+
+    % Column 1, Row 3
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[height=0.23\textheight]{../../Code/pressure_over_time.pdf}
-        \caption{Statischer Luftdruck während Flug}\label{fig:pressure_over_time}
+        \includegraphics[width=\linewidth]{../../Code/velocity_over_time.pdf}
+        \caption{Geschwindigkeit während Flug}
+        \label{fig:velocity_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 3
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/dynp_during_flight.pdf}
+        \caption{Dynamischer Druck während Flug}
+        \label{fig:dynp_over_time}
     \end{subfigure}
 
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[height=0.23\textheight]{../../Code/temperature_over_time.pdf}
-        \caption{Statische Lufttemperatur während Flug}\label{fig:temperature_over_time}
-    \end{subfigure}
-
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[height=0.23\textheight]{../../Code/velocity_over_time.pdf}
-        \caption{Geschwindigkeit während Flug}\label{fig:velocity_over_time}
-    \end{subfigure}
-
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[height=0.23\textheight]{../../Code/dynp_during_flight.pdf}
-        \caption{Geschwindigkeit während Flug}\label{fig:dynp_over_time}
-    \end{subfigure}
-
-    \caption{Flugdaten aus externer Trajektoriensimulation}
-    \label{fig:flight_data_raw}
 \end{figure}
 
 \section{PCM-Radiator-Hybrid}\label{sec:pcmRadiatorHybridErgebnisse}
