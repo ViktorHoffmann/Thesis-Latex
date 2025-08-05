@@ -15,6 +15,7 @@
 \usepackage{subcaption}
 \usetikzlibrary{arrows.meta}
 \usepackage{acronym}
+\usepackage{pdfpages}
 
 % ----------- Graphics Paths -------------------------------------------------------
 \graphicspath{{Bilder/}}
@@ -27,7 +28,12 @@
 
 % ----------- Title & Preface  -----------------------------------------------------
 \pagenumbering{Alph}
-\include{Text/TitlePage}
+%\include{Text/TitlePage}
+\includepdf{Text/Hoffmann_BA_Deckblatt2.pdf}
+\newpage\null\thispagestyle{empty}\newpage
+\includepdf{Text/Aufgabenstellung_BA_Hoffmann.pdf}
+\includepdf{Text/Hoffmann_Bachelor_Eidesstatt.pdf}
+\includepdf{Text/Hoffmann_BA_Erklärung_Archivierung.pdf}
 
 % erste Seite: Titelblatt (wird von ITLR erstellt)
 % zweite Seite: leeres Blatt
