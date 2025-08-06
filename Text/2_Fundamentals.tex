@@ -1,22 +1,43 @@
  \chapter{Grundlagen}
 \label{chap:Grundlagen}			% durch \label{} später auf Element verweisen
 
+In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen erläutert, die in dieser Arbeit angewandt wurden. 
 % Bücher, aber auch Paper etc. 
 
-\section{Sensible Wärmespeicher}
-\label{sec:sensiblewaermespeicher}
-Unter sensibler Wärme versteht man die Eigenschaft von 
+\section{Sensible Wärme}\label{sec:sensiblewaerme}
+
+Unter sensibler Wärme versteht man die Eigenschaft von Masse Energie zu absorbieren, oder abzugeben und dadurch die Temperatur zu ändern. Dieses
+Phänomen kann durch die Änderung der kinetischen Energie von den molekularen Teilchen im System erklärt werden. Durch das einführen von Energie in
+ein System steigt die kinetische Energie der Teilchen, welche diese Energie über molekurare Interaktionen verteilen:
+
 \begin{equation}
-c = \frac{\Delta Q}{m \cdot \Delta T}
+    c = \frac{\Delta Q}{m \cdot \Delta T}
 \end{equation}
-Diese Thermodynamische Eigenschaft lässt sich somit leicht nutzen, um für einen begrenzten Zeitraum die Temperatur gewissermaßen zu dämpfen. Da in der Realität Elektronik keine Wärme produzieren kann, ohne auch Masse im System zu haben, hat jede Avionik inherent eine sogenannte Thermale Masse, welche sich bei Nutzung der sensiblen Wärme leicht durch hinzufügen von Heatsinks erhöhen lässt.\\
-Der eine, und auch größte, Nachteil von dieser Art an Thermal-Management ist, dass die Masse des Systems proportional zur Wärmekapazität steigt.
 
-\section{Latente Wärmespeicher}
-\label{sec:latentewaermespeicher}
+Da Elektrionik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die Sensible Wärme eine Dämpfung
+zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
 
-\section{Radiator}
-\label{sec:radiator}
+\section{Latente Wärme}\label{sec:latentewaerme}
+
+Im kontrast zur sensiblen Wärme ist latente Wärme, auch Umwandlungsenthalpie genannt, die Eigenschaft von Masse bei einem Phasenwechsel Energie
+zu absorbieren oder abzugeben, ohne dass dabei die Temperatur sich ändert. Das ist durch die erhöhung der potentiellen Energie der Teilchen,
+statt der kinetischen wie bei der sensiblen Wärme, zu verstehen. Effektiv erhöht sich also nicht die Geschwindigkeit der Teilchen sondern die
+Anzahl an Stellen an die die Teilchen sich bewegen können.
+
+\begin{equation}
+    h = \frac{\Delta Q}{m}
+\end{equation}
+
+Da die latente Wärme für die meisten Materialien im Fest-Flüssig Übergang um mindestens den Faktor 10 größer ist als die sensible Wärme bei
+einem Grad Temperaturerhöhung, kann diese sehr gut zur Absorption von überschüssiger Wärme über längere, aber finite, Zeiträume verwender werden,
+wobei auch hier die Wärmeleitfähigkeit eine entscheidende Rolle bei der Umsetzung spielt.
+
+\section{Wärmestrahlung}\label{sec:radiator}
+Die Wärmestrahlung ist einer von drei Wegen, wie sich Wärme in einem System verteilt.
+
+\begin{equation}
+    Q=\sigma\epsilon A T^{4}
+\end{equation}
 
 \section{Hybrid Lösung}
 \label{sec:hybridloesung}
