@@ -1,24 +1,75 @@
  \chapter{Grundlagen}
 \label{chap:Grundlagen}			% durch \label{} später auf Element verweisen
 
+In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen erläutert, die in dieser Arbeit angewandt wurden. 
 % Bücher, aber auch Paper etc. 
 
-\section{Sensible Wärmespeicher}
-\label{sec:sensiblewaermespeicher}
-Unter sensibler Wärme versteht man die Eigenschaft von 
+\section{Sensible Wärme}\label{sec:sensiblewaerme}
+
+Unter sensibler Wärme versteht man die Eigenschaft von Masse durch eine Temperaturänderung Wärmeenergie zu absorbieren oder abzugeben. Dieses
+Phänomen kann durch die änderung der kinetischen Energie von den molekularen Teilchen im System erklärt werden. Durch das einführen von
+Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
+
 \begin{equation}
-c = \frac{\Delta Q}{m \cdot \Delta T}
+    c = \frac{\Delta Q}{m \cdot \Delta T}
 \end{equation}
-Diese Thermodynamische Eigenschaft lässt sich somit leicht nutzen, um für einen begrenzten Zeitraum die Temperatur gewissermaßen zu dämpfen. Da in der Realität Elektronik keine Wärme produzieren kann, ohne auch Masse im System zu haben, hat jede Avionik inherent eine sogenannte Thermale Masse, welche sich bei Nutzung der sensiblen Wärme leicht durch hinzufügen von Heatsinks erhöhen lässt.\\
-Der eine, und auch größte, Nachteil von dieser Art an Thermal-Management ist, dass die Masse des Systems proportional zur Wärmekapazität steigt.
 
-\section{Latente Wärmespeicher}
-\label{sec:latentewaermespeicher}
+Da Elektrionik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die Sensible Wärme eine Dämpfung
+zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
 
-\section{Radiator}
-\label{sec:radiator}
+\section{Latente Wärme}\label{sec:latentewaerme}
 
-\section{Hybrid Lösung}
-\label{sec:hybridloesung}
+Im Gegenteil zur sensiblen Wärme ist latente Wärme, auch Umwandlungsenthalpie genannt, die Eigenschaft von Masse bei einem Phasenwechsel Wärmeenergie
+zu absorbieren oder abzugeben, ohne dass dabei die Temperatur sich ändert. Das ist durch die erhöhung der potentiellen Energie der Teilchen,
+statt der kinetischen wie bei der sensiblen Wärme, zu verstehen. Effektiv erhöht sich die potentielle Energie durch Änderung der Bindungszustände:
+
+\begin{equation}
+    h = \frac{\Delta Q}{m}
+\end{equation}
+
+Da die latente Wärme für die meisten Materialien im Fest-Flüssig Übergang um mindestens den Faktor 10 größer ist als die sensible Wärme bei
+einem Grad Temperaturerhöhung, kann diese sehr gut zur Absorption von überschüssiger Wärme über längere, jedoch begrenzte Zeiträume verwendet werden,
+wobei auch hier die Wärmeleitfähigkeit eine entscheidende Rolle bei der Umsetzung spielt.
+
+\section{Wärmeübertragung}\label{sec:waermeuebertragung}
+
+Um Wärme innerhalb von einem System günstig zu verteilen, oder die Energie aus dem System zu entfernen, gibt es drei Mechanismen.
+
+\subsection{Wärmestrahlung}\label{sec:strahlung}
+
+Bei der Wärmestrahlung geben Teilchen beim aufnehmen oder abgeben kinetischer Energie eine Gewisse Menge an Energie in Form
+von Elektromagnetischer Strahlung ab. Da die Strahlungsleistung von der vierten Potenz der Temperatur
+abhängt, ist dieser Modus erst bei sehr hohen Temperaturen dimensionierend, kann jedoch im Vakuum dominant sein:
+
+\begin{equation}
+    \dot{Q}=\sigma\epsilon A T^{4}
+\end{equation}
+
+\subsection{Wärmeleitung}\label{sec:waermeleitung}
+
+Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch diffusion der kinetischen Energie der Teilchen verteilt.
+Die Wärmestromdichte in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
+
+\begin{equation}
+    \vec{\dot{q}} = -\lambda \nabla T
+\end{equation}
+
+%todo
+
+\subsection{Konvektion}\label{sec:konvektion}
+
+Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion hat das Fluid durch äußere Einflüsse
+eine relative Geschwindigkeit, die zum Massenaustausch führt. Andererseits resultiert bei der natürlichen Konvektion nur die eigene
+inhomogene Temperaturverteilung, beispielsweise eine anliegende heiße Wand, zu einem Temperaturanstieg und infolge dessen zu einem
+Dichteanstieg, der in einem Beschleunigungsfeld zu Auftriebskräften und automatischer Bewegung des Fluids führt.
+Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
+
+\begin{equation}
+    \dot{Q}=\alpha A \Delta T 
+\end{equation}
+
+\newpage
+
+\section{Hybrid Lösung}\label{sec:hybridloesung}
 
 \newpage
