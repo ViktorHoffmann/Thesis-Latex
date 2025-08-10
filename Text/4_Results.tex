@@ -143,27 +143,33 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
     \centering
 
     % Left figure
-    \begin{minipage}{0.485\textwidth}
+    \begin{minipage}[t]{0.485\textwidth}
         \centering
         \setlength{\tabcolsep}{1pt} % reduce subfigure spacing
-        \begin{subfigure}{0.24\textwidth}
+        % Legend vertically centered & with extra space to right
+        \begin{subfigure}[t]{0.14\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{liquid-fraction-300.png}
+            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/liquid-fraction-legend.png}}
+        \end{subfigure}%
+        \hspace{2mm}% extra space between legend and first image
+        \begin{subfigure}[t]{0.2\textwidth}
+            \centering
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-300.png}
             \caption{\SI{300}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{liquid-fraction-600.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-600.png}
             \caption{\SI{600}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{liquid-fraction-900.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-900.png}
             \caption{\SI{900}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{liquid-fraction-1200.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-1200.png}
             \caption{\SI{1200}{\second}}
         \end{subfigure}
         \caption{Flüssigkeitsanteil Konturen}
@@ -171,26 +177,31 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
     \end{minipage}
     \hspace{2mm} % small horizontal space
     % Right figure
-    \begin{minipage}{0.485\textwidth}
+    \begin{minipage}[t]{0.485\textwidth}
         \centering
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.14\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{velocity-vector-300.png}
+            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/vector-legend.png}}
+        \end{subfigure}%
+        \hspace{2mm}% extra space between legend and first image
+        \begin{subfigure}[t]{0.2\textwidth}
+            \centering
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-300.png}
             \caption{\SI{300}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{velocity-vector-600.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-600.png}
             \caption{\SI{600}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{velocity-vector-900.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-900.png}
             \caption{\SI{900}{\second}}
         \end{subfigure}%
-        \begin{subfigure}{0.24\textwidth}
+        \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.7\textheight]{velocity-vector-1200.png}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-1200.png}
             \caption{\SI{1200}{\second}}
         \end{subfigure}
         \caption{Geschwindigkeits-Vektoren nach Flüssigkeitsanteil gefärbt}
