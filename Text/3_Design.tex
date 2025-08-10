@@ -1,7 +1,69 @@
-\chapter{Methodik}
-\label{chap:Methodik}
+\chapter{Vorauslegung}
+\label{chap:Vorauslegung}
 % Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
-\section{PCM}\label{sec:pcm}
+Die Vorauslegung basiert auf einer Trajektoriensimulation aus OpenRocket, welche vom Triebwerks-Subsystem durchgeführt wurde.
+Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und dauer, welche in maximaler Flugdauer und Aerodynamischen Aufheizung
+resultiert.
+
+\begin{figure}[H]
+    \centering
+
+    % Column 1, Row 1
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/acceleration_over_time.pdf}
+        \caption{Beschleunigung während Flug}
+        \label{fig:acceleration_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 1
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/altitude_over_time.pdf}
+        \caption{Flughöhe}
+        \label{fig:altitude_over_time}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    % Column 1, Row 2
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/pressure_over_time.pdf}
+        \caption{Statischer Luftdruck während Flug}
+        \label{fig:pressure_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 2
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/temperature_over_time.pdf}
+        \caption{Statische Lufttemperatur während Flug}
+        \label{fig:temperature_over_time}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    % Column 1, Row 3
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/velocity_over_time.pdf}
+        \caption{Geschwindigkeit während Flug}
+        \label{fig:velocity_over_time}
+    \end{subfigure}
+    \hfill
+    % Column 2, Row 3
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/dynp_during_flight.pdf}
+        \caption{Dynamischer Druck während Flug}
+        \label{fig:dynp_over_time}
+    \end{subfigure}
+
+    \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
+\end{figure}
+
+\section{\texorpdfstring{\ac{pcm}}{PCM}}\label{sec:pcm}
 
 Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.\\
 
@@ -63,71 +125,13 @@ Hier steht was zu Radiatoren.
 
 \newpage
 
-\section{PCM-Radiator-Hybrid}\label{sec:pcmRadiatorHybrid}
+\section{PCM-Radiator-Hybrid}\label{sec:pcm_radiator_hybrid}
 
 Eine Hybridlösung wird auch in erwägung gezogen, um die Masse durch Nutzung eines Radiators zu minimieren, wobei wegen aerodynamischer Aufheizung für kurze Zeit ein PCM gebraucht werden könnte.
 Um eine umständliche Simulation mittels \ac{cfd} zu vermeiden, wird die Außenkontour der Rakete von Spitze bis Avionik-Sektion, mit Hilfe der Nußelt-Beziehungen, als längsangeströmte ebene Platte angesehen,
 wie in Abbildung~\ref{fig:rakete_kontour_zeichnung} dargestellt ist.
 Um zu wissen, ob hier die Beziehung für laminare oder turbulente Grenzschichten angewandt werden soll, müssen zunächst die Gültigkeitsbereiche der Reynolds- und Prandtlzahl (\ref{eq:prandtl},~\ref{eq:reynolds}) überprüft werden.
 Mittels der Nußelt-Beziehung wird $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
-
-\begin{equation}
-  \label{eq:qdot}
-  \dot{q} = \alpha \ (T_r - T_w)
-\end{equation}
-
-Die Gleichung für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k\\\left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$ lautet
-
-\begin{equation}
-  \label{eq:nusselt_laminar}
-  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,332 \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
-\end{equation}
-
-für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^7 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung
-
-\begin{equation}
-  \label{eq:nusselt_turbulent}
-  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,0296 \ \text{Re}_x^{0,8} \ \text{Pr}^{\frac{1}{3}}
-\end{equation}
-
-Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verwendet
-\newline
-\noindent\begin{minipage}{.5\linewidth}
-  \begin{equation}
-    \label{eq:reynolds}
-    \text{Re}_x = \frac{V \rho x}{\eta}
-  \end{equation}
-\end{minipage}%
-\begin{minipage}{.5\linewidth}
-  \begin{equation}
-    \label{eq:prandtl}
-    \text{Pr} = \frac{c_p \eta}{\lambda}
-  \end{equation}
-\end{minipage}
-
-Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung.
-In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 stattfinden.
-
-\begin{equation}
-  \label{eq:dynamische_viskositaet}
-  \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{2}{3}}
-\end{equation}
-
-\begin{equation}
-  \label{eq:recovery_temperatur}
-  T_r = T_{\infty} \left( 1 + r \frac{\kappa + 1}{2} \text{Ma}^2 \right)
-\end{equation}
-
-Der Recovery-Faktor kann mittels der folgenden Gleichung approximiert werden
-
-\begin{equation}
-  \label{eq:recovery_faktor}
-  r = \frac{2}{\left(\kappa - 1\right) \text{Ma}_e^2} \left(\frac{T_{a_{w}}}{T_e} - 1\right) \approx
-  \begin{cases}
-    \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
-    \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
-  \end{cases}
-\end{equation}
 
 \newpage
 % Hybrid PCM ohne aufheizung
@@ -284,23 +288,5 @@ Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Ve
 \end{figure}
 
 \newpage
-
-\section{CFD}\label{cfd}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.7\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
-        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.15\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
-        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
-    \end{subfigure}
-    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
-\end{figure}
 
 %recoverytemperatur wahrscheinlich richtig noch recherchieren

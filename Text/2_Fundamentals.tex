@@ -1,4 +1,4 @@
- \chapter{Grundlagen}
+\chapter{Grundlagen}
 \label{chap:Grundlagen}			% durch \label{} später auf Element verweisen
 
 In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen erläutert, die in dieser Arbeit angewandt wurden. 
@@ -58,9 +58,9 @@ Die Wärmestromdichte in einem Temperaturgradienten wird durch das Fourier-Geset
 
 \subsection{Konvektion}\label{sec:konvektion}
 
-Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion hat das Fluid durch äußere Einflüsse
+Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion bekommt das Fluid durch äußere Kräfte
 eine relative Geschwindigkeit, die zum Massenaustausch führt. Andererseits resultiert bei der natürlichen Konvektion nur die eigene
-inhomogene Temperaturverteilung, beispielsweise eine anliegende heiße Wand, zu einem Temperaturanstieg und infolge dessen zu einem
+inhomogene Temperaturverteilung, durch beispielsweise eine anliegende heiße Wand, zu einem Temperaturanstieg und infolge dessen zu einem
 Dichteanstieg, der in einem Beschleunigungsfeld zu Auftriebskräften und automatischer Bewegung des Fluids führt.
 Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
 
@@ -68,8 +68,67 @@ Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
     \dot{Q}=\alpha A \Delta T 
 \end{equation}
 
-\newpage
+Für den spezifischen Wärmestrom zwischen Fluid und Festkörper folgt daraus:
 
-\section{Hybrid Lösung}\label{sec:hybridloesung}
+\begin{equation}
+  \label{eq:qdot}
+  \dot{q} = \alpha \ (T_r - T_w)
+\end{equation}
 
-\newpage
+Der Wärmeübergangskoeffizient $\alpha$ wird aus der Nußelt Beziehung genommen. Diese lautet
+für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k\\\left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$:
+
+\begin{equation}
+  \label{eq:nusselt_laminar}
+  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,332 \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
+\end{equation}
+
+für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^7 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
+
+\begin{equation}
+  \label{eq:nusselt_turbulent}
+  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,0296 \ \text{Re}_x^{0,8} \ \text{Pr}^{\frac{1}{3}}
+\end{equation}
+
+Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verwendet:
+\newline
+\noindent\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:reynolds}
+    \text{Re}_x = \frac{V \rho x}{\eta}
+  \end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:prandtl}
+    \text{Pr} = \frac{c_p \eta}{\lambda}
+  \end{equation}
+\end{minipage}
+
+Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung~\ref{eq:recovery_temperatur}.
+In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 erwartet werden und somit die aerodynamische
+Aufheizung berücksichtigt wird.
+
+\begin{equation}
+  \label{eq:dynamische_viskositaet}
+  \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{2}{3}}
+\end{equation}
+
+\begin{equation}
+  \label{eq:recovery_temperatur}
+  T_r = T_{\infty} \left( 1 + r \frac{\kappa + 1}{2} \text{Ma}^2 \right)
+\end{equation}
+
+Der Recovery-Faktor kann mittels der folgenden Gleichung approximiert werden
+
+\begin{equation}
+  \label{eq:recovery_faktor}
+  r = \frac{2}{\left(\kappa - 1\right) \text{Ma}_e^2} \left(\frac{T_{a_{w}}}{T_e} - 1\right) \approx
+  \begin{cases}
+    \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
+    \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
+  \end{cases}
+\end{equation}
+
+\subsection{Simulation}
+

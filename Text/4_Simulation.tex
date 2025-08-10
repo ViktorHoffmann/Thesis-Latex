@@ -1,4 +1,23 @@
-\chapter{Ergebnisse}\label{chap:Ergebnisse}
+\chapter{Simulation}\label{chap:Simulation}
+
+\section{CFD}\label{cfd}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.7\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
+        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.15\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
+        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
+    \end{subfigure}
+    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
+\end{figure}
+
 Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
 - Isotherm auf: \SI{38}{\celsius}\\
 - Avionik Abwärme: \SI{40}{W}\\
@@ -12,63 +31,6 @@ Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als is
 infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
 Als nächstes sieht man die Flugdaten
 
-\begin{figure}[H]
-    \centering
-
-    % Column 1, Row 1
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/acceleration_over_time.pdf}
-        \caption{Beschleunigung während Flug}
-        \label{fig:acceleration_over_time}
-    \end{subfigure}
-    \hfill
-    % Column 2, Row 1
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/altitude_over_time.pdf}
-        \caption{Flughöhe}
-        \label{fig:altitude_over_time}
-    \end{subfigure}
-
-    \vspace{1em}
-
-    % Column 1, Row 2
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/pressure_over_time.pdf}
-        \caption{Statischer Luftdruck während Flug}
-        \label{fig:pressure_over_time}
-    \end{subfigure}
-    \hfill
-    % Column 2, Row 2
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/temperature_over_time.pdf}
-        \caption{Statische Lufttemperatur während Flug}
-        \label{fig:temperature_over_time}
-    \end{subfigure}
-
-    \vspace{1em}
-
-    % Column 1, Row 3
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/velocity_over_time.pdf}
-        \caption{Geschwindigkeit während Flug}
-        \label{fig:velocity_over_time}
-    \end{subfigure}
-    \hfill
-    % Column 2, Row 3
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/dynp_during_flight.pdf}
-        \caption{Dynamischer Druck während Flug}
-        \label{fig:dynp_over_time}
-    \end{subfigure}
-
-\end{figure}
-
 \section{PCM-Radiator-Hybrid}\label{sec:pcmRadiatorHybridErgebnisse}
 
 Als nächstes sieht man Graphen
@@ -81,9 +43,11 @@ Als nächstes sieht man Graphen
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
 \end{figure}
 
-\section{Simulationsergebnisse}
+\section{Aerothermal}
 
-\subsection{Aerothermal}
+Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerothermale Aufheizung genommen werden kann.
+Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
+
 
 als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
 habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
@@ -96,6 +60,18 @@ Flugzustand bei 38.691 s \ac{maxq} + $\SI{10}{\second}$: 19758.652 m, 1189.968 m
 Flugzustand bei 48.7 s \ac{maxq} + $\SI{20}{\second}$: 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
 Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
 Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
+  \caption{Darstellung der Außensströmungssimulation mit Meshstruktur in grau, velocity inlet in blau, pressure outlet in rot, Symmetrien in gelb und Partitionen der parallelisierung in lila}\label{fig:aussenstroemung_mesh}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_inflation.png}
+  \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
+\end{figure}
 
 \begin{figure}[H]
   \centering
@@ -121,23 +97,32 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-temperature-contour.png}
-        \caption{maxQ}
+        \caption{Statische Temperaturkontur der Luft}
         \label{fig:maxQ_temp_contour}
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-mach-contour.png}
-        \caption{maxQ}
+        \caption{Machzahlkontur der Luft}
         \label{fig:maxQ_mach_contour}
     \end{subfigure}
 
-    \caption{max Q Konturen}
+    \caption{\texorpdfstring{\ac{maxq}}{max Q} Konturen}
     \label{fig:maxQ_konturen}
 \end{figure}
 
+\section{\texorpdfstring{\ac{pcm}}{PCM}}
 
-\subsection{\texorpdfstring{\ac{cht}}{CHT}}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/approximate_acceleration_over_time.pdf}
+  \caption{Approximiertes Beschleunigungsprofil}\label{fig:approximierte_beschleunigung}
+\end{figure}
+
+\ref{fig:approximierte_beschleunigung} zeigt das Beschleunigungsprofil, welches in der Simulation verwendet wurde. Zu beachten
+ist, dass Beschleunigungsspitzen durch den Fallschirm, wie sie in~\ref{fig:acceleration_over_time} gesehen
+werden können, ignoriert werden, da diese in einer Überschätzung der Beschleunigung und der Konvektionsvorgänge resultieren würden.
 
 \begin{figure}[H]
     \centering
