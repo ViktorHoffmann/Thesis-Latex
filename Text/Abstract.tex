@@ -4,13 +4,23 @@
 % ca. 150 Worte / Aufgabenstellung, Zielsetzung, verwendete Methoden, Ergebnisse kurz vorstellen, aber nicht diskutieren / Leser entscheidet hier, ob er die Arbeit für lesenswert hält
 
 % deutsch
-Eine Leistungsstarke Avionik ist ein Grundstein einer jeden erfolgreichen Forschungsrakete.
-Ob es hierbei um redundante Flugcomputer, Telekommunikation, Datenerfassung oder auch aktive Steuerung von Instrumenten und dem Fahrzeug während
-dem Flug geht, Hochleistungsmikroelektronik ist immer gefragt. Diese Elektronik, die zudem noch extrem kompakt sein muss und extremen
-Bedingungen ausgesetzt ist, kommt jedoch mit einer substantiellen Abwärme, an welcher Stelle eine Thermal Management Lösung entwickelt
-werden muss, um nicht die Lebensdauer der Komponenten oder sogar die komplette Mission zu gefährden.
-
+Für das Projekt \ac{blast} der Hochschulgruppe \ac{hyend} wird eine neue, kompakte und hochleistungsfähige Avionik entwickelt,
+die unter extremen Flugbedingungen arbeitet. Die in dieser Arbeit entwickelte Kühlung muss leicht, ausfallsicher und für eine
+maximale Sperrschichttemperatur von $T_\mathrm{J} = T_\mathrm{C} \leq \SI{85}{\celsius}$ ausgelegt sein.
+Basierend auf den Anforderungen und einer Trajektoriensimulation
+wurden drei Konzepte untersucht: reiner Radiator, reines \ac{pcm} und eine hybride Radiator-\ac{pcm}-Lösung. Die Vorauslegung
+ergab, dass ein Radiator wegen aerothermaler Aufheizung ungeeignet ist. Die hybride Lösung ist möglich, jedoch durch geometrische
+Verluste und hohe Luftwärmeströme mit \SI{1.522}{\kilogram} schwerer als ein einfaches \ac{pcm} mit \SI{0.316}{\kilogram}.
+\ac{cht}-Simulationen der Außenströmung und des \ac{pcm}
+bestätigten trotz angenommener Vereinfachungen die Vorauslegungsergebnisse.
 
 \chapter*{Abstract} % * means not in table of content
 \label{chap:Abstract}
-% englisch
+Advanced avionics systems are essential to the success of any experimental rocket.
+Ranging from flight computers, telecommunications, and data acquisition to the control
+of onboard instrumentation and the rocket itself, high-power microelectronics play a critical role and are often implemented with redundancy.
+These systems must be highly compact and capable of withstanding demanding flight conditions, which lead to elevated
+power densities that, if not properly managed, can significantly reduce operational lifetime or even cause premature mission failure.
+Such is the case in the project \ac{blast} where a novel avionics system is being developed by \ac{hyend} and in need of a thermal management solution.\\
+
+In a first step the demands on the thermal management were set to a maximum junction temperature
