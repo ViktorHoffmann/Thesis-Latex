@@ -132,7 +132,7 @@ werden können, ignoriert werden, da diese in einer Überschätzung der Beschleu
         \centering
         \setlength{\tabcolsep}{1pt} % reduce subfigure spacing
         % Legend vertically centered & with extra space to right
-        \begin{subfigure}[t]{0.14\textwidth}
+        \begin{subfigure}[t]{0.16\textwidth}
             \centering
             \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/liquid-fraction-legend.png}}
         \end{subfigure}%
@@ -140,57 +140,64 @@ werden können, ignoriert werden, da diese in einer Überschätzung der Beschleu
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-300.png}
-            \caption{\SI{300}{\second}}
+            \caption{\SI{300}{\second}}\label{fig:liquid_fraction_300}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-600.png}
-            \caption{\SI{600}{\second}}
+            \caption{\SI{600}{\second}}\label{fig:liquid_fraction_600}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-900.png}
-            \caption{\SI{900}{\second}}
+            \caption{\SI{900}{\second}}\label{fig:liquid_fraction_900}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-1200.png}
-            \caption{\SI{1200}{\second}}
+            \caption{\SI{1200}{\second}}\label{fig:liquid_fraction_1200}
         \end{subfigure}
-        \caption{Flüssigkeitsanteil Konturen}
-        \label{fig:liquid_frac_contour}
+        \caption{Flüssigkeitsanteil Konturen. Die Legende bezieht sich auf~\ref{fig:liquid_fraction_1200}}
+        \label{fig:liquid_frac_kontur}
     \end{minipage}
     \hspace{2mm} % small horizontal space
     % Right figure
     \begin{minipage}[t]{0.485\textwidth}
         \centering
-        \begin{subfigure}[t]{0.14\textwidth}
+        \begin{subfigure}[t]{0.16\textwidth}
             \centering
-            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/vector-legend.png}}
+            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/temperature-legend.png}}
         \end{subfigure}%
         \hspace{2mm}% extra space between legend and first image
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-300.png}
-            \caption{\SI{300}{\second}}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-300.png}
+            \caption{\SI{300}{\second}}\label{fig:temperatur_300}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-600.png}
-            \caption{\SI{600}{\second}}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-600.png}
+            \caption{\SI{600}{\second}}\label{fig:temperatur_600}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-900.png}
-            \caption{\SI{900}{\second}}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-900.png}
+            \caption{\SI{900}{\second}}\label{fig:temperatur_900}
         \end{subfigure}%
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
-            \includegraphics[height=0.5\textheight]{ansyspost/pcm/velocity-vector-1200.png}
-            \caption{\SI{1200}{\second}}
+            \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-1200.png}
+            \caption{\SI{1200}{\second}}\label{fig:temperatur_1200}
         \end{subfigure}
-        \caption{Geschwindigkeits-Vektoren nach Flüssigkeitsanteil gefärbt}
-        \label{fig:velocity_vector}
+        \caption{Konturen der statischen Temperatur. Die Legende bezieht sich auf~\ref{fig:temperatur_1200}}
+        \label{fig:static_temperature_kontur}
     \end{minipage}
 
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
+  \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer, durch Nachbearbeitung, vervollständigten Zelle
+  bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in~\ref{fig:pcm_static_temperature_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
 \end{figure}
