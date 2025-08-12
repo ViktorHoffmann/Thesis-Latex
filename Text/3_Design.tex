@@ -5,6 +5,20 @@ Die Vorauslegung basiert auf einer Trajektoriensimulation aus OpenRocket, welche
 Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und dauer, welche in maximaler Flugdauer und Aerodynamischen Aufheizung
 resultiert.
 
+\section{Anforderungen}
+
+Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden.
+Stattdessen wurde anhand des bereits festgelegten Microcontrollers STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
+die Auslegung durchgeführt.\\
+Aus dem Datenblatt des Microcontrollers folg eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$ und $T_\text{A} = \SI{85}{\degreeCelsius}$~\cite{STM32}
+und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$. Mit einem konservativen
+Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
+und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$.\\
+
+Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
+Dadurch wird aufwendiges testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden und es besteht bei
+nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzbereiche passiver Bauteile.
+
 \begin{figure}[H]
     \centering
 
@@ -63,12 +77,7 @@ resultiert.
     \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
 \end{figure}
 
-\section{Anforderungen}
-
-Zu beachten ist, dass die Kühlung
-zeitgleich zu der Avionik entwickelt wurde, weshalb auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden musste.
-Stattdessen wurde anhand des bereits festgelegten microcontrollers STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
-die maximale Sperrschichttemperatur festgelegt.
+\newpage
 
 \section{\texorpdfstring{\ac{pcm}}{PCM}}\label{sec:pcm}
 

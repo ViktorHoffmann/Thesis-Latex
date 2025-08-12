@@ -6,6 +6,12 @@ Az technology llc.
 \bibitem{Thermal-Straps}
 Thermal space and thermal straps.
 
+\bibitem{STM32}
+Stm32stm32h743zgt6 datenblatt.
+\newblock {\em
+  {https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}},
+  12.08.2022.
+
 \bibitem{Abdel-2024}
 M.E. Abdelrahman, A.M.A. Soliman, M.~Kassab, and A.A. Hawwash.
 \newblock Experimental and numerical investigations of an open-cell copper foam

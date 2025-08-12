@@ -73,7 +73,7 @@ Für den spezifischen Wärmestrom zwischen Fluid und Festkörper folgt daraus:
 
 \begin{equation}
   \label{eq:qdot}
-  \dot{q} = \alpha \ (T_r - T_w)
+  \dot{q} = \alpha \ (T_f - T_w)
 \end{equation}
 
 Der Wärmeübergangskoeffizient $\alpha$ wird aus der Nußelt Beziehung genommen. Diese lautet
@@ -108,7 +108,12 @@ Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verw
 
 Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung~\ref{eq:recovery_temperatur}.
 In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 erwartet werden und somit die aerodynamische
-Aufheizung berücksichtigt wird.
+Aufheizung berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:qdot} zu $T_\text{r}$:
+
+\begin{equation}
+  \label{eq:qdot}
+  \dot{q} = \alpha \ (T_\text{r} - T_\text{w})
+\end{equation}
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
