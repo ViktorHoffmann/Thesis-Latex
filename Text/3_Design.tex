@@ -75,30 +75,43 @@ die maximale Sperrschichttemperatur festgelegt.
 Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.\\
 
 \begin{table}[H]
+
   \centering
   \caption{Stoffdaten für Eicosane}\label{tab:eicosane_data}
-  \begin{tabular}{l|l}
-    \hline
+
+  \begin{tabular}{ll}
+
+    \toprule[1pt]
     $T_{\text{solidus}}$ & \SI{309}{\kelvin}~\cite{NIST} \\
-    \hline
+
+    \midrule[0.5pt]
     $T_{\text{liquidus}}$ & \SI{311}{\kelvin}~\cite{NIST} \\
-    \hline
+
+    \midrule[0.5pt]
     $c_{p,\text{liquid}}$ & \SI{2350.05}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
-    \hline
+
+    \midrule[0.5pt]
     $c_{p,\text{solid}}$ & \SI{2132.4}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
-    \hline
+
+    \midrule[0.5pt]
     $\rho_{\text{solid}}$ & \SI{910}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
-    \hline
+
+    \midrule[0.5pt]
     $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
-    \hline
+
+    \midrule[0.5pt]
     $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin}~\cite{Benbrika-2020} \\
-    \hline
+
+    \midrule[0.5pt]
     $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
-    \hline
+
+    \midrule[0.5pt]
     $\gamma$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
-    \hline
+
+    \midrule[0.5pt]
     $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
-    \hline
+
+    \bottomrule[1pt]
   \end{tabular}
 \end{table}
 
@@ -122,12 +135,38 @@ Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{ta
 
 \section{Radiator}\label{sec:Radiator}
 
-Hier steht was zu Radiatoren.
+Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach \ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
+und die Fläche minimiert werden muss um eingehende Wärmeströme aus der Umgebung zu minimieren.\\
+Als Beschichtung wurde AZ-93 der Firma AZ Technology LLC. ausgewählt. Dabei handelt es sich um eine in der Raumfahrt
+weit verbreitete inorganische Farbe mit idealen Eigenschaften, welche Tabelle \ref{tab:az-93_eigenschaften} entnommen werden können.
+In \ref{fig:radiator_flaeche_leistung} sieht man für die ausgewählte Beschichtung die Leistung eines Radiators bei gegebener Temperatur und Fläche.
+Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei nutzung eines einfachen Radiators schnell zur Überhitzung der Avionik kommen.\\
+
+
+\begin{table}[H]
+
+  \centering
+  \caption{AZ-93 Spezifikationen~\cite{AZ-Technology}}\label{tab:az-93_eigenschaften}
+
+  \begin{tabular}{ll}
+
+    \toprule[1pt]
+    $\epsilon_{\text{t}}$ & $0.91 \pm 0.02$ \\
+
+    \midrule[0.5pt]
+    $\alpha_{\text{s}}$ & $0.15 \pm 0.02$ \\
+
+    \midrule[0.5pt]
+    Temperaturbereich  & \SI{-180}{\degreeCelsius} bis \SI{1400}{\degreeCelsius} \\
+
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/radiator_leistung.pdf}
-  \caption{Radiator Leistung nach Fläche und Temperatur}\label{fig:pcm_heatflux}
+  \caption{Radiator Leistung nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
 \end{figure}
 
 \newpage
@@ -270,6 +309,14 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
 
   \end{tikzpicture}
   \caption{Dimensionierungs-Ablauf in der Vorauslegung}\label{fig:dimensionierung_ablauf}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}\label{fig:re_pr_flugsimulation}
+  \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
+  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}\label{fig:pcm_waermestrom_vorauslegung}
+  \caption{PCM Wärmestrom während Flug}
 \end{figure}
 
 \newpage
