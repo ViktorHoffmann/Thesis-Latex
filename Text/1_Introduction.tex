@@ -4,16 +4,36 @@
 
 % Problemstellung und Lösungsansätze, 2-3 Seiten / keine Ergebnisse & Folgerungen /
 
-Eine leistungsstarke Avionik ist ein Grundstein jeder erfolgreichen Experimentalrakete. Ob es hierbei um Flugcomputer,
+Eine leistungsstarke Avionik ist ein Grundstein jeder erfolgreichen Experimentalrakete. Ob es hierbei um \ac{fcc},
 Telekommunikation, Datenerfassung oder auch aktive Steuerung und Regelung von
 Instrumenten und dem Fahrzeug während des Flugs geht, kompakte Hochleistungsmikroelektronik ist immer gefragt und muss oft redundant ausgeführt sein.
 Diese Elektronik, die zudem noch extremen Bedingungen ausgesetzt wird, kommt jedoch mit einer
 substanziellen Wärmeleistung und Wärmestromdichte die, bei mangelhafter Rücksicht zu reduzierter Lebensdauer der Avionik führen
 kann oder sogar die Mission frühzeitig scheitern lässt.
 Diese Arbeit befasst sich mit der lösung des dargestellten problems für das Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend}
-wo eine neue avionik entwickelt wird und eine Thermal-Management-Lösung (Kühlung) benötigt.\\
+wo eine neue Avionik entwickelt wird und ein \ac{atm} benötigt wird.\\
 
 \section{Darstellung des Problems}
+
+Das Thermal-Problem einer Experimentalrakete beginnt bereits lange vor dem eigentlichen Start. Oft muss nach integration und
+Befestigung der Rakete auf der Rail und Verbindung mit dem \ac{gse} noch einige Stunden auf das Startfenster gewartet werden.
+Während dieser Zeit steht die Rakete der Umwelt ausgesetzt oft in der Sonne und kann, je nach Struktur und Beschichtung der Sektion 
+interne Temperaturen über den zulässigen \SI{89.15}{\degreeCelsius} erreichen. Da in dieser Phase eine Verbindung mit dem 
+\ac{gse} besteht kann Masse durch externe Kühlung währenddessen eingespart werden, weshalb in dieser Arbeit nur für die darauf folgende 
+Flugphase das Thermal-Management entwickelt werden soll.\\
+Da \ac{blast} für ein Apogäum über der Kármán-Linie (\SI{100}{\kilo\meter}) entwickelt wird, sind während dem Flug extreme Umweltbedingungen
+zu erwarten, die ein robustes Avionik-Thermal-Management
+
+In der Vergangenheit wurde bei \ac{hyend} oft die Avionik ohne Redundanz oder zusammen mit gekauften \ac{fcc}n, für 
+Missionskritische Aufgaben wie den Fallschirm-Auswurf, ausgeführt. Beim Projekt \ac{blast} soll das vermieden werden, 
+indem die selbst entwickelten \ac{fcc} in zweifacher Duplex Redundanz ausgeführt werden. Demensprechend gibt es vier Computer die
+die selben Programme ausführen und den vierfachen Stromverbrauch gegenüber einfach ausgeführter Avionik haben. Hinzu kommen
+weitere Kameras, Funkplatinen, Verstärker, Sensor-Schnittstellen etc. die jedoch keine redundante Ausführung haben.\\
+
+Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und weitere Elektronik die keine Leistung abgibt, gegenüber etwa
+der \ac{pcdu} und Funkplatine, einen Wirkungsgrad von \SI{0}{\percent} wenn Logikoperationen nicht als Arbeit definiert werden.
+Resultierend wird der komplette Stromverbrauch in Wärme umgewandelt. Da die Avionik parallel zu dieser Arbeit entwickelt wurde,
+Wird die Leistung abgeschätzt.
 
 -Neues Projekt mit eigener Avionik\\
 -Leistungsstarke Avionik mit Redundantem \ac{fcc}\\
@@ -21,6 +41,8 @@ wo eine neue avionik entwickelt wird und eine Thermal-Management-Lösung (Kühlu
 -(Pad ist nicht teil des Problems)
 \newline
 Beim Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend} wird eine neue Avionik mit einem selbst entwickelten \ac{fcc} gebaut. Durch 
+
+
 
 \section{Zielsetzung der Arbeit}
 
@@ -30,6 +52,12 @@ Beim Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend} wird eine n
 -Wiederverwendbar
 
 \section{Lösungsweg}
+
+Um ein geeignetes Thermal-Management zu entwickeln wird zuerst eine Auswahl an etablierten Lösungen aus der Luft- und Raumfahrtindustrie
+gemacht, die die gestellten Anforderungen erfüllen können.\\
+Diese werden dann mittels einfacher Thermodynamischer Bilanzgleichungen in der Vorauslegung mit einem Python Programm ausgewertet und verglichen,
+um eine Massenabschätzung zu bekommen.\\
+Die Vorauslegung wird anschließend mittels \ac{cht}-Simulation verifiziert und vergleichbar gemacht.
 
 -vorauslegung\\
 -simulation\\
