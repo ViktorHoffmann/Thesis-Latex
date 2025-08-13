@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
 \bibitem{AZ-Technology}
 Az technology llc.
@@ -12,46 +12,11 @@ Stm32stm32h743zgt6 datenblatt.
   {https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}},
   12.08.2022.
 
-\bibitem{Abdel-2024}
-M.E. Abdelrahman, A.M.A. Soliman, M.~Kassab, and A.A. Hawwash.
-\newblock Experimental and numerical investigations of an open-cell copper foam
-  (occf)/phase change material (pcm) composite-based module for satellite
-  avionics thermal management in a thermal vacuum chamber (tvc).
-\newblock {\em Journal of Energy Storage}, 75, 2024.
-
 \bibitem{Benbrika-2020}
 M.~Benbrika, M.~Teggar, M.~Benbelhout, and K.A.R. Ismai.
 \newblock Numerical study of n-eicosane melting inside a horizontal cylinder
   for different loading rates.
 \newblock {\em International Journal of Heat and Technology}, 38, 2020.
-
-\bibitem{Claudio-2018}
-Z.~Claudio, R.~Giulia, M.~Simone, H.~Romain, S.~Claude, P.~Vincent, and
-  Bertrand Truffart.
-\newblock Active and passive cooling technologies for thermal management of
-  avionics in helicopters: Loop heat pipes and mini-vapor cycle systems.
-\newblock {\em Thermal Science and Engineering Progress}, 5:107--116, 2018.
-
-\bibitem{Gilmore-2002}
-{David G. Gilmore}.
-\newblock {\em {Spacecraft Thermal Control Handbook}}.
-\newblock The Aerospace Press, 2002.
-
-\bibitem{Ho-2021}
-J.Y. Ho, Y.S. See, K.G. Leong, and T.N. Wong.
-\newblock An experimental investigation of a pcm-based heat sink enhanced with
-  a topology-optimized tree-like structure.
-\newblock {\em Energy Conversion and Management}, 245, 2021.
-
-\bibitem{Hume-2022}
-Peabody Hume.
-\newblock Thermal design for spaceflight.
-\newblock In {\em {Spacecraft Thermal Engineering Course}}, 2022.
-
-\bibitem{NASA-2023}
-{Kaitlin Liles and Ruth Amundsen}.
-\newblock {\em {NASA Passive Thermal Control Engineering Guidebook}}.
-\newblock National Aeronautics and Space Administration, 2023.
 
 \bibitem{Nazarychev-2022}
 V.M. et~al. Nazarychev.
@@ -62,25 +27,6 @@ V.M. et~al. Nazarychev.
 \bibitem{NIST}
 U.S.~Secretary of~Commerce.
 \newblock Nist, 2025.
-
-\bibitem{Pavia-2015}
-K.V. Pavia, M.B.H. Mantellim, and L.K. Slongo.
-\newblock Experimental testing of mini heat pipes under microgravity conditions
-  aboard a suborbital rocket.
-\newblock {\em Aerospace Science and Technology}, 45:367--375, 2015.
-
-\bibitem{Isaacs-2017}
-I.~Steven, A.A. Diego, and S.~Greg.
-\newblock Development of a lightweight and low-cost 3d-printed aluminum and pcm
-  panel for thermal management of cubesat applications.
-\newblock In {\em {47th International Conference on Environmental Systems}},
-  2017.
-\newblock Charleston, South Carolina.
-
-\bibitem{ST-guide}
-STMicroelectronics.
-\newblock Guidelines for thermal management on stm32 applications.
-\newblock 2024.
 
 \bibitem{Stryker-1990}
 P.C. Stryker and E.M. Sparrow.
@@ -93,19 +39,5 @@ P.C. Stryker and E.M. Sparrow.
 \newblock {\em {Advanced Materials for Thermal Management of Electronic
   Packaging}}.
 \newblock Springer, 2011.
-
-\bibitem{Xu-2022}
-Yu~Xu, W.~Jiale, and Li~Tong.
-\newblock Experimental study on the heat transfer performance of a phase change
-  material based pin-fin heat sink for heat dissipation in airborne equipment
-  under hypergravity.
-\newblock {\em Journal of Energy Storage}, 52, 2022.
-
-\bibitem{Yang-2015}
-K.~Yang.
-\newblock Ground operations, launch and ascent thermal analysis using thermal
-  desktop.
-\newblock In {\em {Thermal and Fluids Analysis Workshop}}, 2015.
-\newblock NASA Goddard Space Flight Center, Silver Spring, MD.
 
 \end{thebibliography}

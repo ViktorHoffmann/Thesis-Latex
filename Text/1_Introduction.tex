@@ -8,10 +8,11 @@ Eine leistungsstarke Avionik ist ein Grundstein jeder erfolgreichen Experimental
 Telekommunikation, Datenerfassung oder auch aktive Steuerung und Regelung von
 Instrumenten und dem Fahrzeug während des Flugs geht, kompakte Hochleistungsmikroelektronik ist immer gefragt und muss oft redundant ausgeführt sein.
 Diese Elektronik, die zudem noch extremen Bedingungen ausgesetzt wird, kommt jedoch mit einer
-substanziellen Wärmeleistung und Wärmestromdichte die, bei mangelhafter Rücksicht zu reduzierter Lebensdauer der Avionik führen
-kann oder sogar die Mission frühzeitig scheitern lässt.
+substanziellen Wärmeleistung und Wärmestromdichte die, bei mangelhafter Rücksicht zu reduzierter Lebensdauer der Avionik führt,
+oder sogar die Mission frühzeitig scheitern lässt.\\
+
 Diese Arbeit befasst sich mit der lösung des dargestellten problems für das Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend}
-wo eine neue Avionik entwickelt wird und ein \ac{atm} benötigt wird.\\
+wo eine neue Avionik entwickelt wird und ein \ac{atm} benötigt wird.
 
 \section{Darstellung des Problems}
 
@@ -20,49 +21,35 @@ Befestigung der Rakete auf der Rail und Verbindung mit dem \ac{gse} noch einige 
 Während dieser Zeit steht die Rakete der Umwelt ausgesetzt oft in der Sonne und kann, je nach Struktur und Beschichtung der Sektion 
 interne Temperaturen über den zulässigen \SI{89.15}{\degreeCelsius} erreichen. Da in dieser Phase eine Verbindung mit dem 
 \ac{gse} besteht kann Masse durch externe Kühlung währenddessen eingespart werden, weshalb in dieser Arbeit nur für die darauf folgende 
-Flugphase das Thermal-Management entwickelt werden soll.\\
+Flugphase das \ac{atm} entwickelt werden soll.
 Da \ac{blast} für ein Apogäum über der Kármán-Linie (\SI{100}{\kilo\meter}) entwickelt wird, sind während dem Flug extreme Umweltbedingungen
-zu erwarten, die ein robustes Avionik-Thermal-Management
+durch aerothermale Aufheizung, microgravitation und annäherndes Vakuum zu erwarten, die ein komplexes \ac{atm} fordern.\\
 
-In der Vergangenheit wurde bei \ac{hyend} oft die Avionik ohne Redundanz oder zusammen mit gekauften \ac{fcc}n, für 
+In der Vergangenheit wurde bei \ac{hyend} oft die Avionik ohne Redundanz oder zusammen mit fertig gekaufter Avionik, für 
 Missionskritische Aufgaben wie den Fallschirm-Auswurf, ausgeführt. Beim Projekt \ac{blast} soll das vermieden werden, 
-indem die selbst entwickelten \ac{fcc} in zweifacher Duplex Redundanz ausgeführt werden. Demensprechend gibt es vier Computer die
+indem der selbst entwickelte \ac{fcc} in Dual Duplex Redundanz ausgelegt wird. Demensprechend gibt es vier Computer die
 die selben Programme ausführen und den vierfachen Stromverbrauch gegenüber einfach ausgeführter Avionik haben. Hinzu kommen
 weitere Kameras, Funkplatinen, Verstärker, Sensor-Schnittstellen etc. die jedoch keine redundante Ausführung haben.\\
 
-Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und weitere Elektronik die keine Leistung abgibt, gegenüber etwa
-der \ac{pcdu} und Funkplatine, einen Wirkungsgrad von \SI{0}{\percent} wenn Logikoperationen nicht als Arbeit definiert werden.
-Resultierend wird der komplette Stromverbrauch in Wärme umgewandelt. Da die Avionik parallel zu dieser Arbeit entwickelt wurde,
-Wird die Leistung abgeschätzt.
-
--Neues Projekt mit eigener Avionik\\
--Leistungsstarke Avionik mit Redundantem \ac{fcc}\\
--Schwierige Umweltbedingungen\\
--(Pad ist nicht teil des Problems)
-\newline
-Beim Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend} wird eine neue Avionik mit einem selbst entwickelten \ac{fcc} gebaut. Durch 
-
-
+Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und die weitere Elektronik die keine Leistung abgibt, gegenüber etwa
+der \ac{pcdu} und Funkplatine welche Leistung in Form von Strom und elektromagnetischer Strahlung abgeben, einen Wirkungsgrad von
+\SI{0}{\percent}, da Logikoperationen physikalisch gesehen keine Arbeit sind. Resultierend wird der komplette Stromverbrauch
+in Wärme umgewandelt.
 
 \section{Zielsetzung der Arbeit}
 
--Entwicklung eines Thermal-Managements für die komplette Flugdauer\\
--Ausfallsicher\\
--Leichtbau\\
--Wiederverwendbar
+Da es sich beim \ac{atm} um ein peripheres System handelt, soll besonders hohe Zuverlässigkeit gewehrleistet werden, da trotz der
+Redundanz des \ac{fcc} ein Ausfall der Kühlung zum Ausfall durch Überhitzung führen kann.\\
+Desweiteren ist Wiederverwendbarkeit, die kosten minimiert, aber besonders komplexe Integrations- und Vorbereitungsvorgänge
+vermeided eine Priorität.\\
+Als letzte Anforderung, nach einer Auswahl basierend auf den ersten beiden, soll wegen des begrenzten Massenbudgets der Avionik
+besonders auf Leichtbau geachtet werden und die Masse des \ac{atm} soweit wie möglich minimiert werden.\\
 
 \section{Lösungsweg}
 
-Um ein geeignetes Thermal-Management zu entwickeln wird zuerst eine Auswahl an etablierten Lösungen aus der Luft- und Raumfahrtindustrie
-gemacht, die die gestellten Anforderungen erfüllen können.\\
-Diese werden dann mittels einfacher Thermodynamischer Bilanzgleichungen in der Vorauslegung mit einem Python Programm ausgewertet und verglichen,
-um eine Massenabschätzung zu bekommen.\\
-Die Vorauslegung wird anschließend mittels \ac{cht}-Simulation verifiziert und vergleichbar gemacht.
+Um ein geeignetes \ac{atm} zu entwickeln wird zunächst eine Auswahl an etablierten Lösungen aus der Luft- und Raumfahrtindustrie
+getroffen, die die gestellten Anforderungen erfüllen können.\\
 
--vorauslegung\\
--simulation\\
-\cite{Claudio-2018, Ho-2021, Isaacs-2017, Abdel-2024, Xu-2022, Pavia-2015, Yang-2015, ST-guide, NASA-2023, Gilmore-2002, Hume-2022}\\
-$\mathrm{T_c}$ soll auf \SI{85}{\celsius} bleiben -> Beispielrechnung der Ausfallwahrscheinlichkeit für STM32?\\
-Mit trajektorien simulation und längs angeströmter turbulenter Platte bekomme ich spezifischen Wärmestrom an fixer Stelle über dein Flug\\
-Aus flugmaxx krieg ich dauer und stärke der beschleunigung -> Ansys, transient\\
-Rest des Fluges ist Mikrogravitation -> Ansys, transient\\
+Diese werden in der Vorauslegung mithilfe eines \ac{rom} in Python ausgewertet, um eine erste Abschätzung der Leistungsfähigkeit zu erhalten.\\
+Anschließend wird die Vorauslegung, soweit mit vorhandenen Rechenressourcen möglich, durch \ac{cht}-Simulationen mit Domänenreduktion
+verifiziert und die Ergebnisse vergleichbar gemacht.

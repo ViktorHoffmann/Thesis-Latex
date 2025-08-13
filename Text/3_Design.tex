@@ -88,41 +88,58 @@ Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{ta
   \centering
   \caption{Stoffdaten für Eicosane}\label{tab:eicosane_data}
 
-  \begin{tabular}{ll}
+  \begin{tabular}{lll}
 
     \toprule[1pt]
-    $T_{\text{solidus}}$ & \SI{309}{\kelvin}~\cite{NIST} \\
+    Solidus Temperatur & $T_{\text{solidus}}$ & \SI{309}{\kelvin}~\cite{NIST} \\
 
     \midrule[0.5pt]
-    $T_{\text{liquidus}}$ & \SI{311}{\kelvin}~\cite{NIST} \\
+    Liquidus Temperatur & $T_{\text{liquidus}}$ & \SI{311}{\kelvin}~\cite{NIST} \\
 
     \midrule[0.5pt]
-    $c_{p,\text{liquid}}$ & \SI{2350.05}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
+    Spezifische Wärmekapazität bei\\konstantem Druck der\\Flüssigphase & $c_{p,\text{liquid}}$ & \SI{2350.05}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
 
     \midrule[0.5pt]
-    $c_{p,\text{solid}}$ & \SI{2132.4}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
+    Spezifische Wärmekapazität bei\\konstantem Druck der\\Feststoffphase & $c_{p,\text{solid}}$ & \SI{2132.4}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
 
     \midrule[0.5pt]
-    $\rho_{\text{solid}}$ & \SI{910}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
+    Dichte der Flüssigphase & $\rho_{\text{solid}}$ & \SI{910}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
 
     \midrule[0.5pt]
-    $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
+    Dichte der Feststoffphase & $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
 
     \midrule[0.5pt]
-    $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin}~\cite{Benbrika-2020} \\
+    Wärmeleitfähigkeit der Flüssigphase & $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin}~\cite{Benbrika-2020} \\
 
     \midrule[0.5pt]
-    $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
+    Wärmeleitfähigkeit der Feststoffphase & $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
 
     \midrule[0.5pt]
-    $\gamma$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
+    Wärmeausdehnungskoeffizient & $\gamma$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
 
     \midrule[0.5pt]
-    $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
+    Spezifische Schmelzenthalpie & $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
 
     \bottomrule[1pt]
   \end{tabular}
 \end{table}
+
+\begin{lstlisting}[language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_masse_kapazität}]
+rho_alu = 2700     # aluminium density [kg*m^-3]
+rho_pcm = 788      # pcm density [kg*m^-3]
+h      = 240998.9  # pcm latent heat [J*kg^-1]
+F       = 0.1      # void fraction
+t       = 0.001    # wall thickness [m]
+
+def total_mass(L, H): # pcm mass including case and fins
+    return (rho_alu * (L**2 * H - (L - 2*t)**2 * (H - 2*t))
+            + (F * rho_alu + (1 - F) * rho_pcm) * (L - 2*t)**2 * (H - 2*t)) 
+
+def total_heat(L, H): # pcm latent heat capacity
+    #...#
+    pcm_heat  = (1 - F) * rho_pcm * (L - 2*t)**2 * (H - 2*t) * h
+    return pcm_heat
+\end{lstlisting}
 
 \begin{figure}[H]
     \centering
