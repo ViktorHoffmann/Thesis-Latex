@@ -1,7 +1,7 @@
 \chapter{Vorauslegung}
 \label{chap:Vorauslegung}
 % Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
-Die Vorauslegung basiert auf einer Trajektoriensimulation aus OpenRocket, welche vom Triebwerks-Subsystem durchgeführt wurde.
+Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, welche vom Triebwerk-Subsystem durchgeführt wurde.
 Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und dauer, welche in maximaler Flugdauer und Aerodynamischen Aufheizung
 resultiert.
 
@@ -10,8 +10,8 @@ resultiert.
 Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden.
 Stattdessen wurde anhand des bereits festgelegten Microcontrollers STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
 die Auslegung durchgeführt.\\
-Aus dem Datenblatt des Microcontrollers folg eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$ und $T_\text{A} = \SI{85}{\degreeCelsius}$~\cite{STM32}
-und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$. Mit einem konservativen
+Aus dem Datenblatt des Microcontrollers folg eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
+und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$.\\
 
@@ -81,12 +81,23 @@ nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inher
 
 \section{Phase Change Materials}\label{sec:pcm}
 
-\ac{pcm} sind eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
-Temperaturbereich zu halten. Auch wenn \ac{pcm} generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
-Durch die hohe spezifische Schmelzenthalpie, welche meist um mindestens den Faktor 10 höher ist als die spezifische Wärmekapazität alternativer Materialien,
-kann ohne jegliche Bewegliche Bauteile eine große Menge an Wärme, bei einem isothermen Prozess, absorbiert werden. Die Verdampfungsenthalpie eines Stoffes
+\ac{pcm} mit Fest-Flüssig Übergang sind eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
+Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
+Durch die hohe spezifische Schmelzenthalpie, kann rein passiv eine große Wärmemenge, bei einem isothermen Prozess, absorbiert werden. Aufgrund dessen
+kann ein von der Umwelt isoliertes \ac{atm} entwickelt werden, das nicht mit stark schwankenden Zuständen der Sonneneinstrahlung und Lufttemperatur
+zurecht kommen muss. Auch wenn \ac{pcm} im Flüssig-Gas Übergang meist eine etwa 10-fach höhere Verdampfungsenthalpie haben, werden diese
+generell nicht verwendet, da der Dichteunterschied zwischen Flüssig- und Gasphase zu extremen Drücken führen würden, falls Wiederverwendbarkeit
+verlangt wird und somit ein Druckkörper nötig ist. Alternativ kann die Gasphase auch aus dem Fahrzeug abgelassen werden in einem Prozess der
+Vapour Venting genannt wird. Hierbei geht jedoch die Wiederverwendbarkeit verloren, da vor jedem Start die Flüssigphase neu getankt werden muss.
+Weiter kann das Venting trotz der geringen Massenströme zu Momenten führen, die das Fahrzeug destabilisieren; besonders im Überschallbereich
+können unintuitive Momente entstehen~\cite{Deere-2011}, die aufwendige \ac{cfd}-Simulationen oder Tests benötigen. Dementsprechend wird nur ein
+Fest-Flüssig \ac{pcm} analysiert.\\
 
-Für die Auswahl eines geeigneten \ac{pcm} sind mehrere Stoffkonstante maßgebend. Spezifische Schmelzenthalpie
+Für die Auswahl eines geeigneten \ac{pcm} sind spezifische Schmelzenthalpie, Schmelztemperatur und Wärmeleitfähigkeit am wichtigsten.
+Letzteres kann jedoch durch Lamellen oder ähnliche Strukturen, zur Verbesserung der Wärmeleitfähigkeit durch das komplette \ac{pcm} verbessert werden,
+wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität verringert. Das Volumen der Wärmeleitenden Struktur welches
+\ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die keine latente Wärmeaufnahme hat. Hier
+wird ein Void Fraction von $F = 0.1$ todo
 
 Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.\\
 

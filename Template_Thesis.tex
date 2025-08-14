@@ -33,17 +33,6 @@
   captionpos=b
 }
 
-\usepackage[
-  backend=biber,
-  style=verbose,   % oder: authoryear, numeric, alphabetic ...
-  url=true,
-  doi=true,
-  isbn=true,
-  eprint=true
-]{biblatex}
-
-\addbibresource{Bibliography/quellen.bib}
-
 % ----------- Graphics Paths -------------------------------------------------------
 \graphicspath{{Bilder/}}
 
@@ -127,8 +116,8 @@
 \newpage
 \renewcommand{\bibname}{Literaturverzeichnis}
 
-\renewcommand{\bibname}{Literaturverzeichnis}
-\printbibliography[title=Literaturverzeichnis]
+\bibliography{Bibliography/quellen.bib}
+\bibliographystyle{plain}%{unsrt}{abbrv}{abbrvnat}{unsrt}
 
 \newpage
 
