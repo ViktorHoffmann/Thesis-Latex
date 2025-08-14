@@ -15,6 +15,49 @@ und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$.\\
 
+Die Leistung der Avionik ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate (\SI{400}{\mega\hertz}) und vollständig aktiver
+Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten.\\
+
+\begin{table}[H]
+  \centering
+  \caption{Leistung der Avionik}\label{tab:avionik_leistung}
+
+  \begin{tabular}{lp{4cm}ll}
+    \toprule[1pt]
+    Komponente & Spannung \& Strom & Wirkungsgrad & Wärmestrom \\
+    \midrule[0.5pt]
+
+    STM32H743ZGT6 &
+      \mbox{$V_\text{DD}=\SI{3.3}{\volt}$},\newline
+      $I_\text{DD}=\SI{536}{\milli\ampere}$~\cite{STM32} &
+      $\approx \SI{0}{\percent}$ & \SI{1.769}{\watt} \\
+    $\dot{Q}_\text{ges}$ & & & \SI{7.075}{\watt}\\
+
+    \midrule[0.5pt]
+    RunCam Split 4 V2 &
+      \mbox{$V_\text{DD}=\SI{5}{\volt}$},\newline
+      $I_\text{DD}=\SI{450}{\milli\ampere}$~\cite{RunCam-Split4V2} &
+      $\approx \SI{0}{\percent}$ & \SI{2.25}{\watt} \\
+    $\dot{Q}_\text{ges}$ & & & \SI{9}{\watt}\\
+
+    \midrule[0.5pt]
+    Thebe-II &
+      \mbox{$V_\text{DD}=\SI{3.6}{\volt}$},\newline
+      $I_\text{DD}=\SI{500}{\milli\ampere}$~\cite{WE-ThebeII-UM-2024} &
+      $\approx \SI{30}{\percent}$ & \SI{1.3}{\watt} \\
+
+    \midrule[0.5pt]
+    \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9.3}{\watt} \\
+
+    \midrule[0.5pt]
+    $\dot{Q}_\text{ges, safety}$ & & & \SI{40}{\watt} \\
+
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
+
+
+
 Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
 Dadurch kann aufwendiges und teures testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden und es besteht bei
 nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzen passiver Bauteile.

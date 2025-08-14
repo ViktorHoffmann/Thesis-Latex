@@ -43,11 +43,21 @@ V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N.
 U.S.~Secretary of~Commerce.
 \newblock Nist chemistry webbook, 2025.
 
+\bibitem{RunCam-Split4V2}
+{RunCam Technology Co., Ltd.}
+\newblock Runcam split 4 v2 user manual, 2020.
+\newblock Product manual (PDF).
+
 \bibitem{Stryker-1990}
 P.~C. Stryker and E.~M. Sparrow.
 \newblock Application of a spherical thermal conductivity cell to solid
   n-eicosane paraffin.
 \newblock {\em International Journal of Heat and Mass Transfer}, 99, 1990.
+
+\bibitem{WE-ThebeII-UM-2024}
+{W{\"u}rth Elektronik eiSos GmbH \& Co. KG}.
+\newblock User manual: Thebe-ii (order code 2609031181000), version 1.14, 2024.
+\newblock Radio module 868\,MHz, up to +27\,dBm TX power.
 
 \bibitem{Xingcun-2011}
 Colin Xingcun.
