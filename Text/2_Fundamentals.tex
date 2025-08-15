@@ -14,6 +14,9 @@ Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
     c = \frac{\Delta Q}{m \cdot \Delta T}
 \end{equation}
 
+$c$ beschreibt die spezifische Wärmekapazität, welche entweder bei konstantem Druck oder konstantem Volumen angegeben ist,
+$Q$ ist die Wärmeenergie, $m$ die Masse und $T$ die Temperatur
+
 Da Elektrionik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die Sensible Wärme eine Dämpfung
 zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
 
@@ -22,7 +25,7 @@ zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit de
 Im Gegenteil zur sensiblen Wärme ist latente Wärme, auch Umwandlungsenthalpie genannt, die Eigenschaft von Masse bei einem Phasenwechsel Wärmeenergie
 zu absorbieren oder abzugeben, ohne dass dabei die Temperatur sich ändert. Das ist durch die erhöhung der potentiellen Energie der Teilchen,
 statt der kinetischen wie bei der sensiblen Wärme, zu verstehen. Effektiv erhöht sich die potentielle Energie durch Änderung der Bindungszustände.
-Die Stoffkonstante der Umwandlungsenthalpie ist die spezifische Umwandlungsenthalpie:
+Die Stoffkonstante der Umwandlungsenthalpie ist die spezifische Umwandlungsenthalpie $h$:
 
 \begin{equation}
     h = \frac{\Delta Q}{m}
@@ -50,16 +53,24 @@ abhängt, ist dieser Modus erst bei sehr hohen Temperaturen dimensionierend, kan
     \dot{Q}=\sigma\epsilon A T^{4}
 \end{equation}
 
+$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Bolzmann-konstante, $\epsilon$ der Emissionsgrad, welcher von der Wellenlänge
+abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators.
+
 \subsection{Wärmeleitung}\label{sec:waermeleitung}
 
 Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch diffusion der kinetischen Energie der Teilchen verteilt.
-Die Wärmestromdichte in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
+Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
 
 \begin{equation}
     \vec{\dot{q}} = -\lambda \nabla T
 \end{equation}
 
-%todo
+Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials.
+Für eine eindimensionale Wand ergibt sich die Gleichung zu:
+
+\begin{equation}
+  $hilfe$
+\end{equation}
 
 \subsection{Konvektion}\label{sec:konvektion}
 
@@ -112,7 +123,7 @@ Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verw
 
 Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung~\ref{eq:recovery_temperatur}.
 In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 erwartet werden und somit die aerodynamische
-Aufheizung berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:qdot} zu $T_\text{r}$:
+Aufheizung durch adiabatische Kompression berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:qdot} zu $T_\text{r}$:
 
 \begin{equation}
   \label{eq:qdot_recovery}
@@ -123,6 +134,19 @@ Aufheizung berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:q
   \label{eq:dynamische_viskositaet}
   \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{2}{3}}
 \end{equation}
+
+Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
+
+\begin{equation}
+  \label{eq:machzahl}
+  Ma = \frac{U}{a}
+\end{equation}
+
+Wobei $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
+Effekte durch die Kompressibilität der Strömung auf, wie große Unterschiede in Dichte, Temperatur und Druck.
+
+Äußern tun sich diese Effekte durch Stoßwellen mit sprunghaftem Anstieg der Größen, Expansionsfächer mit Abfall der Größen und
+Temperaturerhöhungen durch die adiabate Kompression der Luft:
 
 \begin{equation}
   \label{eq:recovery_temperatur}
@@ -174,3 +198,4 @@ und $\Phi$ der viskose Dissipationsterm.
 In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Finite-Volumen-Methode gelöst. Dabei werden die Erhaltungsgleichungen
 über diskrete Kontrollvolumina integriert, wordurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
 wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
+\newline
