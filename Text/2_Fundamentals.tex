@@ -129,7 +129,7 @@ Aufheizung berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:q
   T_r = T_{\infty} \left( 1 + r \frac{\kappa + 1}{2} \text{Ma}^2 \right)
 \end{equation}
 
-Der Recovery-Faktor kann mittels der folgenden Gleichung approximiert werden:
+Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
 
 \begin{equation}
   \label{eq:recovery_faktor}
@@ -142,3 +142,35 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung approximiert werden:
 
 \subsection{Simulation}
 
+Die numerische Ströumgssimulation (\ac{cfd}) ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
+mithilfe numerischer Methoden. \ac{cfd} erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
+die experimentell nur schwer oder gar nicht möglich sind.
+Ziel ist es, die physikalischen Erhaltungsgleichungen auf einer
+diskreten Gitterstruktur zu lösen. Diese sind die Massenerhaltung:
+
+\begin{equation}
+  \label{eq:navier_massenerhaltung}
+  \frac{\delta \rho}{\delta t} + \nabla \left( \rho \vec{u} \right) = 0
+\end{equation}
+
+Impulserhaltung:
+
+\begin{equation}
+  \label{eq:navier_impulserhaltung}
+  \frac{\delta \left( \rho \vec{u} \right)}{\delta t} + \nabla \left( \rho \vec{u} \vec{u} \right) = -\nabla p + \nabla \tau + \rho \vec{g}
+\end{equation}
+
+und Energieerhaltung:
+
+\begin{equation}
+  \label{eq:navier_energieerhaltung}
+  \frac{\delta \left(\rho \vec{u}\right)}{\delta t} + \nabla \left[\left(\rho E + p\right)\vec{u}\right] = \nabla \left(k \nabla T\right) + \Phi
+\end{equation}
+
+Hier sind $\rho$ die Dichte, $\vec{u}$ der Geschwindigkeitsvektor, $p$ der statische Druck, $\tau$ der Spannungstensor,
+$\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$ die Temperatur, $k$ die Wärmeleitfähigkeit
+und $\Phi$ der viskose Dissipationsterm.
+
+In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Finite-Volumen-Methode gelöst. Dabei werden die Erhaltungsgleichungen
+über diskrete Kontrollvolumina integriert, wordurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
+wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.

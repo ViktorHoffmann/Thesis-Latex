@@ -9,14 +9,18 @@ resultiert.
 
 Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden.
 Stattdessen wurde anhand des bereits festgelegten Microcontrollers STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
-die Auslegung durchgeführt.\\
+die Auslegung durchgeführt.
 Aus dem Datenblatt des Microcontrollers folg eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
 und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
-und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$.\\
+und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
+Oberseite der elektronischen Komponente gemeint.
 
-Die Leistung der Avionik ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate (\SI{400}{\mega\hertz}) und vollständig aktiver
-Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten.\\
+Die Leistung der Avionik~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate
+(\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten.
+Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
+Dadurch kann aufwendiges und teures testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden und es besteht bei
+nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzen passiver Bauteile.
 
 \begin{table}[H]
   \centering
@@ -56,10 +60,6 @@ Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten.\\
     \bottomrule[1pt]
   \end{tabular}
 \end{table}
-
-Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
-Dadurch kann aufwendiges und teures testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden und es besteht bei
-nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzen passiver Bauteile.
 
 \begin{figure}[H]
     \centering
@@ -119,7 +119,25 @@ nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inher
     \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
 \end{figure}
 
+\section{Thermales Interface}\label{thermalesInterface}
+
+Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird. Laut~\cite{Xingcun-2011} seite 35 geht die meiste Wärme in die PCB.
+
 \newpage
+
+\subsection{Thermal Straps}\label{thermalstraps}
+
+Um das \ac{pcb} mit der Heatpipe zu verbinden werden Thermal Straps aus verschiedenen Materialien analysiert.
+Thermal Straps sind flexible Verbindungsteile die Wärmebrücken zwischen mehreren Bauteilen gewehrleisten.
+Wegen der hohe Wärmeleitzahl von \ac{pgs} und bedonders für Thermal Straps wichtigen Flexibilität, sind diese eine interessante Option.
+Ein Nachteil von \ac{pgs} ist die geringe Dicke und der daraus resultierende geringe Querschnitt, welcher trotz hoher Wärmeleitzahl zu hoher Wärmestromdichte und stärkerer Temperaturerhöhung führen kann.
+Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Vergleich gezogen werden.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
+  \caption{Kommerzeill erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+\end{figure}
 
 \section{Phase Change Materials}\label{sec:pcm}
 
@@ -404,29 +422,3 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}\label{fig:pcm_waermestrom_vorauslegung}
   \caption{PCM Wärmestrom während Flug}
 \end{figure}
-
-\newpage
-
-\section{Thermales Interface}\label{thermalesInterface}
-
-Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird. Laut~\cite{Xingcun-2011} seite 35 geht die meiste Wärme in die PCB.
-
-\newpage
-
-\subsection{Thermal Straps}\label{thermalstraps}
-
-Um das \ac{pcb} mit der Heatpipe zu verbinden werden Thermal Straps aus verschiedenen Materialien analysiert.
-Thermal Straps sind flexible Verbindungsteile die Wärmebrücken zwischen mehreren Bauteilen gewehrleisten.
-Wegen der hohe Wärmeleitzahl von \ac{pgs} und bedonders für Thermal Straps wichtigen Flexibilität, sind diese eine interessante Option.
-Ein Nachteil von \ac{pgs} ist die geringe Dicke und der daraus resultierende geringe Querschnitt, welcher trotz hoher Wärmeleitzahl zu hoher Wärmestromdichte und stärkerer Temperaturerhöhung führen kann.
-Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Vergleich gezogen werden.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerzeill erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
-\end{figure}
-
-\newpage
-
-%recoverytemperatur wahrscheinlich richtig noch recherchieren
