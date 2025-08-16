@@ -5,29 +5,38 @@ Az technology llc.
 
 \bibitem{fusion-vaporization}
 Enthalpy of fusion and enthalpy of vaporization.
-\newblock \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
+\newblock
+  \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
 
 \bibitem{Thermal-Straps}
 Thermal space and thermal straps.
 
 \bibitem{STM32}
 Stm32h743zgt6 datasheet.
-\newblock \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}, 2022-08-12.
+\newblock
+  \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html},
+  2022-08-12.
 
 \bibitem{Benbrika-2020}
 M.~Benbrika, M.~Teggar, M.~Benbelhout, and K.~A.~R. Ismai.
-\newblock Numerical study of n-eicosane melting inside a horizontal cylinder for different loading rates.
+\newblock Numerical study of n-eicosane melting inside a horizontal cylinder
+  for different loading rates.
 \newblock {\em International Journal of Heat and Technology}, 38, 2020.
 
 \bibitem{Deere-2011}
 Karen~A. Deere, S.~Paul Pao, and Khaled~S. Abdol-Hamid.
-\newblock Computational analysis of ares i roll control system jet interaction effects on rolling moment.
-\newblock In {\em Proceedings of the 48th AIAA Aerospace Sciences Meeting}, Orlando, FL, January 2011. American Institute of Aeronautics and Astronautics.
+\newblock Computational analysis of ares i roll control system jet interaction
+  effects on rolling moment.
+\newblock In {\em Proceedings of the 48th AIAA Aerospace Sciences Meeting},
+  Orlando, FL, January 2011. American Institute of Aeronautics and
+  Astronautics.
 \newblock AIAA Paper 2011-0172.
 
 \bibitem{Nazarychev-2022}
-V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N. Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
-\newblock Cooling-rate computer simulations for the description of crystallization of organic phase-change materials.
+V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N.
+  Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
+\newblock Cooling-rate computer simulations for the description of
+  crystallization of organic phase-change materials.
 \newblock {\em International Journal of Molecular Sciences}, 23, 2022.
 
 \bibitem{NIST}
@@ -41,17 +50,13 @@ U.S.~Secretary of~Commerce.
 
 \bibitem{Stryker-1990}
 P.~C. Stryker and E.~M. Sparrow.
-\newblock Application of a spherical thermal conductivity cell to solid n-eicosane paraffin.
+\newblock Application of a spherical thermal conductivity cell to solid
+  n-eicosane paraffin.
 \newblock {\em International Journal of Heat and Mass Transfer}, 99, 1990.
 
 \bibitem{WE-ThebeII-UM-2024}
 {W{\"u}rth Elektronik eiSos GmbH \& Co. KG}.
 \newblock User manual: Thebe-ii (order code 2609031181000), version 1.14, 2024.
 \newblock Radio module 868\,MHz, up to +27\,dBm TX power.
-
-\bibitem{Xingcun-2011}
-Colin Xingcun.
-\newblock {\em Advanced Materials for Thermal Management of Electronic Packaging}.
-\newblock Springer, 2011.
 
 \end{thebibliography}

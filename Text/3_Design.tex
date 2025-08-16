@@ -2,8 +2,8 @@
 \label{chap:Vorauslegung}
 % Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
 Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, welche vom Triebwerk-Subsystem durchgeführt wurde.
-Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und dauer, welche in maximaler Flugdauer und Aerodynamischen Aufheizung
-resultiert.
+Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second},
+welche in maximaler Flugdauer und Aerodynamischen Aufheizung resultieren.
 
 \section{Anforderungen}
 
@@ -15,12 +15,14 @@ und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
 Oberseite der elektronischen Komponente gemeint.
-
-Die Leistung der Avionik~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate
-(\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten.
 Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
 Dadurch kann aufwendiges und teures testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden und es besteht bei
 nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzen passiver Bauteile.
+
+Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und weitere Elektronik die keine Leistung abgibt, gegenüber etwa
+der \ac{pcdu} und Funkplatine welche Leistung in Form von Strom und elektromagnetischer Strahlung abgeben, einen Wirkungsgrad von
+\SI{0}{\percent}, da Logikoperationen physikalisch gesehen keine Arbeit sind. Resultierend wird der komplette Stromverbrauch
+in Wärme umgewandelt.
 
 \begin{table}[H]
   \centering
@@ -48,7 +50,7 @@ nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inher
     Thebe-II &
       \mbox{$V_\text{DD}=\SI{3.6}{\volt}$},\newline
       $I_\text{DD}=\SI{500}{\milli\ampere}$~\cite{WE-ThebeII-UM-2024} &
-      $\approx \SI{30}{\percent}$ & \SI{1.3}{\watt} \\
+      $\approx \SI{30}{\percent}$~\cite{WE-ThebeII-UM-2024} & \SI{1.3}{\watt} \\
 
     \midrule[0.5pt]
     \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9.3}{\watt} \\
@@ -60,6 +62,10 @@ nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inher
     \bottomrule[1pt]
   \end{tabular}
 \end{table}
+
+Die Leistung der Avionik~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate
+(\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten ohne Quellenangabe.
+Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
 \begin{figure}[H]
     \centering
@@ -121,9 +127,9 @@ nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inher
 
 \section{Thermales Interface}\label{thermalesInterface}
 
-Hier gehts jetzt um wie die wärme verteilt und abtransportiert wird. Laut~\cite{Xingcun-2011} seite 35 geht die meiste Wärme in die PCB.
+\subsection{Heatpipes}
 
-\newpage
+Hetpipes sind super
 
 \subsection{Thermal Straps}\label{thermalstraps}
 
