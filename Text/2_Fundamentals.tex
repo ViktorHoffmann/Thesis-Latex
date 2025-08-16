@@ -107,7 +107,7 @@ für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^7 \leq \text
 \end{equation}
 
 Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verwendet:
-\newline
+
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:reynolds}
@@ -127,7 +127,7 @@ Aufheizung durch adiabatische Kompression berücksichtigt wird. Dementsprechend 
 
 \begin{equation}
   \label{eq:qdot_recovery}
-  \dot{q} = \alpha \ (T_\text{r} - T_\text{w})
+  \dot{q} = \alpha \ (T_r - T_w)
 \end{equation}
 
 \begin{equation}
@@ -157,7 +157,7 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
 
 \begin{equation}
   \label{eq:recovery_faktor}
-  r = \frac{2}{\left(\kappa - 1\right) \text{Ma}_e^2} \left(\frac{T_{a_{w}}}{T_e} - 1\right) \approx
+  r = \frac{2}{\left(\kappa - 1\right) \text{Ma_e}^2} \left(\frac{T_\text{a_{w}}}{T_\text{e}} - 1\right) \approx
   \begin{cases}
     \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
     \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
@@ -198,4 +198,35 @@ In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Fini
 über diskrete Kontrollvolumina integriert, wordurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
 wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
 
-Speziell für \ac{pcm} kann die Bossinesq-Approximation 
+Um Temperatur- und Phasenabhängige Eigenschaften darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu.
+Die Bossinesq-Approximation kann zu Modellierung von Auftrieb infolge von geringen Dichteänderungen verwendet werden. Die Dichte $\rho$ wird
+somit als konstant angenommen, bis auf den Auftriebsterm der Impulsgleichung. Dort gilt:
+
+\begin{equation}
+  \label{eq:bossinesque}
+  \rho = \rho_0 \left[1-\gamma \left(T-T_0\right)\right]
+\end{equation}
+
+Hierbei ist $\rho_0$ die Referenzdichte, $\gamma$ der Wärmeausdehnungskoeffizient und $T_0$ die Referenztemperatur.
+Diese Approximation kann den Rechenaufwand erheblich verringern und ist für folgende Bedingungen gültig:
+
+\noindent\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:bossinesque_bedingung1}
+    \frac{\Delta T}{T_0} \ll 1
+  \end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:bossinesque_bedingung2}
+    \text{Ma} \ll 1
+  \end{equation}
+\end{minipage}
+
+Die Dichte kann in Abhängigkeit des Flüssigkeitsanteils $\Gamma$ berechnet werden. Zwischen der Dichte am Liquidus- und Soliduspunkt
+wird linear interpoliert:
+
+\begin{equation}
+  \label{eq:pcm_dichte}
+  \rho(\Gamma) = \left(1- \Gamma\right) \rho_\text{solidus} + \Gamma \rho_\text{liquidus} \qquad \Gamma \in [0,1]
+\end{equation}
