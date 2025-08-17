@@ -84,11 +84,11 @@ Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
     \dot{Q}=\alpha A \Delta T 
 \end{equation}
 
-Für den spezifischen Wärmestrom zwischen Fluid und Festkörper folgt daraus:
+Für den spezifischen Wärmestrom zwischen Fluid und Wand folgt daraus:
 
 \begin{equation}
   \label{eq:qdot_freestream}
-  \dot{q} = \alpha \ (T_f - T_w)
+  \dot{q} = \alpha \ (T_\text{f} - T_\text{w})
 \end{equation}
 
 Der Wärmeübergangskoeffizient $\alpha$ wird aus der Nußelt Beziehung genommen. Diese lautet
@@ -157,7 +157,7 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
 
 \begin{equation}
   \label{eq:recovery_faktor}
-  r = \frac{2}{\left(\kappa - 1\right) \text{Ma_e}^2} \left(\frac{T_\text{a_{w}}}{T_\text{e}} - 1\right) \approx
+  r = \frac{2}{\left( \kappa - 1 \right) \mathrm{Ma_f}^2} \left( \frac{T_\mathrm{a_{w}}}{T_\mathrm{f}} - 1 \right) \approx
   \begin{cases}
     \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
     \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
@@ -199,16 +199,16 @@ In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Fini
 wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
 
 Um Temperatur- und Phasenabhängige Eigenschaften darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu.
-Die Bossinesq-Approximation kann zu Modellierung von Auftrieb infolge von geringen Dichteänderungen verwendet werden. Die Dichte $\rho$ wird
-somit als konstant angenommen, bis auf den Auftriebsterm der Impulsgleichung. Dort gilt:
+Die Bossinesq-Approximation kann zu Modellierung von Auftrieb infolge von geringen Dichteänderungen verwendet werden. Für den Auftrieb
+in dem Impulsterm ergibt sich somit:
 
 \begin{equation}
-  \label{eq:bossinesque}
-  \rho = \rho_0 \left[1-\gamma \left(T-T_0\right)\right]
+  \label{eq:pcm_bouss}
+  S = -\rho_0 \, g_\text{eff}(t)\,\gamma\,(T-T_0),
 \end{equation}
 
-Hierbei ist $\rho_0$ die Referenzdichte, $\gamma$ der Wärmeausdehnungskoeffizient und $T_0$ die Referenztemperatur.
-Diese Approximation kann den Rechenaufwand erheblich verringern und ist für folgende Bedingungen gültig:
+Hierbei ist $S$ der Quellterm, $\gamma$ der Wärmeausdehnungskoeffizient, $g_\text{eff}(t)$ die effektive, Zeitabhängige Beschleunigung,
+$T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann den Rechenaufwand erheblich verringern und ist für folgende Bedingungen gültig:
 
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
@@ -223,10 +223,10 @@ Diese Approximation kann den Rechenaufwand erheblich verringern und ist für fol
   \end{equation}
 \end{minipage}
 
-Die Dichte kann in Abhängigkeit des Flüssigkeitsanteils $\Gamma$ berechnet werden. Zwischen der Dichte am Liquidus- und Soliduspunkt
-wird linear interpoliert:
+Die Dichte ist für das ANSYS Fluent interne Enthalpy-Porosity-Modell notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $F$ berechnet werden.
+Zwischen der Dichte am Liquidus- und Soliduspunkt wird linear interpoliert:
 
 \begin{equation}
   \label{eq:pcm_dichte}
-  \rho(\Gamma) = \left(1- \Gamma\right) \rho_\text{solidus} + \Gamma \rho_\text{liquidus} \qquad \Gamma \in [0,1]
+  \rho(F) = \left(1- F\right) \rho_\text{solidus} + F \rho_\text{liquidus} \qquad F \in [0,1]
 \end{equation}
