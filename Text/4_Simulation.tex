@@ -1,6 +1,6 @@
 \chapter{Simulation}\label{chap:Simulation}
 
-\section{CFD}\label{cfd}
+\section{CFD}\label{sec:sim_cfd}
 
 \begin{figure}[H]
     \centering
@@ -31,11 +31,11 @@ Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als is
 infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
 Als nächstes sieht man die Flugdaten
 
-\section{PCM-Radiator-Hybrid}\label{sec:pcm_radiator_hybrid_sim}
+\section{PCM-Radiator-Hybrid}\label{sec:sim_pcm_radiator_hybrid_sim}
 
 Als nächstes sieht man Graphen
 
-\section{Aerothermal}
+\section{Aerothermal}\label{sec:sim_aerothermal}
 
 Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerothermale Aufheizung genommen werden kann.
 Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
@@ -104,7 +104,7 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
     \label{fig:maxQ_konturen}
 \end{figure}
 
-\section{\texorpdfstring{\ac{pcm}}{PCM}}
+\section{\texorpdfstring{\ac{pcm}}{PCM}}\label{sec:sim_pcm}
 
 Um in ANSYS Fluent Temperaturabhängige Stoffeigenschaften zu implementieren müssen \ac{udf} verwendet werden.
 Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:bossinesque} kommen noch 

@@ -62,14 +62,16 @@ Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch diffusion der ki
 Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
 
 \begin{equation}
-    \vec{\dot{q}} = -\lambda \nabla T
+  \label{eq:fourier}
+  \vec{\dot{q}} = -\lambda \nabla T
 \end{equation}
 
 Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials.
 Für eine eindimensionale Wand ergibt sich die Gleichung zu:
 
 \begin{equation}
-  hilfe
+  \label{eq:fourier_1d}
+  \dot{Q} = \lambda A \frac{\Delta T}{\Delta x}
 \end{equation}
 
 \subsection{Konvektion}\label{sec:konvektion}
@@ -150,7 +152,7 @@ Temperaturerhöhungen durch die adiabate Kompression der Luft:
 
 \begin{equation}
   \label{eq:recovery_temperatur}
-  T_r = T_{\infty} \left( 1 + r \frac{\kappa + 1}{2} \text{Ma}^2 \right)
+  T_r = T_{\infty} \left( 1 + r \frac{\kappa - 1}{2} \text{Ma}^2 \right)
 \end{equation}
 
 Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
@@ -164,7 +166,7 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
   \end{cases}
 \end{equation}
 
-\subsection{Simulation}
+\section{Simulation}
 
 Die numerische Ströumgssimulation (\ac{cfd}) ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
 mithilfe numerischer Methoden. \ac{cfd} erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
@@ -195,19 +197,21 @@ $\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$
 und $\Phi$ der viskose Dissipationsterm.
 
 In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Finite-Volumen-Methode gelöst. Dabei werden die Erhaltungsgleichungen
-über diskrete Kontrollvolumina integriert, wordurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
+über diskrete Kontrollvolumina integriert, wodurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
 wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
 
-Um Temperatur- und Phasenabhängige Eigenschaften darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu.
+Um Temperatur- und Phasenabhängige Eigenschaften darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
+die in ANSYS Fluent nicht implementiert sind. Dafür wird eine in C programmierte \ac{udf} verwendet, die in Fluent direkt importiert
+und kompiliert werden kann.
 Die Bossinesq-Approximation kann zu Modellierung von Auftrieb infolge von geringen Dichteänderungen verwendet werden. Für den Auftrieb
-in dem Impulsterm ergibt sich somit:
+in dem Impulsterm ergibt sich somit~\cite{akamcae-udf}:
 
 \begin{equation}
-  \label{eq:pcm_bouss}
-  S = -\rho_0 \, g_\text{eff}(t)\,\gamma\,(T-T_0),
+  \label{eq:udf_bouss}
+  S = -\rho_0 \, g_\text{eff}(t)\,\beta\,(T-T_0)
 \end{equation}
 
-Hierbei ist $S$ der Quellterm, $\gamma$ der Wärmeausdehnungskoeffizient, $g_\text{eff}(t)$ die effektive, Zeitabhängige Beschleunigung,
+Hierbei ist $S$ der Quellterm, $\beta$ der Wärmeausdehnungskoeffizient, $g_\text{eff}(t)$ die effektive, Zeitabhängige Beschleunigung,
 $T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann den Rechenaufwand erheblich verringern und ist für folgende Bedingungen gültig:
 
 \noindent\begin{minipage}{.5\linewidth}
@@ -223,10 +227,38 @@ $T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann 
   \end{equation}
 \end{minipage}
 
-Die Dichte ist für das ANSYS Fluent interne Enthalpy-Porosity-Modell notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $F$ berechnet werden.
-Zwischen der Dichte am Liquidus- und Soliduspunkt wird linear interpoliert:
+Die Dichte $\rho$ ist für das ANSYS Fluent interne Enthalpy-Porosity-Modell notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $\gamma$ berechnet werden.
+Zwischen der Dichte der Flüssig- und Feststoffphase wird linear interpoliert~\cite{akamcae-udf}:
 
 \begin{equation}
-  \label{eq:pcm_dichte}
-  \rho(F) = \left(1- F\right) \rho_\text{solidus} + F \rho_\text{liquidus} \qquad F \in [0,1]
+  \label{eq:udf_dichte}
+  \rho(\gamma) = \left(1- \gamma\right) \rho_\text{solid} + \gamma \rho_\text{liquid} \qquad \gamma \in [0,1]
+\end{equation}
+
+Die spezifische Wärmekapazität ergibt sich im Schmelzbereich durch eine Dichtegewichtete Mischung~\cite{akamcae-udf}:
+
+\begin{equation}
+  \label{eq:udf_cp}
+    c_p(T)=
+  \begin{cases}
+    c_{p,\mathrm{solid}}, & T < T_\mathrm{solid},\\[6pt]
+    \dfrac{(1-\gamma)\,\rho_\mathrm{solid}\,c_{p,\mathrm{solid}} + \gamma\,\rho_\mathrm{liquid}\,c_{p,\mathrm{liquid}}}
+          {(1-\gamma)\,\rho_\mathrm{solid} + \gamma\,\rho_\mathrm{liquid}}, & T_\mathrm{solid} \le T \le T_\mathrm{liquid},\\[12pt]
+    c_{p,\mathrm{liquid}}, & T > T_\mathrm{liquid}.
+  \end{cases}
+\end{equation}
+
+Die Wärmeleitfähigkeit $\lambda$ im Schmelzbereich hingegen lässt sich direkt berechnen~\cite{akamcae-udf}:
+
+\begin{equation}
+  \label{eq:udf_lambda}
+  \lambda(\gamma)= (1-\gamma)\,\lambda_{\mathrm{solid}} + \gamma\,\lambda_{\mathrm{liquid}}
+\end{equation}
+
+Die Dynamische Viskosität $\eta$ wird hier, anders als für Luft in der Vorauslegung \ref{eq:dynamische_viskositaet}, mittels einer empirischen
+Polynomkorrelation~\cite{akamcae-udf} abhängig von der Temperatur berechnet:
+
+\begin{equation}
+  \label{eq:udf_mu}
+  \eta(T)= \left(9\times 10^{-4}\,T^{2} - 0.6529\,T + 119.94\right)\times 10^{-3}
 \end{equation}

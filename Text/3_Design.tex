@@ -125,13 +125,13 @@ Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avioni
     \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
 \end{figure}
 
-\section{Thermales Interface}\label{thermalesInterface}
+\section{Thermales Interface}\label{sec:thermalesInterface}
 
-\subsection{Heatpipes}
+\subsection{Heatpipes}\label{sec:heatpipes}
 
 Hetpipes sind super
 
-\subsection{Thermal Straps}\label{thermalstraps}
+\subsection{Thermal Straps}\label{sec:thermalstraps}
 
 Um das \ac{pcb} mit der Heatpipe zu verbinden werden Thermal Straps aus verschiedenen Materialien analysiert.
 Thermal Straps sind flexible Verbindungsteile die Wärmebrücken zwischen mehreren Bauteilen gewehrleisten.
@@ -145,7 +145,7 @@ Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Ve
   \caption{Kommerzeill erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
 \end{figure}
 
-\section{Phase Change Materials}\label{sec:pcm}
+\section{\texorpdfstring{\ac{pcm}}{PCM}}
 
 \ac{pcm} mit Fest-Flüssig Übergang sind eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
 Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
@@ -199,7 +199,7 @@ Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{ta
     Wärmeleitfähigkeit der Feststoffphase & $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
 
     \midrule[0.5pt]
-    Wärmeausdehnungskoeffizient & $\gamma$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
+    Wärmeausdehnungskoeffizient & $\beta$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
 
     \midrule[0.5pt]
     Spezifische Schmelzenthalpie & $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
@@ -208,7 +208,7 @@ Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{ta
   \end{tabular}
 \end{table}
 
-\begin{lstlisting}[language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_masse_kapazität}]
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_masse_kapazität}]
 rho_alu = 2700     # aluminium density [kg*m^-3]
 rho_pcm = 788      # pcm density [kg*m^-3]
 h      = 240998.9  # pcm latent heat [J*kg^-1]
@@ -225,21 +225,7 @@ def total_heat(L, H): # pcm latent heat capacity
     return pcm_heat
 \end{lstlisting}
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.9\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/pcm_mass.pdf}
-        \caption{PCM Masse}\label{fig:pcm_mass}
-    \end{subfigure}
-    \vspace{1em}  % Optional vertical spacing
-    \begin{subfigure}{0.9\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{../../Code/pcm_heat_capacity.pdf}
-        \caption{PCM Wärmeaufnahme}\label{fig:pcm_heat}
-    \end{subfigure}
-    \caption{PCM Auslegung}\label{fig:pcm_mass_heat}
-\end{figure}
+Die pcm masse und kapazität kontour sieht man im anhang
 
 \newpage
 
@@ -273,11 +259,7 @@ Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei 
   \end{tabular}
 \end{table}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{../../Code/radiator_leistung.pdf}
-  \caption{Radiator Leistung nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
-\end{figure}
+Die konturen des Radiators können im Anhang gefunden werden
 
 \newpage
 

@@ -3,9 +3,33 @@
 \pagestyle{Appendix}
 \addcontentsline{toc}{chapter}{Appendix}
 
-\section*{Appendix A: Programmcode}\label{Anh:programmcode}
+\section*{Appendix A: Vorauslegung}\label{Anh:programmcode}
 
-\begin{lstlisting}[language=C, caption={\ac{pcm} \ac{udf} eicosane.c ohne Boussinesq-Approximation}, label={lst:udf_rest}]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/radiator_leistung.pdf}
+  \caption{Radiator Leistung nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/pcm_mass.pdf}
+        \caption{PCM Masse}\label{fig:pcm_mass}
+    \end{subfigure}
+    \vspace{1em}  % Optional vertical spacing
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../../Code/pcm_heat_capacity.pdf}
+        \caption{PCM Wärmeaufnahme}\label{fig:pcm_heat}
+    \end{subfigure}
+    \caption{PCM Auslegung}\label{fig:pcm_mass_heat}
+\end{figure}
+
+\newpage
+
+\begin{lstlisting}[language=C, caption={Vollständige \ac{pcm} \ac{udf} eicosane.c}, label={lst:udf_rest}]
 //Modified UDF of the original source: https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/
 #include "udf.h"
 #include "mem.h"
@@ -81,10 +105,29 @@ DEFINE_PROPERTY(Mu_var_PCM,cell,thread)
 	return Mu_pcm;
 }
 
-/*...*/
+DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
+{
+	double Temp, source, acc;
+	Temp=C_T(cell,thread);
+
+	double t = CURRENT_TIME;
+
+	if (t < 20)
+		acc = 34.81;
+	else if (t < 50)
+		acc = 109.81;
+	else if (t < 150)
+		acc = 19.62;
+	else
+		acc = 9.81;
+
+	source=-Rol_pcm*acc*TEC*(Temp-Tr); //negative for -Y down
+	dS[eqn]=-Rol_pcm*acc*TEC; //negative for -Y down
+	return source;
+}
 \end{lstlisting}
 
-\section*{Appendix B: Simulationsergebnisse}\label{Anh:simulation}
+\section*{Appendix B: Simulation}\label{Anh:simulation}
 
 \begin{figure}[H]
     \centering
