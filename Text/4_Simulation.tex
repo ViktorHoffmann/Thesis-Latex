@@ -31,13 +31,15 @@ Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als is
 infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
 Als nächstes sieht man die Flugdaten
 
-\section{PCM-Radiator-Hybrid}\label{sec:sim_pcm_radiator_hybrid_sim}
 
-Als nächstes sieht man Graphen
 
-\section{Aerothermal}\label{sec:sim_aerothermal}
 
-Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerothermale Aufheizung genommen werden kann.
+\section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
+
+Speziell für die Strömungssimulationen welche keine Koppelung mit Festkörpern haben, wurde der Density-Based Solver ausgewählt und die
+Simulation als 2D Steady State durchgeführt. Das Energiemodell wurde aktiviert und für das Viskositätsmodell~\cite{Irving-2021}
+
+Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerodynamische Aufheizung genommen werden kann.
 Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
 
 
@@ -131,29 +133,6 @@ Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:bossi
 ist, dass Beschleunigungsspitzen durch den Fallschirm, wie sie in~\ref{fig:acceleration_over_time} gesehen
 werden können, ignoriert werden, da diese in einer Überschätzung der Beschleunigung und der Konvektionsvorgänge resultieren würden.
 
-\begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
-//Y-momentum source
-DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
-{
-	double Temp, source, acc;
-	Temp=C_T(cell,thread);
-
-	double t = CURRENT_TIME;
-
-	if (t < 20)
-		acc = 34.81;
-	else if (t < 50)
-		acc = 109.81;
-	else if (t < 150)
-		acc = 19.62;
-	else
-		acc = 9.81;
-
-	source=-Rol_pcm*acc*TEC*(Temp-Tr);  //negative for -Y down
-	dS[eqn]=-Rol_pcm*acc*TEC; 			//negative for -Y down
-	return source;
-}
-\end{lstlisting}
 
 \begin{figure}[H]
     \centering
@@ -225,6 +204,31 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
     \end{minipage}
 
 \end{figure}
+
+
+\begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
+//Y-momentum source
+DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
+{
+	double Temp, source, acc;
+	Temp=C_T(cell,thread);
+
+	double t = CURRENT_TIME;
+
+	if (t < 20)
+		acc = 34.81;
+	else if (t < 50)
+		acc = 109.81;
+	else if (t < 150)
+		acc = 19.62;
+	else
+		acc = 9.81;
+
+	source=-Rol_pcm*acc*TEC*(Temp-Tr);  //negative for -Y down
+	dS[eqn]=-Rol_pcm*acc*TEC; 			//negative for -Y down
+	return source;
+}
+\end{lstlisting}
 
 \begin{figure}[H]
   \centering

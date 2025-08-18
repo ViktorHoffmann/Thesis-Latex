@@ -373,14 +373,14 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
 
     % Top nodes
     \node (avionik) at (-2.1, 4) {Avionik Wärmestrom};
-    \node (sonne)   at ( 2.1, 4) {Sonne Wärmestrom};
+    \node (sonne)   at ( 2.1, 4) {Solarer Wärmestrom};
 
     % Radiator Fläche centered below
     \node (radiator) at (0, 2) {Radiator Fläche};
 
     % Children of Radiator
-    \node (breite) at (-2.1, 0) {PCM Breite};
-    \node (aerothermal) at (2.1, 0) {Aerothermal Wärmestrom};
+    \node (breite) at (-2.4, 0) {PCM Breite};
+    \node (aerodynamisch) at (2.4, 0) {Aerodynamischer Wärmestrom};
 
     % PCM Kapazität as a separate node (not a child directly)
     \node (kapazitaet) at (2.1, -2) {PCM Kapazität};
@@ -393,8 +393,8 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
     \draw[arrow] (avionik) -- (radiator);
     \draw[arrow] (sonne) -- (radiator);
     \draw[arrow] (radiator) -- (breite);
-    \draw[arrow] (radiator) -- (aerothermal);
-    \draw[arrow] (aerothermal) -- (kapazitaet);
+    \draw[arrow] (radiator) -- (aerodynamisch);
+    \draw[arrow] (aerodynamisch) -- (kapazitaet);
     \draw[arrow] (breite) -- (hoehe);
     \draw[arrow] (kapazitaet) -- (hoehe);
     \draw[arrow] (hoehe) -- (gewicht);
