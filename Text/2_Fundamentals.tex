@@ -1,7 +1,8 @@
 \chapter{Grundlagen}
 \label{chap:Grundlagen}			% durch \label{} später auf Element verweisen
 
-In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen erläutert, die in dieser Arbeit angewandt wurden. 
+In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen die in dieser Arbeit angewandt wurden aufgelistet
+und erläutert.
 % Bücher, aber auch Paper etc. 
 
 \section{Sensible Wärme}\label{sec:sensiblewaerme}
@@ -53,7 +54,7 @@ abhängt, ist dieser Modus erst bei sehr hohen Temperaturen dimensionierend, kan
     \dot{Q}=\sigma\epsilon A T^{4}
 \end{equation}
 
-$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Bolzmann-konstante, $\epsilon$ der Emissionsgrad, welcher von der Wellenlänge
+$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Boltzmann-Konstante, $\epsilon$ der Emissionsgrad, welcher von der Wellenlänge
 abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators.
 
 \subsection{Wärmeleitung}\label{sec:waermeleitung}
@@ -86,15 +87,16 @@ Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
     \dot{Q}=\alpha A \Delta T 
 \end{equation}
 
+Hier ist $\alpha$ der Wärmeübergangskoeffizient.
 Für den spezifischen Wärmestrom zwischen Fluid und Wand folgt daraus:
 
 \begin{equation}
   \label{eq:qdot_freestream}
-  \dot{q} = \alpha \ (T_\text{f} - T_\text{w})
+  \dot{q} = \alpha \ (T_{\infty} - T_\text{w})
 \end{equation}
 
-Der Wärmeübergangskoeffizient $\alpha$ wird aus der Nußelt Beziehung genommen. Diese lautet
-für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k\\\left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$:
+Der Wärmeübergangskoeffizient $\alpha$ kann aus der Nußelt-Beziehung für Längsangeströmte ebene Platte genommen. Diese lautet
+für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$:
 
 \begin{equation}
   \label{eq:nusselt_laminar}
@@ -123,14 +125,7 @@ Für die Reynoldszahl und Prandtlzahl werden die folgenden zwei Gleichungen verw
   \end{equation}
 \end{minipage}
 
-Die Dynamische Viskosität wird mittels der Sutherlands-Formel~\ref{eq:dynamische_viskositaet} berechnet, und die Recoverytemperatur mittels der adiabaten Strömungsgleichung~\ref{eq:recovery_temperatur}.
-In diesem Fall wird die Recoverytemperatur statt der Freistromtemperatur benötigt, da die signifikanten Wärmestrome weit über Mach 0.3 erwartet werden und somit die aerodynamische
-Aufheizung durch adiabatische Kompression berücksichtigt wird. Dementsprechend wird $T_\text{f}$ aus \ref{eq:qdot_freestream} zu $T_\text{r}$:
-
-\begin{equation}
-  \label{eq:qdot_recovery}
-  \dot{q} = \alpha \ (T_r - T_w)
-\end{equation}
+Die Dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
@@ -148,7 +143,9 @@ Wobei $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit
 Effekte durch die Kompressibilität der Strömung auf, wie große Unterschiede in Dichte, Temperatur und Druck.
 
 Äußern tun sich diese Effekte durch Stoßwellen mit sprunghaftem Anstieg der Größen, Expansionsfächer mit Abfall der Größen und
-Temperaturerhöhungen durch die adiabate Kompression der Luft:
+Temperaturerhöhungen durch die adiabate Kompression der Luft. Die in einer Grenzschicht erreichte Temperatur durch Reibung
+ist immer kleiner als die Totaltemperatur $T_{\inf} < T_r < T_\mathrm{total}$, da die kinetische Energie nur teilweise in innere Energie
+umgewandelt wird und somit mit dem Recovery-Faktor $r$ skaliert ist:
 
 \begin{equation}
   \label{eq:recovery_temperatur}
@@ -159,18 +156,26 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
 
 \begin{equation}
   \label{eq:recovery_faktor}
-  r = \frac{2}{\left( \kappa - 1 \right) \mathrm{Ma_f}^2} \left( \frac{T_\mathrm{a_{w}}}{T_\mathrm{f}} - 1 \right) \approx
+  r = \frac{2}{\left( \kappa - 1 \right) \mathrm{Ma_{\infty}}^2} \left( \frac{T_\mathrm{a_{w}}}{T_{\infty}} - 1 \right) \approx
   \begin{cases}
     \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
     \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
   \end{cases}
 \end{equation}
 
+In einer kompressiblen Strömung bei $Ma > 0.3$ wird somit $T_{\infty}$ aus \ref{eq:qdot_freestream} zu $T_\text{r}$:
+
+\begin{equation}
+  \label{eq:qdot_recovery}
+  \dot{q} = \alpha \ (T_r - T_w)
+\end{equation}
+
 \section{Simulation}
+\section*{sec:sim_aero}
 
 Die numerische Ströumgssimulation (\ac{cfd}) ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
 mithilfe numerischer Methoden. \ac{cfd} erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
-die experimentell nur schwer oder gar nicht möglich sind. Ziel ist es, die Navier-Stokes-Gleichungen in differentieler Form auf einer
+die experimentell nur schwer oder gar nicht möglich sind. Ziel ist es, die Navier-Stokes-Gleichungen in differentieller Form auf einer
 diskreten Gitterstruktur zu lösen. Diese Erhaltungsgleichungen sind die Massenerhaltung:
 
 \begin{equation}
@@ -196,14 +201,11 @@ Hier sind $\rho$ die Dichte, $\vec{u}$ der Geschwindigkeitsvektor, $p$ der stati
 $\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$ die Temperatur, $k$ die Wärmeleitfähigkeit
 und $\Phi$ der viskose Dissipationsterm.
 
-In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Finite-Volumen-Methode gelöst. Dabei werden die Erhaltungsgleichungen
-über diskrete Kontrollvolumina integriert, wodurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
-wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
-
-Um Temperatur- und Phasenabhängige Eigenschaften darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
+\section*{sec:sim_pcm}
+Um Temperatur- und Phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
 die in ANSYS Fluent nicht implementiert sind. Dafür wird eine in C programmierte \ac{udf} verwendet, die in Fluent direkt importiert
 und kompiliert werden kann.
-Die Bossinesq-Approximation kann zu Modellierung von Auftrieb infolge von geringen Dichteänderungen verwendet werden. Für den Auftrieb
+Die Bossinesq-Approximation Modelliert den Auftrieb infolge von geringen Dichteänderungen. Für den Auftrieb
 in dem Impulsterm ergibt sich somit~\cite{akamcae-udf}:
 
 \begin{equation}
@@ -227,7 +229,8 @@ $T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann 
   \end{equation}
 \end{minipage}
 
-Die Dichte $\rho$ ist für das ANSYS Fluent interne Enthalpy-Porosity-Modell notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $\gamma$ berechnet werden.
+ANSYS Fluent verwendet zur Modellierung des Schmelzbereiches ein internes Enthalpy-Porosity-Modell, welches das \ac{pcm} als poröses Material
+mit diskreter Fest- und Flüssigphase ansieht. Hierfür ist die Dichte $\rho$ notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $\gamma$ berechnet werden.
 Zwischen der Dichte der Flüssig- und Feststoffphase wird linear interpoliert~\cite{akamcae-udf}:
 
 \begin{equation}
@@ -262,3 +265,10 @@ Polynomkorrelation~\cite{akamcae-udf} abhängig von der Temperatur berechnet:
   \label{eq:udf_mu}
   \eta(T)= \left(9\times 10^{-4}\,T^{2} - 0.6529\,T + 119.94\right)\times 10^{-3}
 \end{equation}
+
+In der verwendeten Software ANSYS Fluent werden diese Gleichungen über die Finite-Volumen-Methode gelöst. Dabei werden die Erhaltungsgleichungen
+über diskrete Kontrollvolumina integriert, wodurch für jede Zelle ein algebraisches Gleichungssystem entsteht. Dieses
+wird iterativ gelöst, bis vorgegebene Konvergenzkriterien erfüllt sind.
+
+Speziell für die Strömungssimulationen welche keine Koppelung mit Festkörpern haben, wurde der Density-Based Solver ausgewählt und die
+Simulation in 2D und im Steady State durchgeführt. Das Energiemodell wurde aktiviert und für die Viskosität

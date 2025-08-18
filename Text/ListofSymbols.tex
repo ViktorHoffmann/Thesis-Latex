@@ -36,6 +36,7 @@ solid && && Feststoff Eigenschaften\\
 liquid && && Flüssigstoff Eigenschaften\\
 fus && && Schmelz Phasenwechsel\\
 safety && && Mit Sicherheitsfaktor 1.5\\
+total && && Totalgröße\\
 p && && Konstanter Druck\\
 J && && Sperrschicht\\
 C && && Gehäuse\\
@@ -51,8 +52,11 @@ a && && adiabat\\
 \subsection*{Konstanten}
 
 \begin{supertabular}{p{10mm}p{3mm}p{50mm}p{3mm}l}
-$\pi$ && $\approx \SI{3.142}{\kelvin}$ && Kreiszahl\\
-$\sigma$ && $\approx \SI{3.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}}$ && Stefan-Boltzmann-Konstante\\
+$\sigma$ && \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} && Stefan-Boltzmann-Konstante\\
+$\kappa$ && \SI{1.40}{} && Isentropenexponent der Luft\\
+$\eta_0$ && \SI{18.27e-6}{\pascal\second} && Sutherlands-Formel Referenzviskosität\\
+$T_0$ && \SI{291.15}{\kelvin} && Sutherlands-Formel Referenztemperatur\\
+$C$ && \SI{120}{\kelvin} && Sutherland Konstante\\
 \end{supertabular}
 
 \newpage
