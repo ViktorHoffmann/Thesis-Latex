@@ -127,9 +127,19 @@ Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avioni
 
 \section{Thermales Interface}\label{sec:thermalesInterface}
 
+Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
+Oft wird in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
+meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt auch
+Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Leitermaterialien mit hoher Wärmeleitfähigkeit
+zu verwenden. Beide Methoden bieten in Kombination eine günstige Integrierbarkeit und geringen Wärmeleitwiederstand,
+ohne Bewegliche Teile zu verwenden.
+
+Das Thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf \ac{pcb} Ebene wie bereits erläutert nicht
+möglich ist, da die Elektronik noch nicht vollständig entwickelt ist.
+
 \subsection{Heatpipes}\label{sec:heatpipes}
 
-Hetpipes
+Heatpipes sind 
 
 \subsection{Thermal Straps}\label{sec:thermalstraps}
 
@@ -147,7 +157,7 @@ Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Ve
 
 \section{PCM}
 
-\ac{pcm} mit Fest-Flüssig Übergang sind eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
+\ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
 Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
 Durch die hohe spezifische Schmelzenthalpie, kann rein passiv eine große Wärmemenge, bei einem isothermen Prozess, absorbiert werden. Aufgrund dessen
 kann ein von der Umwelt isoliertes \ac{atm} entwickelt werden, das nicht mit stark schwankenden Zuständen der Sonneneinstrahlung und Lufttemperatur
@@ -165,7 +175,8 @@ wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmeka
 \ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die keine latente Wärmeaufnahme hat. Hier
 wird ein Void Fraction von $F = 0.1$ todo
 
-Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.\\
+Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.
+Vor der Implementierung des \ac{pcm} sollten die Eigenschaften des vorhandenen Eicosane nochmal analysiert und die Ergebnisse überprüft werden.
 
 \begin{table}[H]
 
