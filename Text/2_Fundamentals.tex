@@ -6,9 +6,8 @@ und erläutert.
 % Bücher, aber auch Paper etc. 
 
 \section{Sensible Wärme}\label{sec:sensiblewaerme}
-
 Unter sensibler Wärme versteht man die Eigenschaft von Masse durch eine Temperaturänderung Wärmeenergie zu absorbieren oder abzugeben. Dieses
-Phänomen kann durch die Änderung der kinetischen Energie von den molekularen Teilchen im System erklärt werden. Durch das einführen von
+Phänomen kann durch die Änderung der kinetischen Energie von den molekularen Teilchen im System erklärt werden. Durch das Einführen von
 Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
 
 \begin{equation}
@@ -18,7 +17,7 @@ Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
 $c$ beschreibt die spezifische Wärmekapazität, welche entweder bei konstantem Druck oder konstantem Volumen angegeben ist,
 $Q$ ist die Wärmeenergie, $m$ die Masse und $T$ die Temperatur
 
-Da Elektronik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die Sensible Wärme eine Dämpfung
+Da Elektronik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die sensible Wärme eine Dämpfung
 zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
 
 \section{Latente Wärme}\label{sec:latentewaerme}
@@ -51,10 +50,10 @@ abhängt, ist dieser Modus erst bei sehr hohen Temperaturen dimensionierend, kan
 
 \begin{equation}
     \label{eq:radiation}
-    \dot{Q}=\sigma\epsilon A T^{4}
+    \dot{Q}=\sigma\varepsilon A T^{4}
 \end{equation}
 
-$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Boltzmann-Konstante, $\epsilon$ der Emissionsgrad, welcher von der Wellenlänge
+$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Boltzmann-Konstante, $\varepsilon$ der Emissionsgrad, welcher von der Wellenlänge
 abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators.
 
 \subsection{Wärmeleitung}\label{sec:waermeleitung}
@@ -100,14 +99,14 @@ für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \le
 
 \begin{equation}
   \label{eq:nusselt_laminar}
-  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,332 \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
+  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = \num{0,332} \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
 \end{equation}
 
 für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^7 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
 
 \begin{equation}
   \label{eq:nusselt_turbulent}
-  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = 0,0296 \ \text{Re}_x^{0,8} \ \text{Pr}^{\frac{1}{3}}
+  \text{Nu}_x = \frac{\alpha_x x}{\lambda} = \num{0,0296} \ \text{Re}_x^{0,8} \ \text{Pr}^{\frac{1}{3}}
 \end{equation}
 
 Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen verwendet:

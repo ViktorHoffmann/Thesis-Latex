@@ -26,7 +26,7 @@ Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
 - Radiator Absorptionsgrad: \SI{0,15}{} (AZ-93)\\
 - Icosane PCM\\
 - Trajektoriensimulation\\
-- \SI{1}{\frac{kW}{m^2}} mit 50\% dutycycle durch Rotation der Rakete\\
+- \SI{1}{\kilo\watt\per\meter\squared} mit 50\% dutycycle durch Rotation der Rakete\\
 Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als isotherm mit einer
 infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
 Als nächstes sieht man die Flugdaten
@@ -102,11 +102,11 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
         \label{fig:maxQ_mach_contour}
     \end{subfigure}
 
-    \caption{\texorpdfstring{\ac{maxq}}{max Q} Konturen}
+    \caption{\texorpdfstring{\ac{maxq}}{max Q} Konturen der Luft}
     \label{fig:maxQ_konturen}
 \end{figure}
 
-\section{\texorpdfstring{\ac{pcm}}{PCM}}\label{sec:sim_pcm}
+\section{PCM}\label{sec:sim_pcm}
 
 Um in ANSYS Fluent Temperaturabhängige Stoffeigenschaften zu implementieren müssen \ac{udf} verwendet werden.
 Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:bossinesque} kommen noch 

@@ -11,6 +11,11 @@
 % ----------- Zusätzliche Usepackages ----------------------------------------------
 % Hier stehen weitere Usepackages ...
 \usepackage{siunitx}
+
+\sisetup{detect-all}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{locale = DE}
+
 \usepackage{tikz}
 \usepackage{subcaption}
 \usetikzlibrary{arrows.meta}
@@ -53,7 +58,6 @@
 \newpage\null\thispagestyle{empty}\newpage
 \includepdf{Text/Aufgabenstellung_BA_Hoffmann.pdf}
 \includepdf{Text/Hoffmann_Bachelor_Eidesstatt.pdf}
-\includepdf{Text/Hoffmann_BA_Erklärung_Archivierung.pdf}
 
 % erste Seite: Titelblatt (wird von ITLR erstellt)
 % zweite Seite: leeres Blatt
@@ -72,18 +76,18 @@
 \newpage
 \tableofcontents	% Erstellt automatisch die Überschrift "Inhaltsverzeichnis" mit
 
+% Abbildungsverzeichnis
+\newpage
+\phantomsection		% Korrigiert die Hyperref-Verlinkungen
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
 % Tabellenverzeichnis
 \newpage
 \phantomsection		% Korrigiert die Hyperref-Verlinkungen
 \pagestyle{VerzeichnisseNomenklatur}		% wie oben definiert
 \addcontentsline{toc}{chapter}{Tabellenverzeichnis} 	% Eintrag ins InhaltsVZ
 \listoftables
-
-% Abbildungsverzeichnis
-\newpage
-\phantomsection		% Korrigiert die Hyperref-Verlinkungen
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-\listoffigures				
 
 % Symbolverzeichnis
 \newpage

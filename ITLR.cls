@@ -3,6 +3,11 @@
 \LoadClass[12pt,oneside,a4paper,fleqn]{scrbook}
 \pdfminorversion=7  										% PDF version 1.7 minimum
 
+\DeclareOption{print}{\def\ITLR@print{true}}
+\DeclareOption{colorlinks}{\def\ITLR@colorlinks{true}}
+\ExecuteOptions{colorlinks} % Default: farbige Links
+\ProcessOptions\relax
+
 \usepackage[utf8]{inputenc}									% für Umlauten
 \usepackage[T1]{fontenc}									% Zeichensatz (256) für West-EU Zeichen
 \usepackage{lmodern}										% Schrift: "Latin modern"
