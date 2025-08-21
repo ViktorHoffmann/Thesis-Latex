@@ -130,30 +130,101 @@ Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avioni
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
 Oft wird in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
 meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt auch
-Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Leitermaterialien mit hoher Wärmeleitfähigkeit
+Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
 zu verwenden. Beide Methoden bieten in Kombination eine günstige Integrierbarkeit und geringen Wärmeleitwiederstand,
 ohne Bewegliche Teile zu verwenden.
 
 Das Thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf \ac{pcb} Ebene wie bereits erläutert nicht
-möglich ist, da die Elektronik noch nicht vollständig entwickelt ist.
+möglich ist, ohne vollständig entwickelte Elektronik.
 
-\subsection{Heatpipes}\label{sec:heatpipes}
+\subsection{Wärmerohre}\label{sec:waermerohre}
 
-Heatpipes sind 
+Wärmerohre sind eine Möglichkeit durch erzwungene Konvektion Wärme zu transportieren. Sie sind vollständig geschlossene Rohre mit einer
+Flüssigkeit im inneren und einer Kapillarstruktur an der Innenwand, so dass ein freier Kanal in der Mitte bleibt. Bei der Wärmequelle
+verdampft die Flüssigkeit aus der Kapillarstruktur und bei der Wärmesenke kondensiert es wieder, wodurch der resultierende Massenstrom einen
+Kreislauf bildet. Besonders effektiv sind Wärmerohre durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas Übergang an der Wärmequelle,
+wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine Schematische Darstellung eines Wärmerohrs kann in \ref{fig:waermerohr}
+gesehen werden.
 
-\subsection{Thermal Straps}\label{sec:thermalstraps}
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw[thick] (-5,0) arc [start angle=90, end angle=270, x radius=1.5cm, y radius= 1.5cm]; % Kappen
+    \draw[thick] (5,0) arc [start angle=90, end angle=-90, x radius=1.5cm, y radius= 1.5cm];
 
-Um das \ac{pcb} mit der Heatpipe zu verbinden werden Thermal Straps aus verschiedenen Materialien analysiert.
-Thermal Straps sind flexible Verbindungsteile die Wärmebrücken zwischen mehreren Bauteilen gewehrleisten.
-Wegen der hohe Wärmeleitzahl von \ac{pgs} und bedonders für Thermal Straps wichtigen Flexibilität, sind diese eine interessante Option.
+    \draw[thick] (-5,0) -- (5,0); % hülle
+    \draw[thick] (-5,-3) -- (5,-3);
+
+    \draw[dashed] (-5,0) rectangle (5,-1); % Wick Abgrenzung
+    \draw[dashed] (-5,-2) rectangle (5,-3);
+
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (-1,-1.75) -- node [midway, above] {Dampfstrom} (1,-1.75); % Dampf Pfeil
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (1,-2.75) -- node [midway, above] {Flüssigkeitsstrom}(-1,-2.75); % Flüssigkeitspfeil
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (1,-0.5) -- (-1,-0.5); % Flüssigkeitspfeil
+
+    \node at (-4,-4) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=90, thick]{$\dot{Q}$}; % Wärmestrom pfeil
+    \node at (4,-3.75) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=270, thick]{$\dot{Q}$}; % Wärmestrom pfeil
+    
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) node [above=1pt] {Kapillarstruktur} -- (-3,-0.5); % Kapillar Pfeil
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) -- (-3,-2.5);
+  \end{tikzpicture}
+  \caption{Wärmerohr Aufbau und Funktionsweise}\label{fig:waermerohr}
+\end{figure}
+
+Ein Nachteil von Wärmerohren ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
+steigen kann \cite{Mooney-2020}.
+
+\subsection{Wärmeleitbänder}\label{sec:waermebaender}
+
+Um die Elektronik mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
+Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
+Wegen der hohe Wärmeleitzahl von \ac{pgs} und besonders für Thermal Straps wichtigen Flexibilität, sind diese eine interessante Option.
 Ein Nachteil von \ac{pgs} ist die geringe Dicke und der daraus resultierende geringe Querschnitt, welcher trotz hoher Wärmeleitzahl zu hoher Wärmestromdichte und stärkerer Temperaturerhöhung führen kann.
 Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Vergleich gezogen werden.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerzeill erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+  \caption{Kommerziell erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
 \end{figure}
+
+\definecolor{good}{RGB}{200,255,200}   % hellgrün
+\definecolor{medium}{RGB}{255,255,200} % hellgelb
+\definecolor{bad}{RGB}{255,200,200}    % hellrot
+
+\begin{table}[H]
+  \centering
+  \caption{Vergleich von Materialien für Wärmeleitbänder}\label{tab:strap_materials}
+
+  % 1. Spalte als Box-Spalte, damit \\ innerhalb der ZELLE umbricht
+  \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
+    \toprule[1pt]
+    \textbf{Eigenschaft} & \textbf{Kupfer}\cite{Thermtest-DB} & \textbf{Aluminium}\cite{Thermtest-DB} & \textbf{PGS \nobreak{(Graphit)}}\cite{HPMS-PGS} \\
+    \toprule[1pt]
+
+    \makecell[l]{Wärmeleit-\\fähigkeit\\in Ebene}
+      & \cellcolor{medium}\SI{397.48}{\watt\per\meter\per\kelvin}
+      & \cellcolor{bad}\SI{225.94}{\watt\per\meter\per\kelvin}
+      & \cellcolor{good}\SIrange{1050}{1800}{\watt\per\meter\per\kelvin} \\
+
+    \makecell[l]{Wärmeleit-\\fähigkeit\\durch Ebene}
+      & \cellcolor{good}\SI{397.48}{\watt\per\meter\per\kelvin}
+      & \cellcolor{medium}\SI{225.94}{\watt\per\meter\per\kelvin}
+      & \cellcolor{bad}\SIrange{10}{26}{\watt\per\meter\per\kelvin} \\
+
+    Dichte
+      & \cellcolor{bad}\SI{8940}{\kilogram\per\cubic\meter}
+      & \cellcolor{medium}\SI{2698}{\kilogram\per\cubic\meter}
+      & \cellcolor{good}\SIrange{1500}{2100}{\kilogram\per\cubic\meter} \\
+
+    Elektrische \makecell[l]{\\Isolation}
+      & \cellcolor{bad}Schlecht
+      & \cellcolor{bad}Schlecht
+      & \cellcolor{bad}Schlecht \\
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
+
 
 \section{PCM}
 

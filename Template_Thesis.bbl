@@ -29,11 +29,22 @@ Karen~A. Deere, S.~Paul Pao, and Khaled~S. Abdol-Hamid.
 \newblock In {\em Proceedings of the 48th AIAA Aerospace Sciences Meeting}, Orlando, FL, January 2011. American Institute of Aeronautics and Astronautics.
 \newblock AIAA Paper 2011-0172.
 
+\bibitem{HPMS-PGS}
+{HPMS Graphite}.
+\newblock Pyrolytic graphite sheet (pgs) – thermally conductive graphite sheets.
+\newblock \url{https://hpmsgraphite.com/pyrolyticgraphitesheet}.
+\newblock In-plane thermal conductivity up to \SI{1800}{\watt\per\meter\per\kelvin}, density 1.5–2.1 g/cm³ depending on thickness (\SIrange{12}{100}{\micro\meter}).
+
 \bibitem{Irving-2021}
 Hugh Irving.
 \newblock An external {CFD} study of the {HyEnD} {N2ORTH} rocket.
 \newblock Master's thesis, University College Dublin, School of Mechanical \& Materials Engineering, Dublin, Ireland, April 2021.
 \newblock Master's thesis.
+
+\bibitem{Mooney-2020}
+Joseph~P. Mooney, Vanessa Egana, Ruairi Quinlan, and Jeff Punch.
+\newblock Effect of multiple heat sources and bend angle on the performance of sintered wicked heat pipes.
+\newblock In {\em 19th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm)}, Orlando, FL, USA, 2020. IEEE.
 
 \bibitem{Nazarychev-2022}
 V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N. Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
@@ -53,6 +64,12 @@ U.S.~Secretary of~Commerce.
 P.~C. Stryker and E.~M. Sparrow.
 \newblock Application of a spherical thermal conductivity cell to solid n-eicosane paraffin.
 \newblock {\em International Journal of Heat and Mass Transfer}, 99, 1990.
+
+\bibitem{Thermtest-DB}
+{Thermtest Inc.}
+\newblock Materials thermal properties database.
+\newblock \url{https://thermtest.com/thermal-resources/materials-database}, 2025.
+\newblock Includes thermal conductivity and density data for copper and aluminium.
 
 \bibitem{WE-ThebeII-UM-2024}
 {W{\"u}rth Elektronik eiSos GmbH \& Co. KG}.
