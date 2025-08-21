@@ -7,12 +7,11 @@ Az technology llc.
 Enthalpy of fusion and enthalpy of vaporization.
 \newblock \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
 
+\bibitem{STM32}
+Stm32h743zgt6-datasheet.
+
 \bibitem{Thermal-Straps}
 Thermal space and thermal straps.
-
-\bibitem{STM32}
-Stm32h743zgt6 datasheet.
-\newblock \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}, 2022-08-12.
 
 \bibitem{akamcae-udf}
 {AKAM CAE}.
