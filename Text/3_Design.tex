@@ -2,8 +2,8 @@
 \label{chap:Vorauslegung}
 % Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
 Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, welche vom Triebwerk-Subsystem durchgeführt wurde.
-Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) sind eine Maximalabschätzung der Schubkraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second},
-welche in maximaler Flugdauer und Aerodynamischen Aufheizung resultieren.
+Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) bilden eine Maximalabschätzung der Aerodynamischen Aufheizung und Flugdauer durch
+maximale Schubkraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, die von \ac{blast} erreicht werden können.
 
 \section{Anforderungen}
 
@@ -63,9 +63,10 @@ in Wärme umgewandelt.
   \end{tabular}
 \end{table}
 
-Die Leistung der Avionik~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller bei maximaler clock rate
-(\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer Abschätzung der restlichen Komponenten ohne Quellenangabe.
-Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
+Die Leistung der Avionik in~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller
+(STM32H743ZGT6) bei maximaler clock rate (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
+Abschätzung der restlichen Komponenten ohne Quellenangabe. Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom
+der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
 \begin{figure}[H]
     \centering
@@ -129,7 +130,7 @@ Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom der Avioni
 
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
 Oft wird in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
-meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt auch
+meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt es auch
 Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
 zu verwenden. Beide Methoden bieten in Kombination eine günstige Integrierbarkeit und geringen Wärmeleitwiederstand,
 ohne Bewegliche Teile zu verwenden.
@@ -137,14 +138,23 @@ ohne Bewegliche Teile zu verwenden.
 Das Thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf \ac{pcb} Ebene wie bereits erläutert nicht
 möglich ist, ohne vollständig entwickelte Elektronik.
 
-\subsection{Wärmerohre}\label{sec:waermerohre}
+\subsection{Heatpipes}\label{sec:waermerohre}
 
-Wärmerohre sind eine Möglichkeit durch erzwungene Konvektion Wärme zu transportieren. Sie sind vollständig geschlossene Rohre mit einer
-Flüssigkeit im inneren und einer Kapillarstruktur an der Innenwand, so dass ein freier Kanal in der Mitte bleibt. Bei der Wärmequelle
+Heatpipes (Wärmerohre) sind eine Möglichkeit durch erzwungene Konvektion Wärme zu transportieren. Reguläre Heatpipes
+sind vollständig geschlossene Rohre mit einer Flüssigkeit im inneren und einer Kapillarstruktur an der Innenwand,
+so dass ein freier Kanal in der Mitte bleibt. Bei der Wärmequelle
 verdampft die Flüssigkeit aus der Kapillarstruktur und bei der Wärmesenke kondensiert es wieder, wodurch der resultierende Massenstrom einen
-Kreislauf bildet. Besonders effektiv sind Wärmerohre durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas Übergang an der Wärmequelle,
+Kreislauf bildet. Besonders effektiv sind Heatpipes durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas Übergang an der Wärmequelle,
 wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine Schematische Darstellung eines Wärmerohrs kann in \ref{fig:waermerohr}
 gesehen werden.
+
+Eine Weiterentwicklung davon sind Loop Heatpipes die, wie der Namen bereits impliziert einen Kreislauf bilden, indem es eine
+separate Flüssig- und Dampfleitung gibt, welche jeweils am Verdampfer bzw. Kondensator miteinander verbunden ist.
+Besonders von Vorteil sind Loop Heatpipes, wenn größere Distanzen überbrückt werden müssen, oder eine relativ zuverlässige
+Funktion unabhängig von Orientierung und Gravitation gebraucht wird. Aufgrund der erhöhten Komplexität von Loop Heatpipes, der Möglichkeit
+die Orientierung frei zu bestimmen, den relativ geringen Distanzen innerhalb der Avionik-sektion und dem Mangel an Kommerziell erhältlichen
+Loop Heatpipes wird eine reguläre Heatpipe gewählt.
+
 
 \begin{figure}[H]
   \centering
@@ -171,16 +181,28 @@ gesehen werden.
   \caption{Wärmerohr Aufbau und Funktionsweise}\label{fig:waermerohr}
 \end{figure}
 
-Ein Nachteil von Wärmerohren ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
-steigen kann \cite{Mooney-2020}.
+Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
+steigen kann \cite{Mooney-2020}. Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiederstand von der effektiven Beschleunigung ab,
+da die höhere Dichte der Flüssigphase eine beschleunigende Wirkung auf die Konvektion hat, wenn die Wärmequelle unten orientiert ist. Sollte die Heatpipe jedoch
+"überkopf" arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
+einen erhöhten Wärmeleitwiederstand.
+
+Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
+\SI{5}{\milli\meter} Durchmesser~\cite{QuickOhm-Heatpipe-5x400}. Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand der Heatpipe aus dem Datenblatt entspricht.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
 
 Um die Elektronik mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
 Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
-Wegen der hohe Wärmeleitzahl von \ac{pgs} und besonders für Thermal Straps wichtigen Flexibilität, sind diese eine interessante Option.
-Ein Nachteil von \ac{pgs} ist die geringe Dicke und der daraus resultierende geringe Querschnitt, welcher trotz hoher Wärmeleitzahl zu hoher Wärmestromdichte und stärkerer Temperaturerhöhung führen kann.
-Im Vergleich mit herkömmlichen Materialien wie Aluminium und Kupfer soll ein Vergleich gezogen werden.
+\ac{pgs} ist gegenüber herkömmlichen Materialien besonders interessant durch die extrem hohe Wärmeleitfähigkeit innerhalb der Ebene,
+da diese der Ebene von der Molekülstruktur des Graphit entspricht. Besonders für Thermal Straps wegen der wichtigen Flexibilität, sind diese eine interessante Option.
+Ein Nachteil von \ac{pgs} ist die im Kontrast zur Ebene sehr niedrige Wärmeleitfähigkeit durch die Ebene, infolge von wenigen
+molekularen Brücken zwischen den Gitterstrukturen. Demnach wird \ac{pgs} und andere Arten von Graphit Folien hauptsächlich zur
+Wärmeverteilung auf Bauteilen verwendet um Wärmestromdichten zu verringern und homogenere Temperaturverteilungen zu erreichen.
+
+Das effektive erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch die hohe
+Wärmeleitfähigkeit in der Ebene auch zum thermischen koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
+Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern sieht man in~\ref{fig:thermalstraps_commercial}.
 
 \begin{figure}[H]
   \centering
