@@ -126,7 +126,7 @@ der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
     \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
 \end{figure}
 
-\section{Thermales Interface}\label{sec:thermalesInterface}
+\section{Thermale Schnittstelle}\label{sec:thermale_schnittstelle}
 
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
 Oft wird in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
@@ -184,31 +184,38 @@ Loop Heatpipes wird eine reguläre Heatpipe gewählt.
 Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
 steigen kann \cite{Mooney-2020}. Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiederstand von der effektiven Beschleunigung ab,
 da die höhere Dichte der Flüssigphase eine beschleunigende Wirkung auf die Konvektion hat, wenn die Wärmequelle unten orientiert ist. Sollte die Heatpipe jedoch
-"überkopf" arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
+\glqq überkopf \grqq{} arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
 einen erhöhten Wärmeleitwiederstand.
 
 Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
-\SI{5}{\milli\meter} Durchmesser~\cite{QuickOhm-Heatpipe-5x400}. Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand der Heatpipe aus dem Datenblatt entspricht.
+\SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen und hat einen angegebenen Wärmeleitwiederstand
+von \SI{0,3}{\kelvin\per\watt}
+
+Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand der Heatpipe aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
 
 Um die Elektronik mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
 Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
 \ac{pgs} ist gegenüber herkömmlichen Materialien besonders interessant durch die extrem hohe Wärmeleitfähigkeit innerhalb der Ebene,
-da diese der Ebene von der Molekülstruktur des Graphit entspricht. Besonders für Thermal Straps wegen der wichtigen Flexibilität, sind diese eine interessante Option.
+da diese der Ebene von der Molekülstruktur des Graphit entspricht. Außerdem ist es ein relativ flexibles Material, bei einer üblichen Dicke von $\approx \SIrange{10}{100}{\micro\meter}$.
 Ein Nachteil von \ac{pgs} ist die im Kontrast zur Ebene sehr niedrige Wärmeleitfähigkeit durch die Ebene, infolge von wenigen
-molekularen Brücken zwischen den Gitterstrukturen. Demnach wird \ac{pgs} und andere Arten von Graphit Folien hauptsächlich zur
-Wärmeverteilung auf Bauteilen verwendet um Wärmestromdichten zu verringern und homogenere Temperaturverteilungen zu erreichen.
+molekularen Brücken zwischen den Gitterstrukturen. Dementsprechend wird \ac{pgs} und andere Arten von Graphit Folien hauptsächlich zur
+Wärmeverteilung auf der Oberfläche von Bauteilen verwendet um Wärmestromdichten zu verringern und homogenere Temperaturverteilungen zu erreichen.
 
 Das effektive erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch die hohe
 Wärmeleitfähigkeit in der Ebene auch zum thermischen koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
-Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern sieht man in~\ref{fig:thermalstraps_commercial}.
+Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern aus gängigen Materialien sieht man in~\ref{fig:thermalstraps_commercial}.
+Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss für die geforderten Eigenschaften und wurde für die weitere Analyse ausgewählt.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerziell erhältliche Thermal Straps aus Graphen, Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+  \caption{Kommerziell erhältliche Wärmeleitbänder aus Graphen (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
 \end{figure}
+
+Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 der Firma HPMS Graphite wurde dieses ausgewählte.
+
 
 \definecolor{good}{RGB}{200,255,200}   % hellgrün
 \definecolor{medium}{RGB}{255,255,200} % hellgelb
@@ -216,13 +223,13 @@ Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle
 
 \begin{table}[H]
   \centering
-  \caption{Vergleich von Materialien für Wärmeleitbänder}\label{tab:strap_materials}
+  \caption{Ampelbewertung von Materialien für Wärmeleitbänder. Rot entspricht schlechten Eigenschaften, grün guten und gelb dem Wert dazwischen.}\label{tab:strap_materials}
 
   % 1. Spalte als Box-Spalte, damit \\ innerhalb der ZELLE umbricht
   \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
     \toprule[1pt]
-    \textbf{Eigenschaft} & \textbf{Kupfer}\cite{Thermtest-DB} & \textbf{Aluminium}\cite{Thermtest-DB} & \textbf{PGS \nobreak{(Graphit)}}\cite{HPMS-PGS} \\
-    \toprule[1pt]
+    Eigenschaft & Kupfer\cite{Thermtest-DB} & Aluminium\cite{Thermtest-DB} & PGS \nobreak{(Graphit)}\cite{HPMS-PGS} \\
+    \midrule[0.5pt]
 
     \makecell[l]{Wärmeleit-\\fähigkeit\\in Ebene}
       & \cellcolor{medium}\SI{397.48}{\watt\per\meter\per\kelvin}
@@ -247,6 +254,82 @@ Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle
   \end{tabular}
 \end{table}
 
+Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
+minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle 
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \node at (0,0) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=90, thick]{$\dot{Q}$}; % Wärmestrom pfeil
+
+    \draw[thick] (0,-1) -- (0,-3.1);
+
+    \draw[thick] (0,-3.1) -- (-0.2,-3.2); % heatpipe resistor
+    \draw[thick] (-0.2,-3.2) -- (0.2,-3.4);
+    \draw[thick] (0.2,-3.4) -- (-0.2,-3.6);
+    \draw[thick] (-0.2,-3.6) -- (0.2,-3.8);
+    \draw[thick] (0.2,-3.8) -- (-0.2,-4);
+    \draw[thick] (-0.2,-4) -- (0.2,-4.2);
+    \draw[thick] (0.2,-4.2) -- (0,-4.3);
+
+    \node[rotate=90] at (-0.5,-3.7) {Heatpipe};
+    \node at (2.5,-3.7) {$R_{\mathrm{Heatpipe}} = \SI{0,3}{\kelvin\per\watt}$};
+
+    \draw[thick] (0,-4.3) -- (0,-6.4);
+
+    \draw[thick] (0,-6.4) -- (2.1,-6.4);
+
+    \fill (0,-6.4) circle (1.5pt); %knotenpunkt
+
+    \begin{scope}[shift={(-1,-6.4)}, rotate=90]
+      \draw[thick] (0,-3.1) -- (-0.2,-3.2); % thermal strap resistor
+      \draw[thick] (-0.2,-3.2) -- (0.2,-3.4);
+      \draw[thick] (0.2,-3.4) -- (-0.2,-3.6);
+      \draw[thick] (-0.2,-3.6) -- (0.2,-3.8);
+      \draw[thick] (0.2,-3.8) -- (-0.2,-4);
+      \draw[thick] (-0.2,-4) -- (0.2,-4.2);
+      \draw[thick] (0.2,-4.2) -- (0,-4.3);
+    \end{scope}
+
+
+    \node at (2.7,-5.9) {Wärmeleitband};
+    \node at (2.7,-6.9) {$R_{\mathrm{Wärmeleitband}} = \SI{000}{\kelvin\per\watt}$};
+
+    \draw[thick] (3.3,-6.4) -- (5.4,-6.4);
+
+    \node at (6.4,-6.4) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=180, thick]{$\frac{\dot{Q}}{4}$}; % Wärmestrom pfeil
+
+    \draw[thick] (0,-6.4) -- (0,-8.4);
+
+    \draw[thick] (0,-8.4) -- (2.1,-8.4);
+
+    \fill (0,-8.4) circle (1.5pt);% knotenpunkt 2
+
+    \begin{scope}[shift={(-1,-8.4)}, rotate=90]
+      \draw[thick] (0,-3.1) -- (-0.2,-3.2); % thermal strap resistor 2
+      \draw[thick] (-0.2,-3.2) -- (0.2,-3.4);
+      \draw[thick] (0.2,-3.4) -- (-0.2,-3.6);
+      \draw[thick] (-0.2,-3.6) -- (0.2,-3.8);
+      \draw[thick] (0.2,-3.8) -- (-0.2,-4);
+      \draw[thick] (-0.2,-4) -- (0.2,-4.2);
+      \draw[thick] (0.2,-4.2) -- (0,-4.3);
+    \end{scope}
+
+    \node at (2.7,-7.9) {Wärmeleitband};
+    \node at (2.7,-8.9) {$R_{\mathrm{Wärmeleitband}} = \SI{000}{\kelvin\per\watt}$};
+
+    \draw[thick] (3.3,-8.4) -- (5.4,-8.4);
+
+    \node at (6.4,-8.4) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=180, thick]{$\frac{\dot{Q}}{4}$}; % Wärmestrom pfeil
+
+    \draw[thick] (0,-8.4) -- (0,-9);
+
+    \node[rotate=90] at (0,-9.5) {$\cdots$};
+
+    \draw[->, thick, -{Stealth[length=0.25cm]}] (-1.5,-6) -- node [pos=0,above=1pt] {$g$} (-1.5,-8); % Gravitation
+  \end{tikzpicture}
+  \caption{\ac{rom} der Thermalen Schnittstelle aus Heatpipe und Wärmeleitbändern. Hier sind nur 2 von 4 Wärmeleitbändern dargestellt.}\label{fig:thermale_schnittstelle}
+\end{figure}
 
 \section{PCM}
 
