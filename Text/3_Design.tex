@@ -276,7 +276,8 @@ Dabei entsteht nach Gleichung \ref{eq:waermewiederstand} eine Temperaturerhöhun
 Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperaturerhöhung von $\SI{40}{\watt} \cdot \SI{0,3}{\watt\per\kelvin} = \Delta T_\mathrm{Heatpipe} = \SI{12}{\kelvin}$.
 
 Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \Delta T_\mathrm{ges} = \SI{48,17}{\kelvin}$.
-Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}.
+Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}. Für die Nötige Temperatur an der Senke
+erhält man $T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$.
 
 \begin{figure}[H]
   \centering
@@ -354,26 +355,59 @@ Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_s
 
 \section{PCM}
 
-Nutzung eines \ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
+Nutzung eines \ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für begrenzte Zeiträume Elektronik in einem akzeptablen
 Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen:
 Durch die hohe spezifische Schmelzenthalpie, kann rein passiv eine große Wärmemenge, bei einem isothermen Prozess, absorbiert werden. Aufgrund dessen
 kann ein von der Umwelt isoliertes \ac{atm} entwickelt werden, das nicht mit stark schwankenden Zuständen der Sonneneinstrahlung und Lufttemperatur
-zurecht kommen muss. Auch wenn \ac{pcm} im Flüssig-Gas Übergang meist eine etwa 10-fach höhere Verdampfungsenthalpie haben, werden diese
+zurecht kommen muss. Auch wenn ein \ac{pcm} mit Flüssig-Gas Übergang meist eine etwa 10-fach höhere Verdampfungsenthalpie hat, wird diese Art
 generell nicht verwendet, da der Dichteunterschied zwischen Flüssig- und Gasphase zu extremen Drücken führen würden, falls Wiederverwendbarkeit
 verlangt wird und somit ein Druckkörper nötig ist. Alternativ kann die Gasphase auch aus dem Fahrzeug abgelassen werden in einem Prozess der
 Vapour Venting genannt wird. Hierbei geht jedoch die Wiederverwendbarkeit verloren, da vor jedem Start die Flüssigphase neu getankt werden muss.
-Weiter kann das Venting trotz der geringen Massenströme zu Momenten führen, die das Fahrzeug destabilisieren; besonders im Überschallbereich
-können unintuitive Momente entstehen~\cite{Deere-2011}, die aufwendige \ac{cfd}-Simulationen oder Tests benötigen. Dementsprechend wird nur ein
-Fest-Flüssig \ac{pcm} analysiert.\\
+Weiter kann das Vapour Venting trotz der geringen Massenströme zu Momenten führen, die das Fahrzeug destabilisieren; besonders im Überschallbereich
+können unintuitive Kräfte durch Interaktionen mit dem Überschallstrom entstehen~\cite{Deere-2011}, die aufwendige \ac{cfd}-Simulationen oder Tests benötigen.
+Dementsprechend wird nur ein Fest-Flüssig \ac{pcm} analysiert.
 
-Für die Auswahl eines geeigneten \ac{pcm} sind spezifische Schmelzenthalpie, Schmelztemperatur und Wärmeleitfähigkeit am wichtigsten.
-Letzteres kann jedoch durch Lamellen oder ähnliche Strukturen, zur Verbesserung der Wärmeleitfähigkeit durch das komplette \ac{pcm} verbessert werden,
-wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität verringert. Das Volumen der Wärmeleitenden Struktur welches
-\ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die keine latente Wärmeaufnahme hat. Hier
-wird ein Void Fraction von $F = 0.1$ todo
+Für die Auswahl eines geeigneten \ac{pcm} sind spezifische Schmelzenthalpie, Schmelztemperatur und Wärmeleitfähigkeit entscheidend.
+Letzteres kann jedoch durch Lamellen oder ähnliche Wärmetauschende Strukturen verbessert werden,
+wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität sinkt. Das Volumen der Wärmeleitenden Struktur welches
+\ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die wie gesagt keine latente Wärmeaufnahme hat. Hier
+wird ein Void Fraction von $F = 0.1$ gewählt. Eine Optimierung der Lamellenstruktur kann bei gleich bleibender Masse in einer erhöhten
+Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchgeführt.
 
+\begin{table}[H]
+  \centering
+  \caption{Ampelbewertung für Alkane als \ac{pcm} \cite{NIST}}\label{tab:pcm_auswahl}
+  \label{tab:pcm_alkane_nist}
+  \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
+    \toprule[1pt]
+    Eigenschaft & Hexadecan & Octadecan & Eicosane \\
+    \midrule[0.5pt]
+
+    Schmelzpunkt
+      & \cellcolor{bad}\SI{291}{\kelvin}
+      & \cellcolor{medium}\SI{301}{\kelvin}
+      & \cellcolor{good}\SI{310}{\kelvin} \\
+
+    Schmelzenthalpie
+      & \cellcolor{bad}\SI{52,14}{\kilo\joule\per\mole}
+      & \cellcolor{medium}\SI{60,903}{\kilo\joule\per\mole}
+      & \cellcolor{good}\SI{68,4}{\kilo\joule\per\mole} \\
+
+    \makecell[l]{Wärmeleit-\\fähigkeit}
+      & \cellcolor{bad}Schlecht
+      & \cellcolor{medium}Mittel
+      & \cellcolor{good}Gut \\
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
+
+Die Auswahltabelle \ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen Alkane, welche als \ac{pcm} verwendet werden im Vergleich.
+Demnach hat Eicosane die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
+wie in \ref{sec:thermale_schnittstelle} berechnet.
+
+TODO
 Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.
-Vor der Implementierung des \ac{pcm} sollten die Eigenschaften des vorhandenen Eicosane nochmal analysiert und die Ergebnisse überprüft werden.
+Vor der Implementierung des \ac{pcm} in Hardware, sollten die Eigenschaften des vorhandenen Eicosane nochmal analysiert und die Ergebnisse überprüft werden.
 
 \begin{table}[H]
 
@@ -432,8 +466,6 @@ def total_heat(L, H): # pcm latent heat capacity
     pcm_heat  = (1 - F) * rho_pcm * (L - 2*t)**2 * (H - 2*t) * h
     return pcm_heat
 \end{lstlisting}
-
-Die pcm masse und kapazität kontour sieht man im anhang
 
 \newpage
 
