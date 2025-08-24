@@ -189,13 +189,14 @@ einen erhöhten Wärmeleitwiederstand.
 
 Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
 \SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen und hat einen angegebenen Wärmeleitwiederstand
-von \SI{0,3}{\kelvin\per\watt}
+von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$
 
 Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand der Heatpipe aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
+Dadurch wird eine sehr komplexe Modellierung abhängig von Temperaturen, Biegungen, Ausrichtung, Beschleunigung und Anzahl an Wärmequellen sowie deren Leistung und Positionen vermieden.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
 
-Um die Elektronik mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
+Um die \ac{pcb} mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
 Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
 \ac{pgs} ist gegenüber herkömmlichen Materialien besonders interessant durch die extrem hohe Wärmeleitfähigkeit innerhalb der Ebene,
 da diese der Ebene von der Molekülstruktur des Graphit entspricht. Außerdem ist es ein relativ flexibles Material, bei einer üblichen Dicke von $\approx \SIrange{10}{100}{\micro\meter}$.
@@ -206,18 +207,15 @@ Wärmeverteilung auf der Oberfläche von Bauteilen verwendet um Wärmestromdicht
 Das effektive erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch die hohe
 Wärmeleitfähigkeit in der Ebene auch zum thermischen koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
 Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern aus gängigen Materialien sieht man in~\ref{fig:thermalstraps_commercial}.
-Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss für die geforderten Eigenschaften und wurde für die weitere Analyse ausgewählt. Um jedoch zu vermeiden, dass
+Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss für die geforderten Eigenschaften. Um jedoch zu vermeiden, dass
 bei starken Vibrationen aufgrund der Flexibilität des \ac{pgs} Kontakt mit der Elektronik und mögliche Kurzschlüsse entstehen, muss das Wärmeleitband mit einer elektrisch
 isolierenden Ummantlung versehen werden.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerziell erhältliche Wärmeleitbänder aus Graphen (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+  \caption{Kommerziell erhältliche Wärmeleitbänder aus \ac{pgs} (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
 \end{figure}
-
-Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 der Firma HPMS Graphite wurde dieses ausgewählte.
-
 
 \definecolor{good}{RGB}{200,255,200}   % hellgrün
 \definecolor{medium}{RGB}{255,255,200} % hellgelb
@@ -225,7 +223,7 @@ Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 de
 
 \begin{table}[H]
   \centering
-  \caption{Ampelbewertung von Materialien für Wärmeleitbänder. Rot entspricht schlechten Eigenschaften, grün guten und gelb dem Wert dazwischen.}\label{tab:strap_materials}
+  \caption{Ampelbewertung von Materialien für Wärmeleitbänder. Rot entspricht schlechten Eigenschaften, grün guten und gelb dem Zwischenwert.}\label{tab:strap_materials}
 
   % 1. Spalte als Box-Spalte, damit \\ innerhalb der ZELLE umbricht
   \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
@@ -257,7 +255,29 @@ Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 de
 \end{table}
 
 Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
-minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle 
+minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in \ref{fig:thermale_schnittstelle} zu sehen.
+
+Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 der Firma HPMS Graphite~\cite{HPMS-PGS} wurde dieses ausgewählte.
+Um ein verwendbares Wärmeleitband zu konstruieren, soll dieses aus 32 Schichten bestehen, \SI{4}{\centi\meter} breit sein und 
+\SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe keine Biegungen hat.
+Die Anbindung bzw. Endstücke der Wärmeleitbänder werden ignoriert, sowie Kontaktwiederstände durch Klebstoffe oder ähnliche Verbindungsmethoden.
+Der Wärmeleitwiederstand ergibt sich durch einsetzen von Gleichung \ref{eq:fourier_1d} in \ref{eq:waermewiederstand}:
+
+\begin{equation*}
+  R_\mathrm{Wärmeleitband} = \frac{\Delta x}{\lambda A}
+\end{equation*}
+
+Mit $\Delta x = \SI{10}{\centi\meter}$, $\lambda = \SI{1800}{\watt\per\meter\kelvin}$ und $A = 32 \cdot \SI{0,012}{\milli\meter} \cdot \SI{4}{\centi\meter} = \SI{15,36}{\milli\meter\squared}$
+ergibt sich $R_\mathrm{Wärmeleitband} = \SI{3,617}{\kelvin\per\watt}$
+
+\subsection{Gesamte Schnittstelle}
+
+Wenn angenommen wird, dass die Avionik aus vier separaten \ac{pcb} mit einer Gesamtleistung von \SI{40}{\watt}~(\ref{tab:avionik_leistung}) besteht, müssen pro Wärmeleitband \SI{10}{\watt} übertragen werden.
+Dabei entsteht nach Gleichung \ref{eq:waermewiederstand} eine Temperaturerhöhung über das Wärmeleitband von $\SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \Delta T_\mathrm{Wärmeleitband} = \SI{36,17}{\kelvin}$.
+Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperaturerhöhung von $\SI{40}{\watt} \cdot \SI{0,3}{\watt\per\kelvin} = \Delta T_\mathrm{Heatpipe} = \SI{12}{\kelvin}$.
+
+Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \Delta T_\mathrm{ges} = \SI{48,17}{\kelvin}$.
+Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}.
 
 \begin{figure}[H]
   \centering
@@ -295,7 +315,7 @@ minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle
 
 
     \node at (2.7,-5.9) {Wärmeleitband};
-    \node at (2.7,-6.9) {$R_{\mathrm{Wärmeleitband}} = \SI{000}{\kelvin\per\watt}$};
+    \node at (2.7,-6.9) {$R_{\mathrm{Wärmeleitband}} = \SI{3,617}{\kelvin\per\watt}$};
 
     \draw[thick] (3.3,-6.4) -- (5.4,-6.4);
 
@@ -318,7 +338,7 @@ minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle
     \end{scope}
 
     \node at (2.7,-7.9) {Wärmeleitband};
-    \node at (2.7,-8.9) {$R_{\mathrm{Wärmeleitband}} = \SI{000}{\kelvin\per\watt}$};
+    \node at (2.7,-8.9) {$R_{\mathrm{Wärmeleitband}} = \SI{3,617}{\kelvin\per\watt}$};
 
     \draw[thick] (3.3,-8.4) -- (5.4,-8.4);
 
@@ -335,7 +355,7 @@ minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle
 
 \section{PCM}
 
-\ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
+Nutzung eines \ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
 Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
 Durch die hohe spezifische Schmelzenthalpie, kann rein passiv eine große Wärmemenge, bei einem isothermen Prozess, absorbiert werden. Aufgrund dessen
 kann ein von der Umwelt isoliertes \ac{atm} entwickelt werden, das nicht mit stark schwankenden Zuständen der Sonneneinstrahlung und Lufttemperatur
