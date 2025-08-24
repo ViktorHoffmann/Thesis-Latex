@@ -111,6 +111,50 @@ a=12454028.32, b=32.87, c=550.50, d=-12446646.16
 
 \section{PCM}\label{sec:sim_pcm}
 
+Stoffdaten für die Simulation
+Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.
+
+\begin{table}[H]
+
+  \centering
+  \caption{Stoffdaten für Eicosane}\label{tab:eicosane_data}
+
+  \begin{tabular}{lll}
+
+    \toprule[1pt]
+    Solidus Temperatur & $T_{\text{solidus}}$ & \SI{309}{\kelvin}~\cite{NIST} \\
+
+    \midrule[0.5pt]
+    Liquidus Temperatur & $T_{\text{liquidus}}$ & \SI{311}{\kelvin}~\cite{NIST} \\
+
+    \midrule[0.5pt]
+    Spezifische Wärmekapazität bei\\konstantem Druck der\\Flüssigphase & $c_{p,\text{liquid}}$ & \SI{2350.05}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
+
+    \midrule[0.5pt]
+    Spezifische Wärmekapazität bei\\konstantem Druck der\\Feststoffphase & $c_{p,\text{solid}}$ & \SI{2132.4}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
+
+    \midrule[0.5pt]
+    Dichte der Flüssigphase & $\rho_{\text{solid}}$ & \SI{910}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
+
+    \midrule[0.5pt]
+    Dichte der Feststoffphase & $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
+
+    \midrule[0.5pt]
+    Wärmeleitfähigkeit der Flüssigphase & $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin}~\cite{Benbrika-2020} \\
+
+    \midrule[0.5pt]
+    Wärmeleitfähigkeit der Feststoffphase & $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
+
+    \midrule[0.5pt]
+    Wärmeausdehnungskoeffizient & $\beta$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
+
+    \midrule[0.5pt]
+    Spezifische Schmelzenthalpie & $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
+
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
+
 Um in ANSYS Fluent Temperaturabhängige Stoffeigenschaften zu implementieren müssen \ac{udf} verwendet werden.
 Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:bossinesque} kommen noch 
 

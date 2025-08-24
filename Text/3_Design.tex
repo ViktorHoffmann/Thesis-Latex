@@ -380,7 +380,7 @@ Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchg
   \label{tab:pcm_alkane_nist}
   \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
     \toprule[1pt]
-    Eigenschaft & Hexadecan & Octadecan & Eicosane \\
+    Eigenschaft & n-Hexadecan & n-Octadecan & n-Eicosan \\
     \midrule[0.5pt]
 
     Schmelzpunkt
@@ -389,9 +389,9 @@ Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchg
       & \cellcolor{good}\SI{310}{\kelvin} \\
 
     Schmelzenthalpie
-      & \cellcolor{bad}\SI{52,14}{\kilo\joule\per\mole}
-      & \cellcolor{medium}\SI{60,903}{\kilo\joule\per\mole}
-      & \cellcolor{good}\SI{68,4}{\kilo\joule\per\mole} \\
+      & \cellcolor{bad}\SI{230400}{\joule\per\kilo\gram}
+      & \cellcolor{medium}\SI{239300}{\joule\per\kilo\gram}
+      & \cellcolor{good}\SI{240999}{\joule\per\kilo\gram} \\
 
     \makecell[l]{Wärmeleit-\\fähigkeit}
       & \cellcolor{bad}Schlecht
@@ -402,55 +402,18 @@ Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchg
 \end{table}
 
 Die Auswahltabelle \ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen Alkane, welche als \ac{pcm} verwendet werden im Vergleich.
-Demnach hat Eicosane die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
+Demnach hat n-Eicosan die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
 wie in \ref{sec:thermale_schnittstelle} berechnet.
 
-TODO
-Die Thermodynamischen Eigenschaften von Eicosane, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.
-Vor der Implementierung des \ac{pcm} in Hardware, sollten die Eigenschaften des vorhandenen Eicosane nochmal analysiert und die Ergebnisse überprüft werden.
+Um die Masse und Dimension des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python} dargestellte Python-Programm verwendet.
+Das \ac{pcm} wird dort als isobar angenommen und hat eine unendliche Wärmeleitfähigkeit. Des weiteren befindet es sich
+in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke.
+Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe können in \ref{fig:pcm_waermestrom_vorauslegung} gesehen werden.
 
-\begin{table}[H]
+Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\watt} ergibt sich eine nötige latente Wärmekapazität von
+\SI{48000}{\joule}, eine Seitenlänge der Aluminium-Box von \SI{6,749}{\centi\meter} und eine Gesamtmasse von \SI{346,610}{\gram}.
 
-  \centering
-  \caption{Stoffdaten für Eicosane}\label{tab:eicosane_data}
-
-  \begin{tabular}{lll}
-
-    \toprule[1pt]
-    Solidus Temperatur & $T_{\text{solidus}}$ & \SI{309}{\kelvin}~\cite{NIST} \\
-
-    \midrule[0.5pt]
-    Liquidus Temperatur & $T_{\text{liquidus}}$ & \SI{311}{\kelvin}~\cite{NIST} \\
-
-    \midrule[0.5pt]
-    Spezifische Wärmekapazität bei\\konstantem Druck der\\Flüssigphase & $c_{p,\text{liquid}}$ & \SI{2350.05}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
-
-    \midrule[0.5pt]
-    Spezifische Wärmekapazität bei\\konstantem Druck der\\Feststoffphase & $c_{p,\text{solid}}$ & \SI{2132.4}{\joule\per\kilogram\per\kelvin}~\cite{NIST} \\
-
-    \midrule[0.5pt]
-    Dichte der Flüssigphase & $\rho_{\text{solid}}$ & \SI{910}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
-
-    \midrule[0.5pt]
-    Dichte der Feststoffphase & $\rho_{\text{liquid}}$ & \SI{769}{\kilogram\per\cubic\meter}~\cite{Nazarychev-2022} \\
-
-    \midrule[0.5pt]
-    Wärmeleitfähigkeit der Flüssigphase & $\lambda_{\text{liquid}}$ & \SI{0.1505}{\watt\per\meter\per\kelvin}~\cite{Benbrika-2020} \\
-
-    \midrule[0.5pt]
-    Wärmeleitfähigkeit der Feststoffphase & $\lambda_{\text{solid}}$ & \SI{0.4248}{\watt\per\meter\per\kelvin}~\cite{Stryker-1990} \\
-
-    \midrule[0.5pt]
-    Wärmeausdehnungskoeffizient & $\beta$ & \SI{0.0009}{\per\kelvin}~\cite{Benbrika-2020} \\
-
-    \midrule[0.5pt]
-    Spezifische Schmelzenthalpie & $h_{\text{fus}}$ & \SI{240998.86}{\joule\per\kilogram}~\cite{NIST} \\
-
-    \bottomrule[1pt]
-  \end{tabular}
-\end{table}
-
-\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_masse_kapazität}]
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_python}]
 rho_alu = 2700     # aluminium density [kg*m^-3]
 rho_pcm = 788      # pcm density [kg*m^-3]
 h      = 240998.9  # pcm latent heat [J*kg^-1]
