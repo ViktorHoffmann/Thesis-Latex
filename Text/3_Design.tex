@@ -129,7 +129,7 @@ der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 \section{Thermale Schnittstelle}\label{sec:thermale_schnittstelle}
 
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
-Oft wird in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
+Oft werden in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
 meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt es auch
 Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
 zu verwenden. Beide Methoden bieten in Kombination eine günstige Integrierbarkeit und geringen Wärmeleitwiederstand,
@@ -188,10 +188,9 @@ da die höhere Dichte der Flüssigphase eine beschleunigende Wirkung auf die Kon
 einen erhöhten Wärmeleitwiederstand.
 
 Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
-\SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen und hat einen angegebenen Wärmeleitwiederstand
-von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$
+\SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen.
 
-Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand der Heatpipe aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
+Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$ der Heatpipe aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
 Dadurch wird eine sehr komplexe Modellierung abhängig von Temperaturen, Biegungen, Ausrichtung, Beschleunigung und Anzahl an Wärmequellen sowie deren Leistung und Positionen vermieden.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
@@ -254,9 +253,6 @@ isolierenden Ummantlung versehen werden.
   \end{tabular}
 \end{table}
 
-Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
-minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in \ref{fig:thermale_schnittstelle} zu sehen.
-
 Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 der Firma HPMS Graphite~\cite{HPMS-PGS} wurde dieses ausgewählte.
 Um ein verwendbares Wärmeleitband zu konstruieren, soll dieses aus 32 Schichten bestehen, \SI{4}{\centi\meter} breit sein und 
 \SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe keine Biegungen hat.
@@ -271,6 +267,9 @@ Mit $\Delta x = \SI{10}{\centi\meter}$, $\lambda = \SI{1800}{\watt\per\meter\kel
 ergibt sich $R_\mathrm{Wärmeleitband} = \SI{3,617}{\kelvin\per\watt}$
 
 \subsection{Gesamte Schnittstelle}
+
+Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
+minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in \ref{fig:thermale_schnittstelle} zu sehen.
 
 Wenn angenommen wird, dass die Avionik aus vier separaten \ac{pcb} mit einer Gesamtleistung von \SI{40}{\watt}~(\ref{tab:avionik_leistung}) besteht, müssen pro Wärmeleitband \SI{10}{\watt} übertragen werden.
 Dabei entsteht nach Gleichung \ref{eq:waermewiederstand} eine Temperaturerhöhung über das Wärmeleitband von $\SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \Delta T_\mathrm{Wärmeleitband} = \SI{36,17}{\kelvin}$.
@@ -356,7 +355,7 @@ Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_s
 \section{PCM}
 
 Nutzung eines \ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für für begrenzte Zeiträume Elektronik in einem akzeptablen
-Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen.
+Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen:
 Durch die hohe spezifische Schmelzenthalpie, kann rein passiv eine große Wärmemenge, bei einem isothermen Prozess, absorbiert werden. Aufgrund dessen
 kann ein von der Umwelt isoliertes \ac{atm} entwickelt werden, das nicht mit stark schwankenden Zuständen der Sonneneinstrahlung und Lufttemperatur
 zurecht kommen muss. Auch wenn \ac{pcm} im Flüssig-Gas Übergang meist eine etwa 10-fach höhere Verdampfungsenthalpie haben, werden diese
@@ -440,13 +439,13 @@ Die pcm masse und kapazität kontour sieht man im anhang
 
 \section{Radiator}\label{sec:Radiator}
 
-Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach \ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
-und die Fläche minimiert werden muss, da diese proportional zu eingehende Wärmeströmen aus der Umgebung ist, welche auch möglichst gering gehalten werden müssen.\\
+Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach Gleichung \ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
+und die Fläche minimiert werden muss, weil diese proportional zu eingehenden Wärmeströmen aus der Umgebung ist, welche auch möglichst gering gehalten werden sollen.
+
 Als Beschichtung wurde AZ-93 der Firma AZ Technology LLC.~\cite{AZ-Technology} ausgewählt. Dabei handelt es sich um eine in der Raumfahrt
 weit verbreitete inorganische Farbe mit idealen Eigenschaften, welche Tabelle \ref{tab:az-93_eigenschaften} entnommen werden können.
 In \ref{fig:radiator_flaeche_leistung} sieht man für die ausgewählte Beschichtung die Leistung eines Radiators bei gegebener Temperatur und Fläche.
-Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei nutzung eines einfachen Radiators schnell zur Überhitzung der Avionik kommen.\\
-
+Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei Nutzung eines einfachen Radiators schnell zur Überhitzung der Avionik kommen.
 
 \begin{table}[H]
 
@@ -468,7 +467,8 @@ Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei 
   \end{tabular}
 \end{table}
 
-Die konturen des Radiators können im Anhang gefunden werden
+Abbildung \ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung \ref{eq:radiation} und zeigt Leistungskonturen eines
+Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nach Fläche und Temperatur.
 
 \newpage
 
@@ -478,12 +478,9 @@ Eine Hybridlösung wird auch in erwägung gezogen, um die Masse durch Nutzung ei
 Um eine umständliche Simulation mittels \ac{cfd} zu vermeiden, wird die Außenkontour der Rakete von Spitze bis Avionik-Sektion, mit Hilfe der Nußelt-Beziehungen, als längsangeströmte ebene Platte angesehen,
 wie in Abbildung~\ref{fig:rakete_kontour_zeichnung} dargestellt ist.
 Um zu wissen, ob hier die Beziehung für laminare oder turbulente Grenzschichten angewandt werden soll, müssen zunächst die Gültigkeitsbereiche der Reynolds- und Prandtlzahl (\ref{eq:prandtl},~\ref{eq:reynolds}) überprüft werden.
-Mittels der Nußelt-Beziehung wird $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
+Mittels der Nußelt-Beziehung wird $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot_recovery} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
 
-\newpage
-% Hybrid PCM ohne aufheizung
-
-\begin{figure}
+\begin{figure}[H]
   \centering
   \begin{tikzpicture}[rotate border/.style={shape border uses incircle, shape border rotate=#1}, scale=0.8]
     \draw[thick] (3,3) -- (3,-1) -- (9,-1) -- (9,3);
@@ -595,7 +592,7 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
     \node (kapazitaet) at (2.1, -2) {PCM Kapazität};
 
     % PCM Höhe node below the center of breite and kapazitaet
-    \node (hoehe) at (0, -4) {PCM Höhe};
+    \node (hoehe) at (0, -4) {PCM Dicke};
     \node (gewicht) at (0, -6) {PCM Gewicht};
 
     % Arrows
