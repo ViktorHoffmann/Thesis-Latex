@@ -34,12 +34,12 @@
 #include "udf.h"
 #include "mem.h"
 
-//eicosane constant properties in solid phase
+//n-eicosane constant properties in solid phase
 #define Ros_pcm 910.0
 #define Cps_pcm 2132.4
 #define Ks_pcm 0.4248
 
-//eicosane constant properties in fluid phase
+//n-eicosane constant properties in fluid phase
 #define Rol_pcm 769.0
 #define Cpl_pcm 2350.05
 #define Kl_pcm 0.1505
@@ -83,7 +83,7 @@ DEFINE_SPECIFIC_HEAT(Cp_var_PCM,T,Tref,h,yi)
 	return Cp_pcm;
 }
 
-//thermal conductivity of eicosane
+//thermal conductivity of n-eicosane
 DEFINE_PROPERTY(K_var_PCM,cell,thread)
 {
 	double Gama, K_pcm;
@@ -126,6 +126,143 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 	return source;
 }
 \end{lstlisting}
+
+% \begin{lstlisting}[language=python, caption={setup.json}, label={lst:setup.json}]
+% {
+%     "devmode": 0,
+%     "avionics_power": 40,
+%     "target_temperature": 36.85,
+%     "emittance": 0.91,
+%     "absorptance": 0.15,
+%     "solar_flux": 1000,
+%     "trajectory_data_path": "blast.csv"
+% }
+% \end{lstlisting}
+
+% \begin{lstlisting}[language=python, caption={results.json}, label={lst:results.json}]
+% {
+%     "hybrid_radiator_area": 0.0996163285294786,
+%     "hybrid_radiator_power": 47.471224639710904,
+%     "hybrid_capacity_sim": 188087.64535959047,
+%     "hybrid_capacity_nu": 626817.5705502237,
+%     "pcm_capacity": 48000.0,
+%     "hybrid_H_sim": 0.013188203298524867,
+%     "hybrid_m_sim": 1.6535028624398134,
+%     "hybrid_H_nu": 0.03928567591747304,
+%     "hybrid_m_nu": 4.255679378864365,
+%     "normal_L_solution": 0.06748627883089094,
+%     "normal_m_solution": 0.346609735620966
+% }
+% \end{lstlisting}
+
+% \begin{lstlisting}[language=python, caption={main.py}, label={lst:main.py}]
+% import subprocess
+
+% subprocess.run(["python", "radiator.py"])
+% subprocess.run(["python", "hybrid.py"])
+% subprocess.run(["python", "pcm.py"])
+% subprocess.run(["python", "pcmProperty.py"])
+% subprocess.run(["python", "post.py"])
+% \end{lstlisting}
+
+% \begin{lstlisting}[language=python, caption={radiator.py}, label={lst:radiator.py}]
+% # This Program calculates the steady-state equation for a grey body radiator
+
+% import numpy as np
+% import json
+% from scipy.constants import Stefan_Boltzmann, pi
+% import matplotlib.pyplot as plt
+% import matplotlib as mpl
+
+
+
+% # === configuration ===
+% # load data from setup.json
+% try:
+%     with open("setup.json", "r", encoding="utf-8") as f:
+%         data = json.load(f)
+% except FileNotFoundError:
+%     print("setup.json not found. Exiting.")
+%     exit()
+% except json.JSONDecodeError:
+%     print("setup.json is empty of invalid. Exiting.")
+%     exit()
+
+% DEVELOPMENT_MODE = data["devmode"]
+% avionics_power = data["avionics_power"] # W
+% e = data["emittance"]
+% a = data["absorptance"]
+% solar_flux = data["solar_flux"] # W*m^-2
+% target_temperature = data["target_temperature"]
+
+% # Set global matplotlib style
+% mpl.rcParams.update({
+%     "figure.figsize": (4.9, 3.5),
+%     "font.size": 11.0,
+%     "font.family": "serif",
+%     "font.serif": ["cmr10"],
+%     "axes.titlesize": "medium",
+%     "figure.titlesize": "medium",
+%     "text.usetex": not DEVELOPMENT_MODE,
+%     "text.latex.preamble": r"\usepackage{amsmath}\usepackage{amssymb}\usepackage[=v2]{siunitx}\usepackage[utf8]{inputenc}"
+% })
+
+
+
+% # === Equations ===
+% rho_alu = 2700 # kg/m^3
+% T_target = 273.15+target_temperature # target temperature
+
+% # Define temperature in Celsius for plotting, and convert to Kelvin
+% temp_C = np.linspace(0, 100, 100) # ^\circ C
+% A = np.linspace(0.01*0.01, 0.3*0.3, 100) # Area [m$^2$]
+
+% A_grid, T_C_grid = np.meshgrid(A, temp_C)
+% T_K_grid = T_C_grid + 273.15  # Convert Celsius to Kelvin for calculation
+
+% # Stefan-Boltzmann radiation formula
+% phi_radiation = (A_grid * e * Stefan_Boltzmann * T_K_grid**4) # [W]
+
+
+
+% # === Target result ===
+% hybrid_radiator_area = (avionics_power) / ((e * Stefan_Boltzmann * T_target**4)-(solar_flux/2)*a) # [m^2] necessary radiator area to get rid of avionics- and solarheatflux
+% hybrid_radiator_power = hybrid_radiator_area*e*Stefan_Boltzmann*T_target**4 # [W] total out-heatflux of radiator
+
+% # Putting Data into result.json
+% with open("result.json", "w", encoding="utf-8") as f:
+%     json.dump({}, f, indent=4)  # clear result.json as this is the first write in the programm chain
+
+% data = {
+%     "hybrid_radiator_area": hybrid_radiator_area,
+%     "hybrid_radiator_power": hybrid_radiator_power
+% }
+
+% with open("result.json", "w", encoding="utf-8") as f:
+%     json.dump(data, f, indent=4)
+
+
+
+% # === Plotting ===
+% # Plot
+% fig1 = plt.figure(figsize=(8, 6))
+% contour = plt.contour(A_grid, T_C_grid, phi_radiation, levels=20, colors='black')
+% #plt.colorbar(contour, label='W\"arme [W]')   # colorful contours
+% plt.clabel(contour, inline=True, levels=contour.levels[::2], fontsize=10, fmt='%1.1f [W]') # levels makes every second contour have a label
+% plt.xlabel(r"Fl\"{a}che [m$^2$]")
+% plt.ylabel(r"Temperatur [^\circ C]")
+% plt.grid(True)
+
+% if DEVELOPMENT_MODE:
+%     plt.title(r"Radiator W\"armestrahlung nach Fl\"{a}che und Temperatur")
+
+% # Save it if not in dev mode
+% if not DEVELOPMENT_MODE:
+%     fig1.savefig("radiator_leistung.pdf", bbox_inches="tight")
+
+% if DEVELOPMENT_MODE:
+%     plt.show()
+% \end{lstlisting}
 
 \section*{Appendix B: Simulation}\label{Anh:simulation}
 

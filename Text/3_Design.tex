@@ -277,7 +277,7 @@ Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperature
 
 Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \Delta T_\mathrm{ges} = \SI{48,17}{\kelvin}$.
 Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}. Für die Nötige Temperatur an der Senke
-erhält man $T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$.
+erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$.
 
 \begin{figure}[H]
   \centering
@@ -367,8 +367,8 @@ Weiter kann das Vapour Venting trotz der geringen Massenströme zu Momenten füh
 können unintuitive Kräfte durch Interaktionen mit dem Überschallstrom entstehen~\cite{Deere-2011}, die aufwendige \ac{cfd}-Simulationen oder Tests benötigen.
 Dementsprechend wird nur ein Fest-Flüssig \ac{pcm} analysiert.
 
-Für die Auswahl eines geeigneten \ac{pcm} sind spezifische Schmelzenthalpie, Schmelztemperatur und Wärmeleitfähigkeit entscheidend.
-Letzteres kann jedoch durch Lamellen oder ähnliche Wärmetauschende Strukturen verbessert werden,
+Für die Auswahl eines geeigneten \ac{pcm} sind spezifische Schmelzenthalpie und Schmelztemperatur entscheidend.
+Die Wärmeleitfähigkeit ist zwar auch sehr relevant, ist jedoch für alle Materialien zu schlecht und muss durch Lamellen oder ähnliche Wärmetauschende Strukturen verbessert werden,
 wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität sinkt. Das Volumen der Wärmeleitenden Struktur welches
 \ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die wie gesagt keine latente Wärmeaufnahme hat. Hier
 wird ein Void Fraction von $F = 0.1$ gewählt. Eine Optimierung der Lamellenstruktur kann bei gleich bleibender Masse in einer erhöhten
@@ -392,11 +392,6 @@ Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchg
       & \cellcolor{bad}\SI{230400}{\joule\per\kilo\gram}
       & \cellcolor{medium}\SI{239300}{\joule\per\kilo\gram}
       & \cellcolor{good}\SI{240999}{\joule\per\kilo\gram} \\
-
-    \makecell[l]{Wärmeleit-\\fähigkeit}
-      & \cellcolor{bad}Schlecht
-      & \cellcolor{medium}Mittel
-      & \cellcolor{good}Gut \\
     \bottomrule[1pt]
   \end{tabular}
 \end{table}
@@ -405,18 +400,19 @@ Die Auswahltabelle \ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen 
 Demnach hat n-Eicosan die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
 wie in \ref{sec:thermale_schnittstelle} berechnet.
 
-Um die Masse und Dimension des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python} dargestellte Python-Programm verwendet.
+Um die Masse und Dimension des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
 Das \ac{pcm} wird dort als isobar angenommen und hat eine unendliche Wärmeleitfähigkeit. Des weiteren befindet es sich
-in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke.
+in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke und einem der Void Fraction entsprechenden internen Aluminium Volumenanteil von $F = 0.1$.
 Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe können in \ref{fig:pcm_waermestrom_vorauslegung} gesehen werden.
 
 Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\watt} ergibt sich eine nötige latente Wärmekapazität von
 \SI{48000}{\joule}, eine Seitenlänge der Aluminium-Box von \SI{6,749}{\centi\meter} und eine Gesamtmasse von \SI{346,610}{\gram}.
+Da ein Würfel von allen Quadern das größte Volumen zu Oberflächenverhältnis hat, sind alle Kanten gleich lang.
 
-\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_python}]
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_python_pseudo}]
 rho_alu = 2700     # aluminium density [kg*m^-3]
 rho_pcm = 788      # pcm density [kg*m^-3]
-h      = 240998.9  # pcm latent heat [J*kg^-1]
+h       = 240998.9 # pcm latent heat [J*kg^-1]
 F       = 0.1      # void fraction
 t       = 0.001    # wall thickness [m]
 
@@ -430,17 +426,15 @@ def total_heat(L, H): # pcm latent heat capacity
     return pcm_heat
 \end{lstlisting}
 
-\newpage
-
 \section{Radiator}\label{sec:Radiator}
 
 Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach Gleichung \ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
-und die Fläche minimiert werden muss, weil diese proportional zu eingehenden Wärmeströmen aus der Umgebung ist, welche auch möglichst gering gehalten werden sollen.
+und die Fläche minimiert werden muss, weil diese proportional zu eingehenden Wärmeströmen aus der Umgebung ist, wie etwa die Sonneneinstrahlung oder die Luft, welche auch möglichst gering gehalten werden sollen.
 
 Als Beschichtung wurde AZ-93 der Firma AZ Technology LLC.~\cite{AZ-Technology} ausgewählt. Dabei handelt es sich um eine in der Raumfahrt
-weit verbreitete inorganische Farbe mit idealen Eigenschaften, welche Tabelle \ref{tab:az-93_eigenschaften} entnommen werden können.
-In \ref{fig:radiator_flaeche_leistung} sieht man für die ausgewählte Beschichtung die Leistung eines Radiators bei gegebener Temperatur und Fläche.
-Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei Nutzung eines einfachen Radiators schnell zur Überhitzung der Avionik kommen.
+weit verbreitete inorganische Farbe mit günstigen Eigenschaften, welche Tabelle \ref{tab:az-93_eigenschaften} entnommen werden können.
+Abbildung \ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung \ref{eq:radiation} und zeigt Leistungskonturen eines
+Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nach Fläche und Temperatur.
 
 \begin{table}[H]
 
@@ -462,18 +456,41 @@ Durch in \ref{sec:pcm_radiator_hybrid} analysierte Wärmeströme, würde es bei 
   \end{tabular}
 \end{table}
 
-Abbildung \ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung \ref{eq:radiation} und zeigt Leistungskonturen eines
-Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nach Fläche und Temperatur.
+Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einem spezifischen Wärmestrom der Sonne von \SI{1}{\kilo\watt\per\meter\squared}
+bei einem \SI{50}{\percent} Dutycycle durch die Rotation der Rakete, den Eigenschaften aus \ref{tab:az-93_eigenschaften} und einer Temperatur von $T_\mathrm{senke} = \SI{314,13}{\kelvin}$
+eine Fläche von \SI{996,163}{\centi\meter\squared}. In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung
+verwendet wurde zu sehen.
 
-\newpage
+\begin{lstlisting}[float, language=python, caption={Setup Werte aus der setup.json}, label={lst:setup_json}]
+  {
+    #...#
+    "avionics_power": 40,
+    "target_temperature": 36.85,
+    "emittance": 0.91,
+    "absorptance": 0.15,
+    "solar_flux": 1000,
+  }
+\end{lstlisting}
+
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Radiatorfläche in der radiator.py}, label={lst:radiator_python_pseudo}]
+  #...#
+  avionics_power = data["avionics_power"]
+  e = data["emittance"]
+  a = data["absorptance"]
+  solar_flux = data["solar_flux"]
+  target_temperature = data["target_temperature"]
+
+  def radiator_area(avionics_power, target_temperature, e, a, solar_flux): # radiator area
+    return (avionics_power / (e * Stefan_Boltzmann * target_temperature**4 - 0.5 * solar_flux * a))
+\end{lstlisting}
 
 \section{PCM-Radiator-Hybrid}\label{sec:pcm_radiator_hybrid}
 
-Eine Hybridlösung wird auch in erwägung gezogen, um die Masse durch Nutzung eines Radiators zu minimieren, wobei wegen aerodynamischer Aufheizung für kurze Zeit ein PCM gebraucht werden könnte.
-Um eine umständliche Simulation mittels \ac{cfd} zu vermeiden, wird die Außenkontour der Rakete von Spitze bis Avionik-Sektion, mit Hilfe der Nußelt-Beziehungen, als längsangeströmte ebene Platte angesehen,
+Eine Hybridlösung wird auch in Erwägung gezogen, um die Masse durch Nutzung eines Radiators zu minimieren, wobei wegen aerodynamischer Aufheizung für kurze Zeit ein PCM gebraucht werden könnte.
+Für die Vorauslegung wird die Außenkontur der Rakete von Spitze bis Avionik-Sektion, mit Hilfe der Nußelt-Beziehungen, als Längsangeströmte ebene Platte angesehen,
 wie in Abbildung~\ref{fig:rakete_kontour_zeichnung} dargestellt ist.
 Um zu wissen, ob hier die Beziehung für laminare oder turbulente Grenzschichten angewandt werden soll, müssen zunächst die Gültigkeitsbereiche der Reynolds- und Prandtlzahl (\ref{eq:prandtl},~\ref{eq:reynolds}) überprüft werden.
-Mittels der Nußelt-Beziehung wird $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot_recovery} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
+Mittels der Nußelt-Beziehung wird der Wärmeübergangskoeffizient $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot_recovery} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
 
 \begin{figure}[H]
   \centering
@@ -496,8 +513,10 @@ Mittels der Nußelt-Beziehung wird $\alpha$ bestimmt und dann in Gleichung~\ref{
   \caption{PCM Wärmestrom ohne aerodynamische Aufheizung}\label{fig:pcm_waermestrom_diagramm}
 \end{figure}
 
-$\dot{Q}_{\mathrm{Radiator}} = \dot{Q}_{\mathrm{Umwelt}} + \dot{Q}_{\mathrm{Avionik}}$ In diesem Fall reicht die Leistung des Radiators, um die Avionik auf Betriebstemperatur zu halten.
-% Hybrid PCM Wärmestrom bei aufheizung
+In Abbildung \ref{fig:pcm_waermestrom_diagramm} sieht man eine Schematische Darstellung der Konstruktion und speziell die Wärmeströme
+für den Fall, dass das System am Solidus-punkt im Gleichgewicht steht. Hingegen kann man in Abbildung \ref{fig:pcm_waermestrom_aufheizung_diagramm}
+den Zustand sehen, in dem der Umweltwärmestrom durch aerodynamische Aufheizung gestiegen ist und somit das \ac{pcm} anfängt zu schmelzen.
+Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendliche groß sind, wird das System als isotherm modelliert.
 
 \begin{figure}[H]
   \centering
@@ -518,10 +537,6 @@ $\dot{Q}_{\mathrm{Radiator}} = \dot{Q}_{\mathrm{Umwelt}} + \dot{Q}_{\mathrm{Avio
   \end{tikzpicture}
   \caption{PCM Wärmestrom bei aerodynamischer Aufheizung}\label{fig:pcm_waermestrom_aufheizung_diagramm}
 \end{figure}
-
-Hier reicht die Leistung des Radiators nicht mehr aus und das \ac{pcm} fängt an zu schmilzen. Zu beachten ist,
-dass die Leistung des Radiators durch die Temperaturerhöhung steigen würde, wegen des \ac{pcm} jedoch sehen wir das System als isotherm an.
-% Raketenkontour im Luftstrom für ebene Platte Annahme
 
 \begin{figure}[H]
   \centering
@@ -546,7 +561,24 @@ dass die Leistung des Radiators durch die Temperaturerhöhung steigen würde, we
   \caption{Kontourlänge vom Staupunkt der Rakete bis zum Mittelpunkt des Radiators}\label{fig:rakete_kontour_zeichnung}
 \end{figure}
 
-In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung in den Programmen abläuft. Die Programme erzeugen alle Graphen und rechnen simultan für gegebenen Avionik Wärmestrom alle Werte aus.
+
+Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen, wobei
+eingeklammerte Programme nicht in der Berechnung beteiligt waren aber zu Zwecken des Post-Processing und Plotten verwendet wurden:
+\begin{itemize}
+  \item setup.json
+  \item results.json
+  \item main.py
+  \item radiator.py
+  \item hybrid.py
+  \item pcm.py
+  \item (pcmProperty.py)
+  \item (post.py)
+\end{itemize}
+Das Programm main.py ist das Hauptprogramm das alle Unterprogramme in der richtigen Reihenfolge aufruft; zuerst die radiator.py zur Berechnung
+der Radiator Dimension mithilfe der Randbedingungen aus der setup.json. Danach wird die hybrid.py aufgerufen um die Aerodynamischen Wärmeströme
+mittels der Nußelt-Beziehung zu bestimmen. Die Ergebnisse werden anschließend in die pcm.py geladen, um abhängig von der Radiatorfläche
+und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
+In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dimensionierung in der Software abläuft.
 
 \begin{figure}[H]
   \centering
@@ -604,10 +636,25 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man wie die Dimensionierung 
   \caption{Dimensionierungs-Ablauf in der Vorauslegung}\label{fig:dimensionierung_ablauf}
 \end{figure}
 
-\begin{figure}[H]
+Wie in Abbildung \ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch
+für die laminare Grenzschicht. Die Reynolds-Zahl überschreitet jedoch zeitweise mit Werten bis zu \SI{2.4e7} die üblichen Gültigkeitsbereiche.
+Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-Beziehung für turbulente Grenzschichten angewendet.
+
+\begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}\label{fig:re_pr_flugsimulation}
-  \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}
-  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}\label{fig:pcm_waermestrom_vorauslegung}
-  \caption{PCM Wärmestrom während Flug}
+  \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}
+  \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
+\end{figure}
+
+Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen. Mit einer Radiatorfläche von \SI{996,163}{\centi\meter\squared},
+wie bereits in \ref{sec:Radiator} berechnet, um die Gesamtleistung der Avionik und Sonne von $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt} abzustrahlen und 
+
+Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt}
+ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht. Auch wenn dieser nur etwa \SI{100}{\seconds} andauert,
+ist 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}
+  \caption{PCM Wärmestrom während Flug}\label{fig:pcm_waermestrom_vorauslegung}
 \end{figure}

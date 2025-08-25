@@ -109,7 +109,7 @@ für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \le
   \text{Nu}_x = \frac{\alpha_x x}{\lambda} = \num{0,332} \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
 \end{equation}
 
-für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^7 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
+für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^5 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
 
 \begin{equation}
   \label{eq:nusselt_turbulent}
@@ -146,10 +146,9 @@ Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
 \end{equation}
 
 Wobei $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
-Effekte durch die Kompressibilität der Strömung auf, wie große Unterschiede in Dichte, Temperatur und Druck.
-
-Äußern tun sich diese Effekte durch Stoßwellen mit sprunghaftem Anstieg der Größen, Expansionsfächer mit Abfall der Größen und
-Temperaturerhöhungen durch die adiabate Kompression der Luft. Die in einer Grenzschicht erreichte Temperatur durch Reibung
+Effekte durch die Kompressibilität der Strömung auf, wie etwa durch Stoßwellen mit sprunghaftem Anstieg von Temperatur und Druck,
+oder Expansionsfächern mit sprunghaftem Abfall dieser Größen. Auch die adiabate Kompression resultiert in Temperaturerhöhungen.
+Die in einer Grenzschicht erreichte Temperatur durch Reibung
 ist immer kleiner als die Totaltemperatur $T_{\infty} < T_r < T_\mathrm{total}$, da die kinetische Energie nur teilweise in innere Energie
 umgewandelt wird und somit mit dem Recovery-Faktor $r$ skaliert ist:
 
@@ -169,7 +168,7 @@ Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
   \end{cases}
 \end{equation}
 
-In einer kompressiblen Strömung bei $Ma > 0.3$ wird somit $T_{\infty}$ aus \ref{eq:qdot_freestream} zu $T_\text{r}$:
+In einer kompressiblen Strömung bei $\mathrm{Ma} > 0.3$ wird somit $T_{\infty}$ aus \ref{eq:qdot_freestream} zu $T_\text{r}$:
 
 \begin{equation}
   \label{eq:qdot_recovery}
