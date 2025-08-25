@@ -456,7 +456,7 @@ Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nac
   \end{tabular}
 \end{table}
 
-Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einen spezifischen Wärmestrom der Sonne von \SI{1}{\kilo\watt\per\meter\squared}
+Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einen spezifischen Wärmestrom der Sonne (Solarer Wärmestrom) von \SI{1}{\kilo\watt\per\meter\squared}
 bei einem \SI{50}{\percent} Dutycycle durch die Rotation der Rakete, den Eigenschaften aus \ref{tab:az-93_eigenschaften} und einer Temperatur von $T_\mathrm{senke} = \SI{314,13}{\kelvin}$
 eine Fläche von \SI{996,163}{\centi\meter\squared}. Der Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$.
 In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung
@@ -565,7 +565,7 @@ adiabat.
 
 
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen, wobei
-eingeklammerte Programme nicht in der Berechnung beteiligt waren aber zu Zwecken des Post-Processing und Plotten verwendet wurden:
+eingeklammerte Programme nicht an der Berechnung beteiligt waren aber zu Zwecken des nachbearbeiten und Plotten verwendet wurden:
 \begin{itemize}
   \item setup.json
   \item results.json
@@ -655,7 +655,8 @@ Der Wärmestrom $\dot{Q}_\mathrm{Rein}$ ist die Summe aus Avionik Wärmestrom $\
 
 Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt} ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht.
 Auch wenn dieser nur etwa \SI{100}{\second} andauert, ist er ausreichend um die notwendige Masse des \ac{pcm} (inklusive der Aluminium Struktur)
-auf \SI{4,256}{\kilo\gram} zu erhöhen.
+auf \SI{4,256}{\kilo\gram} zu erhöhen. Abgesehen von der höheren notwendigen Kapazität von \SI{626817.571}{\joule} führen auch zusätzlich geometrische
+Verluste zu der erhöhten Masse, da das Aspektverhältnis aufgrund der Einschränkung durch die Radiatorfläche weit von der idealen Würfelform entfernt ist.
 
 \begin{figure}
   \centering

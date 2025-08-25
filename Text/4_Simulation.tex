@@ -5,10 +5,26 @@ aerodynamische Aufheizung simuliert.
 
 \section{PCM}\label{sec:sim_pcm}
 
-Für die Simulation des 
+Für die Simulation des \ac{pcm} 
 
 Stoffdaten für die Simulation
 Die Thermodynamischen Eigenschaften von n-Eicosan, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus verschiedenen Quellen entnommen.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.7\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
+        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.15\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
+        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
+    \end{subfigure}
+    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
+\end{figure}
 
 \begin{table}[H]
 
@@ -52,7 +68,7 @@ Die Thermodynamischen Eigenschaften von n-Eicosan, aufgeführt in Tabelle \ref{t
 \end{table}
 
 Um in ANSYS Fluent Temperaturabhängige Stoffeigenschaften zu implementieren müssen \ac{udf} verwendet werden.
-Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:bossinesque} kommen noch 
+Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:udf_bouss} kommen noch 
 
 \begin{figure}[H]
   \centering
@@ -182,6 +198,8 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
 
+Basiert größtenteils auf \cite{Irving-2021}
+
 Die Außenstruktur der Rakete besteht aus dem zylindrischen Hüllensegment und einem von-Kármán-Nasenprofil das analytisch
 beschrieben wird:
 
@@ -197,22 +215,6 @@ beschrieben wird:
 Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
 Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und die Gesamtlänge der Nase $L = \SI{1250}{\milli\meter}$.
 Dies entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.7\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
-        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.15\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
-        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
-    \end{subfigure}
-    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
-\end{figure}
 
 Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
 - Isotherm auf: \SI{38}{\celsius}\\
