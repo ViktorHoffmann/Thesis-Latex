@@ -1,118 +1,14 @@
 \chapter{Simulation}\label{chap:Simulation}
 
-\section{CFD}\label{sec:sim_cfd}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.7\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
-        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.15\textwidth}
-        \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
-        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
-    \end{subfigure}
-    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
-\end{figure}
-
-Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
-- Isotherm auf: \SI{38}{\celsius}\\
-- Avionik Abwärme: \SI{40}{W}\\
-- \SI{1}{m} Kontourlänge\\
-- Radiator Emissionsgrad: \SI{0,91}{} (AZ-93)\\
-- Radiator Absorptionsgrad: \SI{0,15}{} (AZ-93)\\
-- Icosane PCM\\
-- Trajektoriensimulation\\
-- \SI{1}{\kilo\watt\per\meter\squared} mit 50\% dutycycle durch Rotation der Rakete\\
-Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als isotherm mit einer
-infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
-Als nächstes sieht man die Flugdaten
-
-
-
-
-\section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
-
-Speziell für die Strömungssimulationen welche keine Koppelung mit Festkörpern haben, wurde der Density-Based Solver ausgewählt und die
-Simulation als 2D Steady State durchgeführt. Das Energiemodell wurde aktiviert und für das Viskositätsmodell~\cite{Irving-2021}
-
-Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerodynamische Aufheizung genommen werden kann.
-Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
-
-
-als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
-habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
-Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
-im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
-Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
-Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
-Flugzustand bei 18.691 s \ac{maxq} - $\SI{10}{\second}$: 4274.387 m, 461.355 m/s, -12.784, 594.935 hPa mit entsprechender Luft Dichte \SI{0.7960}{kg/m^3}\\
-Flugzustand bei 38.691 s \ac{maxq} + $\SI{10}{\second}$: 19758.652 m, 1189.968 m/s, -56.5°C, 56.93 hPa mit entsprechender Luft Dichte \SI{0.0915}{kg/m^3}\\
-Flugzustand bei 48.7 s \ac{maxq} + $\SI{20}{\second}$: 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
-Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
-Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
-  \caption{Darstellung der Außensströmungssimulation mit Meshstruktur in grau, velocity inlet in blau, pressure outlet in rot, Symmetrien in gelb und Partitionen der parallelisierung in lila}\label{fig:aussenstroemung_mesh}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_inflation.png}
-  \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
-  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_yplus.pdf}
-  \caption{y+ Wert an der Außenhaut bei \ac{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:yplus_maxQ_simulationen}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_with_sim.pdf}
-  \caption{PCM Wärmestrom während Flug mit Simulationsergebnissen und Fit Kurve}\label{fig:pcm_waermestrom_sim}
-\end{figure}
-
-Fitted Gaussian parameters:
-a=12454028.32, b=32.87, c=550.50, d=-12446646.16
-
-\begin{figure}[H]
-    \centering
-
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-temperature-contour.png}
-        \caption{Statische Temperaturkontur der Luft}
-        \label{fig:maxQ_temp_contour}
-    \end{subfigure}
-
-    \begin{subfigure}{\textwidth}
-        \centering
-        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-mach-contour.png}
-        \caption{Machzahlkontur der Luft}
-        \label{fig:maxQ_mach_contour}
-    \end{subfigure}
-
-    \caption{\texorpdfstring{\ac{maxq}}{max Q} Konturen der Luft}
-    \label{fig:maxQ_konturen}
-\end{figure}
+Um die Ergebnisse der Vorauslegung zu verifizieren wurde mithilfe ANSYS Fluent sowohl das Verhalten des \ac{pcm}, als auch die
+aerodynamische Aufheizung simuliert.
 
 \section{PCM}\label{sec:sim_pcm}
 
+Für die Simulation des 
+
 Stoffdaten für die Simulation
-Die Thermodynamischen Eigenschaften von n-Eicosan, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus mehreren Quellen entnommen.
+Die Thermodynamischen Eigenschaften von n-Eicosan, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus verschiedenen Quellen entnommen.
 
 \begin{table}[H]
 
@@ -282,4 +178,124 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
   \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
   \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer, durch Nachbearbeitung, vervollständigten Zelle
   bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in~\ref{fig:pcm_static_temperature_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
+\end{figure}
+
+\section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
+
+Die Außenstruktur der Rakete besteht aus dem zylindrischen Hüllensegment und einem von-Kármán-Nasenprofil das analytisch
+beschrieben wird:
+
+\begin{equation*}
+  \label{eq:karman_nase}
+  x(t) = \frac{R}{\sqrt{\pi}} \cdot \sqrt{
+  \cos^{-1}\left(1 - \frac{2t}{L} \right)
+  - \frac{1}{2} \cdot \sin\left(2 \cdot \cos^{-1}\left(1 - \frac{2t}{L} \right) \right)
+  }
+  \quad \text{für } t \in [0, L]
+\end{equation*}
+
+Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
+Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und die Gesamtlänge der Nase $L = \SI{1250}{\milli\meter}$.
+Dies entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.7\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
+        \caption{\ac{pcm} Struktur}\label{fig:pcm_struktur}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.15\textwidth}
+        \centering
+        \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
+        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
+    \end{subfigure}
+    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
+\end{figure}
+
+Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
+- Isotherm auf: \SI{38}{\celsius}\\
+- Avionik Abwärme: \SI{40}{W}\\
+- \SI{1}{m} Kontourlänge\\
+- Radiator Emissionsgrad: \SI{0,91}{} (AZ-93)\\
+- Radiator Absorptionsgrad: \SI{0,15}{} (AZ-93)\\
+- Icosane PCM\\
+- Trajektoriensimulation\\
+- \SI{1}{\kilo\watt\per\meter\squared} mit 50\% dutycycle durch Rotation der Rakete\\
+Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als isotherm mit einer
+infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
+Als nächstes sieht man die Flugdaten
+
+Speziell für die Strömungssimulationen welche keine Koppelung mit Festkörpern haben, wurde der Density-Based Solver ausgewählt und die
+Simulation als 2D Steady State durchgeführt. Das Energiemodell wurde aktiviert und für das Viskositätsmodell~\cite{Irving-2021}
+
+Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerodynamische Aufheizung genommen werden kann.
+Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
+
+
+als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
+habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
+Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
+im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
+Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
+Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
+Flugzustand bei 18.691 s \ac{maxq} - $\SI{10}{\second}$: 4274.387 m, 461.355 m/s, -12.784, 594.935 hPa mit entsprechender Luft Dichte \SI{0.7960}{kg/m^3}\\
+Flugzustand bei 38.691 s \ac{maxq} + $\SI{10}{\second}$: 19758.652 m, 1189.968 m/s, -56.5°C, 56.93 hPa mit entsprechender Luft Dichte \SI{0.0915}{kg/m^3}\\
+Flugzustand bei 48.7 s \ac{maxq} + $\SI{20}{\second}$: 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
+Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
+Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
+  \caption{Darstellung der Außensströmungssimulation mit Meshstruktur in grau, velocity inlet in blau, pressure outlet in rot, Symmetrien in gelb und Partitionen der parallelisierung in lila}\label{fig:aussenstroemung_mesh}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_inflation.png}
+  \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
+  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_yplus.pdf}
+  \caption{y+ Wert an der Außenhaut bei \ac{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:yplus_maxQ_simulationen}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_with_sim.pdf}
+  \caption{PCM Wärmestrom während Flug mit Simulationsergebnissen und Fit Kurve}\label{fig:pcm_waermestrom_sim}
+\end{figure}
+
+Fitted Gaussian parameters:
+a=12454028.32, b=32.87, c=550.50, d=-12446646.16
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-temperature-contour.png}
+        \caption{Statische Temperaturkontur der Luft}
+        \label{fig:maxQ_temp_contour}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=0.23\textheight]{ansyspost/airflow/maxQ-mach-contour.png}
+        \caption{Machzahlkontur der Luft}
+        \label{fig:maxQ_mach_contour}
+    \end{subfigure}
+
+    \caption{\texorpdfstring{\ac{maxq}}{max Q} Konturen der Luft}
+    \label{fig:maxQ_konturen}
 \end{figure}

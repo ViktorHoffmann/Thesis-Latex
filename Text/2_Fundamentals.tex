@@ -185,26 +185,51 @@ diskreten Gitterstruktur zu lösen. Diese Erhaltungsgleichungen sind die Massene
 
 \begin{equation}
   \label{eq:navier_massenerhaltung}
-  \frac{\delta \rho}{\delta t} + \nabla \left( \rho \vec{u} \right) = 0
+  \frac{\partial \rho}{\partial t} + \nabla \left( \rho \vec{u} \right) = 0
 \end{equation}
 
 Impulserhaltung:
 
 \begin{equation}
   \label{eq:navier_impulserhaltung}
-  \frac{\delta \left( \rho \vec{u} \right)}{\delta t} + \nabla \left( \rho \vec{u} \vec{u} \right) = -\nabla p + \nabla \tau + \rho \vec{g}
+  \frac{\partial \left( \rho \vec{u} \right)}{\partial t} + \nabla \left( \rho \vec{u} \vec{u} \right) = -\nabla p + \nabla \tau + \rho \vec{g}
 \end{equation}
 
 und Energieerhaltung:
 
 \begin{equation}
   \label{eq:navier_energieerhaltung}
-  \frac{\delta \left(\rho \vec{u}\right)}{\delta t} + \nabla \left[\left(\rho E + p\right)\vec{u}\right] = \nabla \left(k \nabla T\right) + \Phi
+  \frac{\partial \left(\rho \vec{u}\right)}{\partial t} + \nabla \left[\left(\rho E + p\right)\vec{u}\right] = \nabla \left(k \nabla T\right) + \Phi
 \end{equation}
 
 Hier sind $\rho$ die Dichte, $\vec{u}$ der Geschwindigkeitsvektor, $p$ der statische Druck, $\tau$ der Spannungstensor,
 $\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$ die Temperatur, $k$ die Wärmeleitfähigkeit
 und $\Phi$ der viskose Dissipationsterm.
+
+Eine wichtige Metrik bei der Behandlung von Grenzschichten in viskosen Fluiden ist der Dimensionslose Wandabstand:
+
+\begin{equation}
+  \label{eq:yplus}
+  y^+ = \frac{\rho u_{\tau} y}{\eta}
+\end{equation}
+
+Dieser wird mittels des Abstandes $y$ der ersten Zelle die an der Wand anliegt, der Schubspannung an der Wand $\tau_w$ und der daraus resultierenden Schubspannungsgeschwindigkeit $u_{\tau}$ berechnet:
+
+\noindent\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:schubspannung}
+    \tau_w = \eta \left.\frac{\partial u}{\partial y}\right|_{y=0}
+  \end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:schubspannung_geschwindigkeit}
+    u_{\tau} = \sqrt{\frac{\tau_w}{\rho}}
+  \end{equation}
+\end{minipage}
+
+Hierbei ist $\eta$ die dynamische Viskosität und $\left.\frac{\partial u}{\partial y}\right|_{y=0}$ der Geschwindigkeitsgradient senkrecht zur Wand.
+Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
 \section*{PCM}
 Um Temperatur- und Phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,

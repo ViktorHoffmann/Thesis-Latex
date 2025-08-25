@@ -222,7 +222,7 @@ isolierenden Ummantlung versehen werden.
 
 \begin{table}[H]
   \centering
-  \caption{Ampelbewertung von Materialien für Wärmeleitbänder. Rot entspricht schlechten Eigenschaften, grün guten und gelb dem Zwischenwert.}\label{tab:strap_materials}
+  \caption{Ampelbewertung von Materialien für Wärmeleitbänder.}\label{tab:strap_materials}
 
   % 1. Spalte als Box-Spalte, damit \\ innerhalb der ZELLE umbricht
   \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
@@ -372,13 +372,13 @@ Die Wärmeleitfähigkeit ist zwar auch sehr relevant, ist jedoch für alle Mater
 wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität sinkt. Das Volumen der Wärmeleitenden Struktur welches
 \ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die wie gesagt keine latente Wärmeaufnahme hat. Hier
 wird ein Void Fraction von $F = 0.1$ gewählt. Eine Optimierung der Lamellenstruktur kann bei gleich bleibender Masse in einer erhöhten
-Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchgeführt.
+Wärmeleitfähigkeit resultieren, was jedoch in dieser Arbeit nicht durchgeführt wird. Abbildung \ref{fig:pcm_struktur} zeigt ein Drahtmodell der Struktur.
 
 \begin{table}[H]
   \centering
-  \caption{Ampelbewertung für Alkane als \ac{pcm} \cite{NIST}}\label{tab:pcm_auswahl}
+  \caption{Ampelbewertung für Alkane als \ac{pcm} \cite{NIST}.}\label{tab:pcm_auswahl}
   \label{tab:pcm_alkane_nist}
-  \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
+  \begin{tabular}{>{\raggedright\arraybackslash}m{3.1cm} m{3.1cm} m{3.1cm} m{3.1cm}}
     \toprule[1pt]
     Eigenschaft & n-Hexadecan & n-Octadecan & n-Eicosan \\
     \midrule[0.5pt]
@@ -399,15 +399,15 @@ Wärmeleitfähigkeit resultieren. Dies wird in dieser Arbeit jedoch nicht durchg
 Die Auswahltabelle \ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen Alkane, welche als \ac{pcm} verwendet werden im Vergleich.
 Demnach hat n-Eicosan die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
 wie in \ref{sec:thermale_schnittstelle} berechnet.
-
 Um die Masse und Dimension des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
-Das \ac{pcm} wird dort als isobar angenommen und hat eine unendliche Wärmeleitfähigkeit. Des weiteren befindet es sich
+Das \ac{pcm} wird dort als isobar und isotherm angenommen und hat eine unendliche Wärmeleitfähigkeit. Des weiteren befindet es sich
 in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke und einem der Void Fraction entsprechenden internen Aluminium Volumenanteil von $F = 0.1$.
+Die Dimensionen der Breite und Tiefe der Box wurden gleich gesetzt; die Höhe der Box bildet die zweite Variable.
 Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe können in \ref{fig:pcm_waermestrom_vorauslegung} gesehen werden.
 
 Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\watt} ergibt sich eine nötige latente Wärmekapazität von
 \SI{48000}{\joule}, eine Seitenlänge der Aluminium-Box von \SI{6,749}{\centi\meter} und eine Gesamtmasse von \SI{346,610}{\gram}.
-Da ein Würfel von allen Quadern das größte Volumen zu Oberflächenverhältnis hat, sind alle Kanten gleich lang.
+Da ein Würfel von allen Quadern das größte Volumen-Oberflächenverhältnis hat, sind alle Kanten gleich lang.
 
 \begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und Latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_python_pseudo}]
 rho_alu = 2700     # aluminium density [kg*m^-3]
@@ -456,9 +456,10 @@ Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nac
   \end{tabular}
 \end{table}
 
-Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einem spezifischen Wärmestrom der Sonne von \SI{1}{\kilo\watt\per\meter\squared}
+Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einen spezifischen Wärmestrom der Sonne von \SI{1}{\kilo\watt\per\meter\squared}
 bei einem \SI{50}{\percent} Dutycycle durch die Rotation der Rakete, den Eigenschaften aus \ref{tab:az-93_eigenschaften} und einer Temperatur von $T_\mathrm{senke} = \SI{314,13}{\kelvin}$
-eine Fläche von \SI{996,163}{\centi\meter\squared}. In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung
+eine Fläche von \SI{996,163}{\centi\meter\squared}. Der Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$.
+In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung
 verwendet wurde zu sehen.
 
 \begin{lstlisting}[float, language=python, caption={Setup Werte aus der setup.json}, label={lst:setup_json}]
@@ -514,9 +515,10 @@ Mittels der Nußelt-Beziehung wird der Wärmeübergangskoeffizient $\alpha$ best
 \end{figure}
 
 In Abbildung \ref{fig:pcm_waermestrom_diagramm} sieht man eine Schematische Darstellung der Konstruktion und speziell die Wärmeströme
-für den Fall, dass das System am Solidus-punkt im Gleichgewicht steht. Hingegen kann man in Abbildung \ref{fig:pcm_waermestrom_aufheizung_diagramm}
+für den Fall, dass das System am Solidus-Punkt im Gleichgewicht steht. Hingegen kann man in Abbildung \ref{fig:pcm_waermestrom_aufheizung_diagramm}
 den Zustand sehen, in dem der Umweltwärmestrom durch aerodynamische Aufheizung gestiegen ist und somit das \ac{pcm} anfängt zu schmelzen.
-Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendliche groß sind, wird das System als isotherm modelliert.
+Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendliche groß sind, wird das System als isotherm modelliert und die Avionik-Sektion als
+adiabat.
 
 \begin{figure}[H]
   \centering
@@ -646,12 +648,14 @@ Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
 \end{figure}
 
-Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen. Mit einer Radiatorfläche von \SI{996,163}{\centi\meter\squared},
-wie bereits in \ref{sec:Radiator} berechnet, um die Gesamtleistung der Avionik und Sonne von $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt} abzustrahlen und 
+Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
+aus \ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in \ref{sec:Radiator} modelliert
+und der aerodynamischen Aufheizung besteht.
+Der Wärmestrom $\dot{Q}_\mathrm{Rein}$ ist die Summe aus Avionik Wärmestrom $\dot{Q}_\mathrm{Avionik}$ und dem Umwelt Wärmestrom $\dot{Q}_\mathrm{Umwelt}$.
 
-Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt}
-ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht. Auch wenn dieser nur etwa \SI{100}{\seconds} andauert,
-ist 
+Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt} ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht.
+Auch wenn dieser nur etwa \SI{100}{\second} andauert, ist er ausreichend um die notwendige Masse des \ac{pcm} (inklusive der Aluminium Struktur)
+auf \SI{4,256}{\kilo\gram} zu erhöhen.
 
 \begin{figure}
   \centering
