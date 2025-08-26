@@ -5,12 +5,26 @@ aerodynamische Aufheizung simuliert.
 
 \section{PCM}\label{sec:sim_pcm}
 
-Für die Simulation des \ac{pcm} 
+Für die Simulation des \ac{pcm} wurde die in \ref{fig:pcm_struktur} dargestellte Struktur stark vereinfacht,
+um trotz mangelnder Rechenressourcen gelöst werden zu können. Zuerst wurde das \ac{pcm} in der Symmetrieebene
+zu einem zweidimensionalen Problem vereinfacht. Im nächsten Schritt wurde nur die mittlere Zelle aus der Ebene unter der Annahme,
+dass das System symmetrisch ist ausgewählt. Im letzten Schritt wurde die Zelle nochmal aufgrund von Symmetrie gespalten.
 
-Stoffdaten für die Simulation
-Die Thermodynamischen Eigenschaften von n-Eicosan, aufgeführt in Tabelle \ref{tab:eicosane_data}, wurden aus verschiedenen Quellen entnommen.
+Anschließend wurde in ANSYS Mechanical das Mesh vollständig aus Tetraeder-Elementen erzeugt, wobei die Zellgröße so gewählt
+wurde, dass die Aluminium-Wände 1-2 Zellen Tiefe haben. In dem Mesh \ref{fig:pcm_mesh} ist das \ac{pcm} in schwarz und das Aluminium
+in rot dargestellt. Jeweils an der linken und rechten Kante, wurde aufgrund der anliegenden Zelle bzw. Spiegelung der Zelle eine
+Symmetrie Randbedingung gewählt. Die untere Kante wurde als Wärmequelle angelegt und die obere Kante als adiabate Wand.
 
-\begin{figure}[H]
+Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm} Struktur und dem Avionik Wärmestrom zu
+$\frac{\SI{40}{\watt}}{\left(\SI{6,749}{\centi\meter}\right)^2} = \SI{8782}{\watt\per\meter\squared}$.
+Da ANSYS Fluent bei zweidimensionalen Simulationen eine Referenztiefe von \SI{1}{m} verwendet, konnte der spezifische Wärmestrom
+der Quelle direkt verwendet werden.
+
+Die Thermodynamischen Eigenschaften, modelliert in der \ac{udf}, von n-Eicosan sind aufgeführt in Tabelle \ref{tab:eicosane_data}.
+Das temperaturabhängige Verhalten der spezifischen Wärmekapazität kann den Graphen \ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
+entnommen werden.
+
+\begin{figure}[!htb]
     \centering
     \begin{subfigure}[t]{0.7\textwidth}
         \centering
