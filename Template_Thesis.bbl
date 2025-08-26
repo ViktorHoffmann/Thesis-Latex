@@ -18,6 +18,11 @@ Thermal space and thermal straps.
 \newblock Phase change material simulation in ansys fluent (tutorial), 2023.
 \newblock Online tutorial.
 
+\bibitem{Anderson-2017}
+John~D. Anderson.
+\newblock {\em Fundamentals of Aerodynamics}.
+\newblock McGraw-Hill Education, New York, NY, 6th edition, 2017.
+
 \bibitem{Benbrika-2020}
 M.~Benbrika, M.~Teggar, M.~Benbelhout, and K.~A.~R. Ismai.
 \newblock Numerical study of n-eicosane melting inside a horizontal cylinder for different loading rates.

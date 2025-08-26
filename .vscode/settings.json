@@ -20,6 +20,7 @@
         "Kármán",
         "Kompressibilität",
         "kompressiblen",
+        "Konturlänge",
         "Küpper",
         "Längsangeströmte",
         "lösung",
@@ -36,6 +37,8 @@
         "Strömungserwärmung",
         "Strömungssimulation",
         "Sutherlands",
-        "Trajektoriensimulation"
+        "Trajektoriensimulation",
+        "Unterrelaxationsfaktoren",
+        "Viskositätsmodell"
     ]
 }

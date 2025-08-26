@@ -121,7 +121,7 @@ Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen ve
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:reynolds}
-    \text{Re}_x = \frac{V \rho x}{\eta}
+    \text{Re}_x = \frac{U \rho x}{\eta}
   \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
@@ -218,7 +218,7 @@ Dieser wird mittels des Abstandes $y$ der ersten Zelle die an der Wand anliegt, 
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:schubspannung}
-    \tau_w = \eta \left.\frac{\partial u}{\partial y}\right|_{y=0}
+    \tau_w = \eta \left.\frac{\partial u}{\partial y}\right|_{y=0} = \frac{1}{2} \rho U_{\infty}^{2} C_f
   \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
@@ -228,7 +228,23 @@ Dieser wird mittels des Abstandes $y$ der ersten Zelle die an der Wand anliegt, 
   \end{equation}
 \end{minipage}
 
-Hierbei ist $\eta$ die dynamische Viskosität und $\left.\frac{\partial u}{\partial y}\right|_{y=0}$ der Geschwindigkeitsgradient senkrecht zur Wand.
+Hierbei ist $\eta$ die dynamische Viskosität, $\left.\frac{\partial u}{\partial y}\right|_{y=0}$ der Geschwindigkeitsgradient senkrecht zur Wand
+und $C_F$ der Reibungsbeiwert.
+Für $C_F$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
+
+\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:reibungsbeiwert_laminar}
+    C_f(x) \approx \frac{0.664}{\sqrt{\mathrm{Re}_x}}
+  \end{equation}
+\end{minipage}%
+\begin{minipage}{.5\linewidth}
+  \begin{equation}
+    \label{eq:reibungsbeiwert_turbulent}
+    C_f(x) \approx \frac{0.0592}{\mathrm{Re}_x^{1/5}}
+  \end{equation}
+\end{minipage}
+
 Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
 \section*{PCM}

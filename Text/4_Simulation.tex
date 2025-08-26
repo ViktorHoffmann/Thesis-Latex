@@ -15,12 +15,12 @@ wurde, dass die Aluminium-Wände 1-2 Zellen Tiefe haben. In dem Mesh \ref{fig:pc
 in rot dargestellt. Jeweils an der linken und rechten Kante, wurde aufgrund der anliegenden Zelle bzw. Spiegelung der Zelle eine
 Symmetrie Randbedingung gewählt. Die untere Kante wurde als Wärmequelle angelegt und die obere Kante als adiabate Wand.
 
-Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm} Struktur und dem Avionik Wärmestrom zu
+Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm} Struktur, bestimmt in \ref{sec:pcm}, und dem Avionik Wärmestrom zu
 $\frac{\SI{40}{\watt}}{\left(\SI{6,749}{\centi\meter}\right)^2} = \SI{8782}{\watt\per\meter\squared}$.
 Da ANSYS Fluent bei zweidimensionalen Simulationen eine Referenztiefe von \SI{1}{m} verwendet, konnte der spezifische Wärmestrom
 der Quelle direkt verwendet werden.
 
-Die Thermodynamischen Eigenschaften, modelliert in der \ac{udf}, von n-Eicosan sind aufgeführt in Tabelle \ref{tab:eicosane_data}.
+Die Thermodynamischen Eigenschaften von n-Eicosan sind aufgeführt in Tabelle \ref{tab:eicosane_data}.
 Das temperaturabhängige Verhalten der spezifischen Wärmekapazität kann den Graphen \ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
 entnommen werden.
 
@@ -81,9 +81,6 @@ entnommen werden.
   \end{tabular}
 \end{table}
 
-Um in ANSYS Fluent Temperaturabhängige Stoffeigenschaften zu implementieren müssen \ac{udf} verwendet werden.
-Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:udf_bouss} kommen noch 
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/eicosane_cpvst_total.pdf}
@@ -96,18 +93,33 @@ Zu der in \ref{sec:konvektion} behandelten Bossinesq-Approximation \ref{eq:udf_b
   \caption{Sensible spezifische Wärmekapazität von n-Eicosan}\label{fig:pcm_sensible_cp}
 \end{figure}
 
-\begin{figure}[H]
+Die Simulation wurde mit dem Pressure-Based Solver~\cite{akamcae-udf} als transiente Simulation über 120000 Zeitschritte mit einer Zeitschrittgröße von \SI{0,01}{\second} durchgeführt
+um die vollständige Flugdauer mit \SI{1200}{\second} zu simulieren.
+Des weiteren wurde das Energiemodell eingeschaltet~\cite{akamcae-udf}, das Viskositätsmodell als Laminar angenommen~\cite{akamcae-udf} und das Phasenwechselmodell aktiviert~\cite{akamcae-udf}.
+Neben den bereits erläuterten \ac{pcm} Eigenschaften wurde für das Aluminium eine Dichte von $\rho = \SI{2719}{\kilogram\per\meter\cubed}$,
+eine spezifische Wärmekapazität von $c_p = \SI{871}{\joule\per\kilogram\kelvin}$ und eine Wärmeleitfähigkeit von $\lambda = \SI{202.4}{\watt\per\meter\kelvin}$
+eingestellt.
+
+Abbildung \ref{fig:approximierte_beschleunigung} zeigt das Beschleunigungsprofil, welches in der Simulation verwendet wurde. Zu beachten
+ist, dass Beschleunigungsspitzen durch den Fallschirm, wie sie in~\ref{fig:acceleration_over_time} gesehen
+werden können, ignoriert werden, da diese durch mangelhafte Genauigkeit der Fallschirm Modellierung resultieren.
+
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/approximate_acceleration_over_time.pdf}
   \caption{Approximiertes Beschleunigungsprofil}\label{fig:approximierte_beschleunigung}
 \end{figure}
 
-\ref{fig:approximierte_beschleunigung} zeigt das Beschleunigungsprofil, welches in der Simulation verwendet wurde. Zu beachten
-ist, dass Beschleunigungsspitzen durch den Fallschirm, wie sie in~\ref{fig:acceleration_over_time} gesehen
-werden können, ignoriert werden, da diese in einer Überschätzung der Beschleunigung und der Konvektionsvorgänge resultieren würden.
+Da die ANSYS Fluent Transient Table Funktion (Native Funktion für transiente Randbedingungen mit Profilen) keine transiente Gravitation
+unterstützt, wurde diese und die globale Beschleunigung deaktiviert.
+Stattdessen wurde die Beschleunigung über den Quellterm der Boussinesq-Approximation in der \ac{udf} implementiert. Die Funktion ist in
+\ref{lst:udf_bossinesque} zu sehen.
 
+Als Scheme wurde SIMPLE verwendet~\cite{akamcae-udf}, für die Gradienten Least Squares Cell Based~\cite{akamcae-udf}, für Druck Second Order~\cite{akamcae-udf} und für Impuls und Energie
+Second Order Upwind~\cite{akamcae-udf}. Die Unterrelaxationsfaktoren wurden durch experimentelle Ermittlung anhand der Residuen zu 0,3 für Druck, 1 für Dichte
+und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als auch Energie gewählt.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
 
     % Left figure
@@ -178,6 +190,14 @@ werden können, ignoriert werden, da diese in einer Überschätzung der Beschleu
 
 \end{figure}
 
+In Abbildung \ref{fig:static_temperature_kontur} und \ref{fig:liquid_frac_kontur} kann man jeweils die Lösung des Flüssigkeitsanteils
+und der statischen Temperatur zu mehreren Zeitschritten sehen. Man kann dort deutlich erkennen, wie das \ac{pcm} von der Wärmequelle aus
+schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konvektion die jedoch nach unten fließt und durch das aufsteigende
+\ac{pcm} in der Mitte der Zelle angetrieben wird. Im Vektorfeld \ref{fig:pcm_vectoren_stitched} kann man den dadurch entstandenen Wirbel sehen.
+
+Besonders interessant ist, dass wie in \ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
+steigt. Demnach würde mittels der Thermalen Schnittstelle aus \ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
+$T_C = \SI{384,17}{\kelvin}$ über die zuverlässige Temperatur steigen.
 
 \begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
 //Y-momentum source
@@ -203,7 +223,7 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 }
 \end{lstlisting}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
   \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer, durch Nachbearbeitung, vervollständigten Zelle
@@ -211,8 +231,12 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 \end{figure}
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
-
-Basiert größtenteils auf \cite{Irving-2021}
+Die Simulation der aerodynamischen Aufheizung wurde als stationäre Simulation mit dem Density-Based solver durchgeführt. Hierbei wurde
+aufgrund der Rotationssymmetrie der Rakete im relevanten Bereich oberhalb der Finnen wieder eine zweidimensionale Simulation durchgeführt.
+Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert.
+Die Luft wurde als Ideales Gas mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
+einer Wärmeleitfähigkeit von \SI{0.0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1.7894e-5}{\kilogram\per\meter\second}
+und einer molekularen Masse von \SI{28,966}{\kilogram\per\kilo\mole} modelliert.
 
 Die Außenstruktur der Rakete besteht aus dem zylindrischen Hüllensegment und einem von-Kármán-Nasenprofil das analytisch
 beschrieben wird:
@@ -229,6 +253,10 @@ beschrieben wird:
 Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
 Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und die Gesamtlänge der Nase $L = \SI{1250}{\milli\meter}$.
 Dies entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
+
+Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen in \ref{fig:aussenstroemung_mesh} dargestellt.
+Um die Grenzschicht-Anforderung aus \ref{eq:yplus} mit $y^+ \leq 1$ zu erfüllen, wurden Inflationsschichten an der Raketenwand eingefügt, die in \ref{fig:aussenstroemung_mesh_inflationlayers}
+zu sehen sind. Die Höhe der ersten Schicht wurde experimentell erhalten \cite{Anderson-2017}
 
 Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
 - Isotherm auf: \SI{38}{\celsius}\\

@@ -24,7 +24,7 @@ der \ac{pcdu} und Funkplatine welche Leistung in Form von Strom und elektromagne
 \SI{0}{\percent}, da Logikoperationen physikalisch gesehen keine Arbeit sind. Resultierend wird der komplette Stromverbrauch
 in Wärme umgewandelt.
 
-\begin{table}[H]
+\begin{table}
   \centering
   \caption{Leistung der Avionik}\label{tab:avionik_leistung}
 
@@ -68,7 +68,7 @@ Die Leistung der Avionik in~\ref{tab:avionik_leistung} ergibt sich durch den Max
 Abschätzung der restlichen Komponenten ohne Quellenangabe. Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom
 der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
 
     % Column 1, Row 1
@@ -156,7 +156,7 @@ die Orientierung frei zu bestimmen, den relativ geringen Distanzen innerhalb der
 Loop Heatpipes wird eine reguläre Heatpipe gewählt.
 
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}
     \draw[thick] (-5,0) arc [start angle=90, end angle=270, x radius=1.5cm, y radius= 1.5cm]; % Kappen
@@ -210,7 +210,7 @@ Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss fü
 bei starken Vibrationen aufgrund der Flexibilität des \ac{pgs} Kontakt mit der Elektronik und mögliche Kurzschlüsse entstehen, muss das Wärmeleitband mit einer elektrisch
 isolierenden Ummantlung versehen werden.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
   \caption{Kommerziell erhältliche Wärmeleitbänder aus \ac{pgs} (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
@@ -220,7 +220,7 @@ isolierenden Ummantlung versehen werden.
 \definecolor{medium}{RGB}{255,255,200} % hellgelb
 \definecolor{bad}{RGB}{255,200,200}    % hellrot
 
-\begin{table}[H]
+\begin{table}
   \centering
   \caption{Ampelbewertung von Materialien für Wärmeleitbänder.}\label{tab:strap_materials}
 
@@ -266,7 +266,7 @@ Der Wärmeleitwiederstand ergibt sich durch einsetzen von Gleichung \ref{eq:four
 Mit $\Delta x = \SI{10}{\centi\meter}$, $\lambda = \SI{1800}{\watt\per\meter\kelvin}$ und $A = 32 \cdot \SI{0,012}{\milli\meter} \cdot \SI{4}{\centi\meter} = \SI{15,36}{\milli\meter\squared}$
 ergibt sich $R_\mathrm{Wärmeleitband} = \SI{3,617}{\kelvin\per\watt}$
 
-\subsection{Gesamte Schnittstelle}
+\subsection{Gesamte Schnittstelle}\label{sec:gesamte_schnittstelle}
 
 Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
 minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in \ref{fig:thermale_schnittstelle} zu sehen.
@@ -279,7 +279,7 @@ Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta
 Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}. Für die Nötige Temperatur an der Senke
 erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}
     \node at (0,0) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, shape border rotate=90, thick]{$\dot{Q}$}; % Wärmestrom pfeil
@@ -353,7 +353,7 @@ erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvi
   \caption{\ac{rom} der Thermalen Schnittstelle aus Heatpipe und Wärmeleitbändern. Hier sind nur 2 von 4 Wärmeleitbändern dargestellt.}\label{fig:thermale_schnittstelle}
 \end{figure}
 
-\section{PCM}
+\section{PCM}\label{sec:pcm}
 
 Nutzung eines \ac{pcm} mit Fest-Flüssig Übergang ist eine weit verbreitete Lösung in der Luft- und Raumfahrtindustrie um für begrenzte Zeiträume Elektronik in einem akzeptablen
 Temperaturbereich zu halten. Auch wenn \ac{pcm} Lösungen generell eine hohe Masse haben, wird das oft aufgrund der ansonsten idealen Eigenschaften inkauf genommen:
@@ -374,7 +374,7 @@ wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmeka
 wird ein Void Fraction von $F = 0.1$ gewählt. Eine Optimierung der Lamellenstruktur kann bei gleich bleibender Masse in einer erhöhten
 Wärmeleitfähigkeit resultieren, was jedoch in dieser Arbeit nicht durchgeführt wird. Abbildung \ref{fig:pcm_struktur} zeigt ein Drahtmodell der Struktur.
 
-\begin{table}[H]
+\begin{table}
   \centering
   \caption{Ampelbewertung für Alkane als \ac{pcm} \cite{NIST}.}\label{tab:pcm_auswahl}
   \label{tab:pcm_alkane_nist}
@@ -436,7 +436,7 @@ weit verbreitete inorganische Farbe mit günstigen Eigenschaften, welche Tabelle
 Abbildung \ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung \ref{eq:radiation} und zeigt Leistungskonturen eines
 Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nach Fläche und Temperatur.
 
-\begin{table}[H]
+\begin{table}
 
   \centering
   \caption{AZ-93 Spezifikationen~\cite{AZ-Technology}}\label{tab:az-93_eigenschaften}
@@ -457,10 +457,10 @@ Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nac
 \end{table}
 
 Für eine rein radiative Kühlung der Avionik ergibt sich für \SI{40}{\watt} der Avionik und einen spezifischen Wärmestrom der Sonne (Solarer Wärmestrom) von \SI{1}{\kilo\watt\per\meter\squared}
-bei einem \SI{50}{\percent} Dutycycle durch die Rotation der Rakete, den Eigenschaften aus \ref{tab:az-93_eigenschaften} und einer Temperatur von $T_\mathrm{senke} = \SI{314,13}{\kelvin}$
-eine Fläche von \SI{996,163}{\centi\meter\squared}. Der Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$.
-In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung
-verwendet wurde zu sehen.
+bei einem \SI{50}{\percent} Dutycycle, durch die Rotation der Rakete bzw. der Schattierung des halben Radiators durch die Rakete selbst auf der Sonnenabgewandten Seite, den Eigenschaften aus
+\ref{tab:az-93_eigenschaften} und einer Temperatur von $T_\mathrm{senke} = \SI{314,13}{\kelvin}$
+nach eine Fläche von \SI{996,163}{\centi\meter\squared}. Die Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$.
+In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode der zur Berechnung verwendet wurde zu sehen.
 
 \begin{lstlisting}[float, language=python, caption={Setup Werte aus der setup.json}, label={lst:setup_json}]
   {
@@ -493,7 +493,7 @@ wie in Abbildung~\ref{fig:rakete_kontour_zeichnung} dargestellt ist.
 Um zu wissen, ob hier die Beziehung für laminare oder turbulente Grenzschichten angewandt werden soll, müssen zunächst die Gültigkeitsbereiche der Reynolds- und Prandtlzahl (\ref{eq:prandtl},~\ref{eq:reynolds}) überprüft werden.
 Mittels der Nußelt-Beziehung wird der Wärmeübergangskoeffizient $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot_recovery} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}[rotate border/.style={shape border uses incircle, shape border rotate=#1}, scale=0.8]
     \draw[thick] (3,3) -- (3,-1) -- (9,-1) -- (9,3);
@@ -520,7 +520,7 @@ den Zustand sehen, in dem der Umweltwärmestrom durch aerodynamische Aufheizung 
 Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendliche groß sind, wird das System als isotherm modelliert und die Avionik-Sektion als
 adiabat.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}[rotate border/.style={shape border uses incircle, shape border rotate=#1}, scale=0.8]
     \draw[thick] (3,3) -- (3,-1) -- (9,-1) -- (9,3);
@@ -540,7 +540,7 @@ adiabat.
   \caption{PCM Wärmestrom bei aerodynamischer Aufheizung}\label{fig:pcm_waermestrom_aufheizung_diagramm}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}
     \draw[thick] (0,0) arc [start angle=90, end angle=270, x radius=5cm, y radius= 1.5cm]; %nosecone
@@ -549,7 +549,7 @@ adiabat.
     \draw[thick] (-5.75,-1.5) -- (-5.25,-1.5); % maß links
     \draw[thick] (1,0.25) -- (1,0.75); % maß rechts
     \draw[thick] (0,0.5) arc [start angle=90, end angle=180, x radius=5.5cm, y radius= 2cm]; % maß bogen
-    \draw[thick] (0,0.5) -- node [near start, above] {Länge} (1,0.5); % maß grade sektion
+    \draw[thick] (0,0.5) -- node [near start, above] {Konturlänge} (1,0.5); % maß grade sektion
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-10,0.5) -- node [midway, above] {Luftstrom} (-7,0.5); % free stream pfeile
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-10,-0.5) -- (-7,-0.5); % Strompfeile
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-10,-1.5) -- (-7,-1.5);
@@ -582,7 +582,7 @@ mittels der Nußelt-Beziehung zu bestimmen. Die Ergebnisse werden anschließend 
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
 In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dimensionierung in der Software abläuft.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \begin{tikzpicture}[
     sibling distance=10em,
@@ -639,14 +639,18 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dime
 \end{figure}
 
 Wie in Abbildung \ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch
-für die laminare Grenzschicht. Die Reynolds-Zahl überschreitet jedoch zeitweise mit Werten bis zu \SI{2.4e7} die üblichen Gültigkeitsbereiche.
-Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-Beziehung für turbulente Grenzschichten angewendet.
+für die laminare Grenzschicht. Die Reynolds-Zahl überschreitet jedoch zeitweise mit Werten bis zu \SI{2.4e7} die Gültigkeitsbereiche.
+Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-Beziehung \ref{eq:nusselt_turbulent} für turbulente Grenzschichten angewendet.
 
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
 \end{figure}
+
+Die Konturlänge der Nase wurde vom Struktur-Subsystem zu \SI{1,01}{\meter} festgelegt. Wenn der Radiator über den vollständigen Umfang der Rakete
+bei einem Durchmesser von $D = \SI{250}{\milli\meter}$ modelliert wird, ist der Radiator eine \SI{12,684}{\centi\meter} lange Sektion.
+Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Radiators, an der Stelle alle lokalen Größen berechnet wurden.
 
 Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
 aus \ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in \ref{sec:Radiator} modelliert
@@ -661,5 +665,5 @@ Verluste zu der erhöhten Masse, da das Aspektverhältnis aufgrund der Einschrä
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}
-  \caption{PCM Wärmestrom während Flug}\label{fig:pcm_waermestrom_vorauslegung}
+  \caption{PCM Wärmeströme während dem Flug}\label{fig:pcm_waermestrom_vorauslegung}
 \end{figure}
