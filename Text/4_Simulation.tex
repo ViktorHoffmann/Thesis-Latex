@@ -197,7 +197,7 @@ schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konve
 
 Besonders interessant ist, dass wie in \ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
 steigt. Demnach würde mittels der Thermalen Schnittstelle aus \ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
-$T_C = \SI{384,17}{\kelvin}$ über die zuverlässige Temperatur steigen.
+$T_C = \SI{384,17}{\kelvin}$ über die zulässige Temperatur steigen.
 
 \begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
 //Y-momentum source
@@ -238,85 +238,88 @@ Die Luft wurde als Ideales Gas mit einer spezifischen Wärmekapazität von \SI{1
 einer Wärmeleitfähigkeit von \SI{0.0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1.7894e-5}{\kilogram\per\meter\second}
 und einer molekularen Masse von \SI{28,966}{\kilogram\per\kilo\mole} modelliert.
 
-Die Außenstruktur der Rakete besteht aus dem zylindrischen Hüllensegment und einem von-Kármán-Nasenprofil das analytisch
-beschrieben wird:
+Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, dem Zeitpunkt des maximalen dynamische Drucks auf der Rakete.
+Den Verlauf des dynamischen Drucks, kann man Abbildung~\ref{fig:dynp_over_time} entnehmen.
+Dieser Punkt wird als Richtwert für die aerodynamische Aufheizung angenommen, da er unabhängig von der Vorauslegung ist und somit Ungenauigkeiten dort getroffener Annahmen vermieden werden.
+
+Um ein Profil der aerodynamischen Aufheizung bilden zu können wurde jeweils eine Simulation bei \ac{maxq}, \ac{maxq}-\SI{10}{\second},
+\ac{maxq}+\SI{10}{\second} und \ac{maxq}+\SI{20}{\second} durchgeführt. Die den Punkten entsprechenden Flugzustände können Tabelle~\ref{tab:simulation_flugzustand} entnommen werden.
+Die Ergebnisse wurden danach mittels eines Gauss-fit als Funktion dargestellt.
+
+\begin{table}[H]
+  \centering
+  \caption{Flugzustände der vier Simulationen zur aerodynamischen Aufheizung.}\label{tab:simulation_flugzustand}
+
+  \begin{tabular}{lrrrrrr}
+    \toprule[1pt]
+    Zustand & $t$ [s] & $h$ [m] & $U$ [m/s] & $T$ [°C] & $p$ [hPa] & $\rho$ [kg/m³] \\
+    \midrule[0.5pt]
+    \ac{maxq} $-10$ s    & 18,691 & 4274,387  & 461,355  & -12,784 & 594,935 & 0,796 \\
+    \ac{maxq}            & 28,691 & 10244,138 & 750,704  & -51,587 & 254,783 & 0,401 \\
+    \ac{maxq} $+10$ s    & 38,691 & 19758,652 & 1189,968 & -56,500 & 56,930  & 0,092 \\
+    \ac{maxq} $+20$ s    & 48,700 & 32439,616 & 1393,377 & -43,269 & 8,136   & 0,012 \\
+    \bottomrule[1pt]
+  \end{tabular}
+\end{table}
+
+Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen und Partitionen der Parallelisierung in Abbildung~\ref{fig:aussenstroemung_mesh} dargestellt.
+Um die Anforderung der Gleichung~\ref{eq:yplus} mit $y^+ \leq 1$ zu erfüllen, wurden Inflationsschichten an der Wand eingefügt, die in Abbildung~\ref{fig:aussenstroemung_mesh_inflationlayers}
+zu sehen sind. Zur Berechnung der Höhe der ersten Zellschicht wurde der Flugzustand bei \ac{maxq} verwendet.
+Zuerst muss Gleichung \ref{eq:dynamische_viskositaet} verwendet werden um die dynamische Viskosität zu berechnen:
 
 \begin{equation*}
-  \label{eq:karman_nase}
-  x(t) = \frac{R}{\sqrt{\pi}} \cdot \sqrt{
-  \cos^{-1}\left(1 - \frac{2t}{L} \right)
-  - \frac{1}{2} \cdot \sin\left(2 \cdot \cos^{-1}\left(1 - \frac{2t}{L} \right) \right)
-  }
-  \quad \text{für } t \in [0, L]
+  \eta_\mathrm{max Q} = \SI{18,27e-6}{\pascal\second} \frac{\SI{291,15}{\kelvin} + \SI{120}{\kelvin}}{\SI{221,563}{\kelvin} + \SI{120}{\kelvin}} {\left( \frac{\SI{221,563}{\kelvin}}{\SI{291,15}{\kelvin}} \right)}^{\frac{3}{2}} \approx \SI{1,45e-5}{\pascal\second}
 \end{equation*}
 
-Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
-Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und die Gesamtlänge der Nase $L = \SI{1250}{\milli\meter}$.
-Dies entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
+Damit wird als nächstes die lokale Reynolds-Zahl in der Mitte des Radiators berechnet. Die Konturlänge bis zu dem Mittelpunkt des Radiators beträgt wie in \ref{sec:pcm_radiator_hybrid} \SI{1,074}{\meter}:
 
-Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen in \ref{fig:aussenstroemung_mesh} dargestellt.
-Um die Grenzschicht-Anforderung aus \ref{eq:yplus} mit $y^+ \leq 1$ zu erfüllen, wurden Inflationsschichten an der Raketenwand eingefügt, die in \ref{fig:aussenstroemung_mesh_inflationlayers}
-zu sehen sind. Die Höhe der ersten Schicht wurde mittels:
+\begin{equation*}
+  Re_{\mathrm{maxQ}} = \frac{\SI{750,704}{\meter\per\second} \SI{0,401}{\kilogram\per\meter\cubed} \SI{1,074}{\meter}}{\SI{1,45e-5}{\pascal\second}} \approx \SI{2,220e7}{}
+\end{equation*}
 
+Da die Reynolds-Zahl sich im turbulenten Bereich befindet wird Gleichung \ref{eq:reibungsbeiwert_turbulent} verwendet:
 
+\begin{equation*}
+  C_f = \frac{0.0592}{{\SI{2,22e7}{}}_x^{1/5}} \approx \SI{2,009e-3}{}
+\end{equation*}
 
-Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
-- Isotherm auf: \SI{38}{\celsius}\\
-- Avionik Abwärme: \SI{40}{W}\\
-- \SI{1}{m} Kontourlänge\\
-- Radiator Emissionsgrad: \SI{0,91}{} (AZ-93)\\
-- Radiator Absorptionsgrad: \SI{0,15}{} (AZ-93)\\
-- Icosane PCM\\
-- Trajektoriensimulation\\
-- \SI{1}{\kilo\watt\per\meter\squared} mit 50\% dutycycle durch Rotation der Rakete\\
-Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als isotherm mit einer
-infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
-Als nächstes sieht man die Flugdaten
+Mit Gleichung \ref{eq:schubspannung} eingesetzt in Gleichung \ref{eq:schubspannung_geschwindigkeit} ergibt sich:
 
-Speziell für die Strömungssimulationen welche keine Koppelung mit Festkörpern haben, wurde der Density-Based Solver ausgewählt und die
-Simulation als 2D Steady State durchgeführt. Das Energiemodell wurde aktiviert und für das Viskositätsmodell~\cite{Irving-2021}
+\begin{equation*}
+  u_{\tau} = \sqrt{\frac{\left(\SI{750,704}{\meter\per\second}\right)^2 \SI{2,009e-3}{}}{2}} \approx \SI{23,793}{\meter\per\second}
+\end{equation*}
 
-Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, da es als Richtwert für Aerodynamische Aufheizung genommen werden kann.
-Desweiteren ist der Wert unanhängig von der Vorauslegung, wodurch Ungenauigkeiten von dort getroffenen Annahmen vermieden werden.\\
+Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten Zelle $y_1$ berechnen indem $y^+ = 1$ gesetzt wird:
 
+\begin{equation*}
+  y_1 = \frac{y^+ \hspace{0.5em} \SI{1,45e-5}{\pascal\second}}{\SI{0,401}{\kilogram\per\meter\cubed} \SI{23,793}{\meter\per\second}} \approx \SI{1,52e-6}{\meter}
+\end{equation*}
 
-als nächstes habe ich geschaut wo der maximale dynamische Druck erreicht wurde in der Vorauslegung. Die korrespondierenden Werte des Flugzustandes
-habe ich dann als Boundery Conditions in der \ac{cfd}~Simulation genommen.
-Um zu verifizieren, dass dort auch die maximale Aufheizung stattfindet, habe ich 1 Sekunden vorher und nachder
-im Flug die BC's auch verwendet und einen Vergleich gezogen.\\
-Maximaler dynamischer Druck: 112901.25708461029 Pa at 28.691 s\\
-Entsprechender Flugzustand: 10244.138 m, 750.704 m/s, -51.587°C, 254.783 hPa mit entsprechender Luft Dichte \SI{0.4006}{kg/m^3}\\
-Flugzustand bei 18.691 s \ac{maxq} - $\SI{10}{\second}$: 4274.387 m, 461.355 m/s, -12.784, 594.935 hPa mit entsprechender Luft Dichte \SI{0.7960}{kg/m^3}\\
-Flugzustand bei 38.691 s \ac{maxq} + $\SI{10}{\second}$: 19758.652 m, 1189.968 m/s, -56.5°C, 56.93 hPa mit entsprechender Luft Dichte \SI{0.0915}{kg/m^3}\\
-Flugzustand bei 48.7 s \ac{maxq} + $\SI{20}{\second}$: 32439.616 m, 1393.377 m/s, -43.269°C, 8.136 hPa mit entsprechender Luft Dichte \SI{0.01233001}{kg/m^3}\\
-Da wie in~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} zu sehen ist, der Zeitpunkt des maximalen dynamischen Druckes nicht im größten spezifischen
-Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen Wärmestrom ergeben hat, eine Lösungsfortsetzung durchgeführt um das Maximum zu finden.\\
-
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
   \caption{Darstellung der Außensströmungssimulation mit Meshstruktur in grau, velocity inlet in blau, pressure outlet in rot, Symmetrien in gelb und Partitionen der parallelisierung in lila}\label{fig:aussenstroemung_mesh}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_inflation.png}
   \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
   \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/maxQ_compare_yplus.pdf}
   \caption{y+ Wert an der Außenhaut bei \ac{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:yplus_maxQ_simulationen}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_with_sim.pdf}
   \caption{PCM Wärmestrom während Flug mit Simulationsergebnissen und Fit Kurve}\label{fig:pcm_waermestrom_sim}
@@ -325,7 +328,7 @@ Wärmestrom resultiert, wurde mit der Simulation die den höheren spezifischen W
 Fitted Gaussian parameters:
 a=12454028.32, b=32.87, c=550.50, d=-12446646.16
 
-\begin{figure}[H]
+\begin{figure}
     \centering
 
     \begin{subfigure}{\textwidth}

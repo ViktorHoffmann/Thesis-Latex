@@ -493,6 +493,25 @@ wie in Abbildung~\ref{fig:rakete_kontour_zeichnung} dargestellt ist.
 Um zu wissen, ob hier die Beziehung für laminare oder turbulente Grenzschichten angewandt werden soll, müssen zunächst die Gültigkeitsbereiche der Reynolds- und Prandtlzahl (\ref{eq:prandtl},~\ref{eq:reynolds}) überprüft werden.
 Mittels der Nußelt-Beziehung wird der Wärmeübergangskoeffizient $\alpha$ bestimmt und dann in Gleichung~\ref{eq:qdot_recovery} eingesetzt, um auf den spezifischen Wärmestrom zu schließen.
 
+Die Außenstruktur der Rakete besteht aus dem zylindrischen Hüllensegment und einem von-Kármán-Nasenprofil das eine
+Spezialform der Haack Serie ist \cite{Stoney-1954}. Die analytische Beschreibung lautet:
+
+\begin{equation*}
+  \label{eq:karman_nase}
+  x(t) = \frac{R}{\sqrt{\pi}} \cdot \sqrt{
+  \cos^{-1}\left(1 - \frac{2t}{L} \right)
+  - \frac{1}{2} \cdot \sin\left(2 \cdot \cos^{-1}\left(1 - \frac{2t}{L} \right) \right)
+  }
+  \quad \text{für } t \in [0, L]
+\end{equation*}
+
+Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
+Die Gesamtlänge der Nase ist $L = \SI{1250}{\milli\meter}$. Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$, und entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
+
+Die Funktion der Nase wurde mithilfe von einem \ac{cad} Programm skizziert und die Konturlänge zu \SI{1,01}{\meter} vermessen. Wenn der Radiator über den vollständigen Umfang der Rakete
+bei einem Durchmesser von $D = \SI{250}{\milli\meter}$ modelliert wird, ist der Radiator eine \SI{12,684}{\centi\meter} lange Sektion.
+Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Radiators, an der Stelle alle lokalen Größen berechnet wurden.
+
 \begin{figure}
   \centering
   \begin{tikzpicture}[rotate border/.style={shape border uses incircle, shape border rotate=#1}, scale=0.8]
@@ -564,19 +583,8 @@ adiabat.
 \end{figure}
 
 
-Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen, wobei
-eingeklammerte Programme nicht an der Berechnung beteiligt waren aber zu Zwecken des nachbearbeiten und Plotten verwendet wurden:
-\begin{itemize}
-  \item setup.json
-  \item results.json
-  \item main.py
-  \item radiator.py
-  \item hybrid.py
-  \item pcm.py
-  \item (pcmProperty.py)
-  \item (post.py)
-\end{itemize}
-Das Programm main.py ist das Hauptprogramm das alle Unterprogramme in der richtigen Reihenfolge aufruft; zuerst die radiator.py zur Berechnung
+Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen.
+Das Programm main.py ist das Hauptprogramm das alle Unterprogramme in der richtigen Reihenfolge aufruft. Zuerst die radiator.py zur Berechnung
 der Radiator Dimension mithilfe der Randbedingungen aus der setup.json. Danach wird die hybrid.py aufgerufen um die Aerodynamischen Wärmeströme
 mittels der Nußelt-Beziehung zu bestimmen. Die Ergebnisse werden anschließend in die pcm.py geladen, um abhängig von der Radiatorfläche
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
@@ -635,7 +643,7 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dime
     \draw[arrow] (hoehe) -- (gewicht);
 
   \end{tikzpicture}
-  \caption{Dimensionierungs-Ablauf in der Vorauslegung}\label{fig:dimensionierung_ablauf}
+  \caption{Ablauf der Dimensionierung in der Vorauslegungs-Software}\label{fig:dimensionierung_ablauf}
 \end{figure}
 
 Wie in Abbildung \ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch
@@ -647,10 +655,6 @@ Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-
   \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
 \end{figure}
-
-Die Konturlänge der Nase wurde vom Struktur-Subsystem zu \SI{1,01}{\meter} festgelegt. Wenn der Radiator über den vollständigen Umfang der Rakete
-bei einem Durchmesser von $D = \SI{250}{\milli\meter}$ modelliert wird, ist der Radiator eine \SI{12,684}{\centi\meter} lange Sektion.
-Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Radiators, an der Stelle alle lokalen Größen berechnet wurden.
 
 Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
 aus \ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in \ref{sec:Radiator} modelliert

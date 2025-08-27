@@ -29,102 +29,154 @@
 
 \newpage
 
+\begin{lstlisting}[language=Python, caption={Funktionen in der hybrid.py}, label={lst:radiator_python_pseudo}]
+    # === flight data ===
+    time = raw['time']  # [s]
+    velocity = raw['velocity']  # [m/s]
+    air_temperature = raw['air_temperature'] + 273.15  # [K]
+    acceleration = raw['acceleration']
+    air_pressure = raw['air_pressure'] * 100 # [Pa]
+
+    # === constants ===
+    eta_0 = 18.27e-6  # [Pa*s]
+    T_0 = 291.15      # [K]
+    C = 120           # [K]
+    kappa = 1.4       # heat capacity ration for air
+    R = 287           # [J/(kg*K)]
+    c_p = 1005        # [J/(kg*K)]
+    x = 1.07          # [m] radiator centerpoint (0.06 m from hull top)
+    T_w = 273.15 + target_temperature # [K] PCM melting point
+
+    # === functions ===
+    def T_m(T1, T2): return (T1 + T2) / 2                                   # average temperature
+    def eta(T): return eta_0 * ((T_0 + C) / (T + C)) * (T / T_0) ** (3/2)   # dynamic viscosity with surherlands formula
+    def lam(T): return 2.64638e-3 + 7.326e-5 * T - 1.746e-8 * T**2          # thermal conductivity with polynomial fit
+    def rho(p, T): return p / (R * T)                                       # air density
+    def Pr(T): return (c_p * eta(T)) / lam(T)                               # prandtl number
+    def Ma(V, T): return V / np.sqrt(kappa * R * T)                         # mach number
+    def Re(V, p, T, x): return V * rho(p, T) * x / eta(T)                   # reynolds number
+    def r(T): return Pr(T) ** (1/3)                                         # recovery factor
+    def T_r(V, T): return T * (1 + r(T) * (kappa + 1) / 2 * Ma(V, T))       # recovery temperature
+    def qdot_air(p, T, V, x, T_w):                                          # nusselt relation for wall heatflux
+        Re_x = Re(V, p, T, x)
+        Pr_x = Pr(T)
+        Nu_x = 0.0296 * Re_x**0.8 * Pr_x**(1/3) # turbulent
+        alpha = Nu_x * lam(T) / x
+        return alpha * (T_r(V, T) - T_w)
+    def pdyn(V, T, p): return 0.5 * rho(p, T) * V**2                        # dynamic pressure
+
+    # === heatflux calculation ===
+    Qdot_env = np.array([
+        qdot_air(p, T_m(T_w, T), V, x, T_w)
+        for p, T, V in zip(air_pressure, air_temperature, velocity)
+    ]) * hybrid_radiator_area + (solar_flux/2 * a * hybrid_radiator_area)  # add solar flux
+
+    Qdot_in = Qdot_env + avionics_power  # [W]
+
+    # === fluid dynamics plot ===
+    Re_plot = np.array([Re(V, p, T, x) for V, p, T in zip(velocity, air_pressure, air_temperature)])
+    Pr_plot = np.array([Pr(T) for T in air_temperature])
+    pdyn_plot = np.array([pdyn(V, T, p) for V, p, T in zip(velocity, air_pressure, air_temperature)])
+\end{lstlisting}
+
+\newpage
+
 \begin{lstlisting}[language=C, caption={Vollständige \ac{pcm} \ac{udf} eicosane.c}, label={lst:udf_rest}]
-//Modified UDF of the original source: https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/
-#include "udf.h"
-#include "mem.h"
+    //Modified UDF of the original source: https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/
+    #include "udf.h"
+    #include "mem.h"
 
-//n-eicosane constant properties in solid phase
-#define Ros_pcm 910.0
-#define Cps_pcm 2132.4
-#define Ks_pcm 0.4248
+    //n-eicosane constant properties in solid phase
+    #define Ros_pcm 910.0
+    #define Cps_pcm 2132.4
+    #define Ks_pcm 0.4248
 
-//n-eicosane constant properties in fluid phase
-#define Rol_pcm 769.0
-#define Cpl_pcm 2350.05
-#define Kl_pcm 0.1505
+    //n-eicosane constant properties in fluid phase
+    #define Rol_pcm 769.0
+    #define Cpl_pcm 2350.05
+    #define Kl_pcm 0.1505
 
-//thermal expansion coefficient
-#define TEC 0.0009
+    //thermal expansion coefficient
+    #define TEC 0.0009
 
-//solidus and liquidus temperatures of n-eicosane
-#define Ts 309.0
-#define Tl 311.0
+    //solidus and liquidus temperatures of n-eicosane
+    #define Ts 309.0
+    #define Tl 311.0
 
-//reference temperature for Boussinesq's approximation
-#define Tr 310.0		//Fluent Tref must be equal to Tr
+    //reference temperature for Boussinesq's approximation
+    #define Tr 310.0		//Fluent Tref must be equal to Tr
 
-//density of PCM
-DEFINE_PROPERTY(Ro_var_PCM,cell,thread)
-{
-	double Gama, Ro_pcm;
-	#if !RP_HOST
-		Gama=C_LIQF(cell,thread);
-		Ro_pcm=(1-Gama)*Ros_pcm+Gama*Rol_pcm;
-	#endif
-	return Ro_pcm;
-}
+    //density of PCM
+    DEFINE_PROPERTY(Ro_var_PCM,cell,thread)
+    {
+        double Gama, Ro_pcm;
+        #if !RP_HOST
+            Gama=C_LIQF(cell,thread);
+            Ro_pcm=(1-Gama)*Ros_pcm+Gama*Rol_pcm;
+        #endif
+        return Ro_pcm;
+    }
 
-DEFINE_SPECIFIC_HEAT(Cp_var_PCM,T,Tref,h,yi)
-{
-	double Gama, Cp_pcm;
-	#if !RP_HOST
-		if (T<Ts) { Cp_pcm=Cps_pcm; } else if (T>=Ts&&T<=Tl)
-		{
-			Gama=(T-Ts)/(Tl-Ts);
-			Cp_pcm=((1-Gama)*Ros_pcm*Cps_pcm+Gama*Rol_pcm*Cpl_pcm)/((1-Gama)*Ros_pcm+Gama*Rol_pcm);
-		}
-		else
-		{
-			Cp_pcm=Cpl_pcm;
-		}
-		*h=Cp_pcm*(T-Tref);
-	#endif
-	return Cp_pcm;
-}
+    DEFINE_SPECIFIC_HEAT(Cp_var_PCM,T,Tref,h,yi)
+    {
+        double Gama, Cp_pcm;
+        #if !RP_HOST
+            if (T<Ts) { Cp_pcm=Cps_pcm; } else if (T>=Ts&&T<=Tl)
+            {
+                Gama=(T-Ts)/(Tl-Ts);
+                Cp_pcm=((1-Gama)*Ros_pcm*Cps_pcm+Gama*Rol_pcm*Cpl_pcm)/((1-Gama)*Ros_pcm+Gama*Rol_pcm);
+            }
+            else
+            {
+                Cp_pcm=Cpl_pcm;
+            }
+            *h=Cp_pcm*(T-Tref);
+        #endif
+        return Cp_pcm;
+    }
 
-//thermal conductivity of n-eicosane
-DEFINE_PROPERTY(K_var_PCM,cell,thread)
-{
-	double Gama, K_pcm;
-	#if !RP_HOST
-		Gama=C_LIQF(cell,thread);
-		K_pcm=(1-Gama)*Ks_pcm+Gama*Kl_pcm;
-	#endif
-	return K_pcm;
-}
+    //thermal conductivity of n-eicosane
+    DEFINE_PROPERTY(K_var_PCM,cell,thread)
+    {
+        double Gama, K_pcm;
+        #if !RP_HOST
+            Gama=C_LIQF(cell,thread);
+            K_pcm=(1-Gama)*Ks_pcm+Gama*Kl_pcm;
+        #endif
+        return K_pcm;
+    }
 
-//dynamic viscosity of PCM with fit
-DEFINE_PROPERTY(Mu_var_PCM,cell,thread)
-{
-	double Temp,Mu_pcm;
-	#if !RP_HOST
-		Temp=C_T(cell,thread);
-		Mu_pcm=(9*pow(10.,-4)*pow(Temp,2)-0.6529*Temp+119.94)*pow(10.,-3);
-	#endif
-	return Mu_pcm;
-}
+    //dynamic viscosity of PCM with fit
+    DEFINE_PROPERTY(Mu_var_PCM,cell,thread)
+    {
+        double Temp,Mu_pcm;
+        #if !RP_HOST
+            Temp=C_T(cell,thread);
+            Mu_pcm=(9*pow(10.,-4)*pow(Temp,2)-0.6529*Temp+119.94)*pow(10.,-3);
+        #endif
+        return Mu_pcm;
+    }
 
-DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
-{
-	double Temp, source, acc;
-	Temp=C_T(cell,thread);
+    DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
+    {
+        double Temp, source, acc;
+        Temp=C_T(cell,thread);
 
-	double t = CURRENT_TIME;
+        double t = CURRENT_TIME;
 
-	if (t < 20)
-		acc = 34.81;
-	else if (t < 50)
-		acc = 109.81;
-	else if (t < 150)
-		acc = 19.62;
-	else
-		acc = 9.81;
+        if (t < 20)
+            acc = 34.81;
+        else if (t < 50)
+            acc = 109.81;
+        else if (t < 150)
+            acc = 19.62;
+        else
+            acc = 9.81;
 
-	source=-Rol_pcm*acc*TEC*(Temp-Tr); //negative for -Y down
-	dS[eqn]=-Rol_pcm*acc*TEC; //negative for -Y down
-	return source;
-}
+        source=-Rol_pcm*acc*TEC*(Temp-Tr); //negative for -Y down
+        dS[eqn]=-Rol_pcm*acc*TEC; //negative for -Y down
+        return source;
+    }
 \end{lstlisting}
 
 % \begin{lstlisting}[language=python, caption={setup.json}, label={lst:setup.json}]

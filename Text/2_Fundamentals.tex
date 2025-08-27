@@ -121,13 +121,13 @@ Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen ve
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:reynolds}
-    \text{Re}_x = \frac{U \rho x}{\eta}
+    Re_x = \frac{U \rho x}{\eta}
   \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:prandtl}
-    \text{Pr} = \frac{c_p \eta}{\lambda}
+    Pr = \frac{c_p \eta}{\lambda}
   \end{equation}
 \end{minipage}
 
@@ -135,7 +135,7 @@ Die Dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet,
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
-  \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{2}{3}}
+  \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{3}{2}}
 \end{equation}
 
 Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
@@ -235,13 +235,13 @@ Für $C_F$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
 \begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:reibungsbeiwert_laminar}
-    C_f(x) \approx \frac{0.664}{\sqrt{\mathrm{Re}_x}}
+    C_f \approx \frac{0.664}{\sqrt{{Re}_x}} \hspace{0.5em} \mathrm{bei} \hspace{0.5em} Re \leq \SI{5e5}{}
   \end{equation}
 \end{minipage}%
 \begin{minipage}{.5\linewidth}
   \begin{equation}
     \label{eq:reibungsbeiwert_turbulent}
-    C_f(x) \approx \frac{0.0592}{\mathrm{Re}_x^{1/5}}
+    C_f \approx \frac{0.0592}{{Re}_x^{1/5}} \hspace{0.5em} \mathrm{bei} \hspace{0.5em} Re > \SI{5e5}{}
   \end{equation}
 \end{minipage}
 
