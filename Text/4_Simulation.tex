@@ -231,8 +231,7 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 \end{figure}
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
-Die Simulation der aerodynamischen Aufheizung wurde als stationäre Simulation mit dem Density-Based solver durchgeführt. Hierbei wurde
-aufgrund der Rotationssymmetrie der Rakete im relevanten Bereich oberhalb der Finnen wieder eine zweidimensionale Simulation durchgeführt.
+Die Simulation der aerodynamischen Aufheizung wurde als stationäre Simulation mit dem Density-Based solver durchgeführt.
 Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert.
 Die Luft wurde als Ideales Gas mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
 einer Wärmeleitfähigkeit von \SI{0.0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1.7894e-5}{\kilogram\per\meter\second}
@@ -244,7 +243,6 @@ Dieser Punkt wird als Richtwert für die aerodynamische Aufheizung angenommen, d
 
 Um ein Profil der aerodynamischen Aufheizung bilden zu können wurde jeweils eine Simulation bei \ac{maxq}, \ac{maxq}-\SI{10}{\second},
 \ac{maxq}+\SI{10}{\second} und \ac{maxq}+\SI{20}{\second} durchgeführt. Die den Punkten entsprechenden Flugzustände können Tabelle~\ref{tab:simulation_flugzustand} entnommen werden.
-Die Ergebnisse wurden danach mittels eines Gauss-fit als Funktion dargestellt.
 
 \begin{table}[H]
   \centering
@@ -262,7 +260,13 @@ Die Ergebnisse wurden danach mittels eines Gauss-fit als Funktion dargestellt.
   \end{tabular}
 \end{table}
 
-Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen und Partitionen der Parallelisierung in Abbildung~\ref{fig:aussenstroemung_mesh} dargestellt.
+Bei dieser Simulation wurde aufgrund der Rotationssymmetrie der Rakete im relevanten Bereich oberhalb der Finnen eine zweidimensionale Simulation der halben Rakete durchgeführt.
+Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen und Partitionen der Parallelisierung in Abbildung~\ref{fig:aussenstroemung_mesh} dargestellt,
+wo die blauen Pfeile auf der linken Seite der velocity inlet, die roten Pfeile auf der rechten Seite der pressure outlet und die gelben Ränder der Domäne
+vor der Rakete und an der oberen Kante der Domäne Symmetrie Randbedingungen sind.
+Die Nase selbst wurde adiabat modelliert und das Hüllensegment als isotherm aufgrund des \ac{pcm} mit $T_w = \SI{310}{\kelvin}$ (Schmelzpunkt des n-Eicosan), wobei Temperaturgradienten durch die Wand
+ignoriert werden.
+
 Um die Anforderung der Gleichung~\ref{eq:yplus} mit $y^+ \leq 1$ zu erfüllen, wurden Inflationsschichten an der Wand eingefügt, die in Abbildung~\ref{fig:aussenstroemung_mesh_inflationlayers}
 zu sehen sind. Zur Berechnung der Höhe der ersten Zellschicht wurde der Flugzustand bei \ac{maxq} verwendet.
 Zuerst muss Gleichung \ref{eq:dynamische_viskositaet} verwendet werden um die dynamische Viskosität zu berechnen:
@@ -274,25 +278,25 @@ Zuerst muss Gleichung \ref{eq:dynamische_viskositaet} verwendet werden um die dy
 Damit wird als nächstes die lokale Reynolds-Zahl in der Mitte des Radiators berechnet. Die Konturlänge bis zu dem Mittelpunkt des Radiators beträgt wie in \ref{sec:pcm_radiator_hybrid} \SI{1,074}{\meter}:
 
 \begin{equation*}
-  Re_{\mathrm{maxQ}} = \frac{\SI{750,704}{\meter\per\second} \SI{0,401}{\kilogram\per\meter\cubed} \SI{1,074}{\meter}}{\SI{1,45e-5}{\pascal\second}} \approx \SI{2,220e7}{}
+  Re_{\mathrm{maxQ}} = \frac{\SI{750,704}{\meter\per\second}\,\SI{0,401}{\kilogram\per\meter\cubed}\,\SI{1,074}{\meter}}{\SI{1,45e-5}{\pascal\second}} \approx \SI{2,220e7}{}
 \end{equation*}
 
-Da die Reynolds-Zahl sich im turbulenten Bereich befindet wird Gleichung \ref{eq:reibungsbeiwert_turbulent} verwendet:
+Da die Reynolds-Zahl sich im turbulenten Bereich befindet wird Gleichung \ref{eq:reibungsbeiwert_turbulent} für den Reibungsbeiwert verwendet:
 
 \begin{equation*}
-  C_f = \frac{0.0592}{{\SI{2,22e7}{}}_x^{1/5}} \approx \SI{2,009e-3}{}
+  C_f = \frac{0.0592}{\left({\SI{2,22e7}{}}_x\right)^{1/5}} \approx \SI{2,009e-3}{}
 \end{equation*}
 
-Mit Gleichung \ref{eq:schubspannung} eingesetzt in Gleichung \ref{eq:schubspannung_geschwindigkeit} ergibt sich:
+Mit Gleichung \ref{eq:schubspannung} eingesetzt in Gleichung \ref{eq:schubspannung_geschwindigkeit} ergibt sich für die Schubspannungsgeschwindigkeit:
 
 \begin{equation*}
-  u_{\tau} = \sqrt{\frac{\left(\SI{750,704}{\meter\per\second}\right)^2 \SI{2,009e-3}{}}{2}} \approx \SI{23,793}{\meter\per\second}
+  u_{\tau} = \sqrt{\frac{\left(\SI{750,704}{\meter\per\second}\right)^2\,\SI{2,009e-3}{}}{2}} \approx \SI{23,793}{\meter\per\second}
 \end{equation*}
 
 Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten Zelle $y_1$ berechnen indem $y^+ = 1$ gesetzt wird:
 
 \begin{equation*}
-  y_1 = \frac{y^+ \hspace{0.5em} \SI{1,45e-5}{\pascal\second}}{\SI{0,401}{\kilogram\per\meter\cubed} \SI{23,793}{\meter\per\second}} \approx \SI{1,52e-6}{\meter}
+  y_1 = \frac{y^+\,\SI{1,45e-5}{\pascal\second}}{\SI{0,401}{\kilogram\per\meter\cubed}\,\SI{23,793}{\meter\per\second}} \approx \SI{1,52e-6}{\meter}
 \end{equation*}
 
 \begin{figure}
@@ -307,11 +311,19 @@ Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten 
   \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
 \end{figure}
 
+In Abbildung \ref{fig:spezifischer_waermestrom_maxQ_simulationen} kann man den spezifischen Wärmestrom am Hüllensegment der Rakete sehen
+Die Positionsachse entspricht bei \SI{1}{\meter} dem Übergang von der Nase zum Hüllensegment. Weiterhin ist zu beachten, dass der spezifische Wärmestrom
+negativ ist, wenn Wärme aus dem Fluid in die Wand übergeht. Dementsprechend kann man deutlich erkennen, dass mit der weiteren Entwicklung der Grenzschicht
+der spezifische Wärmestrom sinkt.
+
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
   \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
 \end{figure}
+
+Die Aussagekraft der spezifischen Wärmeströme über die Wand lässt sich anhand der Abbildung \ref{fig:yplus_maxQ_simulationen} bestätigen, da die Werte von $y^+$
+für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
 
 \begin{figure}
   \centering
@@ -319,14 +331,28 @@ Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten 
   \caption{y+ Wert an der Außenhaut bei \ac{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:yplus_maxQ_simulationen}
 \end{figure}
 
+Einen Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung \ref{fig:pcm_waermestrom_sim} zu sehen, wo die Abbildung \ref{fig:pcm_waermestrom_vorauslegung} mit den
+Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauss Funktion und dem numpy package aus dem
+Python library automatisch fitted:
+
+\begin{equation*}
+f(x) = a \cdot \exp\!\left(-\frac{(x-b)^2}{2c^2}\right) + d
+\end{equation*}
+
+Ermittelte Parameter:
+\begin{equation*}
+  a=12454028,32 \quad b=32,87 \quad c=550,50 \quad d=-12446646,16
+\end{equation*}
+
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_with_sim.pdf}
   \caption{PCM Wärmestrom während Flug mit Simulationsergebnissen und Fit Kurve}\label{fig:pcm_waermestrom_sim}
 \end{figure}
 
-Fitted Gaussian parameters:
-a=12454028.32, b=32.87, c=550.50, d=-12446646.16
+Die Temperatur- und Machkontur der Luft kann man in Abbildung \ref{fig:maxQ_konturen} sehen, wo der Stoß an der Nasenspitze
+deutlich zu erkennen ist. Konturen der weiteren Simulationen sind den Abbildungen \ref{fig:airflow_temp_contour_continued}
+und \ref{fig:airflow_mach_contour_continued} zu entnehmen.
 
 \begin{figure}
     \centering
