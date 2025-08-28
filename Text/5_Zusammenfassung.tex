@@ -1,0 +1,50 @@
+\chapter{Zusammenfassung}
+\label{chap:Zusammenfassung}
+
+Es wurden verschiedene Lösungsansätze für ein geeignetes \ac{atm} analysiert und ein auf einem einfachen \ac{pcm} basierendes System
+ausgewählt, das ausfallsicher, wiederverwendbar und leicht ist.
+Die geforderte Maximaltemperatur kann nach genauerer Analyse mittels einer \ac{cht} Simulation jedoch nicht eingehalten werden.
+
+Zur Vorauslegung wurden einige Vereinfachungen getroffen, die eine schnelle Abschätzung der Thermodynamischen Eigenschaften
+und Bilanzen ermöglichen.
+Das ersetzen der thermalen Schnittstelle mit einfachen Widerständen etwa ist eine invalide Annahme sollten sich die Umgebungsbedingungen
+von denen aus den Datenblättern abweichen.
+Bei der \ac{pcm} Vorauslegung wurde auch angenommen, dass alle Wärmeleitkoeffizienten unendliche groß sind und somit zu jeder Zeit
+eine homogene Temperaturverteilung herrscht damit einfache Bilanzgleichungen angewandt werden können.
+Die Strahlung wurde aufgrund der relativ niedrigen Temperaturen vollständig ignoriert und
+die Anbindung der Avionik und des \ac{atm} an die umgebende Struktur der Rakete wurde auch vernachlässigt.
+
+Bei der Vorauslegung des Radiators wurde ein einfacher Richtwert der Sonneneinstrahlung verwendet, der von Flughöhe unabhängig ist.
+Genauso wurde das Albedo der Erde vollständig ignoriert.
+Bei einem wie in Kapitel \ref{sec:Radiator} beschriebenem Radiator der den vollständigen Umfang der Rakete umläuft, ist ein Dutycycle von
+\SI{50}{\percent} auch nur ein Richtwert der je nach Reflexionsgrad der Beschichtung zu Abweichungen führt.
+
+Die bei der Vorauslegung verwendeten analytischen Methoden zur Bestimmung der Wärmeströme infolge der aerodynamischen Aufheizung sind auch,
+wie in der darauf folgenden Simulation gezeigt, grobe Richtwerte die mit einer Abweichung von etwa Faktor 2 zu den Simulationsergebnissen
+alleine keine Aussagekraft besitzen.
+
+Bei den Simulationen wurden auch gewisse Annahmen getroffen. Etwa, dass das \ac{pcm} zweidimensional simuliert wurde und symmetrisch ist entspricht
+nicht der Realität und resultiert im Verlust der Aussagekraft, war jedoch aus logistischen Gründen durch mangelnde Rechenressourcen notwendig.
+Genauso wie in der Vorauslegung wurde hier auch die Strahlung vernachlässigt. Des weiteren ist die Mesh-Auflösung nicht ausreichend um
+Temperaturgradienten in der Aluminiumstruktur zu erkennen.
+
+Bei der Umströmungssimulation der Rakete wurde durch die Vereinfachung mittels zweidimensionaler Domäne und Nutzung der Symmetrie zwar keine
+Genauigkeit gegenüber der realen lösung verloren, jedoch durch die vollständig isotherme Modellierung der Wand schon, da diese in der
+Realität aus Materialien mit stark anisotropen Eigenschaften besteht und eine finite Dicke hat.
+
+
+Wenn man bessere Finnen konstruiert braucht man feineres mesh um gradienten in den wänden zu sehen
+
+
+Die Vorauslegungwurde mit folgenden Werten durchgeführt:\\
+- Isotherm auf: \SI{38}{\celsius}\\
+- Avionik Abwärme: \SI{40}{W}\\
+- \SI{1}{m} Kontourlänge\\
+- Radiator Emissionsgrad: \SI{0,91}{} (AZ-93)\\
+- Radiator Absorptionsgrad: \SI{0,15}{} (AZ-93)\\
+- Icosane PCM\\
+- Trajektoriensimulation\\
+- \SI{1}{\kilo\watt\per\meter\squared} mit 50\% dutycycle durch Rotation der Rakete (falsch bei rundem radiator)\\
+Zu beachten ist, dass die Radiatorleistung konstant bleibt, da das System als isotherm mit einer
+infinitesimalen Temperaturerhöhung über den Schmelzpunkt hinweg angenommen wird.\\
+Als nächstes sieht man die Flugdaten 
