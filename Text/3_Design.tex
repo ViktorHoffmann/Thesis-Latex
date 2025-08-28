@@ -587,9 +587,9 @@ adiabat.
 
 
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen.
-Das Programm main.py ist das Hauptprogramm das alle Unterprogramme in der richtigen Reihenfolge aufruft. Zuerst die radiator.py zur Berechnung
-der Radiator Dimension mithilfe der Randbedingungen aus der setup.json. Danach wird die hybrid.py aufgerufen um die Aerodynamischen Wärmeströme
-mittels der Nußelt-Beziehung zu bestimmen. Die Ergebnisse werden anschließend in die pcm.py geladen, um abhängig von der Radiatorfläche
+Das Hauptprogramm \texttt{main.py} ruft alle Unterprogramme in der richtigen Reihenfolge: zuerst die \texttt{radiator.py} zur Berechnung
+der Radiator Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} aufgerufen um die Aerodynamischen Wärmeströme
+mittels der Nußelt-Beziehung zu bestimmen, anschließend werden die Ergebnisse in die \texttt{pcm.py} geladen, um abhängig von der Radiatorfläche
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
 In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dimensionierung in der Software abläuft.
 
@@ -646,7 +646,7 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dime
     \draw[arrow] (hoehe) -- (gewicht);
 
   \end{tikzpicture}
-  \caption{Ablauf der Dimensionierung in der Vorauslegungs-Software}\label{fig:dimensionierung_ablauf}
+  \caption{Ablauf der Dimensionierung in der Vorauslegungs-Software. Pfeile stellen Abhängigkeiten dar.}\label{fig:dimensionierung_ablauf}
 \end{figure}
 
 Wie in Abbildung \ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch

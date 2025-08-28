@@ -35,6 +35,7 @@
         "Radiatorleistung",
         "Radiusverlauf",
         "Reynoldszahl",
+        "scipy",
         "Strömungs",
         "Strömungserwärmung",
         "Strömungssimulation",

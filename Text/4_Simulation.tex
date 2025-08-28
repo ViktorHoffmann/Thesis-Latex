@@ -231,9 +231,11 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 \end{figure}
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
-Die Simulation der aerodynamischen Aufheizung wurde als stationäre Simulation mit dem Density-Based solver durchgeführt.
-Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert.
-Die Luft wurde als Ideales Gas mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
+Die Simulationen der aerodynamischen Aufheizung wurde als stationäre Simulationen mit dem Density-Based solver durchgeführt.
+Aufgrund der Ähnlichkeit wurden diese stark an der Masterarbeit zur Aerodynamischen Analyse des vorherigen
+\ac{hyend} Projekts N2ORTH von Irving, Hugh~\cite{Irving-2021} orientiert.
+Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert~\cite{Irving-2021}.
+Die Luft wurde als Ideales Gas~\cite{Irving-2021} mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
 einer Wärmeleitfähigkeit von \SI{0.0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1.7894e-5}{\kilogram\per\meter\second}
 und einer molekularen Masse von \SI{28,966}{\kilogram\per\kilo\mole} modelliert.
 
@@ -332,8 +334,8 @@ für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
 \end{figure}
 
 Einen Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung \ref{fig:pcm_waermestrom_sim} zu sehen, wo die Abbildung \ref{fig:pcm_waermestrom_vorauslegung} mit den
-Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauss Funktion und dem numpy package aus dem
-Python library automatisch fitted:
+Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauß-Funktion und der Funktion \texttt{curve\_fit} aus dem
+Python Paket \texttt{SciPy} automatisch angepasst:
 
 \begin{equation*}
 f(x) = a \cdot \exp\!\left(-\frac{(x-b)^2}{2c^2}\right) + d
