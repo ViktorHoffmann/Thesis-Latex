@@ -8,7 +8,7 @@
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/radiator_leistung.pdf}
-  \caption{Radiator Leistung nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
+  \caption{Radiator Leistungskonturen nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
 \end{figure}
 
 \begin{figure}[H]
@@ -16,20 +16,20 @@
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Code/pcm_mass.pdf}
-        \caption{PCM Masse}\label{fig:pcm_mass}
+        \caption{Konturen der PCM Masse nach Seitenlänge und Höhe der PCM Box}\label{fig:pcm_mass}
     \end{subfigure}
-    \vspace{1em}  % Optional vertical spacing
+    \vspace{1em}
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Code/pcm_heat_capacity.pdf}
-        \caption{PCM Wärmeaufnahme}\label{fig:pcm_heat}
+        \caption{Konturen der PCM Latent Wärmekapazität nach Seitenlänge und Höhe der PCM Box}\label{fig:pcm_heat}
     \end{subfigure}
     \caption{PCM Auslegung}\label{fig:pcm_mass_heat}
 \end{figure}
 
 \newpage
 
-\begin{lstlisting}[language=Python, caption={Funktionen in der hybrid.py}, label={lst:radiator_python_pseudo}]
+\begin{lstlisting}[language=Python, caption={Funktionen in der hybrid.py}, label={lst:hybrid_python_pseudo}]
     # === flight data ===
     time = raw['time']  # [s]
     velocity = raw['velocity']  # [m/s]

@@ -11,6 +11,7 @@ Phänomen kann durch die Änderung der kinetischen Energie von den molekularen T
 Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
 
 \begin{equation}
+    \label{eq:sensible_waerme}
     c = \frac{\Delta Q}{m \cdot \Delta T}
 \end{equation}
 
@@ -28,6 +29,7 @@ statt der kinetischen wie bei der sensiblen Wärme, zu verstehen. Effektiv erhö
 Die Stoffkonstante der Umwandlungsenthalpie ist die spezifische Umwandlungsenthalpie $h$:
 
 \begin{equation}
+    \label{eq:latente_waerme}
     h = \frac{\Delta Q}{m}
 \end{equation}
 
@@ -40,13 +42,13 @@ spezifische Schmelzenthalpie~\cite{fusion-vaporization}.
 
 \section{Wärmeübertragung}\label{sec:waermeuebertragung}
 
-Um Wärme innerhalb von einem System günstig zu verteilen, oder die Energie aus dem System zu entfernen, gibt es drei Mechanismen.
+Für den Transport von Wärme innerhalb und über ein System hinweg, gibt es drei Mechanismen die im folgenden Kapitel erklärt werden.
 
 \subsection{Wärmestrahlung}\label{sec:strahlung}
 
-Bei der Wärmestrahlung geben Teilchen beim aufnehmen oder abgeben kinetischer Energie eine Gewisse Menge an Energie in Form
+Bei der Wärmestrahlung geben Teilchen beim aufnehmen oder abgeben kinetischer Energie eine gewisse Menge an Energie in Form
 von Elektromagnetischer Strahlung ab. Da die Strahlungsleistung von der vierten Potenz der Temperatur
-abhängt, ist dieser Modus erst bei sehr hohen Temperaturen dimensionierend, kann jedoch im Vakuum dominant sein:
+abhängt, ist dieser Mechanismus erst bei sehr hohen Temperaturen dimensionierend, kann jedoch im Vakuum dominant sein:
 
 \begin{equation}
     \label{eq:radiation}
@@ -66,7 +68,7 @@ Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fou
   \vec{\dot{q}} = -\lambda \nabla T
 \end{equation}
 
-Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials.
+Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials und $\nabla$ der räumliche Differentialoperator.
 Für eine eindimensionale Wand ergibt sich die Gleichung mit der Querschnittfläche $A$ und der Dicke $\Delta x$ zu:
 
 \begin{equation}
@@ -74,7 +76,7 @@ Für eine eindimensionale Wand ergibt sich die Gleichung mit der Querschnittflä
   \dot{Q} = \lambda A \frac{\Delta T}{\Delta x}
 \end{equation}
 
-Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Watt definieren:
+Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Wärmestrom definieren:
 
 \begin{equation}
   \label{eq:waermewiederstand}
@@ -83,25 +85,25 @@ Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperatu
 
 \subsection{Konvektion}\label{sec:konvektion}
 
-Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion bekommt das Fluid durch äußere Kräfte
-eine relative Geschwindigkeit, die zum Massenaustausch führt. Andererseits resultiert bei der natürlichen Konvektion nur die eigene
-inhomogene Temperaturverteilung, durch beispielsweise eine anliegende heiße Wand, zu einem Temperaturanstieg und infolge dessen zu einem
+Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion erhält das Fluid durch äußere Kräfte
+eine inhomogene Geschwindigkeitsverteilung, die zum Massenaustausch führt. Andererseits resultiert bei der natürlichen Konvektion nur die eigene
+inhomogene Temperaturverteilung, durch beispielsweise eine anliegende heiße Wand, zu einem
 Dichteanstieg, der in einem Beschleunigungsfeld zu Auftriebskräften und automatischer Bewegung des Fluids führt.
-Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich:
+Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich~\cite{Weigand-2022}:
 
 \begin{equation}
     \dot{Q}=\alpha A \Delta T 
 \end{equation}
 
 Hier ist $\alpha$ der Wärmeübergangskoeffizient.
-Für den spezifischen Wärmestrom zwischen Fluid und Wand folgt daraus:
+Für den spezifischen Wärmestrom zwischen Fluid und Wand folgt daraus~\cite{Weigand-2022}:
 
 \begin{equation}
   \label{eq:qdot_freestream}
   \dot{q} = \alpha \ (T_{\infty} - T_\text{w})
 \end{equation}
 
-Der Wärmeübergangskoeffizient $\alpha$ kann aus der Nußelt-Beziehung für Längsangeströmte ebene Platte genommen. Diese lautet
+Der Wärmeübergangskoeffizient $\alpha$ kann aus der Nußelt-Beziehung für Längsangeströmte ebene Platte genommen werden~\cite{Weigand-2022}. Diese lautet
 für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$:
 
 \begin{equation}
@@ -116,7 +118,7 @@ für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^5 \leq \text
   \text{Nu}_x = \frac{\alpha_x x}{\lambda} = \num{0,0296} \ \text{Re}_x^{0,8} \ \text{Pr}^{\frac{1}{3}}
 \end{equation}
 
-Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen verwendet:
+Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen verwendet~\cite{Weigand-2022}:
 
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
@@ -131,7 +133,7 @@ Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen ve
   \end{equation}
 \end{minipage}
 
-Die Dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
+Die Dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet~\cite{Anderson-2017}, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
@@ -147,28 +149,28 @@ Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
 
 Wobei $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
 Effekte durch die Kompressibilität der Strömung auf, wie etwa durch Stoßwellen mit sprunghaftem Anstieg von Temperatur und Druck,
-oder Expansionsfächern mit sprunghaftem Abfall dieser Größen. Auch die adiabate Kompression resultiert in Temperaturerhöhungen.
+oder Expansionsfächer mit sprunghaftem Abfall dieser Größen. Auch die adiabate Kompression resultiert in Temperaturerhöhungen.
 Die in einer Grenzschicht erreichte Temperatur durch Reibung
 ist immer kleiner als die Totaltemperatur $T_{\infty} < T_r < T_\mathrm{total}$, da die kinetische Energie nur teilweise in innere Energie
-umgewandelt wird und somit mit dem Recovery-Faktor $r$ skaliert ist:
+umgewandelt wird und somit durch dem Recovery-Faktor $r$ skaliert ist~\cite{Anderson-2017}:
 
 \begin{equation}
   \label{eq:recovery_temperatur}
   T_r = T_{\infty} \left( 1 + r \frac{\kappa - 1}{2} \text{Ma}^2 \right)
 \end{equation}
 
-Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden:
+Der Recovery-Faktor kann mittels der folgenden Gleichung berechnet werden~\cite{Anderson-2017}:
 
 \begin{equation}
   \label{eq:recovery_faktor}
-  r = \frac{2}{\left( \kappa - 1 \right) \mathrm{Ma_{\infty}}^2} \left( \frac{T_\mathrm{a_{w}}}{T_{\infty}} - 1 \right) \approx
+  r = \frac{2}{\left( \kappa - 1 \right) {Ma_{\infty}}^2} \left( \frac{T_{a_{w}}}{T_{\infty}} - 1 \right) \approx
   \begin{cases}
     \sqrt[3]{\text{Pr}} & \text{für turbulente Grenzschicht}\\
     \sqrt{\text{Pr}} & \text{für laminare Grenzschicht}
   \end{cases}
 \end{equation}
 
-In einer kompressiblen Strömung bei $\mathrm{Ma} > 0.3$ wird somit $T_{\infty}$ aus \ref{eq:qdot_freestream} zu $T_\text{r}$:
+In einer kompressiblen Strömung bei $Ma > 0.3$ wird somit $T_{\infty}$ aus Gleichung~\ref{eq:qdot_freestream} zu $T_r$ geändert:
 
 \begin{equation}
   \label{eq:qdot_recovery}
@@ -176,11 +178,15 @@ In einer kompressiblen Strömung bei $\mathrm{Ma} > 0.3$ wird somit $T_{\infty}$
 \end{equation}
 
 \section{Simulation}
+
+Für die Numerischen Simulationen wird die Software ANSYS Fluent verwendet. Dabei handelt es sich um ein kommerziellen
+\ac{cfd} Solver, der die Modellierung von Strömungsvorgängen, Wärmeleitung, Konvektion und Phasenwechselprozessen ermöglicht.
+
 \section*{Aerodynamische Aufheizung}
 
-Die numerische Strömungssimulation (\ac{cfd}) ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
+Die numerische Strömungssimulation ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
 mithilfe numerischer Methoden. \ac{cfd} erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
-die experimentell nur schwer oder gar nicht möglich sind. Ziel ist es, die Navier-Stokes-Gleichungen in differentieller Form auf einer
+die experimentell nur schwer oder gar nicht möglich sind. Ziel ist es, die Navier-Stokes-Erhaltungsgleichungen in differentieller Form auf einer
 diskreten Gitterstruktur zu lösen. Diese Erhaltungsgleichungen sind die Massenerhaltung:
 
 \begin{equation}
@@ -232,18 +238,15 @@ Hierbei ist $\eta$ die dynamische Viskosität, $\left.\frac{\partial u}{\partial
 und $C_f$ der Reibungsbeiwert.
 Für $C_f$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
 
-\begin{minipage}{.5\linewidth}
-  \begin{equation}
+\begin{equation}
     \label{eq:reibungsbeiwert_laminar}
     C_f \approx \frac{0.664}{\sqrt{{Re}_x}} \hspace{0.5em} \mathrm{bei} \hspace{0.5em} Re \leq \SI{5e5}{}
-  \end{equation}
-\end{minipage}%
-\begin{minipage}{.5\linewidth}
-  \begin{equation}
+\end{equation}
+
+\begin{equation}
     \label{eq:reibungsbeiwert_turbulent}
     C_f \approx \frac{0.0592}{{Re}_x^{1/5}} \hspace{0.5em} \mathrm{bei} \hspace{0.5em} Re > \SI{5e5}{}
-  \end{equation}
-\end{minipage}
+\end{equation}
 
 Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
@@ -304,7 +307,7 @@ Die Wärmeleitfähigkeit $\lambda$ im Schmelzbereich hingegen lässt sich direkt
   \lambda(\gamma)= (1-\gamma)\,\lambda_{\mathrm{solid}} + \gamma\,\lambda_{\mathrm{liquid}}
 \end{equation}
 
-Die Dynamische Viskosität $\eta$ wird hier, anders als für Luft in der Vorauslegung \ref{eq:dynamische_viskositaet}, mittels eines empirischen
+Die Dynamische Viskosität $\eta$ wird hier, anders als für Luft in der Vorauslegung Gleichung \ref{eq:dynamische_viskositaet}, mittels eines empirischen
 Polynomfit~\cite{akamcae-udf} abhängig von der Temperatur berechnet:
 
 \begin{equation}

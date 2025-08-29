@@ -1,16 +1,18 @@
 \chapter{Vorauslegung}
 \label{chap:Vorauslegung}
-% Ziel hier: den Leser in die Lage versetzen, die wesentliche Struktur der Arbeit nachvollziehen zu können (Vorgehen / Geräte / Materialien / Verfahren [also auch Software]  / getroffene Annahmen ... sollten hier erklärt werden)
+
+
+
 Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, welche vom Triebwerk-Subsystem durchgeführt wurde.
-Diese Flugdaten~(\ref{fig:flugdaten_trajektoriensimulation}) bilden eine Maximalabschätzung der Aerodynamischen Aufheizung und Flugdauer durch
-maximale Schubkraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, die von \ac{blast} erreicht werden können.
+Diese Flugdaten in Abbildung \ref{fig:flugdaten_trajektoriensimulation} bilden eine Maximalabschätzung der Aerodynamischen Aufheizung und Flugdauer durch
+maximale Schub-Kraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, die von \ac{blast} erreicht werden können.
 
 \section{Anforderungen}
 
 Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden.
-Stattdessen wurde anhand des bereits festgelegten Microcontrollers STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
+Stattdessen wurde anhand der bereits festgelegten Elektronik wie etwa dem Mikrocontroller STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
 die Auslegung durchgeführt.
-Aus dem Datenblatt des Microcontrollers folg eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
+Aus dem Datenblatt des Mikrocontrollers folgt eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
 und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
@@ -63,9 +65,9 @@ in Wärme umgewandelt.
   \end{tabular}
 \end{table}
 
-Die Leistung der Avionik in~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller
+Die Leistung der Avionik in Tabelle~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller
 (STM32H743ZGT6) bei maximaler clock rate (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
-Abschätzung der restlichen Komponenten ohne Quellenangabe. Der aus \ref{tab:avionik_leistung} resultierende gesamten Wärmestrom
+Abschätzung der restlichen Komponenten, für die keine exakten Werte vorhanden sind. Der aus Tabelle~\ref{tab:avionik_leistung} resultierende gesamte Wärmestrom
 der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
 \begin{figure}
@@ -129,30 +131,30 @@ der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 \section{Thermale Schnittstelle}\label{sec:thermale_schnittstelle}
 
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
-Oft werden in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet. Diese benötigen jedoch
-meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt es auch
+Oft werden in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet, etwa bei der Internationalen Raumstation~\cite{ISS-ATCS}.
+Diese benötigen jedoch meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt es auch
 Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
-zu verwenden. Beide Methoden bieten in Kombination eine günstige Integrierbarkeit und geringen Wärmeleitwiederstand,
+zu verwenden. Beide Methoden bieten in Kombination eine leichte Integrierbarkeit und geringen Wärmeleitwiederstand,
 ohne Bewegliche Teile zu verwenden.
 
 Das Thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf \ac{pcb} Ebene wie bereits erläutert nicht
-möglich ist, ohne vollständig entwickelte Elektronik.
+möglich ist, ohne die vollständig entwickelte Elektronik.
 
 \subsection{Heatpipes}\label{sec:waermerohre}
 
 Heatpipes (Wärmerohre) sind eine Möglichkeit durch erzwungene Konvektion Wärme zu transportieren. Reguläre Heatpipes
 sind vollständig geschlossene Rohre mit einer Flüssigkeit im inneren und einer Kapillarstruktur an der Innenwand,
 so dass ein freier Kanal in der Mitte bleibt. Bei der Wärmequelle
-verdampft die Flüssigkeit aus der Kapillarstruktur und bei der Wärmesenke kondensiert es wieder, wodurch der resultierende Massenstrom einen
+verdampft die Flüssigkeit aus der Kapillarstruktur und bei der Wärmesenke kondensiert sie wieder, wodurch der resultierende Massenstrom einen
 Kreislauf bildet. Besonders effektiv sind Heatpipes durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas Übergang an der Wärmequelle,
-wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine Schematische Darstellung eines Wärmerohrs kann in \ref{fig:waermerohr}
+wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine Schematische Darstellung einer Heatpipe kann in Abbildung~\ref{fig:waermerohr}
 gesehen werden.
 
 Eine Weiterentwicklung davon sind Loop Heatpipes die, wie der Namen bereits impliziert einen Kreislauf bilden, indem es eine
-separate Flüssig- und Dampfleitung gibt, welche jeweils am Verdampfer bzw. Kondensator miteinander verbunden ist.
+separate Flüssig- und Dampfleitung gibt, welche jeweils am Verdampfer und Kondensator miteinander verbunden sind.
 Besonders von Vorteil sind Loop Heatpipes, wenn größere Distanzen überbrückt werden müssen, oder eine relativ zuverlässige
 Funktion unabhängig von Orientierung und Gravitation gebraucht wird. Aufgrund der erhöhten Komplexität von Loop Heatpipes, der Möglichkeit
-die Orientierung frei zu bestimmen, den relativ geringen Distanzen innerhalb der Avionik-sektion und dem Mangel an Kommerziell erhältlichen
+die Orientierung der Heatpipes frei zu bestimmen, den relativ geringen Distanzen innerhalb der Avionik-sektion und dem Mangel an Kommerziell erhältlichen
 Loop Heatpipes wird eine reguläre Heatpipe gewählt.
 
 
@@ -178,11 +180,12 @@ Loop Heatpipes wird eine reguläre Heatpipe gewählt.
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) node [above=1pt] {Kapillarstruktur} -- (-3,-0.5); % Kapillar Pfeil
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) -- (-3,-2.5);
   \end{tikzpicture}
-  \caption{Wärmerohr Aufbau und Funktionsweise}\label{fig:waermerohr}
+  \caption{Heatpipe Aufbau und Funktionsweise}\label{fig:waermerohr}
 \end{figure}
 
 Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
-steigen kann \cite{Mooney-2020}. Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiederstand von der effektiven Beschleunigung ab,
+steigen kann \cite{Mooney-2020}. Auch wenn Heatpipes konvektiv arbeiten ist bei deren Wärmeübertragung vom Wärmeleitwiederstand die Rede.
+Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiederstand von der effektiven Beschleunigung ab,
 da die höhere Dichte der Flüssigphase eine beschleunigende Wirkung auf die Konvektion hat, wenn die Wärmequelle unten orientiert ist. Sollte die Heatpipe jedoch
 \glqq überkopf \grqq{} arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
 einen erhöhten Wärmeleitwiederstand.
@@ -190,12 +193,12 @@ einen erhöhten Wärmeleitwiederstand.
 Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
 \SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen.
 
-Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$ der Heatpipe aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
+Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$ aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
 Dadurch wird eine sehr komplexe Modellierung abhängig von Temperaturen, Biegungen, Ausrichtung, Beschleunigung und Anzahl an Wärmequellen sowie deren Leistung und Positionen vermieden.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
 
-Um die \ac{pcb} mit dem Wärmerohr zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
+Um die Elektronik mit dem Heatpipe zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
 Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
 \ac{pgs} ist gegenüber herkömmlichen Materialien besonders interessant durch die extrem hohe Wärmeleitfähigkeit innerhalb der Ebene,
 da diese der Ebene von der Molekülstruktur des Graphit entspricht. Außerdem ist es ein relativ flexibles Material, bei einer üblichen Dicke von $\approx \SIrange{10}{100}{\micro\meter}$.
@@ -205,7 +208,7 @@ Wärmeverteilung auf der Oberfläche von Bauteilen verwendet um Wärmestromdicht
 
 Das effektive erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch die hohe
 Wärmeleitfähigkeit in der Ebene auch zum thermischen koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
-Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern aus gängigen Materialien sieht man in~\ref{fig:thermalstraps_commercial}.
+Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern aus gängigen Materialien sieht man in Abbildung~\ref{fig:thermalstraps_commercial}.
 Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss für die geforderten Eigenschaften. Um jedoch zu vermeiden, dass
 bei starken Vibrationen aufgrund der Flexibilität des \ac{pgs} Kontakt mit der Elektronik und mögliche Kurzschlüsse entstehen, muss das Wärmeleitband mit einer elektrisch
 isolierenden Ummantlung versehen werden.
@@ -268,16 +271,17 @@ ergibt sich $R_\mathrm{Wärmeleitband} = \SI{3,617}{\kelvin\per\watt}$
 
 \subsection{Gesamte Schnittstelle}\label{sec:gesamte_schnittstelle}
 
-Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine leicht integrierbare Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
-minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in \ref{fig:thermale_schnittstelle} zu sehen.
+Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
+minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in Abbildung~\ref{fig:thermale_schnittstelle} zu sehen.
 
 Wenn angenommen wird, dass die Avionik aus vier separaten \ac{pcb} mit einer Gesamtleistung von \SI{40}{\watt}~(\ref{tab:avionik_leistung}) besteht, müssen pro Wärmeleitband \SI{10}{\watt} übertragen werden.
-Dabei entsteht nach Gleichung \ref{eq:waermewiederstand} eine Temperaturerhöhung über das Wärmeleitband von $\SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \Delta T_\mathrm{Wärmeleitband} = \SI{36,17}{\kelvin}$.
+Dabei entsteht nach Gleichung~\ref{eq:waermewiederstand} eine Temperaturerhöhung über das Wärmeleitband von $\SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \Delta T_\mathrm{Wärmeleitband} = \SI{36,17}{\kelvin}$.
 Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperaturerhöhung von $\SI{40}{\watt} \cdot \SI{0,3}{\watt\per\kelvin} = \Delta T_\mathrm{Heatpipe} = \SI{12}{\kelvin}$.
 
 Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \Delta T_\mathrm{ges} = \SI{48,17}{\kelvin}$.
-Eine Schematische Darstellung der Schnittstelle sieht man in \ref{fig:thermale_schnittstelle}. Für die Nötige Temperatur an der Senke
-erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$.
+Eine Schematische Darstellung der Schnittstelle sieht man in Abbildung~\ref{fig:thermale_schnittstelle}. Für die Nötige Temperatur an der Senke
+erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$. Die Masse der Schnittstelle wird nicht berücksichtigt, da diese
+unabhängig von der Kühlung an der Senke notwendig ist und sich auf wenige Gramm beschränkt.
 
 \begin{figure}
   \centering
@@ -372,7 +376,9 @@ Die Wärmeleitfähigkeit ist zwar auch sehr relevant, ist jedoch für alle Mater
 wobei dabei \ac{pcm} Masse mit Strukturmasse ersetzt wird und somit die Wärmekapazität sinkt. Das Volumen der Wärmeleitenden Struktur welches
 \ac{pcm} ersetzt wird Void Fraction genannt, da es gewissermaßen eine Leerstelle im \ac{pcm} bildet, die wie gesagt keine latente Wärmeaufnahme hat. Hier
 wird ein Void Fraction von $F = 0.1$ gewählt. Eine Optimierung der Lamellenstruktur kann bei gleich bleibender Masse in einer erhöhten
-Wärmeleitfähigkeit resultieren, was jedoch in dieser Arbeit nicht durchgeführt wird. Abbildung \ref{fig:pcm_struktur} zeigt ein Drahtmodell der Struktur.
+Wärmeleitfähigkeit resultieren, was jedoch in dieser Arbeit nicht durchgeführt wird. Abbildung~\ref{fig:pcm_struktur} zeigt ein Drahtmodell der Struktur,
+welche eine einfache Box ist die für Länge und Breite die selbe Dimension hat und weiter in Höhe variieren kann. In der Box ist
+das \ac{pcm} zwischen parallelen Lamellen vorhanden.
 
 \begin{table}
   \centering
@@ -396,14 +402,16 @@ Wärmeleitfähigkeit resultieren, was jedoch in dieser Arbeit nicht durchgeführ
   \end{tabular}
 \end{table}
 
-Die Auswahltabelle \ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen Alkane, welche als \ac{pcm} verwendet werden im Vergleich.
+Die Tabelle~\ref{tab:pcm_auswahl} zeigt die drei gängigsten Organischen Alkane, welche als \ac{pcm} verwendet werden im Vergleich.
 Demnach hat n-Eicosan die besten Eigenschaften, mit insbesondere einem perfekten Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
-wie in \ref{sec:thermale_schnittstelle} berechnet.
-Um die Masse und Dimension des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
+wie in Kapitel~\ref{sec:thermale_schnittstelle} berechnet.
+Um die Masse und latente Wärmekapazität des \ac{pcm} zu berechnen wurde das in \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
 Das \ac{pcm} wird dort als isobar und isotherm angenommen und hat eine unendliche Wärmeleitfähigkeit. Des weiteren befindet es sich
-in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke und einem der Void Fraction entsprechenden internen Aluminium Volumenanteil von $F = 0.1$.
+in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke und einem der Void Fraction entsprechenden internen Volumenanteil an  Aluminium von $F = 0.1$.
 Die Dimensionen der Breite und Tiefe der Box wurden gleich gesetzt; die Höhe der Box bildet die zweite Variable.
-Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe können in \ref{fig:pcm_waermestrom_vorauslegung} gesehen werden.
+Anschließend werden mit der Funktionen \texttt{total\_mass} die Masse und \texttt{total\_heat} die latente Wärmekapazität durch Bilanzierung
+der Gleichung~\ref{eq:latente_waerme} berechnet.
+Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe können in Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} gesehen werden.
 
 Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\watt} ergibt sich eine nötige latente Wärmekapazität von
 \SI{48000}{\joule}, eine Seitenlänge der Aluminium-Box von \SI{6,749}{\centi\meter} und eine Gesamtmasse von \SI{346,610}{\gram}.
@@ -428,12 +436,12 @@ def total_heat(L, H): # pcm latent heat capacity
 
 \section{Radiator}\label{sec:Radiator}
 
-Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach Gleichung \ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
+Bei Radiatoren ist ein hoher Emissions- und niedriger Absorptionsgrad nach Gleichung~\ref{eq:radiation} dimensionierend, da die Temperatur den Anforderungen nach limitiert ist
 und die Fläche minimiert werden muss, weil diese proportional zu eingehenden Wärmeströmen aus der Umgebung ist, wie etwa die Sonneneinstrahlung oder die Luft, welche auch möglichst gering gehalten werden sollen.
-
+\\
 Als Beschichtung wurde AZ-93 der Firma AZ Technology LLC.~\cite{AZ-Technology} ausgewählt. Dabei handelt es sich um eine in der Raumfahrt
 weit verbreitete inorganische Farbe mit günstigen Eigenschaften, welche Tabelle \ref{tab:az-93_eigenschaften} entnommen werden können.
-Abbildung \ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung \ref{eq:radiation} und zeigt Leistungskonturen eines
+Abbildung~\ref{fig:radiator_flaeche_leistung} ist eine Visualisierung der Gleichung~\ref{eq:radiation} und zeigt Leistungskonturen eines
 Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nach Fläche und Temperatur.
 
 \begin{table}
@@ -536,8 +544,8 @@ Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Ra
   \caption{PCM Wärmestrom ohne aerodynamische Aufheizung}\label{fig:pcm_waermestrom_diagramm}
 \end{figure}
 
-In Abbildung \ref{fig:pcm_waermestrom_diagramm} sieht man eine Schematische Darstellung der Konstruktion und speziell die Wärmeströme
-für den Fall, dass das System am Solidus-Punkt im Gleichgewicht steht. Hingegen kann man in Abbildung \ref{fig:pcm_waermestrom_aufheizung_diagramm}
+In Abbildung~\ref{fig:pcm_waermestrom_diagramm} sieht man eine Schematische Darstellung der Konstruktion und speziell die Wärmeströme
+für den Fall, dass das System am Solidus-Punkt im Gleichgewicht steht. Hingegen kann man in Abbildung~\ref{fig:pcm_waermestrom_aufheizung_diagramm}
 den Zustand sehen, in dem der Umweltwärmestrom durch aerodynamische Aufheizung gestiegen ist und somit das \ac{pcm} anfängt zu schmelzen.
 Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendliche groß sind, wird das System als isotherm modelliert und die Avionik-Sektion als
 adiabat.
@@ -582,13 +590,13 @@ adiabat.
     \draw[thick] (0,-2.5) -- (2,-2.5); % casing bottom
     \node at (1,-1.5) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, rotate=90, thick]{$\dot{Q}_{\mathrm{Avionik}}$}; % Wärmestrom pfeil
   \end{tikzpicture}
-  \caption{Kontourlänge vom Staupunkt der Rakete bis zum Mittelpunkt des Radiators}\label{fig:rakete_kontour_zeichnung}
+  \caption{Konturlänge vom Staupunkt der Rakete bis zum Mittelpunkt des Radiators}\label{fig:rakete_kontour_zeichnung}
 \end{figure}
 
 
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python Programmen und Datenstrukturen.
 Das Hauptprogramm \texttt{main.py} ruft alle Unterprogramme in der richtigen Reihenfolge: zuerst die \texttt{radiator.py} zur Berechnung
-der Radiator Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} aufgerufen um die Aerodynamischen Wärmeströme
+der Radiator Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} (\ref{lst:hybrid_python_pseudocode}) aufgerufen um die Aerodynamischen Wärmeströme
 mittels der Nußelt-Beziehung zu bestimmen, anschließend werden die Ergebnisse in die \texttt{pcm.py} geladen, um abhängig von der Radiatorfläche
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
 In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dimensionierung in der Software abläuft.
@@ -649,9 +657,9 @@ In Abbildung~\ref{fig:dimensionierung_ablauf} sieht man schematisch wie die Dime
   \caption{Ablauf der Dimensionierung in der Vorauslegungs-Software. Pfeile stellen Abhängigkeiten dar.}\label{fig:dimensionierung_ablauf}
 \end{figure}
 
-Wie in Abbildung \ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch
+Wie in Abbildung~\ref{fig:re_pr_flugsimulation} dargestellt, liegt die Prandtl-Zahl im Gültigkeitsbereich sowohl für die turbulente als auch
 für die laminare Grenzschicht. Die Reynolds-Zahl überschreitet jedoch zeitweise mit Werten bis zu \SI{2.4e7} die Gültigkeitsbereiche.
-Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-Beziehung \ref{eq:nusselt_turbulent} für turbulente Grenzschichten angewendet.
+Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-Beziehung nach Gleichung~\ref{eq:nusselt_turbulent} für turbulente Grenzschichten angewendet.
 
 \begin{figure}
   \centering
@@ -659,18 +667,18 @@ Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-
   \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
 \end{figure}
 
-Das Ergebnis der Berechnung ist in Abbildung \ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
-aus \ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in \ref{sec:Radiator} modelliert
+Das Ergebnis der Berechnung ist in Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
+aus Kapitel~\ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in \ref{sec:Radiator} modelliert
 und der aerodynamischen Aufheizung besteht.
 Der Wärmestrom $\dot{Q}_\mathrm{Rein}$ ist die Summe aus Avionik Wärmestrom $\dot{Q}_\mathrm{Avionik}$ und dem Umwelt Wärmestrom $\dot{Q}_\mathrm{Umwelt}$.
 
-Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt} ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht.
-Auch wenn dieser nur etwa \SI{100}{\second} andauert, ist er ausreichend um die notwendige Masse des \ac{pcm} (inklusive der Aluminium Struktur)
-auf \SI{4,256}{\kilo\gram} zu erhöhen. Abgesehen von der höheren notwendigen Kapazität von \SI{626817.571}{\joule} führen auch zusätzlich geometrische
-Verluste zu der erhöhten Masse, da das Aspektverhältnis aufgrund der Einschränkung durch die Radiatorfläche weit von der idealen Würfelform entfernt ist.
-
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}
   \caption{PCM Wärmeströme während dem Flug}\label{fig:pcm_waermestrom_vorauslegung}
 \end{figure}
+
+Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt} ein extrem hoher Wärmestrom durch die aerodynamisch Aufheizung entsteht.
+Auch wenn dieser nur etwa \SI{100}{\second} andauert, ist er ausreichend um die notwendige Masse des \ac{pcm} (inklusive der Aluminium Struktur)
+auf \SI{4,256}{\kilo\gram} zu erhöhen. Abgesehen von der höheren notwendigen latenten Wärmekapazität von \SI{626817.571}{\joule} führen auch zusätzlich geometrische
+Verluste zu der erhöhten Masse, da das Aspektverhältnis aufgrund der Einschränkung durch die Radiatorfläche weit von der idealen Würfelform entfernt ist.

@@ -51,6 +51,12 @@ Joseph~P. Mooney, Vanessa Egana, Ruairi Quinlan, and Jeff Punch.
 \newblock Effect of multiple heat sources and bend angle on the performance of sintered wicked heat pipes.
 \newblock In {\em 19th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm)}, Orlando, FL, USA, 2020. IEEE.
 
+\bibitem{ISS-ATCS}
+{NASA Johnson Space Center} and {Boeing ATCS Team}.
+\newblock International space station active thermal control system (atcs) overview.
+\newblock Technical report, National Aeronautics and Space Administration, Houston, TX, USA, 2006.
+\newblock Includes description of the ammonia-based External Active Thermal Control System (EATCS) and Early External Active Thermal Control System (EEATCS).
+
 \bibitem{Nazarychev-2022}
 V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N. Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
 \newblock Cooling-rate computer simulations for the description of crystallization of organic phase-change materials.
@@ -86,6 +92,12 @@ P.~C. Stryker and E.~M. Sparrow.
 \newblock Materials thermal properties database.
 \newblock \url{https://thermtest.com/thermal-resources/materials-database}, 2025.
 \newblock Includes thermal conductivity and density data for copper and aluminium.
+
+\bibitem{Weigand-2022}
+Bernhard Weigand, Jens von Wolfersdorf, and Rico Poser.
+\newblock Wärmeübertragung: Skript zur vorlesung.
+\newblock Vorlesungsskript, Institut für Thermodynamik der Luft- und Raumfahrt (ITLR), Universität Stuttgart, 2022.
+\newblock Wintersemester 2022/2023.
 
 \bibitem{WE-ThebeII-UM-2024}
 {W{\"u}rth Elektronik eiSos GmbH \& Co. KG}.
