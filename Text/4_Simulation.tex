@@ -1,28 +1,31 @@
 \chapter{Simulation}\label{chap:Simulation}
 
-Um die Ergebnisse der Vorauslegung zu verifizieren wurde mithilfe ANSYS Fluent sowohl das Verhalten des \ac{pcm}, als auch die
+Um die Ergebnisse der Vorauslegung zu vergleichen wurde mithilfe ANSYS Fluent sowohl das Verhalten des reinen \ac{pcm}, als auch die
 aerodynamische Aufheizung simuliert.
 
 \section{PCM}\label{sec:sim_pcm}
 
 Für die Simulation des \ac{pcm} wurde die in Abbildung~\ref{fig:pcm_struktur} dargestellte Struktur stark vereinfacht,
-um trotz mangelnder Rechenressourcen gelöst werden zu können. Zuerst wurde das \ac{pcm} in der Symmetrieebene
+um sie trotz mangelnder Rechenressourcen simulieren zu können. Zuerst wurde das \ac{pcm} in der Symmetrieebene
 zu einem zweidimensionalen Problem vereinfacht. Im nächsten Schritt wurde nur die mittlere Zelle aus der Ebene unter der Annahme,
-dass das System symmetrisch ist ausgewählt. Im letzten Schritt wurde die Zelle nochmal aufgrund von Symmetrie gespalten.
+dass das System symmetrisch ist, ausgewählt. Im letzten Schritt wurde die Zelle nochmal aufgrund von Symmetrie gespalten.
 
-Anschließend wurde in ANSYS Mechanical das Mesh vollständig aus Tetraeder-Elementen erzeugt, wobei die Zellgröße so gewählt
-wurde, dass die Aluminium-Wände 1-2 Zellen Tiefe haben. In dem Mesh aus Abbildung~\ref{fig:pcm_mesh} ist das \ac{pcm} in schwarz und das Aluminium
-in rot dargestellt. Jeweils an der linken und rechten Kante, wurde aufgrund der anliegenden Zelle bzw. Spiegelung der Zelle eine
-Symmetrie Randbedingung gewählt. Die untere Kante wurde als Wärmequelle angelegt und die obere Kante als adiabate Wand.
+Anschließend wurde in ANSYS Mechanical das Mesh (Gitternetz) vollständig aus Tetraeder-Elementen erzeugt, wobei die Elementgröße so gewählt
+wurde, dass die Aluminiumwände über 1-2 Zellschichten aufgelöst sind. In dem Mesh aus Abbildung~\ref{fig:pcm_mesh} ist das \ac{pcm} in schwarz und das Aluminium
+in rot dargestellt. Jeweils an der linken und rechten Kante wurde aufgrund der anliegenden Zelle bzw. Spiegelung der Zelle eine
+Symmetrie-Randbedingung gewählt. Diese Randbedingung reduziert sich beim Aluminium auf eine adiabatische Wand; beim \ac{pcm}
+ist diese Randbedingung adiabat mit einer Slip-Bedingung (kein Normalfluss, keine Schubspannung). Die untere Kante wurde als Wärmequelle angelegt und die obere Kante als adiabatische Wand.
 
-Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm} Struktur, bestimmt in Kapitel~\ref{sec:pcm}, und dem Avionik Wärmestrom zu
+Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm}-Struktur, bestimmt in Kapitel~\ref{sec:pcm}, und dem Avionik-Wärmestrom zu
 $\frac{\SI{40}{\watt}}{\left(\SI{6,749}{\centi\meter}\right)^2} = \SI{8782}{\watt\per\meter\squared}$.
 Da ANSYS Fluent bei zweidimensionalen Simulationen eine Referenztiefe von \SI{1}{m} verwendet, konnte der spezifische Wärmestrom
 der Quelle direkt verwendet werden.
 
-Die Thermodynamischen Eigenschaften von n-Eicosan sind aufgeführt in Tabelle~\ref{tab:eicosane_data}.
-Das temperaturabhängige Verhalten der spezifischen Wärmekapazität kann den Graphen~\ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
-entnommen werden.
+Die thermophysikalischen Eigenschaften von n-Eicosan sind aufgeführt in Tabelle~\ref{tab:eicosane_data}.
+Das temperaturabhängige Verhalten der spezifischen Wärmekapazität kann den Abbildungen~\ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
+entnommen werden. In Abbildung~\ref{fig:pcm_effective_cp} ist der Anstieg der spezifischen Wärmekapazität infolge der
+Schmelzenthalpie über die Mushy-Zone zu erkennen. Abbildung~\ref{fig:pcm_sensible_cp} zeigt den Verlauf der sensiblen spezifische Wärmekapazität
+von der Feststoffphase, über die Mushy-Zone und in die Flüssigphase.
 
 \begin{figure}[!htb]
     \centering
@@ -37,7 +40,7 @@ entnommen werden.
         \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
         \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
     \end{subfigure}
-    \caption{\ac{pcm} Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
+    \caption{\ac{pcm}-Struktur und vereinfachtes Mesh}\label{fig:pcm_geometrien}
 \end{figure}
 
 \begin{table}[H]
@@ -93,16 +96,16 @@ entnommen werden.
   \caption{Sensible spezifische Wärmekapazität von n-Eicosan}\label{fig:pcm_sensible_cp}
 \end{figure}
 
-Die Simulation wurde mit dem Pressure-Based Solver~\cite{akamcae-udf} als transiente Simulation über 120000 Zeitschritte mit einer Zeitschrittgröße von \SI{0,01}{\second} durchgeführt
+Die Simulation wurde mit dem pressure-based solver~\cite{akamcae-udf} als transiente Simulation über 120000 Zeitschritte mit einer Zeitschrittgröße von \SI{0,01}{\second} durchgeführt,
 um die vollständige Flugdauer mit \SI{1200}{\second} zu simulieren.
-Des weiteren wurde das Energiemodell eingeschaltet~\cite{akamcae-udf}, das Viskositätsmodell als Laminar angenommen~\cite{akamcae-udf} und das Phasenwechselmodell aktiviert~\cite{akamcae-udf}.
-Neben den bereits erläuterten \ac{pcm} Eigenschaften wurde für das Aluminium eine Dichte von $\rho = \SI{2719}{\kilogram\per\meter\cubed}$,
+Des Weiteren wurde das Energiemodell eingeschaltet~\cite{akamcae-udf}, das Viskositätsmodell als Laminar angenommen~\cite{akamcae-udf} und das Phasenwechselmodell aktiviert~\cite{akamcae-udf}.
+Neben den bereits erläuterten \ac{pcm}-Eigenschaften wurde für das Aluminium eine Dichte von $\rho = \SI{2719}{\kilogram\per\meter\cubed}$,
 eine spezifische Wärmekapazität von $c_p = \SI{871}{\joule\per\kilogram\kelvin}$ und eine Wärmeleitfähigkeit von $\lambda = \SI{202.4}{\watt\per\meter\kelvin}$
 eingestellt.
 
-Abbildung~\ref{fig:approximierte_beschleunigung} zeigt das Beschleunigungsprofil, welches in der Simulation verwendet wurde. Zu beachten
+Abbildung~\ref{fig:approximierte_beschleunigung} zeigt das Beschleunigungsprofil, das in der Simulation verwendet wurde. Zu beachten
 ist, dass Beschleunigungsspitzen durch den Fallschirm, wie sie in~\ref{fig:acceleration_over_time} gesehen
-werden können, ignoriert werden, da diese durch mangelhafte Genauigkeit der Fallschirm Modellierung resultieren.
+werden können, ignoriert werden, da diese aus mangelhafter Genauigkeit der Fallschirm-Modellierung resultieren.
 
 \begin{figure}
   \centering
@@ -110,13 +113,13 @@ werden können, ignoriert werden, da diese durch mangelhafte Genauigkeit der Fal
   \caption{Approximiertes Beschleunigungsprofil}\label{fig:approximierte_beschleunigung}
 \end{figure}
 
-Da die ANSYS Fluent Transient Table Funktion (Native Funktion für transiente Randbedingungen mit Profilen) keine transiente Gravitation
+Da der ANSYS Fluent transient table (native Funktion für transiente Randbedingungen mit Profilen) keine transiente Gravitation
 unterstützt, wurde diese und die globale Beschleunigung deaktiviert.
 Stattdessen wurde die Beschleunigung über den Quellterm der Boussinesq-Approximation in der \ac{udf} implementiert. Die Funktion ist im
 Programmcode~\ref{lst:udf_bossinesque} zu sehen.
 
-Als Scheme wurde SIMPLE verwendet~\cite{akamcae-udf}, für die Gradienten Least Squares Cell Based~\cite{akamcae-udf}, für Druck Second Order~\cite{akamcae-udf} und für Impuls und Energie
-Second Order Upwind~\cite{akamcae-udf}. Die Unterrelaxationsfaktoren wurden durch experimentelle Ermittlung anhand der Residuen zu 0,3 für Druck, 1 für Dichte
+Als Kopplungsschema wurde SIMPLE verwendet~\cite{akamcae-udf} und für den Flusstyp Rhie-Chow momentum-based. Für die Gradienten least-squares-cell-based~\cite{akamcae-udf}, für Druck second-order~\cite{akamcae-udf} und für Impuls und Energie
+second-order-upwind~\cite{akamcae-udf}. Die Unterrelaxationsfaktoren wurden durch experimentelle Ermittlung anhand der Residuen zu 0,3 für Druck, 1 für Dichte
 und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als auch Energie gewählt.
 
 \begin{figure}
@@ -190,13 +193,13 @@ und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als 
 
 \end{figure}
 
-In Abbildung~\ref{fig:static_temperature_kontur} und \ref{fig:liquid_frac_kontur} kann man jeweils die Lösung des Flüssigkeitsanteils
+In Abbildung~\ref{fig:liquid_frac_kontur} und \ref{fig:static_temperature_kontur} kann man jeweils die Lösung des Flüssigkeitsanteils
 und der statischen Temperatur zu mehreren Zeitschritten sehen. Man kann dort deutlich erkennen, wie das \ac{pcm} von der Wärmequelle aus
-schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konvektion die jedoch nach unten fließt und durch das aufsteigende
+schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konvektion, die jedoch nach unten fließt und durch das aufsteigende
 \ac{pcm} in der Mitte der Zelle angetrieben wird. Im Vektorfeld~\ref{fig:pcm_vectoren_stitched} kann man den dadurch entstandenen Wirbel sehen.
 
-Besonders interessant ist, dass wie in Abbildung~\ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
-steigt. Demnach würde mittels der Thermalen Schnittstelle aus Kapitel~\ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
+Besonders interessant ist, dass, wie in Abbildung~\ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
+steigt. Demnach würde mittels der thermalen Schnittstelle aus Kapitel~\ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
 $T_C = \SI{384,17}{\kelvin}$ über die zulässige Temperatur steigen.
 
 \begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
@@ -226,21 +229,24 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 \begin{figure}
   \centering
   \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
-  \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer, durch Nachbearbeitung, vervollständigten Zelle
-  bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in~\ref{fig:pcm_static_temperature_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
+  \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer durch Nachbearbeitung vervollständigten Zelle
+  bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in Abbildung~\ref{fig:pcm_static_temperature_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
 \end{figure}
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
-Die Simulationen der aerodynamischen Aufheizung wurde als stationäre Simulationen mit dem Density-Based solver durchgeführt.
-Aufgrund der Ähnlichkeit wurden diese stark an der Masterarbeit zur Aerodynamischen Analyse des vorherigen
-\ac{hyend} Projekts N2ORTH von Irving, Hugh~\cite{Irving-2021} orientiert.
+
+Die Simulationen der aerodynamischen Aufheizung wurden als stationäre Simulationen mit dem density-based-solver durchgeführt.
+Aufgrund der Ähnlichkeit wurden diese stark an der Masterarbeit zur aerodynamischen Analyse des vorherigen
+\ac{hyend} Projekts N2ORTH von Hugh Irving~\cite{Irving-2021} orientiert.
 Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert~\cite{Irving-2021}.
-Die Luft wurde als Ideales Gas~\cite{Irving-2021} mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
+Die Luft wurde als ideales Gas~\cite{Irving-2021} mit einer spezifischen Wärmekapazität von \SI{1006.43}{\joule\per\kilogram\kelvin},
 einer Wärmeleitfähigkeit von \SI{0.0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1.7894e-5}{\kilogram\per\meter\second}
 und einer molekularen Masse von \SI{28,966}{\kilogram\per\kilo\mole} modelliert.
+Weiterhin wurde für Gradienten green-gauss cell based und für Fluss, Turbulente kinetische Energie sowie spezifische Dissipationsrate second order upwind verwendet.
+Für Formulierung wurde implicit und für den Flusstyp Roe-FDS gewählt.
 
 Die Umströmungssimulationen der Rakete wurden an \ac{maxq} orientiert, dem Zeitpunkt des maximalen dynamische Drucks auf der Rakete.
-Den Verlauf des dynamischen Drucks, kann man Abbildung~\ref{fig:dynp_over_time} entnehmen.
+Den Verlauf des dynamischen Drucks kann man Abbildung~\ref{fig:dynp_over_time} entnehmen.
 Dieser Punkt wird als Richtwert für die aerodynamische Aufheizung angenommen, da er unabhängig von der Vorauslegung ist und somit Ungenauigkeiten dort getroffener Annahmen vermieden werden.
 
 Um ein Profil der aerodynamischen Aufheizung bilden zu können wurde jeweils eine Simulation bei \ac{maxq}, \ac{maxq}-\SI{10}{\second},
@@ -263,27 +269,26 @@ Um ein Profil der aerodynamischen Aufheizung bilden zu können wurde jeweils ein
 \end{table}
 
 Bei dieser Simulation wurde aufgrund der Rotationssymmetrie der Rakete im relevanten Bereich oberhalb der Finnen eine zweidimensionale Simulation der halben Rakete durchgeführt.
-Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen und Partitionen der Parallelisierung in Abbildung~\ref{fig:aussenstroemung_mesh} dargestellt,
-wo die blauen Pfeile auf der linken Seite der velocity inlet, die roten Pfeile auf der rechten Seite der pressure outlet und die gelben Ränder der Domäne
-vor der Rakete und an der oberen Kante der Domäne Symmetrie Randbedingungen sind.
-Die Nase selbst wurde adiabat modelliert und das Hüllensegment als isotherm aufgrund des \ac{pcm} mit $T_w = \SI{310}{\kelvin}$ (Schmelzpunkt des n-Eicosan), wobei Temperaturgradienten durch die Wand
-ignoriert werden.
+Das Mesh der Domäne wurde in ANSYS Mechanical vollständig aus Tetraeder-Elementen erstellt und ist samt Randbedingungen und Partitionen der Parallelisierung in Abbildung~\ref{fig:aussenstroemung_mesh} dargestellt.
+Dort sind die blauen Pfeile auf der linken Seite der velocity inlet und die roten Pfeile auf der rechten Seite der pressure outlet.
+Die übrigen Ränder der Domäne, abzüglich der Nase und Hülle der Rakete, in gelb sind Symmetrie-Randbedingungen.
+Die Nase selbst wurde als adiabatische Wand mit no-slip modelliert und das Hüllensegment als isotherm mit no-slip aufgrund des \ac{pcm} mit $T_w = \SI{310}{\kelvin}$ (Schmelzpunkt des n-Eicosan).
 
 Um die Anforderung der Gleichung~\ref{eq:yplus} mit $y^+ \leq 1$ zu erfüllen, wurden Inflationsschichten an der Wand eingefügt, die in Abbildung~\ref{fig:aussenstroemung_mesh_inflationlayers}
 zu sehen sind. Zur Berechnung der Höhe der ersten Zellschicht wurde der Flugzustand bei \ac{maxq} verwendet.
-Zuerst muss Gleichung~\ref{eq:dynamische_viskositaet} verwendet werden um die dynamische Viskosität zu berechnen:
+Zuerst muss Gleichung~\ref{eq:dynamische_viskositaet} verwendet werden, um die dynamische Viskosität zu berechnen:
 
 \begin{equation*}
   \eta_\mathrm{max Q} = \SI{18,27e-6}{\pascal\second} \frac{\SI{291,15}{\kelvin} + \SI{120}{\kelvin}}{\SI{221,563}{\kelvin} + \SI{120}{\kelvin}} {\left( \frac{\SI{221,563}{\kelvin}}{\SI{291,15}{\kelvin}} \right)}^{\frac{3}{2}} \approx \SI{1,45e-5}{\pascal\second}
 \end{equation*}
 
-Damit wird als nächstes die lokale Reynolds-Zahl in der Mitte des Radiators berechnet. Die Konturlänge bis zu dem Mittelpunkt des Radiators beträgt wie in \ref{sec:pcm_radiator_hybrid} \SI{1,074}{\meter}:
+Damit wird als nächstes die lokale Reynolds-Zahl in der Mitte des Radiators berechnet. Die Konturlänge bis zu dem Mittelpunkt des Radiators ist wie in Kapitel~\ref{sec:pcm_radiator_hybrid} \SI{1,074}{\meter}:
 
 \begin{equation*}
   Re_{\mathrm{maxQ}} = \frac{\SI{750,704}{\meter\per\second}\,\SI{0,401}{\kilogram\per\meter\cubed}\,\SI{1,074}{\meter}}{\SI{1,45e-5}{\pascal\second}} \approx \SI{2,220e7}{}
 \end{equation*}
 
-Da die Reynolds-Zahl sich im turbulenten Bereich befindet wird Gleichung \ref{eq:reibungsbeiwert_turbulent} für den Reibungsbeiwert verwendet:
+Da die Reynolds-Zahl sich im turbulenten Bereich befindet, wird Gleichung \ref{eq:reibungsbeiwert_turbulent} für den Reibungsbeiwert verwendet:
 
 \begin{equation*}
   C_f = \frac{0.0592}{\left({\SI{2,22e7}{}}_x\right)^{1/5}} \approx \SI{2,009e-3}{}
@@ -295,7 +300,7 @@ Mit Gleichung \ref{eq:schubspannung} eingesetzt in Gleichung \ref{eq:schubspannu
   u_{\tau} = \sqrt{\frac{\left(\SI{750,704}{\meter\per\second}\right)^2\,\SI{2,009e-3}{}}{2}} \approx \SI{23,793}{\meter\per\second}
 \end{equation*}
 
-Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten Zelle $y_1$ berechnen indem $y^+ = 1$ gesetzt wird:
+Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten Zelle $y_1$ berechnen, indem $y^+ = 1$ gesetzt wird:
 
 \begin{equation*}
   y_1 = \frac{y^+\,\SI{1,45e-5}{\pascal\second}}{\SI{0,401}{\kilogram\per\meter\cubed}\,\SI{23,793}{\meter\per\second}} \approx \SI{1,52e-6}{\meter}
@@ -304,7 +309,7 @@ Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten 
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
-  \caption{Darstellung der Außensströmungssimulation mit Meshstruktur in grau, velocity inlet in blau, pressure outlet in rot, Symmetrien in gelb und Partitionen der parallelisierung in lila}\label{fig:aussenstroemung_mesh}
+  \caption{Darstellung des Setup der Außenströmungssimulation mit Meshstruktur in Grau, velocity inlet in Blau, pressure outlet in Rot, Symmetrien in Gelb und Partitionen der Parallelisierung in Lila}\label{fig:aussenstroemung_mesh}
 \end{figure}
 
 \begin{figure}
@@ -313,6 +318,7 @@ Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten 
   \caption{Schichtaufdickungen des Mesh an der Rakete}\label{fig:aussenstroemung_mesh_inflationlayers}
 \end{figure}
 
+Die Simulationen wurden durchgeführt bis alle Residuen unter \SI{1e-3}{} waren und die Wärmeströme auf $\approx\SI{5}{\percent}$ konvergiert sind.
 In Abbildung~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} kann man den spezifischen Wärmestrom am Hüllensegment der Rakete sehen
 Die Positionsachse entspricht bei \SI{1}{\meter} dem Übergang von der Nase zum Hüllensegment. Weiterhin ist zu beachten, dass der spezifische Wärmestrom
 negativ ist, wenn Wärme aus dem Fluid in die Wand übergeht. Dementsprechend kann man deutlich erkennen, dass mit der weiteren Entwicklung der Grenzschicht
@@ -333,7 +339,7 @@ für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
   \caption{y+ Wert an der Außenhaut bei \ac{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach}\label{fig:yplus_maxQ_simulationen}
 \end{figure}
 
-Einen Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung~\ref{fig:pcm_waermestrom_sim} zu sehen, wo die Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} mit den
+Ein Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung~\ref{fig:pcm_waermestrom_sim} zu sehen, in der die Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} mit den
 Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauß-Funktion und der Funktion \texttt{curve\_fit} aus dem
 Python Paket \texttt{SciPy} automatisch angepasst:
 
