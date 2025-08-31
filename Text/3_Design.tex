@@ -3,8 +3,8 @@
 
 
 
-Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, welche vom Triebwerk-Subsystem durchgeführt wurde.
-Diese Flugdaten in Abbildung \ref{fig:flugdaten_trajektoriensimulation} bilden eine Maximalabschätzung der Aerodynamischen Aufheizung und Flugdauer durch
+Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, die vom Triebwerk-Subsystem durchgeführt wurde.
+Diese Flugdaten in Abbildung \ref{fig:flugdaten_trajektoriensimulation} bilden eine Maximalabschätzung der aerodynamischen Aufheizung und Flugdauer durch
 maximale Schub-Kraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, die von \ac{blast} erreicht werden können.
 
 \section{Anforderungen}
@@ -13,17 +13,17 @@ Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine gena
 Stattdessen wurde anhand der bereits festgelegten Elektronik wie etwa dem Mikrocontroller STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
 die Auslegung durchgeführt.
 Aus dem Datenblatt des Mikrocontrollers folgt eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
-und ein Sperrschicht-Gehäuse Wärmeleitwiederstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
+und ein Sperrschicht-Gehäuse-Wärmeleitwiderstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
 Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
 Oberseite der elektronischen Komponente gemeint.
-Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, welche durch Verwendung von ausschließlich passiven Bauteilen gewehrleistet wird.
-Dadurch kann aufwendiges und teures testen und verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden und es besteht bei
-nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inherent größeren Toleranzen passiver Bauteile.
+Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, die durch Verwendung von ausschließlich passiven Bauteilen gewährleistet wird.
+Dadurch kann aufwendiges und teures Testen und Verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden, und es besteht bei
+nicht nominalen Flügen eine geringere Ausfallwahrscheinlichkeit durch die inhärent größeren Toleranzen passiver Bauteile.
 
-Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und weitere Elektronik die keine Leistung abgibt, gegenüber etwa
-der \ac{pcdu} und Funkplatine welche Leistung in Form von Strom und elektromagnetischer Strahlung abgeben, einen Wirkungsgrad von
-\SI{0}{\percent}, da Logikoperationen physikalisch gesehen keine Arbeit sind. Resultierend wird der komplette Stromverbrauch
+Dem Energieerhaltungssatz nach haben der \ac{fcc}, die Kameras und weitere Elektronik, die keine Leistung abgibt, gegenüber etwa
+der \ac{pcdu} und Funkplatine, die Leistung in Form von Strom und elektromagnetischer Strahlung abgeben, einen Wirkungsgrad von
+$\approx\SI{0}{\percent}$, da Logikoperationen physikalisch gesehen keine Arbeit sind. Resultierend wird der komplette Stromverbrauch
 in Wärme umgewandelt.
 
 \begin{table}
@@ -65,8 +65,8 @@ in Wärme umgewandelt.
   \end{tabular}
 \end{table}
 
-Die Leistung der Avionik in Tabelle~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc} mikrocontroller
-(STM32H743ZGT6) bei maximaler clock rate (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
+Die Leistung der Avionik in Tabelle~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc}-Mikrocontroller
+(STM32H743ZGT6) bei maximaler Taktfrequenz (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
 Abschätzung der restlichen Komponenten, für die keine exakten Werte vorhanden sind. Der aus Tabelle~\ref{tab:avionik_leistung} resultierende gesamte Wärmestrom
 der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
@@ -131,30 +131,29 @@ der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 \section{Thermale Schnittstelle}\label{sec:thermale_schnittstelle}
 
 Um mit der Abwärme der Avionik umgehen zu können, muss sie effektiv gesammelt und abtransportiert werden.
-Oft werden in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet, etwa bei der Internationalen Raumstation~\cite{ISS-ATCS}.
+Oft werden in der Luft- und Raumfahrtindustrie Kühlkreisläufe mit einem Arbeitsfluid verwendet, etwa bei der internationalen Raumstation ISS~\cite{ISS-ATCS}.
 Diese benötigen jedoch meist bewegliche Bauteile wie Pumpen, welche die Ausfallwahrscheinlichkeit erhöhen. Alternativ gibt es auch
-Möglichkeiten durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
-zu verwenden. Beide Methoden bieten in Kombination eine leichte Integrierbarkeit und geringen Wärmeleitwiederstand,
-ohne Bewegliche Teile zu verwenden.
+Möglichkeiten, durch erzwungene Konvektion ein Arbeitsfluid anzutreiben oder Materialien mit hoher Wärmeleitfähigkeit
+zu verwenden. Beide Methoden bieten in Kombination eine leichte Integrierbarkeit und geringen Wärmeleitwiderstand,
+ohne bewegliche Teile zu verwenden.
 
-Das Thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf \ac{pcb} Ebene wie bereits erläutert nicht
+Das thermale Interface wird auf Systemebene analysiert, da eine Entwicklung auf Ebene des \ac{pcb} wie bereits erläutert nicht
 möglich ist, ohne die vollständig entwickelte Elektronik.
 
 \subsection{Heatpipes}\label{sec:waermerohre}
 
-Heatpipes (Wärmerohre) sind eine Möglichkeit durch erzwungene Konvektion Wärme zu transportieren. Reguläre Heatpipes
-sind vollständig geschlossene Rohre mit einer Flüssigkeit im inneren und einer Kapillarstruktur an der Innenwand,
+Heatpipes (Wärmerohre) sind eine Möglichkeit, durch erzwungene Konvektion Wärme zu transportieren. Reguläre Heatpipes
+sind vollständig geschlossene Rohre mit einer Flüssigkeit im Inneren und einer Kapillarstruktur an der Innenwand,
 so dass ein freier Kanal in der Mitte bleibt. Bei der Wärmequelle
 verdampft die Flüssigkeit aus der Kapillarstruktur und bei der Wärmesenke kondensiert sie wieder, wodurch der resultierende Massenstrom einen
-Kreislauf bildet. Besonders effektiv sind Heatpipes durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas Übergang an der Wärmequelle,
-wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine Schematische Darstellung einer Heatpipe kann in Abbildung~\ref{fig:waermerohr}
-gesehen werden.
+Kreislauf bildet. Besonders effektiv sind Heatpipes durch die Nutzung der Verdampfungsenthalpie beim Flüssig-Gas-Übergang an der Wärmequelle,
+wodurch sehr hohe Wärmestromdichten erreicht werden können. Eine schematische Darstellung einer Heatpipe zeigt Abbildung~\ref{fig:waermerohr}.
 
-Eine Weiterentwicklung davon sind Loop Heatpipes die, wie der Namen bereits impliziert einen Kreislauf bilden, indem es eine
-separate Flüssig- und Dampfleitung gibt, welche jeweils am Verdampfer und Kondensator miteinander verbunden sind.
+Eine Weiterentwicklung davon sind Loop Heatpipes, die, wie der Namen bereits impliziert, einen Kreislauf bilden, indem es eine
+separate Flüssig- und Dampfleitung gibt, die jeweils am Verdampfer und Kondensator miteinander verbunden sind.
 Besonders von Vorteil sind Loop Heatpipes, wenn größere Distanzen überbrückt werden müssen, oder eine relativ zuverlässige
-Funktion unabhängig von Orientierung und Gravitation gebraucht wird. Aufgrund der erhöhten Komplexität von Loop Heatpipes, der Möglichkeit
-die Orientierung der Heatpipes frei zu bestimmen, den relativ geringen Distanzen innerhalb der Avionik-sektion und dem Mangel an Kommerziell erhältlichen
+Funktion unabhängig von Orientierung und Gravitation gebraucht wird. Aufgrund der erhöhten Komplexität von Loop Heatpipes, der Möglichkeit,
+die Orientierung der Heatpipes frei zu bestimmen, den relativ geringen Distanzen innerhalb der Avioniksektion und dem Mangel an kommerziell erhältlichen
 Loop Heatpipes wird eine reguläre Heatpipe gewählt.
 
 
@@ -183,40 +182,40 @@ Loop Heatpipes wird eine reguläre Heatpipe gewählt.
   \caption{Heatpipe Aufbau und Funktionsweise}\label{fig:waermerohr}
 \end{figure}
 
-Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiederstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
-steigen kann \cite{Mooney-2020}. Auch wenn Heatpipes konvektiv arbeiten ist bei deren Wärmeübertragung vom Wärmeleitwiederstand die Rede.
-Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiederstand von der effektiven Beschleunigung ab,
+Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiderstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
+steigen kann \cite{Mooney-2020}. Auch wenn Heatpipes konvektiv arbeiten, ist bei deren Wärmeübertragung vom Wärmeleitwiderstand die Rede.
+Des weiteren hängt besonders bei regulären Heatpipes der Wärmeleitwiderstand von der effektiven Beschleunigung ab,
 da die höhere Dichte der Flüssigphase eine beschleunigende Wirkung auf die Konvektion hat, wenn die Wärmequelle unten orientiert ist. Sollte die Heatpipe jedoch
-\glqq überkopf \grqq{} arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
-einen erhöhten Wärmeleitwiederstand.
+\glqq über Kopf \grqq{} arbeiten, sodass die Wärmequelle oben orientiert ist, muss die Konvektion gegen die Beschleunigung arbeiten und verliert Leistung bzw. hat
+einen erhöhten Wärmeleitwiderstand.
 
 Ausgewählt wurde die QG-SHP-D5-400MN Heatpipe von Quick-Ohm Küpper \& Co. GmbH aus Kupfer mit Mesh-Gewebe als Kapillarstruktur von \SI{400}{\milli\meter} Länge und
 \SI{5}{\milli\meter} Durchmesser. Diese Heatpipe kann eine Leistung von \SI{40}{\watt} übertragen.
 
-Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiederstand von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$ aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
+Weiterhin wird die Heatpipe als \ac{rom} mit einem einfachen Widerstand ersetzt, der dem Wärmeleitwiderstand von $R_\mathrm{Heatpipe} = \SI{0,3}{\kelvin\per\watt}$ aus dem Datenblatt~\cite{QuickOhm-Heatpipe-5x400} entspricht.
 Dadurch wird eine sehr komplexe Modellierung abhängig von Temperaturen, Biegungen, Ausrichtung, Beschleunigung und Anzahl an Wärmequellen sowie deren Leistung und Positionen vermieden.
 
 \subsection{Wärmeleitbänder}\label{sec:waermebaender}
 
-Um die Elektronik mit dem Heatpipe zu verbinden werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
-Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
+Um die Elektronik mit der Heatpipe zu verbinden, werden Wärmeleitbänder aus verschiedenen Materialien analysiert.
+Wärmeleitbänder sind flexible Verbindungsteile mit hoher Wärmeleitfähigkeit, die Wärmebrücken zwischen mehreren Bauteilen gewährleisten.
 \ac{pgs} ist gegenüber herkömmlichen Materialien besonders interessant durch die extrem hohe Wärmeleitfähigkeit innerhalb der Ebene,
-da diese der Ebene von der Molekülstruktur des Graphit entspricht. Außerdem ist es ein relativ flexibles Material, bei einer üblichen Dicke von $\approx \SIrange{10}{100}{\micro\meter}$.
-Ein Nachteil von \ac{pgs} ist die im Kontrast zur Ebene sehr niedrige Wärmeleitfähigkeit durch die Ebene, infolge von wenigen
-molekularen Brücken zwischen den Gitterstrukturen. Dementsprechend wird \ac{pgs} und andere Arten von Graphit Folien hauptsächlich zur
-Wärmeverteilung auf der Oberfläche von Bauteilen verwendet um Wärmestromdichten zu verringern und homogenere Temperaturverteilungen zu erreichen.
+da diese der Ebene der Molekülstruktur des Graphit entspricht. Außerdem ist es ein relativ flexibles Material bei einer üblichen Dicke von $\approx \SIrange{10}{100}{\micro\meter}$.
+Ein Nachteil von \ac{pgs} ist die im Kontrast zur Ebene sehr niedrige Wärmeleitfähigkeit durch die Ebene infolge von wenigen
+molekularen Brücken zwischen den Gitterstrukturen. Dementsprechend werden \ac{pgs} und andere Arten von Graphit-Folien hauptsächlich zur
+Wärmeverteilung auf der Oberfläche von Bauteilen verwendet, um Wärmestromdichten zu verringern und homogenere Temperaturverteilungen zu erreichen.
 
-Das effektive erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch die hohe
-Wärmeleitfähigkeit in der Ebene auch zum thermischen koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
-Raumfahrt durch ermöglichte Masseneinsparungen Halt gefunden. Eine Kommerzielle Reihe an solchen Wärmeleitbändern aus gängigen Materialien sieht man in Abbildung~\ref{fig:thermalstraps_commercial}.
-Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} das beste Kompromiss für die geforderten Eigenschaften. Um jedoch zu vermeiden, dass
+Das effektive Erhöhen des Querschnitts von \ac{pgs} durch Schichtung mehrerer Folien aufeinander ermöglicht es jedoch, die hohe
+Wärmeleitfähigkeit in der Ebene auch zum thermischen Koppeln mehrerer Bauteile zu verwenden. Diese Anwendung hat besonders in der 
+Raumfahrt durch ermöglichte Masseneinsparungen großes Potential. Eine kommerzielle Reihe solcher Wärmeleitbänder aus gängigen Materialien zeigt Abbildung~\ref{fig:thermalstraps_commercial}.
+Der Tabelle~\ref{tab:strap_materials} nach ist \ac{pgs} der beste Kompromiss für die geforderten Eigenschaften. Um jedoch zu vermeiden, dass
 bei starken Vibrationen aufgrund der Flexibilität des \ac{pgs} Kontakt mit der Elektronik und mögliche Kurzschlüsse entstehen, muss das Wärmeleitband mit einer elektrisch
-isolierenden Ummantlung versehen werden.
+isolierenden Ummantelung versehen werden.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerziell erhältliche Wärmeleitbänder aus \ac{pgs} (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+  \caption{Kommerziell erhältliche Wärmeleitbänder aus PGS (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
 \end{figure}
 
 \definecolor{good}{RGB}{200,255,200}   % hellgrün
@@ -248,7 +247,7 @@ isolierenden Ummantlung versehen werden.
       & \cellcolor{medium}\SI{2698}{\kilogram\per\cubic\meter}
       & \cellcolor{good}\SIrange{1500}{2100}{\kilogram\per\cubic\meter} \\
 
-    Elektrische \makecell[l]{\\Isolation}
+    \makecell[l]{Elektrische\\Isolation}
       & \cellcolor{bad}Schlecht
       & \cellcolor{bad}Schlecht
       & \cellcolor{bad}Schlecht \\
@@ -256,11 +255,11 @@ isolierenden Ummantlung versehen werden.
   \end{tabular}
 \end{table}
 
-Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene vom \ac{pgs} HGS-012 der Firma HPMS Graphite~\cite{HPMS-PGS} wurde dieses ausgewählte.
+Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene des \ac{pgs} HGS-012 der Firma HPMS Graphite~\cite{HPMS-PGS} wurde dieses ausgewählt.
 Um ein verwendbares Wärmeleitband zu konstruieren, soll dieses aus 32 Schichten bestehen, \SI{4}{\centi\meter} breit und 
-\SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe keine Biegungen hat.
-Die Anbindungen bzw. Endstücke der Wärmeleitbänder, sowie Kontaktwiederstände durch Klebstoffe oder ähnliche Verbindungsmethoden werden ignoriert.
-Der Wärmeleitwiederstand ergibt sich durch einsetzen von Gleichung \ref{eq:fourier_1d} in \ref{eq:waermewiederstand}:
+\SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe möglichst Biegungsfrei verlaufen kann.
+Die Anbindungen bzw. Endstücke der Wärmeleitbänder sowie Kontaktwiederstände durch Klebstoffe oder ähnliche Verbindungsmethoden werden ignoriert.
+Der Wärmeleitwiderstand ergibt sich durch einsetzen von Gleichung \ref{eq:fourier_1d} in \ref{eq:waermewiederstand}:
 
 \begin{equation*}
   R_\mathrm{Wärmeleitband} = \frac{\Delta x}{\lambda A}
@@ -271,7 +270,7 @@ ergibt sich $R_\mathrm{Wärmeleitband} = \SI{3,617}{\kelvin\per\watt}$
 
 \subsection{Gesamte Schnittstelle}\label{sec:gesamte_schnittstelle}
 
-Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine Wärmebrücke gebildet werden, die den Wärmeleitwiederstand
+Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine Wärmebrücke gebildet werden, die den Wärmeleitwiderstand
 minimiert. Eine Schematische Darstellung der Thermalen Schnittstelle ist in Abbildung~\ref{fig:thermale_schnittstelle} zu sehen.
 
 Wenn angenommen wird, dass die Avionik aus vier separaten \ac{pcb} mit einer Gesamtleistung von \SI{40}{\watt}~(\ref{tab:avionik_leistung}) besteht, müssen pro Wärmeleitband \SI{10}{\watt} übertragen werden.

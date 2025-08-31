@@ -8,36 +8,36 @@ Die Avionik ist ein Grundstein jeder erfolgreichen Experimentalrakete. Ob es hie
 Datenerfassung oder auch aktive Steuerung und Regelung von
 Instrumenten und dem Fahrzeug während des Flugs geht, kompakte Hochleistungsmikroelektronik ist immer gefragt und muss oft redundant ausgeführt sein.
 Diese Elektronik, die zudem noch extremen Bedingungen ausgesetzt wird, kommt jedoch mit einer
-substanziellen Wärmeleistung und Wärmestromdichte die, bei mangelhafter Rücksicht zu reduzierter Lebensdauer der Avionik führt,
+substanziellen Wärmeleistung und Wärmestromdichte die bei mangelhafter Rücksicht zu reduzierter Lebensdauer der Avionik führt
 oder sogar die Mission frühzeitig scheitern lässt.
 
-Diese Arbeit befasst sich mit der lösung des dargestellten problems für das Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend}
-wo eine neue Avionik entwickelt wird und ein \ac{atm} benötigt wird.
+Diese Arbeit befasst sich mit dem Lösungsansatz des dargestellten Problems für das Projekt \ac{blast} der studentischen Hochschulgruppe \ac{hyend},
+wo eine neue Avionik entwickelt und ein \ac{atm} benötigt wird.
 
 \section{Darstellung des Problems}
 
-Das Thermal-Problem einer Experimentalrakete beginnt bereits lange vor dem eigentlichen Start. Oft muss nach integration und
+Das Thermal-Problem einer Experimentalrakete beginnt bereits lange vor dem eigentlichen Start. Oft muss nach Integration und
 Befestigung der Rakete auf der Startvorrichtung und Verbindung mit dem \ac{gse} noch einige Stunden auf das Startfenster gewartet werden.
-Während dieser Zeit steht die Rakete der Umwelt ausgesetzt in der Sonne und kann, je nach Bedingungen 
+Während dieser Zeit steht die Rakete der Umwelt ausgesetzt in der Sonne und kann je nach Bedingungen 
 unzulässige Temperaturen für die Elektronik erreichen. Da in dieser Phase eine Verbindung mit dem 
-\ac{gse} besteht kann Masse durch externe Kühlung währenddessen eingespart werden, weshalb in dieser Arbeit nur für die darauf folgende 
+\ac{gse} besteht, kann Masse durch externe Kühlung währenddessen eingespart werden, weshalb in dieser Arbeit nur für die darauf folgende 
 Flugphase das \ac{atm} entwickelt werden soll.
-Da \ac{blast} für ein Apogäum über der Kármán-Linie (\SI{100}{\kilo\meter} über dem Meeresspiegel) entwickelt wird, sind während dem Flug extreme Umweltbedingungen
-durch Aerodynamische Aufheizung, mikrogravitation und annäherndes Vakuum zu erwarten, die ein komplexes \ac{atm} fordern.
+Da \ac{blast} für ein Apogäum über der Kármán-Linie (\SI{100}{\kilo\meter} über dem Meeresspiegel) entwickelt wird, sind während des Fluges extreme Umweltbedingungen
+durch aerodynamische Aufheizung, Mikrogravitation und annäherndes Vakuum zu erwarten, die ein robustes \ac{atm} fordern.
 
-In der Vergangenheit wurde bei \ac{hyend} oft die Avionik ohne Redundanz oder zusammen mit fertig gekaufter Avionik, für 
-missionskritische Aufgaben wie den Fallschirm-Auswurf, ausgeführt. Beim Projekt \ac{blast} soll das vermieden werden, 
-indem der selbst entwickelte \ac{fcc} in Dual Duplex Redundanz ausgelegt wird. Dementsprechend gibt es vier Computer die
+In der Vergangenheit wurde bei \ac{hyend} oft die Avionik ohne Redundanz oder zusammen mit fertig gekaufter Avionik für 
+missionskritische Aufgaben wie den Fallschirm-Auswurf ausgeführt. Beim Projekt \ac{blast} soll das vermieden werden, 
+indem der selbst entwickelte \ac{fcc} in Dual-Duplex-Redundanz ausgelegt wird. Dementsprechend gibt es vier Computer, die
 die selben Programme ausführen und den vierfachen Stromverbrauch gegenüber einfach ausgeführter Avionik haben. Hinzu kommen
-weitere Kameras, Funkplatinen, Verstärker, Sensorplatinen etc. die jedoch keine redundante Ausführung haben.
+weitere Kameras, Funkplatinen, Verstärker, Sensorplatinen etc., die jedoch keine redundante Ausführung haben.
 
 \section{Zielsetzung der Arbeit}
 
-Da es sich beim \ac{atm} um ein unterstützendes Subsystem handelt, soll besonders hohe Zuverlässigkeit gewehrleistet werden, da trotz der
+Da es sich beim \ac{atm} um ein unterstützendes Subsystem handelt, soll besonders hohe Zuverlässigkeit gewährleistet werden, da trotz der
 Redundanz des \ac{fcc} ein Ausfall der Kühlung zum Ausfall durch Überhitzung führen kann.
 Des weiteren ist Wiederverwendbarkeit, Kosten minimieren und besonders komplexe Integrations- und Vorbereitungsvorgänge
 vermeiden eine Priorität.
-Als letzte Anforderung, soll wegen des begrenzten Massenbudgets der Avionik
+Als letzte Anforderung soll wegen des begrenzten Massenbudgets der Avionik
 besonders auf Leichtbau geachtet werden und die Masse des \ac{atm} soweit wie möglich minimiert werden.
 
 \section{Lösungsweg}
@@ -45,6 +45,6 @@ besonders auf Leichtbau geachtet werden und die Masse des \ac{atm} soweit wie m�
 Um ein geeignetes \ac{atm} zu entwickeln wird zunächst eine Auswahl an etablierten Lösungen aus der Luft- und Raumfahrtindustrie
 getroffen, die die gestellten Anforderungen erfüllen können.
 
-Diese werden in der Vorauslegung mithilfe eines \ac{rom} in Python ausgewertet, um eine erste Abschätzung der Leistungsfähigkeit zu erhalten.
+Diese werden in der Vorauslegung mithilfe eines \ac{rom} in Python ausgewertet, das eine dimensionsreduzierte Näherung des nichtlinearen Referenzmodells liefert, um eine erste Abschätzung der Leistungsfähigkeit zu erhalten.
 Anschließend wird die Vorauslegung, soweit mit vorhandenen Rechenressourcen möglich, durch \ac{cht}-Simulationen mit Domänenreduktion
-verifiziert und vergleichbar gemacht.
+überprüft und mit diesen Ergebnissen verglichen.

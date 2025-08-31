@@ -1,13 +1,13 @@
 \chapter{Grundlagen}
 \label{chap:Grundlagen}			% durch \label{} später auf Element verweisen
 
-In diesem Kapitel werden die Thermodynamischen, Chemischen und Numerischen Grundlagen die in dieser Arbeit angewandt wurden aufgelistet
+In diesem Kapitel werden die thermodynamischen, chemischen und numerischen Grundlagen, die in dieser Arbeit angewandt wurden, aufgelistet
 und erläutert.
 % Bücher, aber auch Paper etc. 
 
 \section{Sensible Wärme}\label{sec:sensiblewaerme}
-Unter sensibler Wärme versteht man die Eigenschaft von Masse durch eine Temperaturänderung Wärmeenergie zu absorbieren oder abzugeben. Dieses
-Phänomen kann durch die Änderung der kinetischen Energie von den molekularen Teilchen im System erklärt werden. Durch das Einführen von
+Unter sensibler Wärme versteht man die Eigenschaft von Masse, durch eine Temperaturänderung Wärmeenergie zu absorbieren oder abzugeben. Dieses
+Phänomen kann durch die Änderung der kinetischen Energie der molekularen Teilchen im System erklärt werden. Durch das Einführen von
 Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
 
 \begin{equation}
@@ -16,14 +16,14 @@ Wärmeenergie in ein System steigt die kinetische Energie der Teilchen:
 \end{equation}
 
 $c$ beschreibt die spezifische Wärmekapazität, welche entweder bei konstantem Druck oder konstantem Volumen angegeben ist,
-$Q$ ist die Wärmeenergie, $m$ die Masse und $T$ die Temperatur
+$Q$ ist die Wärmeenergie, $m$ die Masse und $T$ die Temperatur.
 
 Da Elektronik eine gewisse Eigenmasse hat und meist Teil einer größeren Baugruppe ist, gibt es durch die sensible Wärme eine Dämpfung
-zu Temperaturänderungen, welche jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
+zu Temperaturänderungen, die jedoch zeitlich von der Wärmeleitfähigkeit der Materialien abhängt.
 
 \section{Latente Wärme}\label{sec:latentewaerme}
 
-Im Gegenteil zur sensiblen Wärme ist latente Wärme, auch Umwandlungsenthalpie genannt, die Eigenschaft von Masse bei einem Phasenwechsel Wärmeenergie
+Im Gegenteil zur sensiblen Wärme ist latente Wärme, auch Umwandlungsenthalpie genannt, die Eigenschaft von Masse, bei einem Phasenwechsel Wärmeenergie
 zu absorbieren oder abzugeben, ohne dass sich dabei die Temperatur ändert. Das ist durch die Erhöhung der potentiellen Energie der Teilchen,
 statt der kinetischen wie bei der sensiblen Wärme, zu verstehen. Effektiv erhöht sich die potentielle Energie durch Änderung der Bindungszustände.
 Die Stoffkonstante der Umwandlungsenthalpie ist die spezifische Umwandlungsenthalpie $h$:
@@ -33,21 +33,22 @@ Die Stoffkonstante der Umwandlungsenthalpie ist die spezifische Umwandlungsentha
     h = \frac{\Delta Q}{m}
 \end{equation}
 
-Zu beachten ist, dass die Konvention der Schreibweise für die massenspezifische Fest-Flüssig Umwandlungsenthalpie spezifische Schmelzenthalpie ist,
-aber für die massenspezifische Flüssig-Gas Umwandlungsenthalpie nur Verdampfungsenthalpie ist.
+Zu beachten ist, dass die Konvention der Schreibweise für die massenspezifische Fest-Flüssig-Umwandlungsenthalpie spezifische Schmelzenthalpie ist,
+aber für die massenspezifische Flüssig-Gas-Umwandlungsenthalpie nur Verdampfungsenthalpie ist.
 
-Die latente Wärme ist für die meisten Materialien im Fest-Flüssig Übergang um mindestens den Faktor 10 größer als die sensible Wärme bei
-einem Grad Temperaturerhöhung. Genauso ist die Verdampfungsenthalpie vom Flüssig-Gas Übergang meist um etwa den Faktor 10 größer als die 
+Die latente Wärme ist für die meisten Materialien im Fest-Flüssig-Übergang um mindestens den Faktor 10 größer als die sensible Wärme bei
+einem Grad Temperaturdifferenz. Beispielsweise hat Wasser ein $c_p$ von $\approx\SI{75,33}{\joule\per\mole\kelvin}$ und eine Schmelzenthalpie von $\approx\SI{6,01}{\kilo\joule\per\mole}$~\cite{Wikipedia-WaterData}.
+Genauso ist die Verdampfungsenthalpie vom Flüssig-Gas-Übergang meist um etwa den Faktor 10 größer als die 
 spezifische Schmelzenthalpie~\cite{fusion-vaporization}.
 
 \section{Wärmeübertragung}\label{sec:waermeuebertragung}
 
-Für den Transport von Wärme innerhalb und über ein System hinweg, gibt es drei Mechanismen die im folgenden Kapitel erklärt werden.
+Für den Transport von Wärme innerhalb und über ein System hinweg, gibt es drei Mechanismen, die im folgenden Kapitel erklärt werden.
 
 \subsection{Wärmestrahlung}\label{sec:strahlung}
 
-Bei der Wärmestrahlung geben Teilchen beim aufnehmen oder abgeben kinetischer Energie eine gewisse Menge an Energie in Form
-von Elektromagnetischer Strahlung ab. Da die Strahlungsleistung von der vierten Potenz der Temperatur
+Bei der Wärmestrahlung geben Teilchen beim Aufnehmen oder Abgeben kinetischer Energie eine gewisse Menge an Energie in Form
+von elektromagnetischer Strahlung ab. Da die Strahlungsleistung von der vierten Potenz der Temperatur
 abhängt, ist dieser Mechanismus erst bei sehr hohen Temperaturen dimensionierend, kann jedoch im Vakuum dominant sein:
 
 \begin{equation}
@@ -55,12 +56,12 @@ abhängt, ist dieser Mechanismus erst bei sehr hohen Temperaturen dimensionieren
     \dot{Q}=\sigma\varepsilon A T^{4}
 \end{equation}
 
-$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Boltzmann-Konstante, $\varepsilon$ der Emissionsgrad, welcher von der Wellenlänge
-abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators.
+$\dot{Q}$ ist der Wärmestrom, $\sigma$ die Stefan-Boltzmann-Konstante, $\varepsilon$ der Emissionsgrad, der von der Wellenlänge
+abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators~\cite{Wolfersdorf-2014}.
 
 \subsection{Wärmeleitung}\label{sec:waermeleitung}
 
-Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch diffusion der kinetischen Energie der Teilchen verteilt.
+Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch Diffusion der kinetischen Energie der Teilchen verteilt.
 Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
 
 \begin{equation}
@@ -68,15 +69,15 @@ Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fou
   \vec{\dot{q}} = -\lambda \nabla T
 \end{equation}
 
-Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials und $\nabla$ der räumliche Differentialoperator.
-Für eine eindimensionale Wand ergibt sich die Gleichung mit der Querschnittfläche $A$ und der Dicke $\Delta x$ zu:
+Hier ist $\lambda$ die Wärmeleitfähigkeit des Materials und $\nabla$ der räumliche Differentialoperator~\cite{Weigand-2022}.
+Für eine eindimensionale Wand ergibt sich die Gleichung mit der Querschnittfläche $A$ und der Dicke $\Delta x$ zu~\cite{Weigand-2022}:
 
 \begin{equation}
   \label{eq:fourier_1d}
   \dot{Q} = \lambda A \frac{\Delta T}{\Delta x}
 \end{equation}
 
-Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Wärmestrom definieren:
+Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Wärmestrom definieren~\cite{Weigand-2022}:
 
 \begin{equation}
   \label{eq:waermewiederstand}
@@ -87,7 +88,7 @@ Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperatu
 
 Bei der Konvektion wird Wärmeenergie durch Massenaustausch transportiert. Bei der erzwungenen Konvektion erhält das Fluid durch äußere Kräfte
 eine inhomogene Geschwindigkeitsverteilung, die zum Massenaustausch führt. Andererseits resultiert bei der natürlichen Konvektion nur die eigene
-inhomogene Temperaturverteilung, durch beispielsweise eine anliegende heiße Wand, zu einem
+inhomogene Temperaturverteilung, durch beispielsweise eine anliegende heiße Wand, in einem
 Dichteanstieg, der in einem Beschleunigungsfeld zu Auftriebskräften und automatischer Bewegung des Fluids führt.
 Für den Wärmeübergang zwischen Fluid und Festkörper ergibt sich~\cite{Weigand-2022}:
 
@@ -103,7 +104,7 @@ Für den spezifischen Wärmestrom zwischen Fluid und Wand folgt daraus~\cite{Wei
   \dot{q} = \alpha \ (T_{\infty} - T_\text{w})
 \end{equation}
 
-Der Wärmeübergangskoeffizient $\alpha$ kann aus der Nußelt-Beziehung für Längsangeströmte ebene Platte genommen werden~\cite{Weigand-2022}. Diese lautet
+Der Wärmeübergangskoeffizient $\alpha$ kann aus der Nußelt-Beziehung für eine längsangeströmte ebene Platte genommen werden~\cite{Weigand-2022}. Diese lautet
 für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \left(\text{Re}_k \approx 5 \cdot 10^5\right)$ und $0,6 \leq \text{Pr} \leq 2000$:
 
 \begin{equation}
@@ -111,7 +112,7 @@ für laminare Grenzschichten im Gültigkeitsbereich $\text{Re} < \text{Re}_k \le
   \text{Nu}_x = \frac{\alpha_x x}{\lambda} = \num{0,332} \ \text{Pr}^{\frac{1}{3}} \ \text{Re}_x^{\frac{1}{2}}
 \end{equation}
 
-für turbulente Grenzschichten mit Gültigkeitsbereich: $5 \cdot 10^5 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
+Für turbulente Grenzschichten mit Gültigkeitsbereich $5 \cdot 10^5 \leq \text{Re}_L \leq 10^7$ und $ 0,6 \leq \text{Pr} \leq 2000$ lautet die Gleichung:
 
 \begin{equation}
   \label{eq:nusselt_turbulent}
@@ -133,7 +134,7 @@ Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen ve
   \end{equation}
 \end{minipage}
 
-Die Dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet~\cite{Anderson-2017}, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
+Die dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet~\cite{Anderson-2017}, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
@@ -147,11 +148,11 @@ Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
   Ma = \frac{U}{a}
 \end{equation}
 
-Wobei $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
-Effekte durch die Kompressibilität der Strömung auf, wie etwa durch Stoßwellen mit sprunghaftem Anstieg von Temperatur und Druck,
+Hierbei ist $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
+Effekte durch die Kompressibilität der Strömung auf, wie etwa durch Stoßwellen mit sprunghaftem Anstieg von Temperatur und Druck
 oder Expansionsfächer mit sprunghaftem Abfall dieser Größen. Auch die adiabate Kompression resultiert in Temperaturerhöhungen.
 Die in einer Grenzschicht erreichte Temperatur durch Reibung
-ist immer kleiner als die Totaltemperatur $T_{\infty} < T_r < T_\mathrm{total}$, da die kinetische Energie nur teilweise in innere Energie
+ist immer kleiner als die Totaltemperatur \mbox{$T_{\infty} < T_r < T_\mathrm{total}$}, da die kinetische Energie nur teilweise in innere Energie
 umgewandelt wird und somit durch dem Recovery-Faktor $r$ skaliert ist~\cite{Anderson-2017}:
 
 \begin{equation}
@@ -179,13 +180,10 @@ In einer kompressiblen Strömung bei $Ma > 0.3$ wird somit $T_{\infty}$ aus Glei
 
 \section{Simulation}
 
-Für die Numerischen Simulationen wird die Software ANSYS Fluent verwendet. Dabei handelt es sich um ein kommerziellen
-\ac{cfd} Solver, der die Modellierung von Strömungsvorgängen, Wärmeleitung, Konvektion und Phasenwechselprozessen ermöglicht.
+Für die numerischen Simulationen wird die Software ANSYS Fluent verwendet. Dabei handelt es sich um einen kommerziellen
+\ac{cfd} bzw. \ac{cht} Solver, der die Modellierung von Strömungsvorgängen, Wärmeleitung, Konvektion und Phasenwechselprozessen ermöglicht.
 
-\section*{Aerodynamische Aufheizung}
-
-Die numerische Strömungssimulation ist ein Verfahren zur Berechnung von Strömungs- und Wärmeübergangsprozessen
-mithilfe numerischer Methoden. \ac{cfd} erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
+Dies erlaubt die Untersuchung komplexer Geometrien und Betriebsbedingungen,
 die experimentell nur schwer oder gar nicht möglich sind. Ziel ist es, die Navier-Stokes-Erhaltungsgleichungen in differentieller Form auf einer
 diskreten Gitterstruktur zu lösen. Diese Erhaltungsgleichungen sind die Massenerhaltung:
 
@@ -212,14 +210,16 @@ Hier sind $\rho$ die Dichte, $\vec{u}$ der Geschwindigkeitsvektor, $p$ der stati
 $\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$ die Temperatur, $k$ die Wärmeleitfähigkeit
 und $\Phi$ der viskose Dissipationsterm.
 
-Eine wichtige Metrik bei der Behandlung von Grenzschichten in viskosen Fluiden ist der Dimensionslose Wandabstand:
+\section*{Aerodynamische Aufheizung}
+
+Eine wichtige Metrik bei der Behandlung von Grenzschichten in viskosen Fluiden ist der dimensionslose Wandabstand:
 
 \begin{equation}
   \label{eq:yplus}
   y^+ = \frac{\rho u_{\tau} y}{\eta}
 \end{equation}
 
-Dieser wird mittels des Abstandes $y$ der ersten Zelle die an der Wand anliegt, der Schubspannung an der Wand $\tau_w$ und der daraus resultierenden Schubspannungsgeschwindigkeit $u_{\tau}$ berechnet:
+Dieser wird mittels des Abstandes $y$ der ersten Zelle, die an der Wand anliegt, der Schubspannung an der Wand $\tau_w$ und der daraus resultierenden Schubspannungsgeschwindigkeit $u_{\tau}$ berechnet:
 
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
@@ -251,7 +251,7 @@ Für $C_f$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
 Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
 \section*{PCM}
-Um Temperatur- und Phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen, sowie Zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
+Um temperatur- und phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen sowie zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
 die in ANSYS Fluent nicht implementiert sind. Dafür wird eine in C programmierte \ac{udf} verwendet, die in Fluent direkt importiert
 und kompiliert werden kann.
 Die Boussinesq-Approximation modelliert den Auftrieb infolge von geringen Dichteänderungen. Für den Auftrieb
@@ -262,7 +262,7 @@ in dem Impulsterm ergibt sich somit~\cite{akamcae-udf}:
   S = -\rho_0 \, g_\text{eff}(t)\,\beta\,(T-T_0)
 \end{equation}
 
-Hierbei ist $S$ der Quellterm, $\beta$ der Wärmeausdehnungskoeffizient, $g_\text{eff}(t)$ die effektive, Zeitabhängige Beschleunigung,
+Hierbei ist $S$ der Quellterm, $\beta$ der Wärmeausdehnungskoeffizient, $g_\text{eff}(t)$ die effektive, zeitabhängige Beschleunigung,
 $T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann den Rechenaufwand erheblich verringern und ist für folgende Bedingungen gültig:
 
 \noindent\begin{minipage}{.5\linewidth}
@@ -278,16 +278,15 @@ $T_0$ und $\rho_0$ die Referenz-Temperatur und Dichte. Diese Approximation kann 
   \end{equation}
 \end{minipage}
 
-ANSYS Fluent verwendet zur Modellierung des Schmelzbereiches ein internes \allowbreak Enthalpy-Porosity-Modell, welches das \ac{pcm} als poröses Material
-mit diskreter Fest- und Flüssigphase ansieht. Hierfür ist die Dichte $\rho$ notwendig und kann in Abhängigkeit des Flüssigkeitsanteils $\gamma$ berechnet werden.
-Zwischen der Dichte der Flüssig- und Feststoffphase wird linear interpoliert~\cite{akamcae-udf}:
+ANSYS Fluent verwendet zur Modellierung des Schmelzbereichs ein internes Enthalpy-Porosity-Modell, bei dem die Mischzone als poröses Medium modelliert wird.
+Die Porosität entspricht dem lokalen Flüssigkeitsanteil $\gamma$. Die effektive Dichte $\rho$ wird dabei linear zwischen der Flüssig- und Feststoffphase interpoliert~\cite{akamcae-udf}:
 
 \begin{equation}
   \label{eq:udf_dichte}
   \rho(\gamma) = \left(1- \gamma\right) \rho_\text{solid} + \gamma \rho_\text{liquid} \qquad \gamma \in [0,1]
 \end{equation}
 
-Die spezifische Wärmekapazität ergibt sich im Schmelzbereich durch eine Dichtegewichtete Mischung~\cite{akamcae-udf}:
+Die spezifische Wärmekapazität ergibt sich im Schmelzbereich durch eine dichtegewichtete Mischung~\cite{akamcae-udf}:
 
 \begin{equation}
   \label{eq:udf_cp}
@@ -307,7 +306,7 @@ Die Wärmeleitfähigkeit $\lambda$ im Schmelzbereich hingegen lässt sich direkt
   \lambda(\gamma)= (1-\gamma)\,\lambda_{\mathrm{solid}} + \gamma\,\lambda_{\mathrm{liquid}}
 \end{equation}
 
-Die Dynamische Viskosität $\eta$ wird hier, anders als für Luft in der Vorauslegung Gleichung \ref{eq:dynamische_viskositaet}, mittels eines empirischen
+Die dynamische Viskosität $\eta$ wird hier, anders als für Luft in der Vorauslegung (Gleichung \ref{eq:dynamische_viskositaet}), mittels eines empirischen
 Polynomfit~\cite{akamcae-udf} abhängig von der Temperatur berechnet:
 
 \begin{equation}
