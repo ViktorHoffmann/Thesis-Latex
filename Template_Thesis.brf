@@ -3,7 +3,7 @@
 \backcite {AZ-Technology}{{VII}{(document)}{Doc-Start}}
 \backcite {Wikipedia-WaterData}{{4}{2.2}{equation.2.2}}
 \backcite {fusion-vaporization}{{4}{2.2}{equation.2.2}}
-\backcite {Wolfersdorf-2014}{{4}{2.3.1}{equation.2.3}}
+\backcite {Wolfersdorf-2014}{{5}{2.3.1}{equation.2.3}}
 \backcite {Weigand-2022}{{5}{2.3.2}{equation.2.4}}
 \backcite {Weigand-2022}{{5}{2.3.2}{equation.2.4}}
 \backcite {Weigand-2022}{{5}{2.3.2}{equation.2.5}}
@@ -19,7 +19,7 @@
 \backcite {akamcae-udf}{{9}{2.4}{equation.2.28}}
 \backcite {akamcae-udf}{{9}{2.4}{equation.2.29}}
 \backcite {akamcae-udf}{{9}{2.4}{equation.2.30}}
-\backcite {akamcae-udf}{{9}{2.4}{equation.2.31}}
+\backcite {akamcae-udf}{{10}{2.4}{equation.2.31}}
 \backcite {STM32}{{11}{3.1}{section.3.1}}
 \backcite {STM32}{{11}{3.1}{section.3.1}}
 \backcite {STM32}{{12}{3.1}{table.caption.33}}
