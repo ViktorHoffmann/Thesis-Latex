@@ -8,7 +8,7 @@
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/radiator_leistung.pdf}
-  \caption{Radiator Leistungskonturen nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
+  \caption{Radiator-Leistungskonturen nach Fläche und Temperatur}\label{fig:radiator_flaeche_leistung}
 \end{figure}
 
 \begin{figure}[H]
@@ -16,20 +16,20 @@
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Code/pcm_mass.pdf}
-        \caption{Konturen der PCM Masse nach Seitenlänge und Höhe der PCM Box}\label{fig:pcm_mass}
+        \caption{Konturen der PCM-Masse nach Seitenlänge und Höhe der PCM-Box}\label{fig:pcm_mass}
     \end{subfigure}
     \vspace{1em}
     \begin{subfigure}{0.9\textwidth}
         \centering
         \includegraphics[width=\linewidth]{../../Code/pcm_heat_capacity.pdf}
-        \caption{Konturen der PCM Latent Wärmekapazität nach Seitenlänge und Höhe der PCM Box}\label{fig:pcm_heat}
+        \caption{Konturen der latenten Wärmekapazität nach Seitenlänge und Höhe der PCM-Box}\label{fig:pcm_heat}
     \end{subfigure}
     \caption{PCM Auslegung}\label{fig:pcm_mass_heat}
 \end{figure}
 
 \newpage
 
-\begin{lstlisting}[language=Python, caption={Funktionen in der hybrid.py}, label={lst:hybrid_python_pseudo}]
+\begin{lstlisting}[language=Python, caption={Python-Programm hybrid.py zur analytischen Berechnung der aerodynamischen Aufheizung}, label={lst:hybrid_python_pseudo}]
     # === flight data ===
     time = raw['time']  # [s]
     velocity = raw['velocity']  # [m/s]
@@ -81,7 +81,7 @@
 
 \newpage
 
-\begin{lstlisting}[language=C, caption={Vollständige \ac{pcm} \ac{udf} eicosane.c}, label={lst:udf_rest}]
+\begin{lstlisting}[language=C, caption={Vollständige \ac{pcm} \ac{udf} eicosane.c für temperaturabhängige Eigenschaften}, label={lst:udf_rest}]
     //Modified UDF of the original source: https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/
     #include "udf.h"
     #include "mem.h"
@@ -402,5 +402,5 @@
         \includegraphics[height=0.7\textheight]{ansyspost/pcm/velocity-vector-1200.png}
         \caption{\SI{1200}{\second}}\label{fig:velocity_vector_1200}
     \end{subfigure}
-    \caption{Konturen der statischen Temperatur. Die Legende bezieht sich auf~\ref{fig:velocity_vector_1200}}\label{fig:pcm_static_temperature_kontur}
+    \caption{Geschwindigkeitsvektoren des \ac{pcm} skaliert nach Geschwindigkeit und gefärbt nach Flüssigkeitsanteil. Die Legende bezieht sich auf~\ref{fig:velocity_vector_1200}}\label{fig:pcm_velocity_vektoren_kontur}
 \end{figure}

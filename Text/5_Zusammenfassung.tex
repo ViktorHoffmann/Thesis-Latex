@@ -3,35 +3,35 @@
 
 Es wurden verschiedene Lösungsansätze für ein geeignetes \ac{atm} analysiert und ein auf einem einfachen \ac{pcm} basierendes System
 mit einer Anbindung an die Elektronik aus einem Wärmerohr und Wärmeleitbändern
-ausgewählt das ausfallsicher, wiederverwendbar und mit \SI{346,610}{\gram} leicht genug ist, um nicht das Massenbudget der Avionik einzuschränken.
+ausgewählt, das ausfallsicher, wiederverwendbar und mit \SI{346,610}{\gram} leicht genug ist, um nicht das Massenbudget der Avionik einzuschränken.
 Die geforderte maximale Gehäusetemperatur an der Elektronik kann mit \SI{384,17}{\kelvin} nach genauerer Analyse mittels einer \ac{cht} Simulation
 jedoch nicht eingehalten werden.
 
-Zur Vorauslegung wurden einige Vereinfachungen getroffen, die eine schnelle Abschätzung der Thermodynamischen Eigenschaften
+Zur Vorauslegung wurden einige Vereinfachungen getroffen, die eine schnelle Abschätzung der thermodynamischen Eigenschaften
 und Bilanzen ermöglichen.
-Das ersetzen der thermalen Schnittstelle mit einfachen Widerständen etwa ist eine fehlerbehaftete Annahme da die anisotropen Eigenschaften des \ac{pgs} und
-die Mechanischen
-Verbindungen mit Kontaktwiederständen vernachlässigt wurden. Sollten die Betriebsbedingungen von denen aus den Datenblättern abweichen, was in einer
+Das Ersetzen der thermalen Schnittstelle mit einfachen Widerständen etwa ist eine fehlerbehaftete Annahme, da die anisotropen Eigenschaften des \ac{pgs} und
+die mechanischen
+Verbindungen mit Kontaktwiderständen vernachlässigt wurden. Sollten die Betriebsbedingungen von denen aus den Datenblättern abweichen, was in einer
 stark transienten Umgebung wie der eines Raketenstarts unvermeidbar ist, folgen weitere Abweichungen.
-Bei der \ac{pcm} Vorauslegung wurde auch angenommen, dass alle Wärmeleitkoeffizienten unendliche groß sind und somit zu jeder Zeit
-eine homogene Temperaturverteilung herrscht damit einfache Bilanzgleichungen verwendet werden können.
-Die Strahlung wurde aufgrund der relativ niedrigen Temperaturen vollständig ignoriert, genauso wie
+Bei der \ac{pcm}-Vorauslegung wurde auch angenommen, dass alle Wärmeleitkoeffizienten unendlich groß sind und somit zu jeder Zeit
+eine homogene Temperaturverteilung herrscht, damit einfache Bilanzgleichungen verwendet werden können.
+Die Strahlung innerhalb der Avioniksektion wurde aufgrund der relativ niedrigen Temperaturen vollständig ignoriert, genauso wie
 die Anbindung der Avionik und des \ac{atm} an die umgebende Struktur der Rakete.
 
-Bei der Vorauslegung des Radiators wurde ein einfacher Richtwert der Sonneneinstrahlung verwendet, der von Flughöhe unabhängig ist.
+Bei der Vorauslegung des Radiators wurde ein einfacher Richtwert der solaren Bestrahlungsstärke verwendet, der von der Flughöhe unabhängig ist.
 Genauso wurde das Albedo der Erde vollständig ignoriert.
-Bei einem wie in Kapitel~\ref{sec:Radiator} beschriebenem Radiator der den vollständigen Umfang der Rakete umläuft, ist ein Dutycycle von
-\SI{50}{\percent} auch nur ein Richtwert der je nach Reflexionsgrad der Beschichtung zu Abweichungen führt.
+Bei einem wie in Kapitel~\ref{sec:Radiator} beschriebenen Radiator der den vollständigen Umfang der Rakete umläuft, ist ein effektiver Bestrahlungsanteil der Sonne von
+\SI{50}{\percent} auch nur ein Richtwert, der je nach Reflexionsgrad der Beschichtung zu Abweichungen führt.
 
 Die bei der Vorauslegung verwendeten analytischen Methoden zur Bestimmung der Wärmeströme infolge der aerodynamischen Aufheizung sind auch,
-wie in der darauf folgenden Simulation gezeigt, grobe Richtwerte die mit einer Abweichung von etwa Faktor 2 zu den Simulationsergebnissen
+wie in der darauf folgenden Simulation gezeigt, grobe Richtwerte, die mit einer Abweichung von etwa Faktor 2 zu den Simulationsergebnissen
 alleine keine Aussagekraft besitzen.
 
-Bei den Simulationen wurden auch gewisse Annahmen getroffen. Etwa, dass das \ac{pcm} zweidimensional simuliert wurde und symmetrisch ist entspricht
-nicht der Realität und resultiert im Verlust der Aussagekraft, war jedoch aus logistischen Gründen durch mangelnde Rechenressourcen notwendig.
-Genauso wie in der Vorauslegung wurde hier auch die Strahlung vernachlässigt. Des weiteren ist die Mesh-Auflösung nicht ausreichend um
+Bei den Simulationen wurden auch gewisse Annahmen getroffen. Etwa, dass das \ac{pcm} zweidimensional simuliert wurde und symmetrisch ist, entspricht
+nicht der Realität und resultiert in einem gewissen Verlust der Aussagekraft, war jedoch aus logistischen Gründen angesichts mangelnder Rechenressourcen notwendig.
+Genauso wie in der Vorauslegung des \ac{pcm} wurde hier auch die Strahlung vernachlässigt. Des Weiteren ist die Mesh-Auflösung nicht ausreichend, um
 Temperaturgradienten in der Aluminiumstruktur zu erkennen.
 
 Bei der Umströmungssimulation der Rakete wurde durch die Vereinfachung mittels zweidimensionaler Domäne und Nutzung der Symmetrie zwar keine
-Genauigkeit gegenüber der realen lösung verloren, jedoch durch die vollständig isotherme Modellierung der Wand schon, da diese in der
+Genauigkeit gegenüber der realen Lösung verloren, jedoch durch die vollständig isotherme Modellierung der Wand schon, da diese in der
 Realität aus Materialien mit stark anisotropen Eigenschaften besteht und eine finite Dicke hat.

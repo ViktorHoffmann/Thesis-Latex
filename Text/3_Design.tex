@@ -595,7 +595,7 @@ adiabat.
 
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python-Programmen und Datenstrukturen.
 Das Hauptprogramm \texttt{main.py} ruft alle Unterprogramme in der richtigen Reihenfolge auf: zuerst die \texttt{radiator.py} zur Berechnung
-der Radiator-Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} (\ref{lst:hybrid_python_pseudo}) aufgerufen, um die aerodynamischen Wärmeströme
+der Radiator-Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} (Vollständiger Programmcode ist im Anhang zu finden \ref{lst:hybrid_python_pseudo}) aufgerufen, um die aerodynamischen Wärmeströme
 mittels der Nußelt-Beziehung zu bestimmen, anschließend werden die Ergebnisse in die \texttt{pcm.py} geladen, um abhängig von der Radiatorfläche
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
 Abbildung~\ref{fig:dimensionierung_ablauf} zeigt schematisch, wie die Dimensionierung in der Software abläuft.
