@@ -13,9 +13,9 @@ Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine gena
 Stattdessen wurde anhand der bereits festgelegten Elektronik wie etwa dem Mikrocontroller STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
 die Auslegung durchgeführt.
 Aus dem Datenblatt des Mikrocontrollers folgt eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
-und ein Sperrschicht-Gehäuse-Wärmeleitwiderstand von $\Theta_\text{JC} = \SI{23.9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
-Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35.85}{\degreeCelsius\per\watt}$
-und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89.15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
+und ein Sperrschicht-Gehäuse-Wärmeleitwiderstand von $\Theta_\text{JC} = \SI{23,9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
+Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35,85}{\degreeCelsius\per\watt}$
+und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89,15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
 Oberseite der elektronischen Komponente gemeint.
 Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, die durch Verwendung von ausschließlich passiven Bauteilen gewährleistet wird.
 Dadurch kann aufwendiges und teures Testen und Verifizieren von aktiven Bauteilen mit mechanischer oder elektrischer Funktion vermieden werden, und es besteht bei
@@ -36,26 +36,26 @@ in Wärme umgewandelt.
     \midrule[0.5pt]
 
     STM32H743ZGT6 &
-      \mbox{$V_\text{DD}=\SI{3.3}{\volt}$},\newline
+      \mbox{$V_\text{DD}=\SI{3,3}{\volt}$},\newline
       $I_\text{DD}=\SI{536}{\milli\ampere}$~\cite{STM32} &
-      $\approx \SI{0}{\percent}$ & \SI{1.769}{\watt} \\
-    $\dot{Q}_\text{ges}$ & & & \SI{7.075}{\watt}\\
+      $\approx \SI{0}{\percent}$ & \SI{1,769}{\watt} \\
+    $\dot{Q}_\text{ges}$ & & & \SI{7,075}{\watt}\\
 
     \midrule[0.5pt]
     RunCam Split 4 V2 &
       \mbox{$V_\text{DD}=\SI{5}{\volt}$},\newline
       $I_\text{DD}=\SI{450}{\milli\ampere}$~\cite{RunCam-Split4V2} &
-      $\approx \SI{0}{\percent}$ & \SI{2.25}{\watt} \\
+      $\approx \SI{0}{\percent}$ & \SI{2,25}{\watt} \\
     $\dot{Q}_\text{ges}$ & & & \SI{9}{\watt}\\
 
     \midrule[0.5pt]
     Thebe-II &
-      \mbox{$V_\text{DD}=\SI{3.6}{\volt}$},\newline
+      \mbox{$V_\text{DD}=\SI{3,6}{\volt}$},\newline
       $I_\text{DD}=\SI{500}{\milli\ampere}$~\cite{WE-ThebeII-UM-2024} &
-      $\approx \SI{30}{\percent}$~\cite{WE-ThebeII-UM-2024} & \SI{1.3}{\watt} \\
+      $\approx \SI{30}{\percent}$~\cite{WE-ThebeII-UM-2024} & \SI{1,3}{\watt} \\
 
     \midrule[0.5pt]
-    \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9.3}{\watt} \\
+    \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9,3}{\watt} \\
 
     \midrule[0.5pt]
     \midrule[0.5pt]
@@ -125,7 +125,7 @@ der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
         \label{fig:dynp_over_time}
     \end{subfigure}
 
-    \caption{Flugdaten der Trajektoriensimulation}\label{fig:flugdaten_trajektoriensimulation}
+    \caption{Flugdaten der Trajektoriensimulation.}\label{fig:flugdaten_trajektoriensimulation}
 \end{figure}
 
 \section{Thermale Schnittstelle}\label{sec:thermale_schnittstelle}
@@ -179,7 +179,7 @@ Loop Heatpipes wird eine reguläre Heatpipe gewählt.
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) node [above=1pt] {Kapillarstruktur} -- (-3,-0.5); % Kapillar Pfeil
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-4,0.25) -- (-3,-2.5);
   \end{tikzpicture}
-  \caption{Heatpipe Aufbau und Funktionsweise}\label{fig:waermerohr}
+  \caption{Heatpipe Aufbau und Funktionsweise.}\label{fig:waermerohr}
 \end{figure}
 
 Ein wichtiger Aspekt von Heatpipes ist, dass der Wärmeleitwiderstand durch Biegungen und Anbindung von mehreren Quellen um bis zu \SI{100}{\percent}
@@ -215,7 +215,7 @@ isolierenden Ummantelung versehen werden.
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{thermal_straps_commercial.png}
-  \caption{Kommerziell erhältliche Wärmeleitbänder aus PGS (links), Kupfer und Aluminium~\cite{Thermal-Straps}}\label{fig:thermalstraps_commercial}
+  \caption{Kommerziell erhältliche Wärmeleitbänder aus \acs{pgs} (links), Kupfer und Aluminium~\cite{Thermal-Straps}.}\label{fig:thermalstraps_commercial}
 \end{figure}
 
 \definecolor{good}{RGB}{200,255,200}   % hellgrün
@@ -229,17 +229,17 @@ isolierenden Ummantelung versehen werden.
   % 1. Spalte als Box-Spalte, damit \\ innerhalb der ZELLE umbricht
   \begin{tabular}{>{\raggedright\arraybackslash}m{3cm} m{3.2cm} m{3.2cm} m{3cm}}
     \toprule[1pt]
-    Eigenschaft & Kupfer\cite{Thermtest-DB} & Aluminium\cite{Thermtest-DB} & PGS \nobreak{(Graphit)}\cite{HPMS-PGS} \\
+    Eigenschaft & Kupfer\cite{Thermtest-DB} & Aluminium\cite{Thermtest-DB} & \acs{pgs} \nobreak{(Graphit)}\cite{HPMS-PGS} \\
     \midrule[0.5pt]
 
     \makecell[l]{Wärmeleit-\\fähigkeit\\in Ebene}
-      & \cellcolor{medium}\SI{397.48}{\watt\per\meter\per\kelvin}
-      & \cellcolor{bad}\SI{225.94}{\watt\per\meter\per\kelvin}
+      & \cellcolor{medium}\SI{397,48}{\watt\per\meter\per\kelvin}
+      & \cellcolor{bad}\SI{225,94}{\watt\per\meter\per\kelvin}
       & \cellcolor{good}\SIrange{1050}{1800}{\watt\per\meter\per\kelvin} \\
 
     \makecell[l]{Wärmeleit-\\fähigkeit\\durch Ebene}
-      & \cellcolor{good}\SI{397.48}{\watt\per\meter\per\kelvin}
-      & \cellcolor{medium}\SI{225.94}{\watt\per\meter\per\kelvin}
+      & \cellcolor{good}\SI{397,48}{\watt\per\meter\per\kelvin}
+      & \cellcolor{medium}\SI{225,94}{\watt\per\meter\per\kelvin}
       & \cellcolor{bad}\SIrange{10}{26}{\watt\per\meter\per\kelvin} \\
 
     Dichte
@@ -353,7 +353,7 @@ unabhängig von der Kühlung der Senke notwendig ist und stark von der Elektroni
 
     \draw[->, thick, -{Stealth[length=0.25cm]}] (-1.5,-6) -- node [pos=0,above=1pt] {$g$} (-1.5,-8); % Gravitation
   \end{tikzpicture}
-  \caption{\ac{rom} der thermalen Schnittstelle aus Heatpipe und Wärmeleitbändern. Hier sind nur 2 von 4 Wärmeleitbändern dargestellt.}\label{fig:thermale_schnittstelle}
+  \caption{\acs{rom} der thermalen Schnittstelle aus Heatpipe und Wärmeleitbändern. Hier sind nur 2 von 4 Wärmeleitbändern dargestellt.}\label{fig:thermale_schnittstelle}
 \end{figure}
 
 \section{PCM}\label{sec:pcm}
@@ -381,7 +381,7 @@ das \ac{pcm} zwischen parallelen Lamellen vorhanden.
 
 \begin{table}
   \centering
-  \caption{Ampelbewertung für Alkane als \ac{pcm} \cite{NIST}.}\label{tab:pcm_auswahl}
+  \caption{Ampelbewertung für Alkane als \acs{pcm} \cite{NIST}.}\label{tab:pcm_auswahl}
   \label{tab:pcm_alkane_nist}
   \begin{tabular}{>{\raggedright\arraybackslash}m{3.1cm} m{3.1cm} m{3.1cm} m{3.1cm}}
     \toprule[1pt]
@@ -417,7 +417,7 @@ Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\wa
 Da ein Würfel von allen Quadern das größte Volumen-Oberflächenverhältnis hat, sind alle Kanten gleich lang. Dadurch ist der Massenanteil des \ac{pcm}
 maximiert, und der der Box minimiert.
 
-\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und latenten Wärmekapazität des \ac{pcm} in der pcm.py}, label={lst:pcm_python_pseudo}]
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und latenten Wärmekapazität des \acs{pcm} in der pcm.py.}, label={lst:pcm_python_pseudo}]
 rho_alu = 2700     # aluminium density [kg*m^-3]
 rho_pcm = 788      # pcm density [kg*m^-3]
 h       = 240998.9 # pcm latent heat [J*kg^-1]
@@ -447,7 +447,7 @@ Radiators mit den Eigenschaften aus Tabelle~\ref{tab:az-93_eigenschaften} je nac
 \begin{table}
 
   \centering
-  \caption{AZ-93 Spezifikationen~\cite{AZ-Technology}}\label{tab:az-93_eigenschaften}
+  \caption{AZ-93 Spezifikationen~\cite{AZ-Technology}.}\label{tab:az-93_eigenschaften}
 
   \begin{tabular}{ll}
 
@@ -473,7 +473,7 @@ mittels des Online-Tools www.sonnenverlauf.de berechnet, da dort die Demonstrato
 Die Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47,471}{\watt}$.
 In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode zu sehen, der zur Berechnung verwendet wurde.
 
-\begin{lstlisting}[float, language=python, caption={Setup-Werte aus der setup.json}, label={lst:setup_json}]
+\begin{lstlisting}[float, language=python, caption={Setup-Werte aus der setup.json.}, label={lst:setup_json}]
   {
     #...#
     "avionics_power": 40,
@@ -484,7 +484,7 @@ In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcod
   }
 \end{lstlisting}
 
-\begin{lstlisting}[float, language=Python, caption={Berechnung der Radiatorfläche in der radiator.py}, label={lst:radiator_python_pseudo}]
+\begin{lstlisting}[float, language=Python, caption={Berechnung der Radiatorfläche in der radiator.py.}, label={lst:radiator_python_pseudo}]
   #...#
   avionics_power = data["avionics_power"]
   e = data["emittance"]
@@ -541,7 +541,7 @@ Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Ra
     \node at (6.5,1)[style={single arrow, draw}, minimum height=3cm, minimum width=0.5cm, shape border rotate=180, thick]{$\dot{Q}_{\mathrm{Avionik}}$}; % Wärmestrom pfeil
     \draw[->, thick, -{Stealth[length=0.25cm]}] (1,3.75) node [above=1pt] {PCM mit Lamellen} -- (3.5,2.6);
   \end{tikzpicture}
-  \caption{PCM-Wärmestrom ohne aerodynamische Aufheizung}\label{fig:pcm_waermestrom_diagramm}
+  \caption{\acs{pcm}-Wärmestrom ohne aerodynamische Aufheizung.}\label{fig:pcm_waermestrom_diagramm}
 \end{figure}
 
 In Abbildung~\ref{fig:pcm_waermestrom_diagramm} sieht man eine schematische Darstellung der Konstruktion samt der Wärmeströme
@@ -567,7 +567,7 @@ adiabat.
     \node at (-0.5,0) [style={single arrow, draw}, minimum height=4.5cm, minimum width=1.5cm, shape border rotate=180, thick]{$\dot{Q}_{\mathrm{Radiator}}$}; % Wärmestrom pfeil
     \node at (6.5,1)[style={single arrow, draw}, minimum height=3cm, minimum width=0.5cm, shape border rotate=180, thick]{$\dot{Q}_{\mathrm{Avionik}}$}; % Wärmestrom pfeil
   \end{tikzpicture}
-  \caption{PCM-Wärmestrom bei aerodynamischer Aufheizung}\label{fig:pcm_waermestrom_aufheizung_diagramm}
+  \caption{\acs{pcm}-Wärmestrom bei aerodynamischer Aufheizung.}\label{fig:pcm_waermestrom_aufheizung_diagramm}
 \end{figure}
 
 \begin{figure}
@@ -590,7 +590,7 @@ adiabat.
     \draw[thick] (0,-2.5) -- (2,-2.5); % casing bottom
     \node at (1,-1.5) [style={single arrow, draw}, minimum height=0.5cm, minimum width=1.5cm, rotate=90, thick]{$\dot{Q}_{\mathrm{Avionik}}$}; % Wärmestrom pfeil
   \end{tikzpicture}
-  \caption{Konturlänge vom Staupunkt der Rakete bis zum Mittelpunkt des Radiators}\label{fig:rakete_kontour_zeichnung}
+  \caption{Konturlänge vom Staupunkt der Rakete bis zum Mittelpunkt des Radiators.}\label{fig:rakete_kontour_zeichnung}
 \end{figure}
 
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python-Programmen und Datenstrukturen.
@@ -663,10 +663,10 @@ Aufgrund fehlender alternativer analytischer Methoden wurde dennoch die Nußelt-
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{../../Code/re_pr_during_flight.pdf}
-  \caption{Reynolds- und Prandtlzahl während kritischer Phase im Flug}\label{fig:re_pr_flugsimulation}
+  \caption{Reynolds- und Prandtl-Zahl während kritischer Phase im Flug.}\label{fig:re_pr_flugsimulation}
 \end{figure}
 
-Das Ergebnis der Berechnung ist in Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47.471}{\watt}$
+Das Ergebnis der Berechnung ist in Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} zu sehen, mit der Radiatorleistung $\dot{Q}_\mathrm{Radiator} = \SI{47,471}{\watt}$
 aus Kapitel~\ref{sec:Radiator} und dem Wärmestrom aus der Umwelt $\dot{Q}_\mathrm{Umwelt}$, der aus Sonneneinstrahlung wie in Kapitel~\ref{sec:Radiator} modelliert
 und der aerodynamischen Aufheizung besteht.
 Der Wärmestrom $\dot{Q}_\mathrm{Rein}$ ist die Summe aus Avionik-Wärmestrom $\dot{Q}_\mathrm{Avionik}$ und Umwelt-Wärmestrom $\dot{Q}_\mathrm{Umwelt}$.
@@ -674,10 +674,10 @@ Der Wärmestrom $\dot{Q}_\mathrm{Rein}$ ist die Summe aus Avionik-Wärmestrom $\
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../../Code/pcm_radiator_hybrid_heatflux_nosim.pdf}
-  \caption{PCM Wärmeströme während dem Flug}\label{fig:pcm_waermestrom_vorauslegung}
+  \caption{\acs{pcm}-Wärmeströme während dem Flug.}\label{fig:pcm_waermestrom_vorauslegung}
 \end{figure}
 
 Erkennbar ist, dass mit bis zu \SI{20}{\kilo\watt} ein extrem hoher Wärmestrom durch die aerodynamische Aufheizung entsteht.
 Auch wenn dieser nur etwa \SI{100}{\second} andauert, ist er ausreichend, um die notwendige Masse des \ac{pcm} (inklusive der Aluminium-Struktur)
-auf \SI{4,256}{\kilo\gram} zu erhöhen. Abgesehen von der höheren notwendigen latenten Wärmekapazität von \SI{626817.571}{\joule} führen auch zusätzlich geometrische
+auf \SI{4,256}{\kilo\gram} zu erhöhen. Abgesehen von der höheren notwendigen latenten Wärmekapazität von \SI{626817,571}{\joule} führen auch zusätzlich geometrische
 Verluste zu der erhöhten Masse, da das Aspektverhältnis aufgrund der Einschränkung durch die Radiatorfläche weit von der idealen Würfelform entfernt ist.
