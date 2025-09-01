@@ -1,7 +1,7 @@
 \chapter{Simulation}\label{chap:Simulation}
 
-Um die Ergebnisse der Vorauslegung zu vergleichen wurde mithilfe ANSYS Fluent sowohl das Verhalten des reinen \ac{pcm}, als auch die
-aerodynamische Aufheizung simuliert.
+Um die Ergebnisse der Vorauslegung zu vergleichen wurde mithilfe ANSYS Fluent das Verhalten des reinen \ac{pcm} und der
+aerodynamischen Aufheizung simuliert.
 
 \section{PCM}\label{sec:sim_pcm}
 
@@ -9,7 +9,7 @@ Für die Simulation des \ac{pcm} wurde die in Abbildung~\ref{fig:pcm_struktur} d
 um sie trotz mangelnder Rechenressourcen simulieren zu können. Zuerst wurde das \ac{pcm} in der Symmetrieebene
 zu einem zweidimensionalen Problem vereinfacht. Im nächsten Schritt wurde nur die mittlere Zelle aus der Ebene unter der Annahme,
 dass das System symmetrisch ist, ausgewählt. Im letzten Schritt wurde die Zelle nochmal aufgrund von Symmetrie gespalten.
-
+Die Domäne kann man in Abbildung~\ref{fig:pcm_struktur} überlagert sehen.
 Anschließend wurde in ANSYS Mechanical das Mesh (Gitternetz) vollständig aus Tetraeder-Elementen erzeugt, wobei die Elementgröße so gewählt
 wurde, dass die Aluminiumwände über 1-2 Zellschichten aufgelöst sind. In dem Mesh aus Abbildung~\ref{fig:pcm_mesh} ist das \ac{pcm} in schwarz und das Aluminium
 in rot dargestellt. Jeweils an der linken und rechten Kante wurde aufgrund der anliegenden Zelle bzw. Spiegelung der Zelle eine
@@ -20,7 +20,6 @@ Die Wärmequelle ergibt sich aus der Seitenfläche der \ac{pcm}-Struktur, bestim
 $\frac{\SI{40}{\watt}}{\left(\SI{6,749}{\centi\meter}\right)^2} = \SI{8782}{\watt\per\meter\squared}$.
 Da ANSYS Fluent bei zweidimensionalen Simulationen eine Referenztiefe von \SI{1}{m} verwendet, konnte der spezifische Wärmestrom
 der Quelle direkt verwendet werden.
-
 Die thermophysikalischen Eigenschaften von n-Eicosan sind aufgeführt in Tabelle~\ref{tab:eicosane_data}.
 Das temperaturabhängige Verhalten der spezifischen Wärmekapazität, wie es in der \ac{udf} modelliert ist, kann den Abbildungen~\ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
 entnommen werden. In Abbildung~\ref{fig:pcm_effective_cp} ist der Anstieg der spezifischen Wärmekapazität infolge der
@@ -31,14 +30,14 @@ von der Feststoffphase, über die Mushy-Zone und in die Flüssigphase.
     \centering
     \begin{subfigure}[t]{0.7\textwidth}
         \centering
-        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur.png}
-        \caption{\acs{pcm}-Struktur Drahtmodell}\label{fig:pcm_struktur}
+        \includegraphics[height=9cm]{ansyspost/pcm/40WPCM_struktur_neu.png}
+        \caption{\acs{pcm}-Struktur Drahtmodell mit vereinfachter Domäne}\label{fig:pcm_struktur}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.15\textwidth}
         \centering
         \includegraphics[height=9cm]{ansyspost/pcm/2DPCM_mesh.png}
-        \caption{\ac{pcm} Mesh}\label{fig:pcm_mesh}
+        \caption{\acs{pcm} Mesh der vereinfachten Domäne}\label{fig:pcm_mesh}
     \end{subfigure}
     \caption{\acs{pcm}-Struktur und vereinfachtes Mesh.}\label{fig:pcm_geometrien}
 \end{figure}
