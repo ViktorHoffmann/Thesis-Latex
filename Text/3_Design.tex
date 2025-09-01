@@ -1,8 +1,7 @@
 \chapter{Vorauslegung}
 \label{chap:Vorauslegung}
 
-
-
+Zuerst wird eine analytische Vorauslegung basierend auf einer Abschätzung des Flugprofils durchgeführt.
 Die Flugdaten kommen aus einer Trajektoriensimulation aus dem Simulationsprogramm OpenRocket, die vom Triebwerk-Subsystem durchgeführt wurde.
 Diese Flugdaten in Abbildung \ref{fig:flugdaten_trajektoriensimulation} bilden eine Maximalabschätzung der aerodynamischen Aufheizung und Flugdauer durch
 maximale Schub-Kraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, die von \ac{blast} erreicht werden können.
@@ -471,7 +470,8 @@ nach eine Fläche von \SI{996,163}{\centi\meter\squared}.
 Die solare Bestrahlungsstärke wurde für Meereshöhe bei der Sommersonnenwende am Campo Militar de Santa Margarida (Constância, Distrikt Santarém, Portugal) beim höchsten Sonnenstand
 mit dem Online-Werkzeug \url{www.sonnenverlauf.de} berechnet, da dort die Demonstrator-Rakete von \ac{blast} starten wird und als Richtwert für \ac{blast} verwendet werden kann.
 Die Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47,471}{\watt}$.
-In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode zu sehen, der zur Berechnung verwendet wurde.
+In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode zu sehen, der zur Berechnung verwendet wurde. Dabei ist die \texttt{setup.json} die Datenstruktur mit allen Eingangswerten
+und die \texttt{radiator.py} das Programm, welches die Fläche des Radiators mittels der Funktion \texttt{radiator\_area} berechnet.
 
 \begin{lstlisting}[float, language=python, caption={Setup-Werte aus der setup.json.}, label={lst:setup_json}]
   {

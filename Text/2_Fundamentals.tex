@@ -212,7 +212,7 @@ Hier sind $\rho$ die Dichte, $\vec{u}$ der Geschwindigkeitsvektor, $p$ der stati
 $\vec{g}$ die Gravitationsbeschleunigung, $E$ die spezifische Gesamtenergie, $T$ die Temperatur, $k$ die Wärmeleitfähigkeit
 und $\Phi$ der viskose Dissipationsterm.
 
-\section*{Aerodynamische Aufheizung}
+\subsection{Aerodynamische Aufheizung}
 
 Eine wichtige Metrik bei der Behandlung von Grenzschichten in viskosen Fluiden ist der dimensionslose Wandabstand:
 
@@ -252,7 +252,7 @@ Für $C_f$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
 
 Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
-\section*{PCM}
+\subsection{PCM}
 Um temperatur- und phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen sowie zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
 die in ANSYS Fluent nicht implementiert sind. Dafür wird eine in C programmierte \ac{udf} verwendet, die in Fluent direkt importiert
 und kompiliert werden kann.

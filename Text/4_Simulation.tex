@@ -197,7 +197,8 @@ In Abbildung~\ref{fig:liquid_frac_kontur} und \ref{fig:static_temperature_kontur
 und der statischen Temperatur zu mehreren Zeitschritten sehen. Man kann dort deutlich erkennen, wie das \ac{pcm} von der Wärmequelle aus
 schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konvektion, die jedoch nach unten fließt und durch das aufsteigende
 \ac{pcm} in der Mitte der Zelle angetrieben wird. Im Vektorfeld~\ref{fig:pcm_vectoren_stitched} kann man den dadurch entstandenen Wirbel sehen.
-Die Wirbelentwicklung in weiteren Zeitschritten zeigt Abbildung~\ref{fig:pcm_velocity_vektoren_kontur}.
+Die Wirbelentwicklung in weiteren Zeitschritten zeigt Abbildung~\ref{fig:pcm_velocity_vektoren_kontur}. Die Legenden beziehen sich immer auf den letzten
+Zeitschritt, da der maximale Flüssigkeitsanteil und die maximale Temperatur dort am höchsten sind.
 
 Besonders interessant ist, dass, wie in Abbildung~\ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
 steigt. Demnach würde mittels der thermalen Schnittstelle aus Kapitel~\ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
@@ -231,7 +232,7 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
   \centering
   \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
   \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer durch Nachbearbeitung vervollständigten Zelle
-  bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in Abbildung~\ref{fig:pcm_static_temperature_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
+  bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in Abbildung~\ref{fig:pcm_velocity_vektoren_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
 \end{figure}
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
@@ -301,22 +302,30 @@ Mit Gleichung \ref{eq:schubspannung} eingesetzt in Gleichung \ref{eq:schubspannu
   u_{\tau} = \sqrt{\frac{\left(\SI{750,704}{\meter\per\second}\right)^2\,\SI{2,009e-3}{}}{2}} \approx \SI{23,793}{\meter\per\second}
 \end{equation*}
 
+\newpage
+
 Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten Zelle $y_1$ berechnen, indem $y^+ = 1$ gesetzt wird:
 
 \begin{equation*}
   y_1 = \frac{y^+\,\SI{1,45e-5}{\pascal\second}}{\SI{0,401}{\kilogram\per\meter\cubed}\,\SI{23,793}{\meter\per\second}} \approx \SI{1,52e-6}{\meter}
 \end{equation*}
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_all.png}
   \caption{Darstellung des Setup der Außenströmungssimulation mit Meshstruktur in Grau, velocity inlet in Blau, pressure outlet in Rot, Symmetrien in Gelb und Partitionen der Parallelisierung in Lila.}\label{fig:aussenstroemung_mesh}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{ansyspost/airflow/mesh_inflation.png}
   \caption{Inflationsschichten des Mesh an der Rakete.}\label{fig:aussenstroemung_mesh_inflationlayers}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
+  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach.}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
 \end{figure}
 
 Die Simulationen wurden durchgeführt bis alle Residuen unter \SI{1e-3}{} waren und die Wärmeströme auf $\approx\SI{5}{\percent}$ konvergiert sind.
@@ -324,12 +333,6 @@ In Abbildung~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} kann man den s
 Die Positionsachse entspricht bei \SI{1}{\meter} dem Übergang von der Nase zum Hüllensegment. Weiterhin ist zu beachten, dass der spezifische Wärmestrom
 negativ ist, wenn Wärme aus dem Fluid in die Wand übergeht. Dementsprechend kann man deutlich erkennen, dass mit der weiteren Entwicklung der Grenzschicht
 der spezifische Wärmestrom sinkt.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{../../Code/maxQ_compare_heatflux.pdf}
-  \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach.}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
-\end{figure}
 
 Die Aussagekraft der spezifischen Wärmeströme über die Wand lässt sich anhand der Abbildung~\ref{fig:yplus_maxQ_simulationen} bestätigen, da die Werte von $y^+$
 für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
@@ -340,24 +343,27 @@ für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
   \caption{$y^+$ Wert an der Außenhaut bei \acs{maxq}, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach.}\label{fig:yplus_maxQ_simulationen}
 \end{figure}
 
-Ein Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung~\ref{fig:pcm_waermestrom_sim} zu sehen, in der die Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} mit den
-Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauß-Funktion und der Funktion \texttt{curve\_fit} aus dem
-Python Paket \texttt{SciPy} automatisch angepasst:
-
-\begin{equation*}
-f(x) = a \cdot \exp\!\left(-\frac{(x-b)^2}{2c^2}\right) + d
-\end{equation*}
-
-Ermittelte Parameter:
-\begin{equation*}
-  a=12454028,32 \quad b=32,87 \quad c=550,50 \quad d=-12446646,16
-\end{equation*}
-
 \newpage
+
+\begin{minipage}{\textwidth}
+  Ein Vergleich der Simulationsergebnisse mit der Vorauslegung ist in Abbildung~\ref{fig:pcm_waermestrom_sim} zu sehen, in der die Abbildung~\ref{fig:pcm_waermestrom_vorauslegung} mit den
+  Simulationsergebnissen überlagert wurde. Die Wärmeströme in der Mitte des Radiators sind als rote Punkte dargestellt und wurden mittels einer Gauß-Funktion und der Funktion \texttt{curve\_fit} aus dem
+  Python Paket \texttt{SciPy} automatisch angepasst:
+
+  \begin{equation*}
+  f(x) = a \cdot \exp\!\left(-\frac{(x-b)^2}{2c^2}\right) + d
+  \end{equation*}
+
+  Ermittelte Parameter:
+  \begin{equation*}
+    a=12454028,32 \quad b=32,87 \quad c=550,50 \quad d=-12446646,16
+  \end{equation*}
+\end{minipage}
 
 Die Temperatur- und Machzahlkontur der Luft kann man in Abbildung~\ref{fig:maxQ_konturen} sehen, wo der Stoß an der Nasenspitze
 deutlich zu erkennen ist. Konturen der weiteren Simulationen sind den Abbildungen~\ref{fig:airflow_temp_contour_continued}
-und \ref{fig:airflow_mach_contour_continued} zu entnehmen.
+und \ref{fig:airflow_mach_contour_continued} zu entnehmen. Die Maximaltemperatur von \SI{501}{\kelvin} wird an der Spitze der Rakete erreicht.
+Im Bereich des Radiators sind es $\approx \SIrange{310}{340}{\kelvin}$.
 
 \begin{figure}
   \centering
