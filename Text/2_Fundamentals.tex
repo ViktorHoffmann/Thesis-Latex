@@ -150,7 +150,7 @@ Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:
   Ma = \frac{U}{a}
 \end{equation}
 
-Hierbei ist $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit ist. Im Überschallbereich treten verschiedene
+Hierbei ist $U$ die Strömungsgeschwindigkeit und $a$ die lokale Schallgeschwindigkeit. Im Überschallbereich treten verschiedene
 Effekte durch die Kompressibilität der Strömung auf, wie etwa durch Stoßwellen mit sprunghaftem Anstieg von Temperatur und Druck
 oder Expansionsfächer mit sprunghaftem Abfall dieser Größen. Auch die adiabate Kompression resultiert in Temperaturerhöhungen.
 Die in einer Grenzschicht erreichte Temperatur durch Reibung
@@ -221,7 +221,7 @@ Eine wichtige Metrik bei der Behandlung von Grenzschichten in viskosen Fluiden i
   y^+ = \frac{\rho u_{\tau} y}{\eta}
 \end{equation}
 
-Dieser wird mittels des Abstandes $y$ der ersten Zelle, die an der Wand anliegt, der Schubspannung an der Wand $\tau_w$ und der daraus resultierenden Schubspannungsgeschwindigkeit $u_{\tau}$ berechnet:
+Dieser wird mittels des Abstandes $y$ des Mittelpunktes der ersten Zelle, die an der Wand anliegt, der Schubspannung an der Wand $\tau_w$ und der daraus resultierenden Schubspannungsgeschwindigkeit $u_{\tau}$ berechnet:
 
 \noindent\begin{minipage}{.5\linewidth}
   \begin{equation}
@@ -252,7 +252,7 @@ Für $C_f$ gibt es folgende empirische Näherungen~\cite{Anderson-2017}:
 
 Für Wärmeübertragungsprobleme an Wänden muss man die Zellhöhe so wählen, dass man im Bereich $y^+ \leq 1$ bleibt.
 
-\subsection{PCM}
+\subsection{PCM}\label{sec:pcm_grundlagen}
 Um temperatur- und phasenabhängige Eigenschaften für die \ac{cht}-Simulation von \ac{pcm} darzustellen sowie zeitabhängige Auftriebsterme, kommen weitere Modelle dazu,
 die in ANSYS Fluent nicht implementiert sind. Dafür wird eine in C programmierte \ac{udf} verwendet, die in Fluent direkt importiert
 und kompiliert werden kann.

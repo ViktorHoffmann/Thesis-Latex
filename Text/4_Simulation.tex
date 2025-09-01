@@ -22,9 +22,9 @@ Da ANSYS Fluent bei zweidimensionalen Simulationen eine Referenztiefe von \SI{1}
 der Quelle direkt verwendet werden.
 
 Die thermophysikalischen Eigenschaften von n-Eicosan sind aufgeführt in Tabelle~\ref{tab:eicosane_data}.
-Das temperaturabhängige Verhalten der spezifischen Wärmekapazität kann den Abbildungen~\ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
+Das temperaturabhängige Verhalten der spezifischen Wärmekapazität, wie es in der \ac{udf} modelliert ist, kann den Abbildungen~\ref{fig:pcm_effective_cp} und \ref{fig:pcm_sensible_cp}
 entnommen werden. In Abbildung~\ref{fig:pcm_effective_cp} ist der Anstieg der spezifischen Wärmekapazität infolge der
-Schmelzenthalpie über die Mushy-Zone zu erkennen. Abbildung~\ref{fig:pcm_sensible_cp} zeigt den Verlauf der sensiblen spezifische Wärmekapazität
+Schmelzenthalpie über die Mushy-Zone (Schmelzbereich) zu erkennen. Abbildung~\ref{fig:pcm_sensible_cp} zeigt den Verlauf der sensiblen spezifische Wärmekapazität
 von der Feststoffphase, über die Mushy-Zone und in die Flüssigphase.
 
 \begin{figure}[!htb]
@@ -116,7 +116,7 @@ werden können, ignoriert werden, da diese aus mangelhafter Genauigkeit der Fall
 Da der ANSYS Fluent transient table (native Funktion für transiente Randbedingungen mit Profilen) keine transiente Gravitation
 unterstützt, wurde diese und die globale Beschleunigung deaktiviert.
 Stattdessen wurde die Beschleunigung über den Quellterm der Boussinesq-Approximation in der \ac{udf} implementiert. Die Funktion ist im
-Programmcode~\ref{lst:udf_bossinesque} zu sehen. Der vollständige Programmcode mit allen temperaturabhängigen Funktionen ist in \ref{lst:udf_rest} zu sehen.
+Programmcode~\ref{lst:udf_bossinesque} zu sehen. Der vollständige Programmcode mit allen temperaturabhängigen Funktionen aus Kapitel \ref{sec:pcm_grundlagen} ist in \ref{lst:udf_rest} zu sehen.
 
 Als Kopplungsschema wurde SIMPLE verwendet~\cite{akamcae-udf}. Für die Gradienten least-squares cell-based~\cite{akamcae-udf}, für Druck second-order~\cite{akamcae-udf} und für Impuls und Energie
 second-order-upwind~\cite{akamcae-udf}. Die Unterrelaxationsfaktoren wurden durch experimentelle Ermittlung anhand der Residuen zu 0,3 für Druck, 1 für Dichte
@@ -200,10 +200,6 @@ schmilzt. Besonders an der Aluminiumlamelle bildet sich eine beschleunigte Konve
 Die Wirbelentwicklung in weiteren Zeitschritten zeigt Abbildung~\ref{fig:pcm_velocity_vektoren_kontur}. Die Legenden beziehen sich immer auf den letzten
 Zeitschritt, da der maximale Flüssigkeitsanteil und die maximale Temperatur dort am höchsten sind.
 
-Besonders interessant ist, dass, wie in Abbildung~\ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
-steigt. Demnach würde mittels der thermalen Schnittstelle aus Kapitel~\ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
-$T_C = \SI{384,17}{\kelvin}$ über die zulässige Temperatur steigen.
-
 \begin{lstlisting}[language=C, float, caption={Boussinesq-Approximation des Auftriebs im \ac{pcm} in der \ac{udf} eicosane.c}, label={lst:udf_bossinesque}]
 //Y-momentum source
 DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
@@ -228,12 +224,16 @@ DEFINE_SOURCE(Boussinesq_momentum_source,cell,thread,dS,eqn)
 }
 \end{lstlisting}
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics[height=0.4\textheight]{ansyspost/pcm/velocity-vector-close-stitched-900.png}
   \caption{Geschwindigkeitsvektoren der Konvektionswirbel einer durch Nachbearbeitung vervollständigten Zelle
   bei \SI{900}{\second}. Darstellung der weiteren Zeitschritte ist in Abbildung~\ref{fig:pcm_velocity_vektoren_kontur} zu finden.}\label{fig:pcm_vectoren_stitched}
 \end{figure}
+
+Besonders interessant ist, dass, wie in Abbildung~\ref{fig:static_temperature_kontur} zu erkennen ist, die Temperatur an der Quelle auf bis zu \SI{336}{\kelvin}
+steigt. Demnach würde mittels der thermalen Schnittstelle aus Kapitel~\ref{sec:thermale_schnittstelle} die Gehäusetemperatur der Avionik-Bauteile mit
+$T_C = \SI{384,17}{\kelvin}$ über die zulässige Temperatur steigen.
 
 \section{Aerodynamische Aufheizung}\label{sec:sim_aerodynamisch}
 
@@ -328,7 +328,7 @@ Zuletzt lässt sich dann mithilfe Gleichung~\ref{eq:yplus} die Höhe der ersten 
   \caption{Spezifischer Wärmestrom an der Außenhaut bei maximalem dynamischen Druck, sowie \SI{10}{s} davor, danach und \SI{20}{s} danach.}\label{fig:spezifischer_waermestrom_maxQ_simulationen}
 \end{figure}
 
-Die Simulationen wurden durchgeführt bis alle Residuen unter \SI{1e-3}{} waren und die Wärmeströme auf $\approx\SI{5}{\percent}$ konvergiert sind.
+Die Simulationen wurden durchgeführt bis alle Residuen unter \SI{1e-3}{} waren und die Wärmeströme zu $\approx\SI{5}{\percent}$ konvergiert sind.
 In Abbildung~\ref{fig:spezifischer_waermestrom_maxQ_simulationen} kann man den spezifischen Wärmestrom am Hüllensegment der Rakete sehen.
 Die Positionsachse entspricht bei \SI{1}{\meter} dem Übergang von der Nase zum Hüllensegment. Weiterhin ist zu beachten, dass der spezifische Wärmestrom
 negativ ist, wenn Wärme aus dem Fluid in die Wand übergeht. Dementsprechend kann man deutlich erkennen, dass mit der weiteren Entwicklung der Grenzschicht

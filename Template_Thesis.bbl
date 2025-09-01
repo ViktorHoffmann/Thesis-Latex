@@ -3,23 +3,27 @@
 \bibitem{Thermal-Straps}
 Thermal space and thermal straps.
 \newblock \url{https://thermal-space.com/thermal-straps/}.
+\newblock 2025-08-02.
 
 \bibitem{NIST}
 U.S.~Secretary of~Commerce.
-\newblock Nist chemistry webbook, 2025.
+\newblock Nist chemistry webbook.
+\newblock 2025-08-02.
 
 \bibitem{AZ-Technology}
 Az technology llc.
 \newblock \url{https://www.aztechnology.com/product/1/az-93}.
+\newblock 2025-08-12.
 
 \bibitem{Wikipedia-WaterData}
 {Wikipedia contributors}.
-\newblock Water (data page), 2025.
-\newblock Wikipedia, The Free Encyclopedia.
+\newblock Water (data page).
+\newblock 2025-08-31, Wikipedia, The Free Encyclopedia.
 
 \bibitem{fusion-vaporization}
 Enthalpy of fusion and enthalpy of vaporization.
 \newblock \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
+\newblock 2025-08-14.
 
 \bibitem{Wolfersdorf-2014}
 Jens von Wolfersdorf, Prof. Dr.-Ing. Neumann, and Dr.-Ing. Bauer.
@@ -40,23 +44,24 @@ John~D. Anderson.
 
 \bibitem{akamcae-udf}
 {AKAM CAE}.
-\newblock Phase change material simulation in ansys fluent (tutorial), 2023.
-\newblock Online tutorial.
+\newblock Phase change material simulation in ansys fluent (tutorial).
+\newblock 2025-08-17, Online tutorial.
 
 \bibitem{STM32}
 Stm32h743zgt6-datasheet.
 \newblock \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}.
+\newblock 2022-08-12.
 
 \bibitem{RunCam-Split4V2}
 {RunCam Technology Co., Ltd.}
 \newblock Runcam split 4 v2 user manual.
-\newblock \url{https://www.runcam.com/download/split4k/RC_Split_4k_Manual_EN.pdf}, 2020.
-\newblock Product manual (PDF).
+\newblock \url{https://www.runcam.com/download/split4k/RC_Split_4k_Manual_EN.pdf}.
+\newblock 2025-08-14, Product manual (PDF).
 
 \bibitem{WE-ThebeII-UM-2024}
 {W{\"u}rth Elektronik eiSos GmbH \& Co. KG}.
-\newblock User manual: Thebe-ii (order code 2609031181000), version 1.14, 2024.
-\newblock Radio module 868\,MHz, up to +27\,dBm TX power.
+\newblock User manual: Thebe-ii (order code 2609031181000), version 1.14.
+\newblock 2025-08-14, Radio module 868\,MHz, up to +27\,dBm TX power.
 
 \bibitem{ISS-ATCS}
 {NASA Johnson Space Center} and {Boeing ATCS Team}.
@@ -71,20 +76,20 @@ Joseph~P. Mooney, Vanessa Egana, Ruairi Quinlan, and Jeff Punch.
 
 \bibitem{QuickOhm-Heatpipe-5x400}
 {Quick-Ohm Küpper \& Co. GmbH}.
-\newblock Mesh heatpipe 5{\texttimes}400\,mm (qg-shp-d5-400mn), 2025.
-\newblock Heatpipe product page.
+\newblock Mesh heatpipe 5{\texttimes}400\,mm (qg-shp-d5-400mn).
+\newblock 2025-08-22, Heatpipe product page.
 
 \bibitem{Thermtest-DB}
 {Thermtest Inc.}
 \newblock Materials thermal properties database.
-\newblock \url{https://thermtest.com/thermal-resources/materials-database}, 2025.
-\newblock Includes thermal conductivity and density data for copper and aluminium.
+\newblock \url{https://thermtest.com/thermal-resources/materials-database}.
+\newblock 2025-08-21, Includes thermal conductivity and density data for copper and aluminium.
 
 \bibitem{HPMS-PGS}
 {HPMS Graphite}.
 \newblock Pyrolytic graphite sheet (pgs) – thermally conductive graphite sheets.
 \newblock \url{https://hpmsgraphite.com/pyrolyticgraphitesheet}.
-\newblock In-plane thermal conductivity up to \SI{1800}{\watt\per\meter\per\kelvin}, density 1.5–2.1 g/cm³ depending on thickness (\SIrange{12}{100}{\micro\meter}).
+\newblock 2025-08-21, In-plane thermal conductivity up to \SI{1800}{\watt\per\meter\per\kelvin}, density 1.5–2.1 g/cm³ depending on thickness (\SIrange{12}{100}{\micro\meter}).
 
 \bibitem{Deere-2011}
 Karen~A. Deere, S.~Paul Pao, and Khaled~S. Abdol-Hamid.
