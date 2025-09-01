@@ -50,6 +50,8 @@ John~D. Anderson.
 \bibitem{akamcae-udf}
 {AKAM CAE}.
 \newblock Phase change material simulation in ansys fluent (tutorial).
+\newblock
+  \url{https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/}.
 \newblock 2025-08-17, Online tutorial.
 
 \bibitem{STM32}
