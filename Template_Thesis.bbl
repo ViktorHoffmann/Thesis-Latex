@@ -22,24 +22,19 @@ Az technology llc.
 
 \bibitem{fusion-vaporization}
 Enthalpy of fusion and enthalpy of vaporization.
-\newblock
-  \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
+\newblock \url{https://chem.libretexts.org/Bookshelves/General_Chemistry/ChemPRIME_(Moore_et_al.)/10\%3A_Solids_Liquids_and_Solutions/10.10\%3A_Enthalpy_of_Fusion_and_Enthalpy_of_Vaporization}.
 \newblock 2025-08-14.
 
 \bibitem{Wolfersdorf-2014}
 Jens von Wolfersdorf, Prof. Dr.-Ing. Neumann, and Dr.-Ing. Bauer.
 \newblock Wärmestrahlung: Manuskript zur vorlesung.
-\newblock Vorlesungsskript, Institut für Thermodynamik der Luft- und Raumfahrt
-  (ITLR), Universität Stuttgart, 2014.
-\newblock Überarbeitete Version des Vorlesungsmanuskripts für den
-  Diplomstudiengang Luft- und Raumfahrttechnik, Wintersemester 2011;
-  aktualisiert WS 2014/2015.
+\newblock Vorlesungsskript, Institut für Thermodynamik der Luft- und Raumfahrt (ITLR), Universität Stuttgart, 2014.
+\newblock Überarbeitete Version des Vorlesungsmanuskripts für den Diplomstudiengang Luft- und Raumfahrttechnik, Wintersemester 2011; aktualisiert WS 2014/2015.
 
 \bibitem{Weigand-2022}
 Bernhard Weigand, Jens von Wolfersdorf, and Rico Poser.
 \newblock Wärmeübertragung: Skript zur vorlesung.
-\newblock Vorlesungsskript, Institut für Thermodynamik der Luft- und Raumfahrt
-  (ITLR), Universität Stuttgart, 2022.
+\newblock Vorlesungsskript, Institut für Thermodynamik der Luft- und Raumfahrt (ITLR), Universität Stuttgart, 2022.
 \newblock Wintersemester 2022/2023.
 
 \bibitem{Anderson-2017}
@@ -50,21 +45,18 @@ John~D. Anderson.
 \bibitem{akamcae-udf}
 {AKAM CAE}.
 \newblock Phase change material simulation in ansys fluent (tutorial).
-\newblock
-  \url{https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/}.
+\newblock \url{https://akamcae.com/tutorials/phase-change-material-simulation-in-ansys-fluent/}.
 \newblock 2025-08-17, Online tutorial.
 
 \bibitem{STM32}
 Stm32h743zgt6-datasheet.
-\newblock
-  \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}.
+\newblock \url{https://www.st.com/en/microcontrollers-microprocessors/stm32h743zg.html}.
 \newblock 2022-08-12.
 
 \bibitem{RunCam-Split4V2}
 {RunCam Technology Co., Ltd.}
 \newblock Runcam split 4 v2 user manual.
-\newblock
-  \url{https://www.runcam.com/download/split4k/RC_Split_4k_Manual_EN.pdf}.
+\newblock \url{https://www.runcam.com/download/split4k/RC_Split_4k_Manual_EN.pdf}.
 \newblock 2025-08-14, Product manual (PDF).
 
 \bibitem{WE-ThebeII-UM-2024}
@@ -74,21 +66,14 @@ Stm32h743zgt6-datasheet.
 
 \bibitem{ISS-ATCS}
 {NASA Johnson Space Center} and {Boeing ATCS Team}.
-\newblock International space station active thermal control system (atcs)
-  overview.
-\newblock Technical report, National Aeronautics and Space Administration,
-  Houston, TX, USA, 2006.
-\newblock Includes description of the ammonia-based External Active Thermal
-  Control System (EATCS) and Early External Active Thermal Control System
-  (EEATCS).
+\newblock International space station active thermal control system (atcs) overview.
+\newblock Technical report, National Aeronautics and Space Administration, Houston, TX, USA, 2006.
+\newblock Includes description of the ammonia-based External Active Thermal Control System (EATCS) and Early External Active Thermal Control System (EEATCS).
 
 \bibitem{Mooney-2020}
 Joseph~P. Mooney, Vanessa Egana, Ruairi Quinlan, and Jeff Punch.
-\newblock Effect of multiple heat sources and bend angle on the performance of
-  sintered wicked heat pipes.
-\newblock In {\em 19th IEEE Intersociety Conference on Thermal and
-  Thermomechanical Phenomena in Electronic Systems (ITherm)}, Orlando, FL, USA,
-  2020. IEEE.
+\newblock Effect of multiple heat sources and bend angle on the performance of sintered wicked heat pipes.
+\newblock In {\em 19th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm)}, Orlando, FL, USA, 2020. IEEE.
 
 \bibitem{QuickOhm-Heatpipe-5x400}
 {Quick-Ohm Küpper \& Co. GmbH}.
@@ -99,59 +84,45 @@ Joseph~P. Mooney, Vanessa Egana, Ruairi Quinlan, and Jeff Punch.
 {Thermtest Inc.}
 \newblock Materials thermal properties database.
 \newblock \url{https://thermtest.com/thermal-resources/materials-database}.
-\newblock 2025-08-21, Includes thermal conductivity and density data for copper
-  and aluminium.
+\newblock 2025-08-21, Includes thermal conductivity and density data for copper and aluminium.
 
 \bibitem{HPMS-PGS}
 {HPMS Graphite}.
-\newblock Pyrolytic graphite sheet (pgs) – thermally conductive graphite
-  sheets.
+\newblock Pyrolytic graphite sheet (pgs) – thermally conductive graphite sheets.
 \newblock \url{https://hpmsgraphite.com/pyrolyticgraphitesheet}.
-\newblock 2025-08-21, In-plane thermal conductivity up to
-  \SI{1800}{\watt\per\meter\per\kelvin}, density 1.5–2.1 g/cm³ depending on
-  thickness (\SIrange{12}{100}{\micro\meter}).
+\newblock 2025-08-21, In-plane thermal conductivity up to \SI{1800}{\watt\per\meter\per\kelvin}, density 1.5–2.1 g/cm³ depending on thickness (\SIrange{12}{100}{\micro\meter}).
 
 \bibitem{Deere-2011}
 Karen~A. Deere, S.~Paul Pao, and Khaled~S. Abdol-Hamid.
-\newblock Computational analysis of ares i roll control system jet interaction
-  effects on rolling moment.
-\newblock In {\em Proceedings of the 48th AIAA Aerospace Sciences Meeting},
-  Orlando, FL, January 2011. American Institute of Aeronautics and
-  Astronautics.
+\newblock Computational analysis of ares i roll control system jet interaction effects on rolling moment.
+\newblock In {\em Proceedings of the 48th AIAA Aerospace Sciences Meeting}, Orlando, FL, January 2011. American Institute of Aeronautics and Astronautics.
 \newblock AIAA Paper 2011-0172.
 
 \bibitem{Stoney-1954}
 William E.~Jr. Stoney.
 \newblock Transonic drag measurements of eight body-nose shapes.
-\newblock Technical Report NACA RM L53K17, National Advisory Committee for
-  Aeronautics, Langley Aeronautical Laboratory, Langley Field, Va., February
-  1954.
+\newblock Technical Report NACA RM L53K17, National Advisory Committee for Aeronautics, Langley Aeronautical Laboratory, Langley Field, Va., February 1954.
 \newblock Declassified October 14, 1957.
 
 \bibitem{Nazarychev-2022}
-V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N.
-  Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
-\newblock Cooling-rate computer simulations for the description of
-  crystallization of organic phase-change materials.
+V.~M. Nazarychev, M.~V. Subbotin, A.~A. Ermakov, D.~A. Khrustalev, A.~N. Frolov, S.~G. Ovchinnikov, A.~V. Knyazev, A.~V. Churakov, and A.~V. Novikov.
+\newblock Cooling-rate computer simulations for the description of crystallization of organic phase-change materials.
 \newblock {\em International Journal of Molecular Sciences}, 23, 2022.
 
 \bibitem{Benbrika-2020}
 M.~Benbrika, M.~Teggar, M.~Benbelhout, and K.~A.~R. Ismai.
-\newblock Numerical study of n-eicosane melting inside a horizontal cylinder
-  for different loading rates.
+\newblock Numerical study of n-eicosane melting inside a horizontal cylinder for different loading rates.
 \newblock {\em International Journal of Heat and Technology}, 38, 2020.
 
 \bibitem{Stryker-1990}
 P.~C. Stryker and E.~M. Sparrow.
-\newblock Application of a spherical thermal conductivity cell to solid
-  n-eicosane paraffin.
+\newblock Application of a spherical thermal conductivity cell to solid n-eicosane paraffin.
 \newblock {\em International Journal of Heat and Mass Transfer}, 99, 1990.
 
 \bibitem{Irving-2021}
 Hugh Irving.
 \newblock An external {CFD} study of the {HyEnD} {N2ORTH} rocket.
-\newblock Master's thesis, University College Dublin, School of Mechanical \&
-  Materials Engineering, Dublin, Ireland, April 2021.
+\newblock Master's thesis, University College Dublin, School of Mechanical \& Materials Engineering, Dublin, Ireland, April 2021.
 \newblock Master's thesis.
 
 \end{thebibliography}
