@@ -51,7 +51,7 @@ Für den Transport von Wärme innerhalb und über ein System hinweg, gibt es dre
 
 Bei der Wärmestrahlung geben Teilchen beim Aufnehmen oder Abgeben kinetischer Energie eine gewisse Menge an Energie in Form
 von elektromagnetischer Strahlung ab. Da die Strahlungsleistung von der vierten Potenz der Temperatur
-abhängt, ist dieser Mechanismus erst bei sehr hohen Temperaturen dimensionierend, kann jedoch im Vakuum dominant sein:
+abhängt, ist dieser Mechanismus erst bei hohen Temperaturen von Bedeutung, kann jedoch im Vakuum dominant sein:
 
 \begin{equation}
     \label{eq:radiation}
@@ -64,7 +64,7 @@ abhängt, $A$ die Fläche und $T$ die Temperatur des Radiators~\cite{Wolfersdorf
 \subsection{Wärmeleitung}\label{sec:waermeleitung}
 
 Bei der Wärmeleitung wird Wärmeenergie in einem Körper durch Diffusion der kinetischen Energie der Teilchen verteilt.
-Die Wärmestromdichte $\dot{q}$ in einem Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
+Die Wärmestromdichte $\dot{q}$ infolge eines Temperaturgradienten wird durch das Fourier-Gesetz beschrieben:
 
 \begin{equation}
   \label{eq:fourier}
@@ -79,7 +79,7 @@ Für eine eindimensionale Wand ergibt sich die Gleichung mit der Querschnittflä
   \dot{Q} = \lambda A \frac{\Delta T}{\Delta x}
 \end{equation}
 
-Der Wärmeleitwiederstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Wärmestrom definieren~\cite{Weigand-2022}:
+Der Wärmeleitwiderstand $R$ für einen Körper lässt sich durch die Temperaturdifferenz pro Wärmestrom definieren~\cite{Weigand-2022}:
 
 \begin{equation}
   \label{eq:waermewiederstand}
@@ -136,11 +136,11 @@ Für die Reynolds-Zahl und Prandtl-Zahl werden die folgenden zwei Gleichungen ve
   \end{equation}
 \end{minipage}
 
-Die dynamische Viskosität $\eta$ wird mittels der Sutherlands-Formel berechnet~\cite{Anderson-2017}, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
+Die dynamische Viskosität $\eta$ wird mittels der Sutherland Modells berechnet~\cite{Anderson-2017}, wobei $\eta_0$, $C$ und $T_0$ Konstanten für Luft sind:
 
 \begin{equation}
   \label{eq:dynamische_viskositaet}
-  \eta = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{3}{2}}
+  \eta_{\infty} = \eta_0 \frac{T_0 + C}{T_{\infty} + C} {\left( \frac{T_{\infty}}{T_0} \right)}^{\frac{3}{2}}
 \end{equation}
 
 Eine Strömung ist im Überschallbereich, wenn ihre Machzahl größer als 1 ist:

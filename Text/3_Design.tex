@@ -11,9 +11,9 @@ maximale Schub-Kraft und Dauer mit \SI{8}{\kilo\newton} für \SI{43}{\second}, d
 Da die Kühlung zeitgleich zu der Avionik entwickelt wurde, musste auf eine genaue Analyse aller Komponenten der Avionik verzichtet werden.
 Stattdessen wurde anhand der bereits festgelegten Elektronik wie etwa dem Mikrocontroller STM32H743ZGT6, der auf den redundanten Flugcomputern verwendet wird,
 die Auslegung durchgeführt.
-Aus dem Datenblatt des Mikrocontrollers folgt eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
-und ein Sperrschicht-Gehäuse-Wärmeleitwiderstand von $\Theta_\text{JC} = \SI{23,9}{\degreeCelsius\per\watt}$~\cite{STM32}. Mit einem konservativen
-Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35,85}{\degreeCelsius\per\watt}$
+Aus dem Datenblatt der \ac{mcu} folgt eine maximale Sperrschichttemperatur von $T_\text{J} = \SI{125}{\degreeCelsius}$~\cite{STM32}
+und ein Sperrschicht-Gehäuse-Wärmeleitwiderstand von $\Theta_\text{JC} = \SI{23,9}{\kelvin\per\watt}$~\cite{STM32}. Mit einem konservativen
+Sicherheitsfaktor von 1.5, um bisher unbekannte Bauteile zu berücksichtigen, folgt daraus $\Theta_\text{JC,safety} = \SI{35,85}{\kelvin\per\watt}$
 und eine maximale Gehäusetemperatur von $T_\text{C} = \SI{89,15}{\degreeCelsius}$. Im Kontext der Elektronik ist mit Gehäuse immer die
 Oberseite der elektronischen Komponente gemeint.
 Die Kühlung soll außerdem eine hohe Zuverlässigkeit haben, die durch Verwendung von ausschließlich passiven Bauteilen gewährleistet wird.
@@ -29,32 +29,32 @@ in Wärme umgewandelt.
   \centering
   \caption{Leistung der Avionik}\label{tab:avionik_leistung}
 
-  \begin{tabular}{lp{4cm}ll}
+  \begin{tabular}{lp{2.2cm}p{3.3cm}ll}
     \toprule[1pt]
-    Komponente & Spannung \& Strom & Wirkungsgrad & Wärmestrom \\
+    Beschreibung & Komponente & Spannung \& Strom & Wirkungsgrad & Wärmestrom \\
     \midrule[0.5pt]
 
-    STM32H743ZGT6 &
+    \ac{fcc} \ac{mcu} & STM32 &
       \mbox{$V_\text{DD}=\SI{3,3}{\volt}$},\newline
       $I_\text{DD}=\SI{536}{\milli\ampere}$~\cite{STM32} &
       $\approx \SI{0}{\percent}$ & \SI{1,769}{\watt} \\
-    $\dot{Q}_\text{ges}$ & & & \SI{7,075}{\watt}\\
+    4 Stück: $\dot{Q}_\text{ges}$ & & & & \SI{7,075}{\watt}\\
 
     \midrule[0.5pt]
-    RunCam Split 4 V2 &
+    Kamera & RunCam \newline Split 4 V2 &
       \mbox{$V_\text{DD}=\SI{5}{\volt}$},\newline
       $I_\text{DD}=\SI{450}{\milli\ampere}$~\cite{RunCam-Split4V2} &
       $\approx \SI{0}{\percent}$ & \SI{2,25}{\watt} \\
-    $\dot{Q}_\text{ges}$ & & & \SI{9}{\watt}\\
+    4 Stück: $\dot{Q}_\text{ges}$ & & & & \SI{9}{\watt}\\
 
     \midrule[0.5pt]
-    Thebe-II &
+    Funkmodul & Thebe-II &
       \mbox{$V_\text{DD}=\SI{3,6}{\volt}$},\newline
       $I_\text{DD}=\SI{500}{\milli\ampere}$~\cite{WE-ThebeII-UM-2024} &
       $\approx \SI{30}{\percent}$~\cite{WE-ThebeII-UM-2024} & \SI{1,3}{\watt} \\
 
     \midrule[0.5pt]
-    \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9,3}{\watt} \\
+    Netzteil & \ac{pcdu} & & $\approx \SI{30}{\percent}$ & \SI{9,3}{\watt} \\
 
     \midrule[0.5pt]
     \midrule[0.5pt]
@@ -65,7 +65,7 @@ in Wärme umgewandelt.
 \end{table}
 
 Die Leistung der Avionik in Tabelle~\ref{tab:avionik_leistung} ergibt sich durch den Maximalverbrauch der \ac{fcc}-Mikrocontroller
-(STM32H743ZGT6) bei maximaler Taktfrequenz (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
+(STM32(H743ZGT6)) bei maximaler Taktfrequenz (\SI{400}{\mega\hertz}) und vollständig aktiver Peripherie, der Kameras und einer
 Abschätzung der restlichen Komponenten, für die keine exakten Werte vorhanden sind. Der aus Tabelle~\ref{tab:avionik_leistung} resultierende gesamte Wärmestrom
 der Avionik mit \SI{40}{\watt} ist mit einem gewöhnlichen Laptop vergleichbar.
 
@@ -256,7 +256,7 @@ isolierenden Ummantelung versehen werden.
 
 Aufgrund der höchsten Wärmeleitfähigkeit in der Ebene des \ac{pgs} HGS-012 der Firma HPMS Graphite~\cite{HPMS-PGS} wurde dieses ausgewählt.
 Um ein verwendbares Wärmeleitband zu konstruieren, soll dieses aus 32 Schichten bestehen, \SI{4}{\centi\meter} breit und 
-\SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe möglichst Biegungsfrei verlaufen kann.
+\SI{10}{\centi\meter} lang sein, wodurch es ermöglicht werden soll, dass die Heatpipe möglichst biegungsfrei verlaufen kann.
 Die Anbindungen bzw. Endstücke der Wärmeleitbänder sowie Kontaktwiederstände durch Klebstoffe oder ähnliche Verbindungsmethoden werden ignoriert.
 Der Wärmeleitwiderstand ergibt sich durch Einsetzen von Gleichung \ref{eq:fourier_1d} in \ref{eq:waermewiederstand}:
 
@@ -273,10 +273,10 @@ Mittels einer Kombination von \ac{pgs} und Heatpipe kann eine Wärmebrücke gebi
 minimiert. Eine schematische Darstellung der thermalen Schnittstelle ist in Abbildung~\ref{fig:thermale_schnittstelle} zu sehen.
 
 Wenn angenommen wird, dass die Avionik aus vier separaten \ac{pcb} mit einer Gesamtleistung von \SI{40}{\watt}~(\ref{tab:avionik_leistung}) besteht, müssen pro Wärmeleitband \SI{10}{\watt} übertragen werden.
-Dabei entsteht nach Gleichung~\ref{eq:waermewiederstand} eine Temperaturerhöhung über das Wärmeleitband von $\Delta T_\mathrm{Wärmeleitband} = \SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \SI{36,17}{\kelvin}$.
-Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperaturerhöhung von $\Delta T_\mathrm{Heatpipe} = \SI{40}{\watt} \cdot \SI{0,3}{\watt\per\kelvin} = \SI{12}{\kelvin}$.
+Dabei entsteht nach Gleichung~\ref{eq:waermewiederstand} eine Temperaturdifferenz über das Wärmeleitband von $\Delta T_\mathrm{Wärmeleitband} = \SI{10}{\watt} \cdot \SI{3,617}{\watt\per\kelvin} = \SI{36,17}{\kelvin}$.
+Die Heatpipe überträgt den vollständigen Wärmestrom und hat eine Temperaturdifferenz von $\Delta T_\mathrm{Heatpipe} = \SI{40}{\watt} \cdot \SI{0,3}{\watt\per\kelvin} = \SI{12}{\kelvin}$.
 
-Von der Quelle bis zur Senke ergibt sich also ein Temperaturgradient von $\Delta T_\mathrm{ges} = \Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \SI{48,17}{\kelvin}$.
+Von der Quelle bis zur Senke ergibt sich also ein Temperaturunterschied von $\Delta T_\mathrm{ges} = \Delta T_\mathrm{Heatpipe} + \Delta T_\mathrm{Wärmeleitband} = \SI{48,17}{\kelvin}$.
 Eine schematische Darstellung der Schnittstelle sieht man in Abbildung~\ref{fig:thermale_schnittstelle}. Für die nötige Temperatur an der Senke
 erhält man $T_\mathrm{Senke} = T_C - \Delta T_\mathrm{ges} = \SI{314,13}{\kelvin}$. Die Masse der Schnittstelle wird nicht berücksichtigt, da diese
 unabhängig von der Kühlung der Senke notwendig ist und stark von der Elektronik bzw. deren Platzierung abhängt.
@@ -403,17 +403,17 @@ das \ac{pcm} zwischen parallelen Lamellen vorhanden.
 Tabelle~\ref{tab:pcm_auswahl} zeigt drei gängige organische Alkane, die als \ac{pcm} verwendet werden können, im Vergleich.
 Demnach hat n-Eicosan die besten Eigenschaften, mit insbesondere einem idealen Schmelzpunkt kurz unter den \SI{314,13}{\kelvin} der Senke,
 wie in Kapitel~\ref{sec:thermale_schnittstelle} berechnet.
-Um die Masse und latente Wärmekapazität des \ac{pcm} zu berechnen, wurde das in \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
+Um die Masse und latente Wärmekapazität des \ac{pcm} zu berechnen, wurde das in Listing \ref{lst:pcm_python_pseudo} dargestellte Python-Programm verwendet.
 Das \ac{pcm} wird dort als isobar, isotherm und isochor angenommen und hat eine unendliche Wärmeleitfähigkeit. Des Weiteren befindet es sich
 in einer Aluminium-Box mit \SI{1}{\milli\meter} Wanddicke und einem der Void Fraction entsprechenden internen Volumenanteil an  Aluminium von $F = 0.1$.
 Die Dimensionen der Breite und Tiefe der Box wurden gleich gesetzt; die Höhe der Box bildet die zweite Variable.
 Anschließend werden mit der Funktionen \texttt{total\_mass} die Masse und \texttt{total\_heat} die latente Wärmekapazität durch Bilanzierung
 der Gleichung~\ref{eq:latente_waerme} berechnet.
-Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe zeigt Abbildung~\ref{fig:pcm_waermestrom_vorauslegung}.
+Kapazitäts- und Massenkonturen abhängig von Seitenlänge und Höhe zeigt Abbildung~\ref{fig:pcm_mass_heat}.
 
 Bei einer Flugdauer von \SI{1200}{\second} und einem Wärmestrom von \SI{40}{\watt} ergibt sich eine nötige latente Wärmekapazität von
 \SI{48000}{\joule}, eine Seitenlänge der Aluminium-Box von \SI{6,749}{\centi\meter} und eine Gesamtmasse von \SI{346,610}{\gram}.
-Da ein Würfel von allen Quadern das größte Volumen-Oberflächenverhältnis hat, sind alle Kanten gleich lang. Dadurch ist der Massenanteil des \ac{pcm}
+Alle Kanten des Würfels sind gleich lang, da somit das größte Volumen-Oberflächenverhältnis erreicht wird. Dadurch ist der Massenanteil des \ac{pcm}
 maximiert, und der der Box minimiert.
 
 \begin{lstlisting}[float, language=Python, caption={Berechnung der Masse und latenten Wärmekapazität des \acs{pcm} in der pcm.py.}, label={lst:pcm_python_pseudo}]
@@ -470,7 +470,7 @@ nach eine Fläche von \SI{996,163}{\centi\meter\squared}.
 Die solare Bestrahlungsstärke wurde für Meereshöhe bei der Sommersonnenwende am Campo Militar de Santa Margarida (Constância, Distrikt Santarém, Portugal) beim höchsten Sonnenstand
 mit dem Online-Werkzeug \url{www.sonnenverlauf.de} berechnet, da dort die Demonstrator-Rakete von \ac{blast} starten wird und als Richtwert für \ac{blast} verwendet werden kann.
 Die Radiatorleistung ergibt sich demnach zu $\dot{Q}_\mathrm{Radiator} = \SI{47,471}{\watt}$.
-In \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode zu sehen, der zur Berechnung verwendet wurde. Dabei ist die \texttt{setup.json} die Datenstruktur mit allen Eingangswerten
+In Listings \ref{lst:setup_json} und \ref{lst:radiator_python_pseudo} ist der Programmcode zu sehen, der zur Berechnung verwendet wurde. Dabei ist die \texttt{setup.json} die Datenstruktur mit allen Eingangswerten
 und die \texttt{radiator.py} das Programm, welches die Fläche des Radiators mittels der Funktion \texttt{radiator\_area} berechnet.
 
 \begin{lstlisting}[float, language=python, caption={Setup-Werte aus der setup.json.}, label={lst:setup_json}]
@@ -517,11 +517,11 @@ Spezialform der Haack-Serie ist \cite{Stoney-1954}. Die analytische Beschreibung
 \end{equation*}
 
 Hierbei ist $x(t)$ der Radiusverlauf des rotationssymmetrischen Nasenprofils entlang der Längskoordinate $t$, beginnend an der Spitze $(t=0)$ bis zur Basis $(t=L)$.
-Die Gesamtlänge der Nase ist $L = \SI{1250}{\milli\meter}$. Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
+Die Gesamtlänge der Nase ist $L = \SI{900}{\milli\meter}$. Der maximale Radius an der Basis beträgt $R = \SI{125}{\milli\meter}$ und entspricht dem Gesamtdurchmesser der Rakete von $D = \SI{250}{\milli\meter}$.
 
-Die Funktion der Nase wurde mithilfe eines \ac{cad}-Programm skizziert und die Konturlänge zu \SI{1,01}{\meter} vermessen. Wenn der Radiator aus Kapitel~\ref{sec:Radiator} über den vollständigen Umfang der Rakete
-bei einem Durchmesser von $D = \SI{250}{\milli\meter}$ modelliert wird, ist der Radiator eine \SI{12,684}{\centi\meter} lange Sektion.
-Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Radiators, wo alle lokalen Größen berechnet werden.
+Die Funktion der Nase wurde mithilfe eines \ac{cad}-Programm skizziert und die Konturlänge zu \SI{1010}{\milli\meter} vermessen. Wenn der Radiator aus Kapitel~\ref{sec:Radiator} über den vollständigen Umfang der Rakete
+bei einem Durchmesser von $D = \SI{250}{\milli\meter}$ modelliert wird, ist der Radiator eine \SI{126,84}{\milli\meter} lange Sektion.
+Daraus folgt eine Konturlänge von \SI{1074}{\milli\meter} bis zum Mittelpunkt des Radiators, wo alle lokalen Größen berechnet werden.
 
 \begin{figure}
   \centering
@@ -547,8 +547,7 @@ Daraus folgt eine Konturlänge von \SI{1,074}{\meter} bis zum Mittelpunkt des Ra
 In Abbildung~\ref{fig:pcm_waermestrom_diagramm} sieht man eine schematische Darstellung der Konstruktion samt der Wärmeströme
 für den Fall, dass das System am Solidus-Punkt im Gleichgewicht steht. Hingegen kann man in Abbildung~\ref{fig:pcm_waermestrom_aufheizung_diagramm}
 den Zustand sehen, in dem der Umweltwärmestrom durch aerodynamische Aufheizung gestiegen ist und somit das \ac{pcm} anfängt zu schmelzen.
-Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendlich groß sind, wird der Radiator weiterhin als isotherm modelliert und die Avionik-Sektion als
-adiabat.
+Wegen des \ac{pcm} und der Annahme, dass alle Wärmeleitkoeffizienten unendlich groß sind, wird der Radiator weiterhin als isotherm modelliert.
 
 \begin{figure}
   \centering
@@ -596,7 +595,7 @@ adiabat.
 Die Software zur Berechnung aller Bilanzgleichungen für Dimensionen und Massen besteht aus einer Reihe an Python-Programmen und Datenstrukturen.
 Das Hauptprogramm \texttt{main.py} ruft alle Unterprogramme in der richtigen Reihenfolge auf: zuerst die \texttt{radiator.py} zur Berechnung
 der Radiator-Dimension mithilfe der Randbedingungen aus der \texttt{setup.json}, danach wird die \texttt{hybrid.py} (Vollständiger Programmcode ist im Anhang zu finden \ref{lst:hybrid_python_pseudo}) aufgerufen, um die aerodynamischen Wärmeströme
-mittels der Nußelt-Beziehung zu bestimmen, anschließend werden die Ergebnisse in die \texttt{pcm.py} geladen, um abhängig von der Radiatorfläche
+mittels der Nußelt-Beziehung zu bestimmen. Anschließend werden die Ergebnisse in die \texttt{pcm.py} geladen, um abhängig von der Radiatorfläche
 und den Wärmeströmen die Kapazität und Masse des \ac{pcm} zu bestimmen.
 Abbildung~\ref{fig:dimensionierung_ablauf} zeigt schematisch, wie die Dimensionierung in der Software abläuft.
 

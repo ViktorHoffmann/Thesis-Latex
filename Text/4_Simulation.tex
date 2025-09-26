@@ -241,7 +241,7 @@ Aufgrund der Ähnlichkeit wurden diese stark an der Masterarbeit zur aerodynamis
 \ac{hyend} Projekts N2ORTH von Hugh Irving~\cite{Irving-2021} orientiert.
 Als Viskositätsmodell wurde SST k-$\omega$~\cite{Irving-2021} gewählt und das Energiemodell aktiviert~\cite{Irving-2021}.
 Die Luft wurde als ideales Gas~\cite{Irving-2021} mit einer spezifischen Wärmekapazität von \SI{1006,43}{\joule\per\kilogram\kelvin},
-einer Wärmeleitfähigkeit von \SI{0,0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1,7894e-5}{\kilogram\per\meter\second}
+einer Wärmeleitfähigkeit von \SI{0,0242}{\watt\per\meter\kelvin}, einer dynamischen Viskosität von \SI{1,7894e-5}{\kilogram\per\meter\per\second}
 und einer molekularen Masse von \SI{28,966}{\kilogram\per\kilo\mole} modelliert.
 Weiterhin wurde für Gradienten green-gauss cell-based und für Fluss, Turbulente kinetische Energie sowie spezifische Dissipationsrate second-order upwind verwendet.
 Für Formulierung wurde implicit und für den Flusstyp Roe-FDS gewählt.
@@ -359,6 +359,7 @@ für alle vier Simulationen innerhalb der Bedingungen $y^+ \leq 1$ liegen.
   \end{equation*}
 \end{minipage}
 
+Demnach beträgt die Masse des \ac{pcm} \SI{1,654}{\kilogram}, was nur \SI{38,86}{\percent} der Masse aus der Vorauslegung sind.
 Die Temperatur- und Machzahlkontur der Luft kann man in Abbildung~\ref{fig:maxQ_konturen} sehen, wo der Stoß an der Nasenspitze
 deutlich zu erkennen ist. Konturen der weiteren Simulationen sind den Abbildungen~\ref{fig:airflow_temp_contour_continued}
 und \ref{fig:airflow_mach_contour_continued} zu entnehmen. Die Maximaltemperatur von \SI{501}{\kelvin} wird an der Spitze der Rakete erreicht.

@@ -53,7 +53,7 @@
   \tikz[baseline]\node[draw,shape=circle,anchor=base, inner sep =1pt] {#1} ;}
 
 %----------- hyperref Setup --------------------
-\usepackage[pagebackref,breaklinks,colorlinks,citecolor=red,linkcolor=blue,urlcolor=blue]{hyperref}  % set colors to black for printing
+\usepackage[pagebackref,breaklinks,colorlinks,citecolor=black,linkcolor=black,urlcolor=black]{hyperref}  % set colors to black for printing
 
 %----------- Kopfnoten-Layout --------------------
 \newpagestyle{main}{%
