@@ -128,12 +128,7 @@ und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als 
     \begin{minipage}[t]{0.485\textwidth}
         \centering
         \setlength{\tabcolsep}{1pt} % reduce subfigure spacing
-        % Legend vertically centered & with extra space to right
-        \begin{subfigure}[t]{0.16\textwidth}
-            \centering
-            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/liquid-fraction-legend.png}}
-        \end{subfigure}%
-        \hspace{2mm}% extra space between legend and first image
+        
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-300.png}
@@ -154,6 +149,12 @@ und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als 
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/liquid-fraction-1200.png}
             \caption{\SI{1200}{\second}}\label{fig:liquid_fraction_1200}
         \end{subfigure}
+        % Legend vertically centered & with extra space to right
+        \begin{subfigure}[t]{0.16\textwidth}
+            \centering
+            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/liquid-fraction-legend-complete.png}}
+        \end{subfigure}%
+        \hspace{2mm}% extra space between legend and first image
         \caption{Flüssigkeitsanteil Konturen. Die Legende bezieht sich auf~\ref{fig:liquid_fraction_1200}}
         \label{fig:liquid_frac_kontur}
     \end{minipage}
@@ -161,11 +162,7 @@ und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als 
     % Right figure
     \begin{minipage}[t]{0.485\textwidth}
         \centering
-        \begin{subfigure}[t]{0.16\textwidth}
-            \centering
-            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/temperature-legend.png}}
-        \end{subfigure}%
-        \hspace{2mm}% extra space between legend and first image
+        
         \begin{subfigure}[t]{0.2\textwidth}
             \centering
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-300.png}
@@ -186,6 +183,11 @@ und Körperkräfte, 0,5 für Impuls und 0,9 für sowohl Flüssigkeitsanteil als 
             \includegraphics[height=0.5\textheight]{ansyspost/pcm/static-temperature-1200.png}
             \caption{\SI{1200}{\second}}\label{fig:temperatur_1200}
         \end{subfigure}
+        \begin{subfigure}[t]{0.16\textwidth}
+            \centering
+            \raisebox{0.7\height}{\includegraphics[height=0.2\textheight]{ansyspost/pcm/temperature-legend-complete.png}}
+        \end{subfigure}%
+        \hspace{2mm}% extra space between legend and first image
         \caption{Konturen der statischen Temperatur. Die Legende bezieht sich auf~\ref{fig:temperatur_1200}.}
         \label{fig:static_temperature_kontur}
     \end{minipage}
